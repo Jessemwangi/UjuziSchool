@@ -53,7 +53,7 @@ function LessonHowItWorks() {
           }}
         />
         <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
-          How it works
+          How it works,  Let's learn together,Make sure to check the facts, and share,  Let's learn together
         </Typography>
         <div>
           <Grid container spacing={5}>
@@ -62,12 +62,13 @@ function LessonHowItWorks() {
                 <Box sx={number}>1.</Box>
                 <Box
                   component="img"
-                  src="/static/themes/onepirate/productHowItWorks1.svg"
+                  src="../../../static/assets/productHowItWorks1.svg"
+              
                   alt="suitcase"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  Appointment every Wednesday 9am.
+                Let's learn together,Make sure to check the facts, and share
                 </Typography>
               </Box>
             </Grid>
@@ -76,13 +77,13 @@ function LessonHowItWorks() {
                 <Box sx={number}>2.</Box>
                 <Box
                   component="img"
-                  src="/static/themes/onepirate/productHowItWorks2.svg"
+                  src={require('../../../static/assets/productHowItWorks2.svg')}
+                  // ../../../static/assets/productHowItWorks2.svg
                   alt="graph"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited quantities, so
-                  be quick.
+                Let's learn together,Make sure to check the facts, and share,  Let's learn together
                 </Typography>
               </Box>
             </Grid>
@@ -91,13 +92,13 @@ function LessonHowItWorks() {
                 <Box sx={number}>3.</Box>
                 <Box
                   component="img"
-                  src="/static/themes/onepirate/productHowItWorks3.svg"
+                  src="../../../static/assets/productHowItWorks3.svg"
                   alt="clock"
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  {'New offers every week. New experiences, new surprises. '}
-                  {'Your Sundays will no longer be alike.'}
+                  Let's learn together,Make sure to check the facts, and share,  Let's learn together
+                  {'Your studies will no longer be alike.'}
                 </Typography>
               </Box>
             </Grid>

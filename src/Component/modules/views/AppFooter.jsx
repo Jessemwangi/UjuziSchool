@@ -10,7 +10,7 @@ function Copyright() {
   return (
     <React.Fragment>
       {'© '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -112,22 +112,22 @@ export default function AppFooter() {
           </Grid>
           <Grid item>
             <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
-                Freepik
+              {'All right reserve under '}
+              <Link href="/terms" rel="Terms" title="Terms">
+                Terms
               </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
-                www.flaticon.com
+              {' and '}
+              <Link href="/privacy" rel="Private" title="Privacy">
+                Privacy
               </Link>
-              {' is licensed by '}
+              {' Copright '}
               <Link
                 href="https://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                CC 3.0 BY
+                2023 BC
               </Link>
             </Typography>
           </Grid>

@@ -6,6 +6,7 @@ import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
+import dotted from '../../../static/assets/productCTAImageDots.png'
 
 export const LessonCTA =() =>{
   const [open, setOpen] = React.useState(false);
@@ -70,12 +71,13 @@ export const LessonCTA =() =>{
               right: 0,
               bottom: 0,
               width: '100%',
-              background: 'url(/static/themes/onepirate/productCTAImageDots.png)',
+              background: {dotted},
             }}
           />
           <Box
             component="img"
-            src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750"
+     
+            src="https://source.unsplash.com/750x600/?library?auto=format&fit=crop&w=750"
             alt="call to action"
             sx={{
               position: 'absolute',

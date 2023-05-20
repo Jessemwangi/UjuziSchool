@@ -35,15 +35,15 @@ function LessonValues() {
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                The best luxury hotels
+                Best of Sciences
               </Typography>
               <Typography variant="h5">
                 {
-                  'From the latest trendy boutique hotel to the iconic palace with XXL pool'
+                  'Selected from the latest trands and finest quality from around the world'
                 }
 
                 {
-                  ', go for a mini-vacation just a few subway stops away from your home.'
+                  ', study in an international way, ahead of others.'
                 }
               </Typography>
             </Box>
@@ -57,15 +57,15 @@ function LessonValues() {
                 alt="graph"
                 sx={{ height: 55 }}
               />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                New experiences
+              <Typography variant="h6" sx={{ my: 5, textAlign:'left' }}>
+                Practicals experiences
               </Typography>
               <Typography variant="h5">
                 {
-                  'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
+                  'build, test and visualize before sitting for that exam… '
                 }
 
-                {'your Sundays will not be alike.'}
+                {'your study will not be alike...'}
               </Typography>
             </Box>
           </Grid>
@@ -78,10 +78,10 @@ function LessonValues() {
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                Exclusive rates
+                Exclusive Video tutorials
               </Typography>
               <Typography variant="h5">
-                {'By registering, you will access specially negotiated rates '}
+                {'By registering, you will access customized video and other materials'}
                 {'that you will not find anywhere else.'}
               </Typography>
             </Box>

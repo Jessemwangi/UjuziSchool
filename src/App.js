@@ -18,9 +18,12 @@ import Home from './pages/Home/Home';
 const router = createBrowserRouter(
   [{
     path:'/',
-    element:<Home />,
+    element:<Layout />,
     children:[
   {
+    path:'/',
+    element:<Home />},
+    {
     path:'/sign-in',
     element:<SignIn />
   },
@@ -83,7 +86,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>hello world</h1>
        <RouterProvider router={router} />
     </div>
   );

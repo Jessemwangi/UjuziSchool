@@ -15,7 +15,7 @@ function AppAppBar() {
     <div>
       <AppBar position="fixed">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Box sx={{ flex: 1 }} />
+          <Box sx={{ flex: 1 }} >
           <Link
             variant="h6"
             underline="none"
@@ -23,41 +23,54 @@ function AppAppBar() {
             href="/"
             sx={{ fontSize: 24 }}
           >
-            {'School App'}
+            {'School App LOGO'}
+          </Link>
+            </Box>
+<Box sx={{ flex: 6, display: 'flex', justifyContent: 'space-around', alignItems:'center' }}>
+  <Box sx={{ flex: 4, display: 'flex', justifyContent: 'space-around', alignItems:'center' }}>
+          <Link
+            variant="h6"
+            underline="none"
+            color="inherit"
+            href="/"
+            sx={{ fontSize: 16 }}
+          >
+            {'Courses'}
           </Link>
           <Link
             variant="h6"
             underline="none"
             color="inherit"
             href="/"
-            sx={{ fontSize: 24 }}
+            sx={{ fontSize:16}}
           >
-            {'School App'}
+            {'Practicals'}
           </Link>
           <Link
             variant="h6"
             underline="none"
             color="inherit"
             href="/"
-            sx={{ fontSize: 24 }}
+            sx={{ fontSize: 16 }}
           >
-            {'School App'}
+            {'Exams'}
           </Link>
           <Link
             variant="h6"
             underline="none"
             color="inherit"
             href="/"
-            sx={{ fontSize: 24 }}
+            sx={{ fontSize: 16 }}
           >
-            {'School App'}
+            {'About Us'}
           </Link>
+          </Box>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
               color="inherit"
               variant="h6"
               underline="none"
-              href="sign-in"
+              href="/sign-in"
               sx={rightLink}
             >
               {'Sign In'}
@@ -66,10 +79,11 @@ function AppAppBar() {
               variant="h6"
               underline="none"
               href="/sign-up"
-              sx={{ ...rightLink, color: 'secondary.main' }}
+              sx={{ ...rightLink }}
             >
               {'Sign Up'}
             </Link>
+          </Box>
           </Box>
         </Toolbar>
       </AppBar>

@@ -2,13 +2,12 @@ import React from 'react';
 import Main from '../Component/Main/Main';
 import AppFooter from '../Component/modules/views/AppFooter';
 import AppAppBar from '../Component/modules/views/AppAppBar';
-import LesseonHero from '../Component/modules/views/LessonHero';
 
 const Layout = () => {
     return (
         <div>
             <AppAppBar />
-            <LesseonHero />
+            {/* <LesseonHero /> */}
             <Main/>   {/* where all will be delivered */}
             <AppFooter />
 
@@ -16,4 +15,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default Layout
