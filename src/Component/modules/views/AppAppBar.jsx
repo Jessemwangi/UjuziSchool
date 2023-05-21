@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
-import ujLogo from '../../../static/assets/ujlogo.png';
+import ujLogo from '../../../static/assets/newlog.png';
 
 const rightLink = {
   fontSize: 16,
@@ -28,7 +28,7 @@ function AppAppBar() {
         component="img"
         src={ujLogo}
         alt="Ujuzi Logo"
-        sx={{ width: 200 }}
+        sx={{ height: 130, paddingTop:'6px' }}
       />
           </Link>
             </Box>

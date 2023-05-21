@@ -20,7 +20,9 @@ const item = {
   px: 5,
 };
 
-
+const mt={
+    marginTop:'3rem'
+}
 
 const Attribute = () => {
     return (
@@ -43,6 +45,68 @@ const Attribute = () => {
         <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <Box sx={item}>
+              <Box
+                component="img"
+                src={p_values1}
+                alt="suitcase"
+                sx={{ height: 55 }}
+              />
+              <Typography variant="h6" sx={{ my: 5 }}>
+                FaceBook SVG
+              </Typography>
+              <Typography variant="h5">
+<p>By Facebook Inc. - Investor Relations webpage of Facebook Inc., Annual Report 2017, Public Domain, https://commons.wikimedia.org/w/index.php?curid=70561573</p>
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={item}>
+              <Box
+                component="img"
+                src={unsplash}
+            
+                alt="graph"
+                sx={{ height: 55 }}
+              />
+              <Typography variant="h6" sx={{ my: 5, textAlign:'left' }}>
+                UnSplash Images
+              </Typography>
+              <Typography variant="h5">
+                {
+                  'The internet’s source for visuals.'
+                  
+                }
+
+                {'Powered by creators everywhere.'}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={item}>
+              <Box
+                component="img"
+                src={youtube}
+                alt="clock"
+                sx={{ height: 55 }}
+              />
+              <Typography variant="h6" sx={{ my: 5 }}>
+               YouTube
+              </Typography>
+              <Typography variant="h5">
+              {'By YouTube - https://www.youtube.com/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=17740490'}
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+        <Grid container spacing={5} sx={{mt:10, position:'relative'}}>
+        <Box
+          component="img"
+          src={curvy}
+          alt="curvy lines"
+          sx={{ pointerEvents: 'none', transform: 'scaleX(-1)', position: 'absolute', top: -200,left:-100 }}
+        />
+          <Grid item xs={12} md={4}>
+            <Box sx={item  }>
               <Box
                 component="img"
                 src={p_values1}
