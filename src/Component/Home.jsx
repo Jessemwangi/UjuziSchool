@@ -9,11 +9,11 @@ import withRoot from './modules/withRoot';
 function Index() {
   return (
     <React.Fragment>
-      <ProductValues />
+      {/* <ProductValues />
       <LessonsCategories />
       <LessonHowItWorks />
       <ProductCTA />
-      <ProductSmokingHero />
+      <ProductSmokingHero /> */}
     </React.Fragment>
   );
 }

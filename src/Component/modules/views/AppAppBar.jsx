@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
+import ujLogo from '../../../static/assets/ujlogo.png';
 
 const rightLink = {
   fontSize: 16,
@@ -14,7 +15,7 @@ function AppAppBar() {
   return (
     <div>
       <AppBar position="fixed">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: 'space-between',overflow:'hidden' }}>
           <Box sx={{ flex: 1 }} >
           <Link
             variant="h6"
@@ -23,7 +24,12 @@ function AppAppBar() {
             href="/"
             sx={{ fontSize: 24 }}
           >
-            {'School App LOGO'}
+                  <Box
+        component="img"
+        src={ujLogo}
+        alt="Ujuzi Logo"
+        sx={{ width: 200 }}
+      />
           </Link>
             </Box>
 <Box sx={{ flex: 6, display: 'flex', justifyContent: 'space-around', alignItems:'center' }}>

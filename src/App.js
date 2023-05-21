@@ -4,9 +4,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Layout from './pages/Layout';
-import Login from './pages/Login';
-import Logout from './pages/Logout';
-import Main from './Component/Main/Main';
+
+
+import Main from './pages/Main/Main';
 import SignUp from './Component/SignUp';
 import Terms from './Component/Terms';
 import Privacy from './Component/Privacy';
@@ -16,7 +16,8 @@ import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
 
 const router = createBrowserRouter(
-  [{
+  [
+    {
     path:'/',
     element:<Layout />,
     children:[
@@ -26,10 +27,6 @@ const router = createBrowserRouter(
     {
     path:'/sign-in',
     element:<SignIn />
-  },
-  {
-    path:'/logout',
-    element:<Logout/>
   },
   {
     path:'/sign-up',
@@ -45,8 +42,6 @@ const router = createBrowserRouter(
   },{
     path:'/lessonhow',
     element:<LessonHowItWorks/>
-  }
-]
   },
   {
     path:'/terms',
@@ -57,6 +52,8 @@ const router = createBrowserRouter(
     path:'/privacy',
     element:<Privacy/>
 
+  }
+]
   }
   
 ]

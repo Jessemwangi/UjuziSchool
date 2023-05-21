@@ -34,7 +34,7 @@ function SignIn() {
 
   return (
     <React.Fragment>
-      <AppAppBar />
+      {/* <AppAppBar /> */}
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
@@ -109,7 +109,7 @@ function SignIn() {
           </Link>
         </Typography>
       </AppForm>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }

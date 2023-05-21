@@ -5,6 +5,10 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
+import howit1 from '../../../static/assets/productHowItWorks1.svg'
+import howit2 from '../../../static/assets/productHowItWorks2.svg'
+import howit3 from '../../../static/assets/productHowItWorks3.svg'
+import curvy from '../../../static/assets/productCurvyLines.png'
 
 const item = {
   display: 'flex',
@@ -43,7 +47,7 @@ function LessonHowItWorks() {
       >
         <Box
           component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
+          src={curvy}
           alt="curvy lines"
           sx={{
             pointerEvents: 'none',
@@ -62,7 +66,7 @@ function LessonHowItWorks() {
                 <Box sx={number}>1.</Box>
                 <Box
                   component="img"
-                  src="../../../static/assets/productHowItWorks1.svg"
+                  src={howit1}
               
                   alt="suitcase"
                   sx={image}
@@ -77,7 +81,7 @@ function LessonHowItWorks() {
                 <Box sx={number}>2.</Box>
                 <Box
                   component="img"
-                  src={require('../../../static/assets/productHowItWorks2.svg')}
+                  src={howit2}
                   // ../../../static/assets/productHowItWorks2.svg
                   alt="graph"
                   sx={image}
@@ -92,7 +96,7 @@ function LessonHowItWorks() {
                 <Box sx={number}>3.</Box>
                 <Box
                   component="img"
-                  src="../../../static/assets/productHowItWorks3.svg"
+                  src={howit3}
                   alt="clock"
                   sx={image}
                 />

@@ -35,7 +35,7 @@ const  SignUp = ()  =>{
 
   return (
     <React.Fragment>
-      <AppAppBar />
+      {/* <AppAppBar /> */}
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
@@ -121,7 +121,7 @@ const  SignUp = ()  =>{
           )}
         </Form>
       </AppForm>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }

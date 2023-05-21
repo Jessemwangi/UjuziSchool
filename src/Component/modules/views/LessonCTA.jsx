@@ -94,7 +94,7 @@ export const LessonCTA =() =>{
       <Snackbar
         open={open}
         closeFunc={handleClose}
-        message="We will send you our best offers, once a week."
+        message="We will send you our updates and news, once a week."
       />
     </Container>
   );

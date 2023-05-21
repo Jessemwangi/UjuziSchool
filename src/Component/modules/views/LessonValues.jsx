@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import curvy from '../../../static/assets/productCurvyLines.png'
+import p_values1 from '../../../static/assets/productValues1.svg'
+import p_values2 from '../../../static/assets/productValues2.svg'
+import p_values3 from '../../../static/assets/productValues3.svg'
 
 const item = {
   display: 'flex',
@@ -21,7 +25,7 @@ function LessonValues() {
       <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
         <Box
           component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
+          src={curvy}
           alt="curvy lines"
           sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
         />
@@ -30,7 +34,7 @@ function LessonValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="../../../../public/assets/statics/productValues1.svg"
+                src={p_values1}
                 alt="suitcase"
                 sx={{ height: 55 }}
               />
@@ -52,7 +56,7 @@ function LessonValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="../../../../public/assets/statics/productValues2.svg"
+                src={p_values2}
             
                 alt="graph"
                 sx={{ height: 55 }}
@@ -73,7 +77,7 @@ function LessonValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="../../../../public/assets/statics/productValues3.svg"
+                src={p_values3}
                 alt="clock"
                 sx={{ height: 55 }}
               />
