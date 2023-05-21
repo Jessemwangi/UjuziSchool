@@ -14,6 +14,7 @@ import SignIn from './Component/SignIn';
 import ProductCategories from './Component/modules/views/LessonsCategories';
 import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
+import Attribute from './Component/modules/views/Attribute';
 
 const router = createBrowserRouter(
   [
@@ -51,6 +52,12 @@ const router = createBrowserRouter(
   {
     path:'/privacy',
     element:<Privacy/>
+
+  }
+  ,
+  {
+    path:'/attrib',
+    element:<Attribute/>
 
   }
 ]

@@ -5,6 +5,7 @@ import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
+import fb from '../../../static/assets/fb.svg'
 
 function Copyright() {
   return (
@@ -19,12 +20,15 @@ function Copyright() {
 }
 
 const iconStyle = {
-  width: 48,
+
   height: 48,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'warning.main',
+  padding:'0 2rem',
+  border:'solid 1px white',
+  borderRadius:'8px',
+  // backgroundColor: '#23344',
   mr: 1,
   '&:hover': {
     bgcolor: 'warning.dark',
@@ -59,13 +63,13 @@ export default function AppFooter() {
               sx={{ height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://mui.com/" sx={iconStyle}>
+                <Box component="a" href="/" sx={iconStyle}>
                   <img
-                    src="/static/themes/onepirate/appFooterFacebook.png"
+                    src={fb}
                     alt="Facebook"
                   />
                 </Box>
-                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
+                <Box component="a" href="/" sx={iconStyle}>
                   <img
                     src="/static/themes/onepirate/appFooterTwitter.png"
                     alt="Twitter"
@@ -122,7 +126,7 @@ export default function AppFooter() {
               </Link>
               {' Copright '}
               <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
+                href="/"
                 title="Creative Commons BY 3.0"
                 target="_blank"
                 rel="noopener noreferrer"
