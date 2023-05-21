@@ -7,14 +7,14 @@ import ujLogo from '../../../static/assets/newlog.png';
 
 const rightLink = {
   fontSize: 16,
-  color: 'common.white',
+  color: '#BA68C8',
   ml: 3,
 };
 
 function AppAppBar() {
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{background:' #040535'}}>
         <Toolbar sx={{ justifyContent: 'space-between',overflow:'hidden' }}>
           <Box sx={{ flex: 1 }} >
           <Link
