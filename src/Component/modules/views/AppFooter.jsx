@@ -6,13 +6,14 @@ import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 import fb from '../../../static/assets/fb.svg'
+import { NavLink } from 'react-router-dom';
 
 function Copyright() {
   return (
     <React.Fragment>
       {'© '}
       <Link color="inherit" href="/">
-        Your Website
+        Ujuzi Solution
       </Link>{' '}
       {new Date().getFullYear()}
     </React.Fragment>
@@ -23,15 +24,18 @@ const iconStyle = {
 
   height: 48,
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent:'flex-start',
   alignItems: 'center',
-  padding:'0 2rem',
-  border:'solid 1px white',
-  borderRadius:'8px',
+  // padding:'0 2rem',
+  // border:'solid 1px white',
   // backgroundColor: '#23344',
+  transition:'0.4s ease all',
   mr: 1,
   '&:hover': {
-    bgcolor: 'warning.dark',
+    transition:'0.4s ease all',
+    transform: 'scale(1.1)',
+    opacity:'0.7',
+    // justifyContent:'center',
   },
 };
 
@@ -55,14 +59,18 @@ export default function AppFooter() {
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
           <Grid item xs={6} sm={4} md={3}>
+          <Typography variant="h6" marked="left" gutterBottom>
+             Stay in Touch !!
+            </Typography>
             <Grid
               container
               direction="column"
               justifyContent="flex-end"
               spacing={2}
-              sx={{ height: 120 }}
+              sx={{ height: 130  }}
             >
-              <Grid item sx={{ display: 'flex' }}>
+
+              <Grid item sx={{ display: 'flex',flexDirection:'column',  paddingTop:'6px' }}>
                 <Box component="a" href="/" sx={iconStyle}>
                   <img
                     src={fb}
@@ -75,9 +83,9 @@ export default function AppFooter() {
                     alt="Twitter"
                   />
                 </Box>
-              </Grid>
               <Grid item>
                 <Copyright />
+              </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -94,7 +102,7 @@ export default function AppFooter() {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={6} sm={8} md={4}>
+          <Grid item xs={6} sm={8} md={3}>
             <Typography variant="h6" marked="left" gutterBottom>
               Language
             </Typography>
@@ -113,6 +121,17 @@ export default function AppFooter() {
                 </option>
               ))}
             </TextField>
+          </Grid>
+          <Grid item xs={6} sm={4} md={4} sx={{alignItem:'right'}}>
+            <Typography variant="h6" marked="left" gutterBottom>
+              Browse all our services
+            </Typography>
+<Grid sx={{display:'flex', flexDirection:'column'}}>
+<Link>Get started with sciences</Link>
+<Link>Get started with Nature</Link>
+<Link>Get started with Mathematics</Link>
+<Link>Be energized with online Exams</Link>
+</Grid>
           </Grid>
           <Grid item>
             <Typography variant="caption">

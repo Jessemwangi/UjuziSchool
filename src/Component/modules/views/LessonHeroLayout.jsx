@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import arrowDown from '../../../static/assets/productHeroArrowDown.png'
 
 const LessonHeroLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
@@ -64,7 +65,7 @@ function LessonHeroLayout(props) {
         <Background sx={sxBackground} />
         <Box
           component="img"
-          src="/static/themes/onepirate/productHeroArrowDown.png"
+          src={arrowDown}
           height="16"
           width="12"
           alt="arrow down"
