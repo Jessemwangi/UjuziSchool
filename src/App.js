@@ -15,6 +15,8 @@ import ProductCategories from './Component/modules/views/LessonsCategories';
 import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
+import Videos from './pages/Videos/Videos';
+import SingleVideo from './pages/SingleVideo/SingleVideo';
 
 const router = createBrowserRouter(
   [
@@ -32,6 +34,16 @@ const router = createBrowserRouter(
   {
     path:'/sign-up',
     element:<SignUp />
+  },
+  {
+    path:'/videohome',
+    element:<Videos/>,
+
+  },
+  {
+    path:'/singlevideo/:id',
+    element:<SingleVideo/>,
+
   },
   {
     path:'/home',

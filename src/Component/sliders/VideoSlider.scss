@@ -1,0 +1,41 @@
+.videoSlider {
+    height: calc(100vh - 80px);
+    width: 100vw;
+  position: relative;
+  
+    .container {
+    //  overflow: hidden;
+      display: flex;
+      height: 100%;
+      transition: all 1s ease;
+      // transform: translateX(-100vw);
+  
+      img {
+        height: 100%;
+        width: 100vw;
+        object-fit: cover;
+  
+      }
+  
+    }
+    .icons {
+      width: fit-content;
+      display: flex;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 100px;
+      margin: auto;
+      cursor: pointer;
+  
+      .icon {
+          width: 50px;
+          height: 50px;
+          border: 1px solid #999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+    }
+  }
+  

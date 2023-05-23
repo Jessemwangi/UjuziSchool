@@ -11,7 +11,7 @@ import privacy from './modules/views/privacy.md';
 function Privacy() {
   return (
     <React.Fragment>
-      <AppAppBar />
+      {/* <AppAppBar /> */}
       <Container>
         <Box sx={{ mt: 7, mb: 12 }}>
           <Typography variant="h3" gutterBottom marked="center" align="center">
@@ -20,7 +20,7 @@ function Privacy() {
           <Markdown>{privacy}</Markdown>
         </Box>
       </Container>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }
