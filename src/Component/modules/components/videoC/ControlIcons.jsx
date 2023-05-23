@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-const ControlIcons = ({playandpause, playing, rewind, fastForward, played}) => {
+const ControlIcons = ({playandpause, playing, rewind, fastForward, played, onSeek, onSeekMouseUp}) => {
  
   return (
     <Container sx={styles.container}>

@@ -44,6 +44,17 @@ const handlePlayerProgress = (state) => {
 
 }
 
+const handlePlayerSeek = (newValue) => {
+  setPlayerState({...playerstate, played: parseFloat(newValue/100)});
+  playerRef.current.seekTo(parseFloat(newValue / 100));
+}
+
+const handlePlayerMouseSeekUp = (newValue) => {
+  setPlayerState({...playerstate, seeking: false});
+  playerRef.current.seekTo(newValue / 100);
+}
+
+
   return (
     <Container sx={{ my: 8, display: "flex" }}>
       <Grid container spacing={5}>
@@ -64,6 +75,8 @@ const handlePlayerProgress = (state) => {
              rewind={handleRewind}
              fastForward={handleFastForward}
              played={played}
+             onSeekMouseUp={handlePlayerMouseSeekUp}
+             onSeek={handlePlayerSeek} 
               />
             {/* <Controls/> */}
           </div>
