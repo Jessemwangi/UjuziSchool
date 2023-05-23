@@ -10,7 +10,13 @@ import { PlayArrowSharp } from "@mui/icons-material";
 import { PauseSharp } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 
-const BottomSegement = ({ handlePlayAndPause, playing, played }) => {
+const BottomSegement = ({
+  handlePlayAndPause,
+  playing,
+  played,
+  onSeek,
+  onSeekMouseUp,
+}) => {
   const style = {
     bottom__icons: {
       color: "#999",
@@ -41,7 +47,16 @@ const BottomSegement = ({ handlePlayAndPause, playing, played }) => {
         </Grid>
 
         <Grid item xs={12}>
-          <PrettoSlider min={0} max={100} defaultValue={20} value={played*100} />
+          
+          <PrettoSlider
+            min={0}
+            max={100}
+            defaultValue={20}
+            value={played * 100}
+            onChange={onSeek}
+            onChangeCommitted={onSeekMouseUp}
+          />
+
           <Grid container direction="row" justifyContent="space-between">
             <Typography variant="h7" style={{ color: "white" }}>
               00:26

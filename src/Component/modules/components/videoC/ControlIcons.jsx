@@ -42,7 +42,12 @@ const ControlIcons = ({playandpause, playing, rewind, fastForward, played, onSee
       playing={playing} fastForward={fastForward} rewind={rewind}/>
 
       {/* Bottom Segment */}
-      <BottomSegement handlePlayAndPause={playandpause}  playing={playing}  played={played}/>
+      <BottomSegement handlePlayAndPause={playandpause}  
+      playing={playing}  
+      played={played}
+      onSeek={onSeek}
+      onSeekMouseUp ={onSeekMouseUp}
+      />
     </Container>
   );
 };
