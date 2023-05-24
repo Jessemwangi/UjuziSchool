@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 import "./Single_Video.scss";
 import ControlIcons from "../modules/components/videoC/ControlIcons";
 import Controls from "../modules/components/videoC/Controls";
+import { formatHours } from "../../UtilitiesFunctions/Function";
 
 const AppSingleVideo = () => {
   const [playerstate, setPlayerState] = useState({
@@ -15,45 +16,54 @@ const AppSingleVideo = () => {
     seeking: false,
   });
 
-  const playerRef = useRef()
+  const playerRef = useRef();
 
-  const { playing, mute, volume, playerbackRate, played, seeking} = playerstate;
+  const { playing, mute, volume, playerbackRate, played, seeking } =
+    playerstate;
 
   const handlePlayAndPause = () => {
     setPlayerState({
-      ...playerstate, 
-      playing: !playerstate.playing
-    })
-}
+      ...playerstate,
+      playing: !playerstate.playing,
+    });
+  };
 
-const handleRewind = () => {
-  playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10, `seconds`)
-}
+  const handleRewind = () => {
+    playerRef.current.seekTo(
+      playerRef.current.getCurrentTime() - 10,
+      `seconds`
+    );
+  };
 
-const handleFastForward = () => {
-  playerRef.current.seekTo(playerRef.current.getCurrentTime() + 30, `seconds`)
-}
+  const handleFastForward = () => {
+    playerRef.current.seekTo(
+      playerRef.current.getCurrentTime() + 30,
+      `seconds`
+    );
+  };
 
-const handlePlayerProgress = (state) => {
+  const currentPlayerTime = playerRef.current ? playerRef.current.getCurrentTime() : '00:00';
+const movieDuration =  playerRef.current ? playerRef.current.getDuration() : '00:00';
+const playedTime = formatHours(currentPlayerTime);
+const fullMovieTime = formatHours(movieDuration);
 
-  console.log('onProgress', state);
+  const handlePlayerProgress = (state) => {
+    console.log("onProgress", state);
     if (!playerstate.seeking) {
-      setPlayerState({...playerstate, ...state})
+      setPlayerState({ ...playerstate, ...state });
     }
-    console.log('afterProgress', state);
+    console.log("afterProgress", state);
+  };
 
-}
+  const handlePlayerSeek = (newValue) => {
+    setPlayerState({ ...playerstate, played: parseFloat(newValue / 100) });
+    playerRef.current.seekTo(parseFloat(newValue / 100));
+  };
 
-const handlePlayerSeek = (newValue) => {
-  setPlayerState({...playerstate, played: parseFloat(newValue/100)});
-  playerRef.current.seekTo(parseFloat(newValue / 100));
-}
-
-const handlePlayerMouseSeekUp = (newValue) => {
-  setPlayerState({...playerstate, seeking: false});
-  playerRef.current.seekTo(newValue / 100);
-}
-
+  const handlePlayerMouseSeekUp = (newValue) => {
+    setPlayerState({ ...playerstate, seeking: false });
+    playerRef.current.seekTo(newValue / 100);
+  };
 
   return (
     <Container sx={{ my: 8, display: "flex" }}>
@@ -68,16 +78,18 @@ const handlePlayerMouseSeekUp = (newValue) => {
               ref={playerRef}
               controls={true}
               onProgress={handlePlayerProgress}
-              url="https://youtu.be/JKvQTCRLTHY"
+              // url="https://youtu.be/JKvQTCRLTHY"
+              url="https://unelmacloud.com/drive/s/qQ5KFmnA3dfyynkk98MMrkDyJ4vrUk"
             />
-            <ControlIcons playandpause={handlePlayAndPause}
-             playing={playing}
-             rewind={handleRewind}
-             fastForward={handleFastForward}
-             played={played}
-             onSeekMouseUp={handlePlayerMouseSeekUp}
-             onSeek={handlePlayerSeek} 
-              />
+            <ControlIcons
+              playandpause={handlePlayAndPause}
+              playing={playing}
+              rewind={handleRewind}
+              fastForward={handleFastForward}
+              played={played}
+              onSeekMouseUp={handlePlayerMouseSeekUp}
+              onSeek={handlePlayerSeek}
+            />
             {/* <Controls/> */}
           </div>
         </Container>

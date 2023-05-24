@@ -1,4 +1,14 @@
-.header__section {
+.singleVideo{
+
+  display: flex !important;
+  flex-direction: row;
+  gap:1rem;
+
+
+.left{
+flex: 4;
+
+  .header__section {
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -14,5 +24,13 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding-top: 5px;
     padding-bottom: 5px;
+  }
+}
+
+}
+
+  .right{
+    padding-top: 60px;
+  flex: 1;
   }
 }

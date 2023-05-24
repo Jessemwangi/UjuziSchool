@@ -35,13 +35,13 @@ const LeftCards = () => {
                 <MoreVertIcon />
               </IconButton>
             }
-            title="Shrimp and Chorizo Paella"
+            title="How to learn simple physics"
             subheader="September 14, 2016"
           />
           <CardMedia
             component="img"
             height="194"
-            image="/static/images/cards/paella.jpg"
+            image="https://source.unsplash.com/300x300/?math"
             alt="Paella dish"
           />
           <CardContent>
