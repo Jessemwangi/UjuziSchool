@@ -1,5 +1,6 @@
 import React from 'react';
-import LeftCards from '../../components/videoC/LeftCards/LeftCards';
+import LeftCards from '../../components/LeftCards/LeftCards';
+
 
 const VideoLeft = () => {
 

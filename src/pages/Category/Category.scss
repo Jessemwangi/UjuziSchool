@@ -1,0 +1,67 @@
+.category{
+
+  display: flex ;
+  flex-direction: row;
+  gap:1rem;
+  width: 98% ;
+  padding: 0 0 0 4rem ;
+
+
+.left{
+flex: 5;
+
+  .header__section {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    color: #BA68C8;
+    background: #040535;
+  
+  
+  .header__text {
+    color: white;
+    font-size: 28px;
+    font-weight: 800;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+.displayCartegory{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 3rem 1rem;
+
+}
+.videoInCategory{
+  margin-top: 4rem;
+}
+}
+
+  .right{
+    padding-top: 60px;
+  flex: 2;
+  position: sticky;
+  height: 100%;
+  top: 50px;
+
+  .filterItem {
+    margin-bottom: 30px;
+
+    h2 {
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .inputItem {
+      margin-bottom: 10px;
+    }
+
+    label {
+      margin-left: 10px;
+    }
+  }
+  }
+}

@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import "./Single_Video.scss";
 import ControlIcons from "../modules/components/videoC/ControlIcons";
-import Controls from "../modules/components/videoC/Controls";
 import { formatHours } from "../../UtilitiesFunctions/Function";
 
 const AppSingleVideo = () => {
@@ -66,9 +65,8 @@ const fullMovieTime = formatHours(movieDuration);
   };
 
   return (
-    <Container sx={{ my: 8, display: "flex" }}>
-      <Grid container spacing={5}>
-        <Container maxWidth="md" className="singleVideoContainer">
+  
+        <div className="singleVideoContainer">
           <div className="playerDiv">
             <ReactPlayer
               width={"100%"}
@@ -92,9 +90,9 @@ const fullMovieTime = formatHours(movieDuration);
             />
             {/* <Controls/> */}
           </div>
-        </Container>
-      </Grid>
-    </Container>
+        </div>
+    
+
   );
 };
 
