@@ -23,7 +23,7 @@ const SingleVideo = (props = { title: "jesse" }) => {
               gutterBottom
               marked="center"
               align="left"
-              sx={{ color: "#BA68C8", width: "250px" }}
+              sx={{ color: "#BA68C8", width: "130px" }}
             >
               Video
             </Typography>
@@ -83,13 +83,25 @@ const SingleVideo = (props = { title: "jesse" }) => {
             <label htmlFor="check" >most viewed</label>
           </div>
           <div className="filterItem">
-            <h1>filter by min</h1>
+          <Typography
+            variant="h3"
+            gutterBottom
+            marked="center"
+            align="left"
+            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
+          >filter by min</Typography>
             <span>0</span>
             <input type="range" min={0} max={1000} onChange={(e) => setMaxPrice(e.target.value)}/>
             <span>1000</span>
           </div>
           <div className="filterItem">
-            <h1>movies sort</h1>
+          <Typography
+            variant="h3"
+            gutterBottom
+            marked="center"
+            align="left"
+            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
+          >movies sort</Typography>
             <div className="inputItem">
 
             <input type="radio" id="asc" name="price" value="asc" onChange={(e) => setSort('asc')} />
@@ -103,7 +115,13 @@ const SingleVideo = (props = { title: "jesse" }) => {
 
 
           <div className="filterItem">
-            <h1>Date produced</h1>
+          <Typography
+            variant="h3"
+            gutterBottom
+            marked="center"
+            align="left"
+            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
+          >Date produced</Typography>
             <div className="inputItem">
 
             <input type="radio" id="asc" name="price" value="asc" onChange={(e) => setSort('asc')} />

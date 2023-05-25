@@ -4,7 +4,7 @@
   flex-direction: row;
   gap:1rem;
   width: 98% ;
-  padding: 0 0 0 4rem ;
+  padding: 2rem 0 0 4rem ;
 
 
 .left{
@@ -42,13 +42,18 @@ flex: 5;
 
   .right{
     padding-top: 60px;
+    display: flex;
+    flex-direction: column;
   flex: 2;
+  margin-top: 80px;
   position: sticky;
   height: 100%;
   top: 50px;
+  align-items: center;
 
   .filterItem {
     margin-bottom: 30px;
+    width: 60%;
 
     h2 {
       font-weight: 400;
