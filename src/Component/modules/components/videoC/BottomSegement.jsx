@@ -9,6 +9,8 @@ import { Fullscreen } from "@mui/icons-material";
 import { PlayArrowSharp } from "@mui/icons-material";
 import { PauseSharp } from "@mui/icons-material";
 import { Grid } from "@mui/material";
+import { VolumeOff } from "@mui/icons-material";
+import Popover from '@mui/material/Popover';
 
 const BottomSegement = ({
   handlePlayAndPause,
@@ -16,6 +18,20 @@ const BottomSegement = ({
   played,
   onSeek,
   onSeekMouseUp,
+  playedTime,
+  fullMovieTime,
+  muting,
+  muted,
+  volumeChange,
+  volumeSeek,
+  handlePopOver,
+  playerbackRate,
+  playRate,
+      id,
+    open,
+    anchorEl,
+    handleClose,
+    fullScreenMode,
 }) => {
   const style = {
     bottom__icons: {
@@ -47,7 +63,6 @@ const BottomSegement = ({
         </Grid>
 
         <Grid item xs={12}>
-          
           <PrettoSlider
             min={0}
             max={100}
@@ -59,10 +74,10 @@ const BottomSegement = ({
 
           <Grid container direction="row" justifyContent="space-between">
             <Typography variant="h7" style={{ color: "white" }}>
-              00:26
+              {playedTime}
             </Typography>
             <Typography variant="h7" style={{ color: "white" }}>
-              12:30
+              {fullMovieTime}
             </Typography>
           </Grid>
         </Grid>
@@ -81,8 +96,16 @@ const BottomSegement = ({
               )}
             </IconButton>
 
-            <IconButton sx={style.bottom__icons} aria-label="reqind">
-              <VolumeUp fontSize="large" style={{ color: "white" }} />
+            <IconButton
+              sx={style.bottom__icons}
+              aria-label="reqind"
+              onClick={muting}
+            >
+              {muted ? (
+                <VolumeOff fontSize="large" style={{ color: "white" }} />
+              ) : (
+                <VolumeUp fontSize="large" style={{ color: "white" }} />
+              )}
             </IconButton>
 
             <Typography style={{ color: "#fff", paddingTop: "5px" }}>
@@ -93,16 +116,43 @@ const BottomSegement = ({
               max={100}
               defaultValue={100}
               sx={style.volume__slider}
+              onChange={volumeChange}
+              onChangeCommitted={volumeSeek}
             />
           </Grid>
         </Grid>
 
         <Grid item>
-          <Button variant="text" className="bottom__icons">
-            <Typography>1X</Typography>
+          <Button variant="text" className="bottom__icons" onClick={handlePopOver}>
+            
+          <Typography>{playerbackRate}X</Typography>
           </Button>
 
-          <IconButton className="bottom__icons">
+          <Popover
+    id={id}
+    open={open}
+    anchorEl={anchorEl}
+    handleClose={handleClose}
+    anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+   }}>
+        <Grid container direction='column-reverse'>
+                 {
+                      [0.5,1,1.5,2].map((rate) => (
+                           <Button variant='text' onClick={() => playRate(rate)}>
+                               <Typography color={rate === playerbackRate ? 'secondary' : 'default'}>{rate}</Typography>
+                           </Button>
+                      ))
+               }
+       </Grid>
+</Popover>
+
+          <IconButton className="bottom__icons" onClick={fullScreenMode}>
             <Fullscreen fontSize="large" />
           </IconButton>
         </Grid>

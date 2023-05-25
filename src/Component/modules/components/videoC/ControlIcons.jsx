@@ -20,8 +20,29 @@ const styles = {
   },
 };
 
-const ControlIcons = ({playandpause, playing, rewind, fastForward, played, onSeek, onSeekMouseUp}) => {
- 
+const ControlIcons = ({
+  playandpause,
+  playing,
+  rewind,
+  fastForward,
+  played,
+  onSeek,
+  onSeekMouseUp,
+  playedTime,
+  fullMovieTime,
+  muting,
+  muted,
+  volumeSeek,
+  volumeChange,
+  handlePopOver,
+  playerbackRate,
+  playRate,
+  id,
+  open,
+  anchorEl,
+  handleClose,
+  fullScreenMode,
+}) => {
   return (
     <Container sx={styles.container}>
       <Grid
@@ -38,15 +59,34 @@ const ControlIcons = ({playandpause, playing, rewind, fastForward, played, onSee
         </Grid>
       </Grid>
       {/* Middle Segment */}
-      <MiddleSegment handlePlayAndPause={playandpause}  
-      playing={playing} fastForward={fastForward} rewind={rewind}/>
+      <MiddleSegment
+        handlePlayAndPause={playandpause}
+        playing={playing}
+        fastForward={fastForward}
+        rewind={rewind}
+      />
 
       {/* Bottom Segment */}
-      <BottomSegement handlePlayAndPause={playandpause}  
-      playing={playing}  
-      played={played}
-      onSeek={onSeek}
-      onSeekMouseUp ={onSeekMouseUp}
+      <BottomSegement
+        handlePlayAndPause={playandpause}
+        playing={playing}
+        played={played}
+        onSeek={onSeek}
+        onSeekMouseUp={onSeekMouseUp}
+        playedTime={playedTime}
+        fullMovieTime={fullMovieTime}
+        muting ={muting}
+        muted ={muted}
+        volumeChange ={volumeChange}
+        volumeSeek={volumeSeek}
+        handlePopOver={handlePopOver}
+        playerbackRate={playerbackRate}
+        playRate={playRate}
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        fullScreenMode ={fullScreenMode}
       />
     </Container>
   );
