@@ -10,7 +10,8 @@ import { PlayArrowSharp } from "@mui/icons-material";
 import { PauseSharp } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 import { VolumeOff } from "@mui/icons-material";
-import Popover from '@mui/material/Popover';
+import Popover from "@mui/material/Popover";
+import Tooltip from '@mui/material/Tooltip';
 
 const BottomSegement = ({
   handlePlayAndPause,
@@ -22,16 +23,12 @@ const BottomSegement = ({
   fullMovieTime,
   muting,
   muted,
+  volume,
   volumeChange,
   volumeSeek,
-  handlePopOver,
   playerbackRate,
   playRate,
-      id,
-    open,
-    anchorEl,
-    handleClose,
-    fullScreenMode,
+  fullScreenMode,
 }) => {
   const style = {
     bottom__icons: {
@@ -47,6 +44,28 @@ const BottomSegement = ({
       marginLeft: "130px",
     },
   };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handlePopOver = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "playbackrate-popover" : undefined;
+
+  function ValueLabelComponent(props) {
+    const { children, value } = props;
+  
+    return (
+      <Tooltip enterTouchDelay={0} placement="top" title={value}>
+        {children}
+      </Tooltip>
+    );
+  }
   return (
     <>
       <Grid
@@ -70,6 +89,11 @@ const BottomSegement = ({
             value={played * 100}
             onChange={onSeek}
             onChangeCommitted={onSeekMouseUp}
+            valueLabelDisplay="auto"
+                  // aria-label="custom thumb label"
+                  components={{
+                    ValueLabel: ValueLabelComponent,
+                  }}
           />
 
           <Grid container direction="row" justifyContent="space-between">
@@ -109,12 +133,12 @@ const BottomSegement = ({
             </IconButton>
 
             <Typography style={{ color: "#fff", paddingTop: "5px" }}>
-              40
+              {volume * 100}
             </Typography>
             <Slider
               min={0}
               max={100}
-              defaultValue={100}
+              value={volume * 100}
               sx={style.volume__slider}
               onChange={volumeChange}
               onChangeCommitted={volumeSeek}
@@ -123,34 +147,40 @@ const BottomSegement = ({
         </Grid>
 
         <Grid item>
-          <Button variant="text" className="bottom__icons" onClick={handlePopOver}>
-            
-          <Typography>{playerbackRate}X</Typography>
+          <Button
+            variant="text"
+            className="bottom__icons"
+            onClick={handlePopOver}
+          >
+            <Typography>{playerbackRate}X</Typography>
           </Button>
 
           <Popover
-    id={id}
-    open={open}
-    anchorEl={anchorEl}
-    handleClose={handleClose}
-    anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-    }}
-    transformOrigin={{
-      vertical: 'bottom',
-      horizontal: 'center',
-   }}>
-        <Grid container direction='column-reverse'>
-                 {
-                      [0.5,1,1.5,2].map((rate) => (
-                           <Button variant='text' onClick={() => playRate(rate)}>
-                               <Typography color={rate === playerbackRate ? 'secondary' : 'default'}>{rate}</Typography>
-                           </Button>
-                      ))
-               }
-       </Grid>
-</Popover>
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            handleClose={handleClose}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+          >
+            <Grid container direction="column-reverse">
+              {[0.5, 1, 1.5, 2].map((rate) => (
+                <Button key={rate} variant="text" onClick={() => playRate(rate)}>
+                  <Typography
+                    color={rate === playerbackRate ? "secondary" : "default"}
+                  >
+                    {rate}
+                  </Typography>
+                </Button>
+              ))}
+            </Grid>
+          </Popover>
 
           <IconButton className="bottom__icons" onClick={fullScreenMode}>
             <Fullscreen fontSize="large" />
