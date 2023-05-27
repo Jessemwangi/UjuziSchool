@@ -19,6 +19,7 @@ const BottomSegement = ({
   played,
   onSeek,
   onSeekMouseUp,
+  onSeekMouseDown,
   playedTime,
   fullMovieTime,
   muting,
@@ -88,6 +89,7 @@ const BottomSegement = ({
             defaultValue={20}
             value={played * 100}
             onChange={onSeek}
+            onMouseDown={onSeekMouseDown} 
             onChangeCommitted={onSeekMouseUp}
             valueLabelDisplay="auto"
                   // aria-label="custom thumb label"
@@ -133,12 +135,12 @@ const BottomSegement = ({
             </IconButton>
 
             <Typography style={{ color: "#fff", paddingTop: "5px" }}>
-              {volume * 100}
+              {Math.round(volume * 100)}
             </Typography>
             <Slider
               min={0}
               max={100}
-              value={volume * 100}
+              value={ volume * 100}
               sx={style.volume__slider}
               onChange={volumeChange}
               onChangeCommitted={volumeSeek}
@@ -149,7 +151,7 @@ const BottomSegement = ({
         <Grid item>
           <Button
             variant="text"
-            className="bottom__icons"
+            sx={style.bottom__icons}
             onClick={handlePopOver}
           >
             <Typography>{playerbackRate}X</Typography>
@@ -159,7 +161,7 @@ const BottomSegement = ({
             id={id}
             open={open}
             anchorEl={anchorEl}
-            handleClose={handleClose}
+            onClose={handleClose}
             anchorOrigin={{
               vertical: "top",
               horizontal: "center",
@@ -182,7 +184,7 @@ const BottomSegement = ({
             </Grid>
           </Popover>
 
-          <IconButton className="bottom__icons" onClick={fullScreenMode}>
+          <IconButton sx={style.bottom__icons} onClick={fullScreenMode}>
             <Fullscreen fontSize="large" />
           </IconButton>
         </Grid>
