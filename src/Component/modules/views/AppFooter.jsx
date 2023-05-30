@@ -6,7 +6,6 @@ import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 import fb from '../../../static/assets/fb.svg'
-import { NavLink } from 'react-router-dom';
 
 function Copyright() {
   return (

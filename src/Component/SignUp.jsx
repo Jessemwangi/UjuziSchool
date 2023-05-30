@@ -4,8 +4,6 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar from './modules/views/AppAppBar';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';

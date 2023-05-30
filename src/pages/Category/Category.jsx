@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Category.scss";
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
 import withRoot from "../../Component/modules/withRoot";
-import { Grid, Container } from "@mui/material";
+import { Grid } from "@mui/material";
 import Typography from "../../Component/modules/components/Typography";
 import VideoLeft from "../../Component/modules/views/VideoLeft/VideoLeft";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";

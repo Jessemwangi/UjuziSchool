@@ -25,23 +25,21 @@ const ControlIcons = ({
   playing,
   rewind,
   fastForward,
-  played,
-  onSeek,
-  onSeekMouseUp,
-  playedTime,
-  fullMovieTime,
   muting,
   muted,
-  volumeSeek,
   volumeChange,
+  volumeSeek,
+  volume,
+  playRate,
+  fullScreenMode,
+  onSeek,
+  played,
+  onSeekMouseUp,
+  onSeekMouseDown,
+  fullMovieTime,
+  playedTime,
   handlePopOver,
   playerbackRate,
-  playRate,
-  id,
-  open,
-  anchorEl,
-  handleClose,
-  fullScreenMode,
 }) => {
   return (
     <Container sx={styles.container}>
@@ -73,19 +71,17 @@ const ControlIcons = ({
         played={played}
         onSeek={onSeek}
         onSeekMouseUp={onSeekMouseUp}
+        onSeekMouseDown = {onSeekMouseDown}
         playedTime={playedTime}
         fullMovieTime={fullMovieTime}
         muting ={muting}
         muted ={muted}
         volumeChange ={volumeChange}
+        volume={ volume}
         volumeSeek={volumeSeek}
         handlePopOver={handlePopOver}
         playerbackRate={playerbackRate}
         playRate={playRate}
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
         fullScreenMode ={fullScreenMode}
       />
     </Container>
