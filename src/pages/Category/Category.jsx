@@ -44,9 +44,9 @@ const SingleVideo = (props = { title: "jesse" }) => {
             </div>
             <div className="displayCartegory">
               <LeftCards />
+               <LeftCards />
               <LeftCards />
-              <LeftCards />
-              <LeftCards />
+              <LeftCards /> 
             </div>
           </Grid>
         </div>

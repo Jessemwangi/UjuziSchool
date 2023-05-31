@@ -56,11 +56,11 @@ const AppSingleVideo = () => {
   }
 
   const handlePlayerProgress = (state) => {
-    console.log('onProgress', state);
+    // console.log('onProgress', state);
     if (!playerstate.seeking) {
       setPlayerState({...playerstate, ...state});
     }
-    console.log('afterProgress', state);
+    // console.log('afterProgress', state);
   }
 
   const handlePlayerSeek = (e, newValue) => {
@@ -95,7 +95,7 @@ return (
           playbackRate={playerbackRate}
           onProgress={handlePlayerProgress}
           muted={muted}/>
-<>{console.log(volume)}</>
+{/* <>{console.log(volume)}</> */}
           <ControlIcons
            key={volume.toString()}
            playandpause={handlePlayAndPause}

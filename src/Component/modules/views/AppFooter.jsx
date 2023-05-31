@@ -44,6 +44,10 @@ const LANGUAGES = [
     name: 'English',
   },
   {
+    code: 'fi-FI',
+    name: 'Suomen',
+  },
+  {
     code: 'fr-FR',
     name: 'Français',
   },

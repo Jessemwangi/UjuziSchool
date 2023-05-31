@@ -17,6 +17,7 @@ import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
 import Category from './pages/Category/Category';
+import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
 
 const router = createBrowserRouter(
   [
@@ -43,6 +44,11 @@ const router = createBrowserRouter(
   {
     path:'/category/:id', 
     element:<Category/>,
+
+  },
+  {
+    path:'/singlevideo/:id', 
+    element:<AppSingleVideo/>,
 
   },
   {
