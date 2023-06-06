@@ -6,7 +6,7 @@ import "./Single_Video.scss";
 import ControlIcons from "../modules/components/videoC/ControlIcons";
 import { formatHours } from "../../UtilitiesFunctions/Function";
 
-const AppSingleVideo = () => {
+const AppSingleVideo = ({videoUrl}) => {
   const [playerstate, setPlayerState] = useState({
     playing: true,
     muted: true,
@@ -89,7 +89,8 @@ return (
         <div className='playerDiv' ref={playerDivRef}>
           <ReactPlayer width={'100%'} height='100%'
           ref={playerRef} 
-          url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          // url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          url={videoUrl}
           playing={playing}
           volume={volume} 
           playbackRate={playerbackRate}
