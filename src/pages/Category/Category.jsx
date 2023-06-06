@@ -7,10 +7,14 @@ import Typography from "../../Component/modules/components/Typography";
 import VideoLeft from "../../Component/modules/views/VideoLeft/VideoLeft";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
 import { useParams } from "react-router-dom";
+import { data } from "../../data";
 
 const SingleVideo = (props = { title: "jesse" }) => {
   const id = parseInt(useParams().id)
-  const [maxPrice, setMaxPrice] =useState(1000)
+
+  const CatVideos = data.categories.filter(catvideo => catvideo.id =id)
+  console.log(CatVideos)
+  const [maxPlay, setMaxPlay] =useState(1000)
   const [sort, setSort] =useState()
   return (
     <React.Fragment>
@@ -25,12 +29,12 @@ const SingleVideo = (props = { title: "jesse" }) => {
               align="left"
               sx={{ color: "#BA68C8", width: "130px" }}
             >
-              Video
+              {CatVideos[0].title}
             </Typography>
             <div className="header__section">
               <p>{props.title}</p>
             </div>
-            <AppSingleVideo />
+            <AppSingleVideo videoUrl ={CatVideos[0].introVideo} />
             <div className="videoInCategory">
               <Typography
                 variant="h3"
@@ -43,10 +47,15 @@ const SingleVideo = (props = { title: "jesse" }) => {
               </Typography>
             </div>
             <div className="displayCartegory">
-              <LeftCards />
-              <LeftCards />
-              <LeftCards />
-              <LeftCards />
+              {
+                CatVideos[0].subcategories.map(subCat => 
+                  <>
+                    <LeftCards videos={subCat?.videos} key={subCat.id} />
+                  </>
+                  )
+              }
+            
+
             </div>
           </Grid>
         </div>
@@ -91,7 +100,7 @@ const SingleVideo = (props = { title: "jesse" }) => {
             sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
           >filter by min</Typography>
             <span>0</span>
-            <input type="range" min={0} max={1000} onChange={(e) => setMaxPrice(e.target.value)}/>
+            <input type="range" min={0} max={1000} onChange={(e) => setMaxPlay(e.target.value)}/>
             <span>1000</span>
           </div>
           <div className="filterItem">

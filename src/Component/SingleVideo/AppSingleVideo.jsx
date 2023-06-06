@@ -6,7 +6,7 @@ import "./Single_Video.scss";
 import ControlIcons from "../modules/components/videoC/ControlIcons";
 import { formatHours } from "../../UtilitiesFunctions/Function";
 
-const AppSingleVideo = () => {
+const AppSingleVideo = ({videoUrl}) => {
   const [playerstate, setPlayerState] = useState({
     playing: true,
     muted: true,
@@ -56,11 +56,11 @@ const AppSingleVideo = () => {
   }
 
   const handlePlayerProgress = (state) => {
-    console.log('onProgress', state);
+    // console.log('onProgress', state);
     if (!playerstate.seeking) {
       setPlayerState({...playerstate, ...state});
     }
-    console.log('afterProgress', state);
+    // console.log('afterProgress', state);
   }
 
   const handlePlayerSeek = (e, newValue) => {
@@ -89,13 +89,14 @@ return (
         <div className='playerDiv' ref={playerDivRef}>
           <ReactPlayer width={'100%'} height='100%'
           ref={playerRef} 
-          url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          // url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          url={videoUrl}
           playing={playing}
           volume={volume} 
           playbackRate={playerbackRate}
           onProgress={handlePlayerProgress}
           muted={muted}/>
-<>{console.log(volume)}</>
+{/* <>{console.log(volume)}</> */}
           <ControlIcons
            key={volume.toString()}
            playandpause={handlePlayAndPause}
