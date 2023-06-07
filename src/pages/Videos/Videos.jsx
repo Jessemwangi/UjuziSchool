@@ -35,10 +35,10 @@ const Videos = () => {
                     {subcat.videos.map((video) => (
                   <LeftCards
                   key={video.id}
-                    playvideo={video.url}
+                  url={video.url}
+                    title ={video.title}
+                    desc ={video.description}
                     id={video.id}
-                    cat={cat.id}
-                    subcat={subcat.id}
                   />
                   ))}
                 </Grid>

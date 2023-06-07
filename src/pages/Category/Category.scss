@@ -28,17 +28,26 @@ flex: 5;
     padding-bottom: 5px;
   }
 }
-.displayCartegory{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 3rem 1rem;
-  gap: 15px;
 
+.introVideo{
+min-height: 400px;
+background: #040535;
 }
+
 .videoInCategory{
   margin-top: 4rem;
 }
+
+.displayCartegory{
+  display: flex;
+  flex-direction: row;
+  padding: 0 4rem;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+}
+
 }
 
   .right{
