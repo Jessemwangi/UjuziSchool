@@ -75,10 +75,26 @@ socio-economic development between Finland and Africa.
       </Grid>
     </Container>
             <div className="bottom">
-                <div className="bottomTop">
-                    <h4>our pproduct</h4>
-                    <p>
-                        Our products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in STEM education. We bring
+            <Container
+      component="section"
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 9 }}
+    >
+            <Grid
+        sx={{
+          border: '4px solid #BA68C8',
+          borderRadius: 0,
+          height: 'auto',
+          py: 2,
+          px: 5,
+        }}
+      >
+
+            <Typography variant="h4" component="span">
+            our product! learning PLUS ++?
+        </Typography>
+      </Grid>
+      <Typography variant="subtitle1" sx={{ my: 6, fontSize:'18px' }}>
+      Our products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in STEM education. We bring
 this solution because in East Africa, particularly Tanzania, fewer secondary school students are
 registering for STEM due to various reasons such as lack of knowledge about the applicability of STEM
 in real-life, the failure to connect theoretical concepts learned in STEM subjects like physics with realworld applications, and more focus on theory due to the lack of resources to implement the practical
@@ -87,9 +103,15 @@ and a missed opportunity to inspire students to pursue STEM-related careers. Mor
 methods do not effectively address the need for hands-on, experiential learning opportunities, hindering
 students' ability to apply STEM knowledge in their everyday lives and limiting their potential for future
 STEM-related opportunities.
-                    </p>
-                </div>
-            </div>
+      </Typography>
+      <Box
+        component="img"
+        src="/static/themes/onepirate/productBuoy.svg"
+        alt="buoy"
+        sx={{ width: 60 }}
+      />
+      </Container>
+      </div>
         </div>
     );
 };

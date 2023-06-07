@@ -33,7 +33,7 @@ function AppAppBar() {
           </Link>
             </Box>
 <Box sx={{ flex: 6, display: 'flex', justifyContent: 'space-around', alignItems:'center' }}>
-  <Box sx={{ flex: 4, display: 'flex', justifyContent: 'space-around', alignItems:'center' }}>
+  <Box sx={{ flex: 4, display: 'flex', justifyContent: 'center', alignItems:'center',gap:'50px' }}>
           <Link
             variant="h6"
             underline="none"
@@ -69,6 +69,15 @@ function AppAppBar() {
             sx={{ fontSize: 16 }}
           >
             {'About Us'}
+          </Link>
+          <Link
+            variant="h6"
+            underline="none"
+            color="inherit"
+            href="/attrib"
+            sx={{ fontSize: 16 }}
+          >
+            {'Sponsors'}
           </Link>
           </Box>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
