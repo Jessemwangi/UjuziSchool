@@ -18,6 +18,7 @@ import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
 import Category from './pages/Category/Category';
 import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 const router = createBrowserRouter(
   [
@@ -77,7 +78,13 @@ const router = createBrowserRouter(
     path:'/attrib',
     element:<Attribute/>
 
+  },
+  {
+    path:'/aboutus',
+    element:<AboutUs/>
+
   }
+  
 ]
   }
   
