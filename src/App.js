@@ -19,6 +19,7 @@ import Videos from './pages/Videos/Videos';
 import Category from './pages/Category/Category';
 import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
 import AboutUs from './pages/AboutUs/AboutUs';
+import LessonValues from './Component/modules/views/LessonValues';
 
 const router = createBrowserRouter(
   [
@@ -28,7 +29,12 @@ const router = createBrowserRouter(
     children:[
   {
     path:'/',
-    element:<Home />},
+    element:<Home />
+  },
+  {
+    path:'/lay',
+    element:<LessonValues />
+  },
     {
     path:'/sign-in',
     element:<SignIn />

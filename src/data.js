@@ -4,7 +4,7 @@ export const data = {
       id: 2,
       title: 'Physics',
       desc: '',
-      introVideo: 'https://www.youtube.com/watch?v=YUfSVlxtuIs&list=PLQ7gqOBcGUrIixMTgPvGedx54jSYjPM7V&index=1&pp=iAQB',
+      introVideo: 'https://youtu.be/YUfSVlxtuIs?list=PLQ7gqOBcGUrIixMTgPvGedx54jSYjPM7V',
       user: ['a Highschool', 'b Highschool'],
 
       subcategories: [
@@ -12,7 +12,7 @@ export const data = {
           id: 1,
           title: 'Current Electricity',
           desc: '',
-          videoURL: 'https://www.youtube.com/watch?v=YUfSVlxtuIs&list=PLQ7gqOBcGUrIixMTgPvGedx54jSYjPM7V&index=1&pp=iAQB',
+          videoURL: 'https://youtu.be/YUfSVlxtuIs?list=PLQ7gqOBcGUrIixMTgPvGedx54jSYjPM7V',
           user: ['a Highschool', 'b Highschool', 'c Highschool', 'd Highschool'],
 
           videos: [

@@ -87,7 +87,7 @@ const AppSingleVideo = ({videoUrl}) => {
 return (
 <Container maxWidth="md">
         <div className='playerDiv' ref={playerDivRef}>
-          <ReactPlayer width={'100%'} height='100%'
+          <ReactPlayer width={'100%'} height='50vh'
           ref={playerRef} 
           // url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
           url={videoUrl}

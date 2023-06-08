@@ -26,8 +26,10 @@ const Videos = () => {
                     mb: 12,
                     display: "flex",
                     flexDirection: "row",
+                    justifyContent:'center',
                     flexWrap: "wrap",
                     flexGrow: "auto",
+                    margin: '0 auto',
                     gap:'50px',
                   }}
                   
@@ -35,10 +37,10 @@ const Videos = () => {
                     {subcat.videos.map((video) => (
                   <LeftCards
                   key={video.id}
-                    playvideo={video.url}
+                  url={video.url}
+                    title ={video.title}
+                    desc ={video.description}
                     id={video.id}
-                    cat={cat.id}
-                    subcat={subcat.id}
                   />
                   ))}
                 </Grid>

@@ -2,26 +2,25 @@ import React, { useState } from "react";
 import "./Category.scss";
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
 import withRoot from "../../Component/modules/withRoot";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Typography from "../../Component/modules/components/Typography";
-import VideoLeft from "../../Component/modules/views/VideoLeft/VideoLeft";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
 import { useParams } from "react-router-dom";
 import { data } from "../../data";
 
 const SingleVideo = (props = { title: "jesse" }) => {
-  const id = parseInt(useParams().id)
+  const id = parseInt(useParams().id);
 
-  const CatVideos = data.categories.filter(catvideo => catvideo.id =id)
-  console.log(CatVideos)
-  const [maxPlay, setMaxPlay] =useState(1000)
-  const [sort, setSort] =useState()
+  const CatVideos = data.categories.filter((catvideo) => (catvideo.id = id));
+  console.log(CatVideos);
+  const [maxPlay, setMaxPlay] = useState(1000);
+  const [sort, setSort] = useState();
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}
       <div className="category">
         <div className="left">
-          <Grid sx={{ mt: 7, mb: 12 }}>
+          <Grid sx={{ mt: 7, mb: 12, display:'flex', flexDirection:'column', gap:'50px' }}>
             <Typography
               variant="h3"
               gutterBottom
@@ -34,7 +33,9 @@ const SingleVideo = (props = { title: "jesse" }) => {
             <div className="header__section">
               <p>{props.title}</p>
             </div>
-            <AppSingleVideo videoUrl ={CatVideos[0].introVideo} />
+            <div className="introVideo">
+            <AppSingleVideo videoUrl={CatVideos[0].introVideo} />
+            </div>
             <div className="videoInCategory">
               <Typography
                 variant="h3"
@@ -46,18 +47,28 @@ const SingleVideo = (props = { title: "jesse" }) => {
                 Videos in category
               </Typography>
             </div>
-            <div className="displayCartegory">
-              {
-                CatVideos[0].subcategories.map(subCat => 
-                  <>
-                    <LeftCards videos={subCat?.videos} key={subCat.id} />
-                  </>
-                  )
-              }
-            
+            <Box sx={{ width: '100%' }}>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} xs={12} >
+        
+              {CatVideos[0].subcategories.map((subCat) => (
+<>
+{
+                  subCat?.videos.map(video =>
+                    <Grid item xs={4} key={subCat.id} sx={{height:'400px', mt:3}}>
+                    <LeftCards title={video.title} 
+                    desc={video.description}
+                    url ={video.url}
+                    id={video.id}
+                    key={video.id} />
+                    </Grid>
+                    )
+                }
+</>
+                 ))}
+            </Grid>
+            </Box>
 
-            </div>
-          </Grid>
+            </Grid>
         </div>
 
         <div className="right">
@@ -66,86 +77,111 @@ const SingleVideo = (props = { title: "jesse" }) => {
             gutterBottom
             marked="center"
             align="left"
-            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
+            sx={{ color: "#BA68C8", fontSize: "16px", width: "140px" }}
           >
             Filter Options
           </Typography>
-          
 
           <div className="filterItem">
             <input type="checkbox" id="check" value={1} />
-            <label htmlFor="check" >theories</label>
+            <label htmlFor="check">theories</label>
           </div>
           <div className="filterItem">
-            
             <input type="checkbox" id="check" value={1} />
-            <label htmlFor="check" >practicals</label>
+            <label htmlFor="check">practicals</label>
           </div>
           <div className="filterItem">
-            
             <input type="checkbox" id="check" value={1} />
-            <label htmlFor="check" >advanced</label>
+            <label htmlFor="check">advanced</label>
           </div>
           <div className="filterItem">
-            
             <input type="checkbox" id="check" value={1} />
-            <label htmlFor="check" >most viewed</label>
+            <label htmlFor="check">most viewed</label>
           </div>
           <div className="filterItem">
-          <Typography
-            variant="h3"
-            gutterBottom
-            marked="center"
-            align="left"
-            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
-          >filter by min</Typography>
+            <Typography
+              variant="h3"
+              gutterBottom
+              marked="center"
+              align="left"
+              sx={{ color: "#BA68C8", fontSize: "16px", width: "140px" }}
+            >
+              filter by min
+            </Typography>
             <span>0</span>
-            <input type="range" min={0} max={1000} onChange={(e) => setMaxPlay(e.target.value)}/>
+            <input
+              type="range"
+              min={0}
+              max={1000}
+              onChange={(e) => setMaxPlay(e.target.value)}
+            />
             <span>1000</span>
           </div>
           <div className="filterItem">
-          <Typography
-            variant="h3"
-            gutterBottom
-            marked="center"
-            align="left"
-            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
-          >movies sort</Typography>
+            <Typography
+              variant="h3"
+              gutterBottom
+              marked="center"
+              align="left"
+              sx={{ color: "#BA68C8", fontSize: "16px", width: "140px" }}
+            >
+              movies sort
+            </Typography>
             <div className="inputItem">
-
-            <input type="radio" id="asc" name="price" value="asc" onChange={(e) => setSort('asc')} />
-            <label htmlFor="asc">shortest</label>
+              <input
+                type="radio"
+                id="asc"
+                name="price"
+                value="asc"
+                onChange={(e) => setSort("asc")}
+              />
+              <label htmlFor="asc">shortest</label>
             </div>
             <div className="inputItem">
-            <input type="radio" id="asc" value={'desc'} name="price" onChange={(e) => setSort('desc')} />
-            <label htmlFor="desc">longest</label>
-              </div>
+              <input
+                type="radio"
+                id="asc"
+                value={"desc"}
+                name="price"
+                onChange={(e) => setSort("desc")}
+              />
+              <label htmlFor="desc">longest</label>
+            </div>
           </div>
-
 
           <div className="filterItem">
-          <Typography
-            variant="h3"
-            gutterBottom
-            marked="center"
-            align="left"
-            sx={{ color: "#BA68C8", fontSize: "16px",width:'140px' }}
-          >Date produced</Typography>
+            <Typography
+              variant="h3"
+              gutterBottom
+              marked="center"
+              align="left"
+              sx={{ color: "#BA68C8", fontSize: "16px", width: "140px" }}
+            >
+              Date produced
+            </Typography>
             <div className="inputItem">
-
-            <input type="radio" id="asc" name="price" value="asc" onChange={(e) => setSort('asc')} />
-            <label htmlFor="asc">latest</label>
+              <input
+                type="radio"
+                id="asc"
+                name="price"
+                value="asc"
+                onChange={(e) => setSort("asc")}
+              />
+              <label htmlFor="asc">latest</label>
             </div>
             <div className="inputItem">
-            <input type="radio" id="asc" value={'desc'} name="price" onChange={(e) => setSort('desc')} />
-            <label htmlFor="desc">oldest</label>
-              </div>
+              <input
+                type="radio"
+                id="asc"
+                value={"desc"}
+                name="price"
+                onChange={(e) => setSort("desc")}
+              />
+              <label htmlFor="desc">oldest</label>
+            </div>
           </div>
-
         </div>
-        </div>
-     
-  
+      </div>
     </React.Fragment>
   );
 };
