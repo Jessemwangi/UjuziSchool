@@ -16,6 +16,7 @@ const AppSingleVideo = ({videoUrl}) => {
     seeking: false,
   })
 
+  console.log(screenfull.isFullscreen)
 
   //Destructure State in other to get the values in it
   const { playing, muted, volume, playerbackRate, played, seeking } = playerstate;
@@ -87,7 +88,7 @@ const AppSingleVideo = ({videoUrl}) => {
 return (
 <Container maxWidth="md">
         <div className='playerDiv' ref={playerDivRef}>
-          <ReactPlayer width={'100%'} height='50vh'
+          <ReactPlayer width={'100%'} height={screenfull.isFullscreen ? '100%' : '50vh'}
           ref={playerRef} 
           // url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
           url={videoUrl}
