@@ -51,11 +51,11 @@ const LeftCards = ({title,desc,url,id}) => {
   return (
     <Fragment>
      
-        <Card sx={{ maxWidth: 345 }} key={id}>
-          <CardHeader
+        <Card sx={{ maxWidth: 345, height:400 }} key={id}>
+          <CardHeader sx={{height:100}}
             avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="Video">
-                R
+              <Avatar sx={{ bgcolor: red[500], textTransform:'uppercase' }} aria-label="Video">
+               { title.substring(0, 1)}
               </Avatar>
             }
             action={
@@ -63,7 +63,7 @@ const LeftCards = ({title,desc,url,id}) => {
                 <MoreVertIcon />
               </IconButton>
             }
-            title={title}
+            title={`${title.substring(0, 50)} ${title.length > 50 ? '...' : ''}`}
             subheader="September 14, 2016"
           />
           <div onMouseOver={(e) => handlePlay(e)} onMouseLeave={handleStop}>
@@ -91,7 +91,7 @@ const LeftCards = ({title,desc,url,id}) => {
           </div>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {desc}
+              {`${desc.substring(0,100)} ...`}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>

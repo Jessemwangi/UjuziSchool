@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Category.scss";
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
 import withRoot from "../../Component/modules/withRoot";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Typography from "../../Component/modules/components/Typography";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
 import { useParams } from "react-router-dom";
@@ -47,23 +47,28 @@ const SingleVideo = (props = { title: "jesse" }) => {
                 Videos in category
               </Typography>
             </div>
-            <div className="displayCartegory">
+            <Box sx={{ width: '100%' }}>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} xs={12} >
+        
               {CatVideos[0].subcategories.map((subCat) => (
-                <>
-                {
+<>
+{
                   subCat?.videos.map(video =>
+                    <Grid item xs={4} key={subCat.id} sx={{height:'400px', mt:3}}>
                     <LeftCards title={video.title} 
                     desc={video.description}
                     url ={video.url}
                     id={video.id}
                     key={video.id} />
+                    </Grid>
                     )
                 }
-                
-                </>
-              ))}
-            </div>
-          </Grid>
+</>
+                 ))}
+            </Grid>
+            </Box>
+
+            </Grid>
         </div>
 
         <div className="right">
