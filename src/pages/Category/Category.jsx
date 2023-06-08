@@ -72,16 +72,17 @@ const SingleVideo = (props = { title: "jesse" }) => {
         </div>
 
         <div className="right">
+        <div className="filterItem">
           <Typography
             variant="h3"
             gutterBottom
-            marked="center"
+            marked="left"
             align="left"
             sx={{ color: "#BA68C8", fontSize: "16px", width: "140px" }}
           >
             Filter Options
           </Typography>
-
+</div>
           <div className="filterItem">
             <input type="checkbox" id="check" value={1} />
             <label htmlFor="check">theories</label>
