@@ -16,7 +16,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-between",
     zIndex: 2,
-    background: "rgba(0, 0, 0, 0.6)",
+    // background: "rgba(0, 0, 0, 0.6)",
   },
 };
 

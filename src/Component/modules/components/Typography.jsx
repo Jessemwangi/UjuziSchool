@@ -52,6 +52,13 @@ const styles = ({ theme }) => ({
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
+  [`& .${markClassesMapping.left.h3}`]: {
+    height: 4,
+    width: 45,
+    display: 'block',
+    marginTop: theme.spacing(1),
+    background: 'currentColor',
+  },
   [`& .${markClassesMapping.left.h6}`]: {
     height: 2,
     width: 28,
