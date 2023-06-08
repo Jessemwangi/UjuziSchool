@@ -20,6 +20,7 @@ import Category from './pages/Category/Category';
 import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
 import AboutUs from './pages/AboutUs/AboutUs';
 import LessonValues from './Component/modules/views/LessonValues';
+import SingleVideo from './pages/SingleVideo/SingleVideo';
 
 const router = createBrowserRouter(
   [
@@ -55,7 +56,8 @@ const router = createBrowserRouter(
   },
   {
     path:'/singlevideo/:id', 
-    element:<AppSingleVideo/>,
+    // element:<AppSingleVideo/>,
+    element:<SingleVideo/>
 
   },
   {

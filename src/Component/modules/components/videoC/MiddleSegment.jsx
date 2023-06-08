@@ -7,9 +7,10 @@ import { PlayArrowSharp } from "@mui/icons-material";
 import { PauseSharp } from "@mui/icons-material";
 
 const MiddleSegment = ({ handlePlayAndPause, playing, fastForward, rewind }) => {
+
   const styles = {
-    controls__icons: {
-      color: "white",
+    'controls__icons': {
+      color: "#555",
       fontSize: 50,
       transform: "scale(0.9)",
     },
@@ -18,10 +19,11 @@ const MiddleSegment = ({ handlePlayAndPause, playing, fastForward, rewind }) => 
       transform: "scale(1)",
     },
   };
+
   return (
     <Grid container direction="row" alignItems="center" justifyContent="center">
-      <IconButton sx={styles.controls__icons} aria-label="reqind">
-        <FastRewind fontSize="large" style={{ color: "white" }} onClick={rewind} />
+      <IconButton sx={styles.controls__icons} aria-label="reqind" onClick={rewind}>
+        <FastRewind fontSize="large" style={{ color: "white" }}  />
       </IconButton>
 
       <IconButton
@@ -36,8 +38,8 @@ const MiddleSegment = ({ handlePlayAndPause, playing, fastForward, rewind }) => 
         )}
       </IconButton>
 
-      <IconButton sx={styles.controls__icons} aria-label="reqind">
-        <FastForwardSharp fontSize="large" style={{ color: "white" }} onClick={fastForward} />
+      <IconButton sx={styles.controls__icons} aria-label="reqind" onClick={fastForward}>
+        <FastForwardSharp fontSize="large" style={{ color: "white" }}/>
       </IconButton>
     </Grid>
   );

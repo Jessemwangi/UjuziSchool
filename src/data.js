@@ -12,16 +12,11 @@ export const data = {
           id: 1,
           title: 'Current Electricity',
           desc: '',
-          videoURL: 'https://example.com/video1',
+          videoURL: 'https://youtu.be/6AyfRlpFMU0',
           user: ['a Highschool', 'b Highschool', 'c Highschool', 'd Highschool'],
 
           videos: [
-            {
-              id: 0,
-              title: 'Introduction about current electricity',
-              description: 'In this video, you will learn the definition and short description of current electricity.',
-              url: 'https://example.com/video1',
-            },
+            
             {
               id: 1,
               title: 'Sources of current Electricity',
@@ -126,29 +121,6 @@ export const data = {
               url: 'https://youtu.be/VixW5g53sYI',
               user: ['k', 'd'],
             },
-            {
-              id: 15,
-              title: 'Project based on current electricity',
-              description: 'In this video, you will learn about a simple project, circuit created to vary the intensity of an LED.',
-              url: 'https://example.com/video2',
-              user: ['k', 'd'],
-            },
-
-            {
-              id: 16,
-              title: 'Applications of Current electricity',
-              description: 'In this video, you will learn the applications of current electricity in our daily lives',
-              url: 'https://example.com/video2',
-              user: ['k', 'd'],
-            },
-            {
-              id: 17,
-              title: 'Simple games for current electricity',
-              description: 'This video provides instructions about the games you should play to enhance your knowledge of simple electric circuit calculations. You can access the games through the links associated with this video.',
-              url: 'https://example.com/video2',
-              user: ['k', 'd'],
-            },
-
 
           ],
         },

@@ -16,8 +16,6 @@ const AppSingleVideo = ({videoUrl}) => {
     seeking: false,
   })
 
-  console.log(screenfull.isFullscreen)
-
   //Destructure State in other to get the values in it
   const { playing, muted, volume, playerbackRate, played, seeking } = playerstate;
   const playerRef = useRef(null);
