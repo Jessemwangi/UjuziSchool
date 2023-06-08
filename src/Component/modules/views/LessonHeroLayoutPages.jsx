@@ -5,17 +5,18 @@ import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import arrowDown from '../../../static/assets/productHeroArrowDown.png'
-import CastForEducationOutlinedIcon from '@mui/icons-material/CastForEducationOutlined';
+import WbIncandescentOutlinedIcon from '@mui/icons-material/WbIncandescentOutlined';
+import Typography from '../components/Typography';
 
-const LessonHeroLayoutRoot = styled('section')(({ theme }) => ({
+const PagesBreadCrum = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   [theme.breakpoints.up('sm')]: {
-    height: '80vh',
-    minHeight: 500,
-    maxHeight: 1300,
+    height: '30vh',
+    minHeight: 300,
+    maxHeight: 400,
   },
 }));
 
@@ -30,11 +31,11 @@ const Background = styled(Box)({
   zIndex: -2,
 });
 
-function LessonHeroLayout(props) {
+function LessonHeroPages(props) {
   const { sxBackground, children } = props;
 
   return (
-    <LessonHeroLayoutRoot>
+    <PagesBreadCrum>
       <Container
         sx={{
           mt: 3,
@@ -51,7 +52,10 @@ function LessonHeroLayout(props) {
           width="20"
           height="20"
         /> */}
-       < CastForEducationOutlinedIcon/>
+       < WbIncandescentOutlinedIcon/>
+             <Typography variant="h4" marked="center" align="center" component="h2" sx={{mt:2}}>
+        About Ujuzi
+      </Typography>
         {children}
         <Box
           sx={{
@@ -75,11 +79,11 @@ function LessonHeroLayout(props) {
           sx={{ position: 'absolute', bottom: 32 }}
         />
       </Container>
-    </LessonHeroLayoutRoot>
+    </PagesBreadCrum>
   );
 }
 
-LessonHeroLayout.propTypes = {
+LessonHeroPages.propTypes = {
   children: PropTypes.node,
   sxBackground: PropTypes.oneOfType([
     PropTypes.arrayOf(
@@ -90,4 +94,4 @@ LessonHeroLayout.propTypes = {
   ]),
 };
 
-export default LessonHeroLayout;
+export default LessonHeroPages;

@@ -26,8 +26,10 @@ const Videos = () => {
                     mb: 12,
                     display: "flex",
                     flexDirection: "row",
+                    justifyContent:'center',
                     flexWrap: "wrap",
                     flexGrow: "auto",
+                    margin: '0 auto',
                     gap:'50px',
                   }}
                   

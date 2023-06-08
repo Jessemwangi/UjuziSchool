@@ -66,7 +66,7 @@ const VisionMission = () => {
         >
           <Grid item xs={12} md={6}>
             <Box sx={item}>
-              <Box sx={number}>Mission.</Box>
+              <Box sx={number}>Mission</Box>
               <Box component="img" src={mission} alt="suitcase" sx={image} />
               <Typography variant="h5" align="center">
                 Develop resources, technologies, and platforms that enhance

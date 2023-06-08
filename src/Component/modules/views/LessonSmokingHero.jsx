@@ -12,11 +12,12 @@ export const LessonSmokingHero = () =>{
     >
       <Button
         sx={{
-          border: '4px solid currentColor',
+          border: '4px solid #BA68BE',
           borderRadius: 0,
           height: 'auto',
           py: 2,
           px: 5,
+          mt:10,
         }}
       >
         <Typography variant="h4" component="span">
