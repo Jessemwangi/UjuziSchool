@@ -21,9 +21,8 @@ const OurProduct2 = () => {
         ></span>
 
         <p>
-          ur products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in
-          STEM education. We bring this solution because in East Africa,
-          particularly Tanzania, fewer secondary school
+        We enable experiential learning of STEM by combining theory,
+         simulation, practical demonstration, project learning, and gamification
         </p>
       </Grid>
 
@@ -41,9 +40,8 @@ const OurProduct2 = () => {
         ></span>
 
         <p>
-          ur products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in
-          STEM education. We bring this solution because in East Africa,
-          particularly Tanzania, fewer secondary school
+        We focus on applicability of STEM to enable students to connect theoretical 
+        concepts learned in STEM subjects like physics with real-world applications.
         </p>
       </Grid>
 
@@ -61,9 +59,8 @@ const OurProduct2 = () => {
         ></span>
 
         <p>
-          ur products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in
-          STEM education. We bring this solution because in East Africa,
-          particularly Tanzania, fewer secondary school
+        We concentrate on practical understanding to invoke curiosity, interest, and engagement 
+        in STEM education to inspire students to pursue STEM-related careers.
         </p>
       </Grid>
 
@@ -81,9 +78,7 @@ const OurProduct2 = () => {
         ></span>
 
         <p>
-          ur products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in
-          STEM education. We bring this solution because in East Africa,
-          particularly Tanzania, fewer secondary school
+        Our teaching methods emphasize hands-on skills to prepare students for future STEM-related opportunities.
         </p>
       </Grid>
 
