@@ -12,7 +12,6 @@ const SingleVideo = (props = { title: "jesse" }) => {
   const id = parseInt(useParams().id);
 
   const CatVideos = data.categories.filter((catvideo) => (catvideo.id = id));
-  console.log(CatVideos);
   const [maxPlay, setMaxPlay] = useState(1000);
   const [sort, setSort] = useState();
   return (
@@ -34,7 +33,7 @@ const SingleVideo = (props = { title: "jesse" }) => {
               <p>{props.title}</p>
             </div>
             <div className="introVideo">
-            <AppSingleVideo videoUrl={CatVideos[0].introVideo} />
+            <AppSingleVideo videoUrl={CatVideos[0].introVideo} key={CatVideos[0].id} />
             </div>
             <div className="videoInCategory">
               <Typography

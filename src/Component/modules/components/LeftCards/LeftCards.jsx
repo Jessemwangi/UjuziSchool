@@ -15,13 +15,12 @@ import { useNavigate } from "react-router-dom";
 const desiredDuration = 10;
 
 const LeftCards = ({title,desc,url,id}) => {
+const video = {title,desc,url,id}
 
   const videoRef = useRef(null);
   const [isPlay, setIsPlay] = useState(false);
   const [videoDuration, setVideoDuration] = useState(0);
   const navigate = useNavigate();
-
-  console.log(id)
 
   const videoShare = (videoUrl) => {
     alert(`Not allowed to share !!!${videoUrl}`);
@@ -43,9 +42,10 @@ const LeftCards = ({title,desc,url,id}) => {
     setVideoDuration(duration);
   };
 
-  const viewVideo = (id) => {
-
-    navigate(`/singlevideo/${id}`);
+  const viewVideo = (e, id) => {
+e.preventDefault();
+// console.log(singleVideo)
+    navigate(`/singlevideo/${id}`, {state:{video}});
   };
 
   return (
@@ -95,7 +95,7 @@ const LeftCards = ({title,desc,url,id}) => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="Watch" onClick={() => viewVideo(id)}>
+            <IconButton aria-label="Watch" onClick={(e) => viewVideo(e,id)}>
               <PlayCircleFilledOutlinedIcon />
             </IconButton>
             <IconButton aria-label="save" onClick={() => videoShare(url)}>

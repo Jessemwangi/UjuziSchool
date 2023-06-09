@@ -81,7 +81,7 @@ socio-economic development between Finland and Africa.
     >
             <Grid
         sx={{
-          border: '4px solid #BA68C8',
+         
           borderRadius: 0,
           height: 'auto',
           py: 2,
@@ -89,11 +89,11 @@ socio-economic development between Finland and Africa.
         }}
       >
 
-            <Typography variant="h4" component="span">
-            our product! learning PLUS ++?
+            <Typography variant="h4" component="span" marked={'center'}>
+            What we do 💪
         </Typography>
       </Grid>
-      <Typography variant="subtitle1" sx={{ my: 6, fontSize:'18px' }}>
+      {/* <Typography variant="subtitle1" sx={{ my: 6, fontSize:'18px' }}>
       Our products UjuziP, UjuziC, UjuziB, and UjuziIT, solves challenges in STEM education. We bring
 this solution because in East Africa, particularly Tanzania, fewer secondary school students are
 registering for STEM due to various reasons such as lack of knowledge about the applicability of STEM
@@ -103,13 +103,13 @@ and a missed opportunity to inspire students to pursue STEM-related careers. Mor
 methods do not effectively address the need for hands-on, experiential learning opportunities, hindering
 students' ability to apply STEM knowledge in their everyday lives and limiting their potential for future
 STEM-related opportunities.
-      </Typography>
-      <Box
+      </Typography> */}
+      {/* <Box
         component="img"
         src="/static/themes/onepirate/productBuoy.svg"
         alt="buoy"
         sx={{ width: 60 }}
-      />
+      /> */}
       </Container>
       </div>
         </div>

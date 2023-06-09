@@ -38,8 +38,8 @@ function LessonHeroPages(props) {
     <PagesBreadCrum>
       <Container
         sx={{
-          mt: 3,
-          mb: 14,
+          mt: 2,
+          mb: 5,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
