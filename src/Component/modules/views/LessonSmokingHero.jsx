@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import ujuzi from '../../../static/assets/newlog.png'
 
 export const LessonSmokingHero = () =>{
   return (
@@ -29,7 +30,7 @@ export const LessonSmokingHero = () =>{
       </Typography>
       <Box
         component="img"
-        src="/static/themes/onepirate/productBuoy.svg"
+        src={ujuzi}
         alt="buoy"
         sx={{ width: 60 }}
       />
