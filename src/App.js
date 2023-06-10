@@ -21,6 +21,7 @@ import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
 import AboutUs from './pages/AboutUs/AboutUs';
 import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
+import Course from './pages/Course/Course';
 
 const router = createBrowserRouter(
   [
@@ -36,6 +37,11 @@ const router = createBrowserRouter(
     path:'/lay',
     element:<LessonValues />
   },
+  {
+    path:'/courses',
+    element:<Course />
+  },
+  
     {
     path:'/sign-in',
     element:<SignIn />
