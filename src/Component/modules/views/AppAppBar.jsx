@@ -38,7 +38,7 @@ function AppAppBar() {
             variant="h6"
             underline="none"
             color="inherit"
-            href="/"
+            href="/Courses"
             sx={{ fontSize: 16 }}
           >
             {'Courses'}
