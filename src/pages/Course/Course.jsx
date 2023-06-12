@@ -1,12 +1,12 @@
 import { Container } from '@mui/material';
 import React from 'react';
-import LessonsCategories from '../../Component/modules/views/LessonsCategories';
+import CoursesLessonsCategories from '../../Component/modules/views/CoursesLessonsCategories';
 
 const Course = () => {
     return (
-        <Container>
-             <LessonsCategories />
-        </Container>
+      
+             <CoursesLessonsCategories />
+       
     );
 };
 
