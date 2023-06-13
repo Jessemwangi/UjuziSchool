@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonHeroPages from '../modules/views/LessonHeroLayoutPages';
 import './BreadCrums.scss'
-import aboutBanner from '../../static/assets/bannerSmall.png'
+import aboutBanner from '../../static/assets/banner2.png'
 
 const BreadCrumb = () => {
 const backgroundImage = "https://source.unsplash.com/1200x400/?teaching?auto=format&fit=crop&h=400"
