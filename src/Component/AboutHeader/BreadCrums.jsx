@@ -1,6 +1,7 @@
 import React from 'react';
 import LessonHeroPages from '../modules/views/LessonHeroLayoutPages';
 import './BreadCrums.scss'
+import aboutBanner from '../../static/assets/bannerSmall.png'
 
 const BreadCrumb = () => {
 const backgroundImage = "https://source.unsplash.com/1200x400/?teaching?auto=format&fit=crop&h=400"
@@ -25,7 +26,7 @@ const backgroundImage = "https://source.unsplash.com/1200x400/?teaching?auto=for
         </section> */}
             <LessonHeroPages
       sxBackground={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${aboutBanner})`,
         backgroundColor: '#7fc7d9', // Average color of the background image.
         backgroundPosition: 'center',
         height:'300px',
