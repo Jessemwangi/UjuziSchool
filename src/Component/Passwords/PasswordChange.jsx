@@ -1,18 +1,26 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import { Field, Form, FormSpy } from "react-final-form";
 import { required } from "../modules/form/validation";
 import AppForm from "../modules/views/AppForm";
 import Typography from "../modules/components/Typography";
 import RFTextField from "../modules/form/RFTextField";
-import FormFeedback from "../modules/form/FormFeedback";
 import FormButton from "../modules/form/FormButton";
 import withRoot from "../modules/withRoot";
+import axios from "axios";
 
 const SignUp = () => {
   const [sent, setSent] = React.useState(false);
+  const [resetToken, setResetToken] = React.useState('');
+  const [resetStatus, setResetStatus] = React.useState('');
+  const server =process.env.REACT_APP_SERVER_URL
+
+  React.useEffect(() => {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    setResetToken(code);
+  }, []);
 
   const validate = (values) => {
     const errors = required(["password", "password2"], values);
@@ -23,10 +31,24 @@ const SignUp = () => {
     return errors;
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log(values);
-    // setSent(true);
+     setSent(true);
+     let  response
+    try {
+        response  = await axios.post(`${server}/auth/reset-password`, {
+        password: values.password,
+        passwordConfirmation:values.password2,
+        code: resetToken,
+      });
+      console.log(response.data); 
+      setResetStatus('success');
+    } catch (error) {
+      console.error(error, 'error message is ', error.response?.data?.error?.message);
+      setResetStatus(error.response?.data?.error?.message + 'error');
+    }
   };
+
 
   return (
     <React.Fragment>
@@ -99,6 +121,9 @@ const SignUp = () => {
             </Box>
           )}
         </Form>
+        {resetStatus && <Typography variant="body2" align="center">
+            create a new Password
+          </Typography>}
       </AppForm>
       {/* <AppFooter /> */}
     </React.Fragment>

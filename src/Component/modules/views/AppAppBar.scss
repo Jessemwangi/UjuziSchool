@@ -1,0 +1,24 @@
+/* menu.scss */
+
+/* Custom styles for the drawer paper */
+.drawer-paper {
+  width: 150px;
+  background-color: #040535; /* Customize drawer background color here */
+}
+
+/* Custom styles for the hamburger menu icon on smaller screens */
+.hamburger-menu {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 16px;
+
+  &:active {
+    transform: rotate(90deg);
+    text-align: ;
+  }
+}
+
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper
+{
+box-shadow: #121212 3px 1px;
+}

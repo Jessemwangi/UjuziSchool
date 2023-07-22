@@ -1,7 +1,55 @@
+/* Single_Video.scss */
 
+.playerDiv {
+  position: relative;
+  overflow: hidden;
 
-    .playerDiv {
-      width:100%;
-      position: relative;
-      height: 100%;
-    }
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Customize the appearance of the control icons as needed */
+.control-icons {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50px;
+  padding: 5px 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Additional styles for the control icons, adjust as needed */
+.control-icons svg {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+}
+
+/* Styles for the play/pause icon */
+.play-pause-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* Styles for the volume slider, adjust as needed */
+.volume-slider {
+  width: 100px;
+}
+
+/* Styles for the fullscreen icon, adjust as needed */
+.fullscreen-icon {
+  width: 24px;
+  height: 24px;
+}
