@@ -2,7 +2,7 @@ import React from "react";
 import "./SingleVideo.scss";
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
 import { useLocation, useParams } from "react-router-dom";
-import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
+// import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
 import Typography from "../../Component/modules/components/Typography";
 import { Box, Container, Grid } from "@mui/material";
 import arrow from "../../static/assets/arrow.png";
