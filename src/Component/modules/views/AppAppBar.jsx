@@ -96,6 +96,7 @@ function AppAppBar() {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer(true)}
+              sx={{fontSize:'40px'}}
             >
               <MenuIcon />
             </IconButton>

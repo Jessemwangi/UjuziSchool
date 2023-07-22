@@ -12,6 +12,7 @@
   justify-content: flex-end;
   margin-right: 16px;
 
+
   &:active {
     transform: rotate(90deg);
   }
@@ -20,4 +21,8 @@
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper
 {
 box-shadow: #121212 3px 1px;
+}
+.css-i4bv87-MuiSvgIcon-root{
+  width: 2em !important;
+  height: 2em !important;
 }
