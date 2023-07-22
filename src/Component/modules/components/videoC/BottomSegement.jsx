@@ -30,6 +30,8 @@ const BottomSegement = ({
   playerbackRate,
   playRate,
   fullScreenMode,
+  setIsDragging,
+  isDragging,
 }) => {
   const style = {
     bottom__icons: {
@@ -49,6 +51,10 @@ const BottomSegement = ({
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handlePopOver = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleVolumeChange = (event, newValue) => {
+    volumeChange(event, newValue);
   };
 
   const handleClose = () => {
@@ -140,10 +146,11 @@ const BottomSegement = ({
             <Slider
               min={0}
               max={100}
-              value={ volume * 100}
+              value={isDragging ? volume * 100 : volume * 100} // Use isDragging to determine the value
               sx={style.volume__slider}
-              onChange={volumeChange}
-              onChangeCommitted={volumeSeek}
+              onChange={handleVolumeChange} // Use the updated volumeChange function
+              onMouseDown={() => setIsDragging(true)}
+              onMouseUp={() => setIsDragging(false)}
             />
           </Grid>
         </Grid>

@@ -10,12 +10,16 @@ import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
 import withRoot from './modules/withRoot';
+import axios from 'axios';
 
 const  SignUp = ()  =>{
   const [sent, setSent] = React.useState(false);
+  const [err, setErr] = React.useState(``)
+  const server =process.env.REACT_APP_SERVER_URL
 
   const validate = (values) => {
-    const errors = required(['firstName', 'lastName', 'email', 'password'], values);
+    const errors = required(['username','firstname', 'lastname', 'email', 'password'], values);
+
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -27,8 +31,18 @@ const  SignUp = ()  =>{
     return errors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (values) => {
+    console.log(values)
     setSent(true);
+    try {
+      const response = await axios.post(`${server}/auth/local/register`, {
+        ...values
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error)
+      setErr(`${err }. \n ${JSON.stringify(error.response.data.error.message)}`)
+    }
   };
 
   return (
@@ -61,7 +75,7 @@ const  SignUp = ()  =>{
                     autoComplete="given-name"
                     fullWidth
                     label="First name"
-                    name="firstName"
+                    name="firstname"
                     required
                   />
                 </Grid>
@@ -71,12 +85,22 @@ const  SignUp = ()  =>{
                     disabled={submitting || sent}
                     autoComplete="family-name"
                     fullWidth
-                    label="Last name"
-                    name="lastName"
+                    label="Other name"
+                    name="lastname"
                     required
                   />
                 </Grid>
               </Grid>
+              <Field
+                fullWidth
+                component={RFTextField}
+                disabled={submitting || sent}
+                required
+                name="username"
+                autoComplete="username"
+                label="User name"
+                margin="normal"
+              />
               <Field
                 autoComplete="email"
                 component={RFTextField}
@@ -118,6 +142,7 @@ const  SignUp = ()  =>{
             </Box>
           )}
         </Form>
+        <>{err && err}</>
       </AppForm>
       {/* <AppFooter /> */}
     </React.Fragment>

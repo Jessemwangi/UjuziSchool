@@ -40,6 +40,8 @@ const ControlIcons = ({
   playedTime,
   handlePopOver,
   playerbackRate,
+  setIsDragging,
+  isDragging ,
 }) => {
   return (
     <Container sx={styles.container}>
@@ -56,7 +58,7 @@ const ControlIcons = ({
           </Typography>
         </Grid>
       </Grid>
-      {/* Middle Segment */}
+
       <MiddleSegment
         handlePlayAndPause={playandpause}
         playing={playing}
@@ -64,7 +66,6 @@ const ControlIcons = ({
         rewind={rewind}
       />
 
-      {/* Bottom Segment */}
       <BottomSegement
         handlePlayAndPause={playandpause}
         playing={playing}
@@ -83,6 +84,8 @@ const ControlIcons = ({
         playerbackRate={playerbackRate}
         playRate={playRate}
         fullScreenMode ={fullScreenMode}
+        setIsDragging = {setIsDragging}
+        isDragging = {isDragging}
       />
     </Container>
   );
