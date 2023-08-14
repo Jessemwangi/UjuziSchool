@@ -12,10 +12,14 @@ import { backend } from "../../UtilitiesFunctions/Function";
 
 const SubCategories = () => {
   const id = useParams().id;
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 5;
   // available for non logged in, get all video then on click compare if the video are in user subscription if not return not authorized,
-const filter = `?populate=*&populate=course_subcategories.introVideo&populate[]=course_subcategories.videos.videoImage&populate[]=course_subcategories.videos.videoUrl&populate[]=course_subcategories.topics&populate[]=course_subcategories.questions&populate[]=course_subcategories.simulations&populate[]=course_subcategories.subscription_packages&populate[]=course_subcategories.topics.sub_units`
-  const { data, loading, error } = UseFetch(
-    `coursecategories/${id}${filter}`
+const filter = `populate=*&populate=course_subcategories.introVideo&populate[]=course_subcategories.videos.videoImage&populate[]=course_subcategories.videos.videoUrl&populate[]=course_subcategories.topics&populate[]=course_subcategories.questions&populate[]=course_subcategories.simulations&populate[]=course_subcategories.subscription_packages&populate[]=course_subcategories.topics.sub_units`
+const start = (currentPage - 1) * recordsPerPage;
+const limit = `?_limit=${recordsPerPage}&_start=${start}&`
+const { data, loading, error } = UseFetch(
+    `coursecategories/${id}${limit}${filter}`
   );
 
   console.log( data, loading, error)
