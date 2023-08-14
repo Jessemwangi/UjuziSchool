@@ -17,12 +17,12 @@ import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
 import Category from './pages/Category/Category';
-// import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
 import AboutUs from './pages/AboutUs/AboutUs';
 import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
 import Course from './pages/Course/Course';
 import PasswordChange from './Component/Passwords/PasswordChange';
+import SubCategories from './pages/SubCategories/SubCategories';
 
 const router = createBrowserRouter(
   [
@@ -108,6 +108,11 @@ const router = createBrowserRouter(
   {
     path:'/resetpassword',
     element:<AboutUs/>
+
+  } ,
+  {
+    path:'/res/:id',
+    element:<SubCategories/>
 
   }
   

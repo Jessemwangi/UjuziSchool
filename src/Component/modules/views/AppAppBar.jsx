@@ -6,7 +6,7 @@ import Toolbar from '../components/Toolbar';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ujLogo from '../../../static/assets/newlog.png';
+import ujLogo from '../../../static/assets/logo.png';
 import './AppAppBar.scss'; // Import the custom CSS
 
 
@@ -61,6 +61,7 @@ function AppAppBar() {
           <Box sx={{ flex: 1 }}>
             <Link variant="h6" underline="none" color="inherit" href="/" sx={{ fontSize: 24 }}>
               <Box component="img" src={ujLogo} alt="Ujuzi Logo" sx={{ height: 130, paddingTop: '6px' }} />
+              <p style={{color:"white"}}>powerful msg</p>
             </Link>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, flex: 6, justifyContent: 'space-around', alignItems: 'center' }}>
