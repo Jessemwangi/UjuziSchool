@@ -6,8 +6,11 @@ import LessonHowItWorks from '../../Component/modules/views/LessonHowItWorks';
 import { LessonSmokingHero } from '../../Component/modules/views/LessonSmokingHero';
 import withRoot from '../../Component/modules/withRoot';
 import { LessonCTA } from '../../Component/modules/views/LessonCTA';
+import { useGetUserInfo } from '../../hooks/useFetch';
 
 function Index() {
+  const user = useGetUserInfo('user')
+  console.log(user)
   return (
     <React.Fragment>
       <LessonHero/>

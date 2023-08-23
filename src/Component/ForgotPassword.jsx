@@ -1,21 +1,26 @@
-import * as React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
-import Box from '@mui/material/Box';
-import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar from './modules/views/AppAppBar';
-import AppForm from './modules/views/AppForm';
-import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
-import FormButton from './modules/form/FormButton';
-import FormFeedback from './modules/form/FormFeedback';
-import withRoot from './modules/withRoot';
+import * as React from "react";
+import { Field, Form, FormSpy } from "react-final-form";
+import Box from "@mui/material/Box";
+import Typography from "./modules/components/Typography";
+import AppFooter from "./modules/views/AppFooter";
+import AppAppBar from "./modules/views/AppAppBar";
+import AppForm from "./modules/views/AppForm";
+import { email, required } from "./modules/form/validation";
+import RFTextField from "./modules/form/RFTextField";
+import FormButton from "./modules/form/FormButton";
+import FormFeedback from "./modules/form/FormFeedback";
+import withRoot from "./modules/withRoot";
+import { postData, server } from "../UtilitiesFunctions/Function";
+import { Link } from "@mui/material";
+import TungstenOutlinedIcon from "@mui/icons-material/TungstenOutlined";
 
 function ForgotPassword() {
   const [sent, setSent] = React.useState(false);
+  const [loading, setLoading] = React.useState();
+  const [err, setErr] = React.useState();
 
   const validate = (values) => {
-    const errors = required(['email'], values);
+    const errors = required(["email"], values);
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -27,7 +32,18 @@ function ForgotPassword() {
     return errors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const response = await postData(`${server}/auth/forgot-password`, values);
+      console.log(response);
+      setSent(true);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setErr(error.response.data.error.message);
+      setLoading(false);
+    }
     setSent(true);
   };
 
@@ -41,7 +57,7 @@ function ForgotPassword() {
           </Typography>
           <Typography variant="body2" align="center">
             {"Enter your email address below and we'll " +
-              'send you a link to reset your password.'}
+              "send you a link to reset your password."}
           </Typography>
         </React.Fragment>
         <Form
@@ -50,7 +66,12 @@ function ForgotPassword() {
           validate={validate}
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
-            <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
+            <Box
+              component="form"
+              onSubmit={handleSubmit2}
+              noValidate
+              sx={{ mt: 6 }}
+            >
               <Field
                 autoFocus
                 autoComplete="email"
@@ -73,17 +94,22 @@ function ForgotPassword() {
                 }
               </FormSpy>
               <FormButton
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, backgroundColor: "purple" }}
                 disabled={submitting || sent}
                 size="large"
-                color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Send reset link'}
+                {submitting || sent ? "In progress…" : "Send reset link"}
               </FormButton>
             </Box>
           )}
         </Form>
+        <Typography align="center">
+          <TungstenOutlinedIcon /> Rings a bell ?{" "}
+          <Link underline="always" href="/sign-in">
+            Sign In
+          </Link>
+        </Typography>
       </AppForm>
       <AppFooter />
     </React.Fragment>

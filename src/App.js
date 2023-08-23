@@ -23,6 +23,7 @@ import SingleVideo from './pages/SingleVideo/SingleVideo';
 import Course from './pages/Course/Course';
 import PasswordChange from './Component/Passwords/PasswordChange';
 import SubCategories from './pages/SubCategories/SubCategories';
+import ForgotPassword from './Component/ForgotPassword';
 
 const router = createBrowserRouter(
   [
@@ -106,8 +107,8 @@ const router = createBrowserRouter(
   }
   ,
   {
-    path:'/resetpassword',
-    element:<AboutUs/>
+    path:'/forgot-password',
+    element:<ForgotPassword/>
 
   } ,
   {

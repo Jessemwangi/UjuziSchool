@@ -39,6 +39,8 @@
       .mainImg {
         flex: 5;
         background-color: #0f0f0fe7;
+        position: relative;
+        cursor: pointer;
 
         .videoSource {
           width: 100%;

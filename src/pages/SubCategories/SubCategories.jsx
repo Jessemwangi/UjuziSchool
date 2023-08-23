@@ -1,49 +1,83 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./SubCategories.scss";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
-import CompareOutlinedIcon from "@mui/icons-material/CompareOutlined";
-import { Slider } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-import UseFetch from "../../hooks/useFetch";
+
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
 import Typography from "../../Component/modules/components/Typography";
-import { backend } from "../../UtilitiesFunctions/Function";
+import { backend, server, token } from "../../UtilitiesFunctions/Function";
+import SystemError from "../../Component/modules/views/Error/SystemError";
+import axios from "axios";
+import { useFetch } from "../../hooks/useFetch";
 
 const SubCategories = () => {
   const id = useParams().id;
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
+  const [playingActive, setPlayingActive] = useState({border:"none"});
+  const [subcategoryVideos, setSubcategoryVideos] = useState({});
+  const [isLoading,setIsLoading] =useState(false)
+  const [err, setErr] =useState()
+  const [userSubData,setUserSubData] = useState()
+  const [userVideo,setUserVideo] =useState([])
+  const [userUnits,setUnits] =useState([])
+
   // available for non logged in, get all video then on click compare if the video are in user subscription if not return not authorized,
 const filter = `populate=*&populate=course_subcategories.introVideo&populate[]=course_subcategories.videos.videoImage&populate[]=course_subcategories.videos.videoUrl&populate[]=course_subcategories.topics&populate[]=course_subcategories.questions&populate[]=course_subcategories.simulations&populate[]=course_subcategories.subscription_packages&populate[]=course_subcategories.topics.sub_units`
+const userurl = `users/${id}?populate=*&populate[]=agents&populate[]=agents.subscription_packages&
+populate[]=agents.subscription_packages.coursecategories&populate[]=agents.subscription_packages.course_subcategories&
+populate[]=agents.subscription_packages.videos.videoImage&populate[]=agents.subscription_packages.units&
+populate[]=agents.subscription_packages.units.sub_units&populate[]=agents.subscription_packages.charges&
+populate[]=agents.subscription_status&populate[]=agents.subscription_packages.videos.videoUrl
+&filters[agents][subscription_packages][isActive]=true&
+filters[agents][subscription_status][isActive]=true&
+filters[agents][subscription_status][expiresOn_gte]=${new Date()}`
 const start = (currentPage - 1) * recordsPerPage;
 const limit = `?_limit=${recordsPerPage}&_start=${start}&`
-const { data, loading, error } = UseFetch(
+
+const { data, loading, error } = useFetch(
     `coursecategories/${id}${limit}${filter}`
   );
+  useEffect(() => {
 
-  console.log( data, loading, error)
-  /// get user subscription
-  //   const { data, loading, error } = UseFetch(
-  // `users/${id}?populate=*&populate[]=agents&populate[]=agents.subscription_packages&populate[]=agents.subscription_packages.coursecategories&populate[]=agents.subscription_packages.course_subcategories&populate[]=agents.subscription_packages.videos.videoImage&populate[]=agents.subscription_packages.units&populate[]=agents.subscription_packages.units.sub_units&populate[]=agents.subscription_packages.charges&populate[]=agents.subscription_status&populate[]=agents.subscription_packages.videos.videoUrl&filters[agents][subscription_packages][isActive]=true&filters[agents][subscription_status][isActive]=true&filters[agents][subscription_status][expiresOn_gte]=${new Date()}`
-  //   );
-  const [bgcolor, setbgColor] = useState("purple");
-  const [selectedImg, setSelectedImg] = useState(0);
-  const [currentVideo, setCurrentVideo] = useState();
-  const [quantity, setQuantity] = useState(0);
-  const [validationError, setValidationError] = useState("");
-  const [subcategoryVideos, setSubcategoryVideos] = useState({});
+    if (error) {
+      setErr(error);
+      setIsLoading(false); 
+    }
+    
+    if (!error && loading) {
+      setIsLoading(true);
+    }
+  
+    if (!error && !loading) {
+      setErr();
+      setIsLoading(false);
+    }
+  
+  }, [data, error, loading]);
 
-  const handleColorChange = (e) => {
-    e.preventDefault();
-    const color = e.target.value !== "" ? e.target.value : "purple";
-    setbgColor(color.toLowerCase());
-    console.log(e.target.value);
-  };
-  console.log(data);
+  useEffect(()=>{
+  
+     const getuserreg = async () => {
+      try {
+       const {data} = await axios.get(`${server}/${userurl}`, {
+         headers:{
+         
+         Authorization: `Bearer ${token}`
+       }})
+       setUserSubData(data)
+       setUserVideo(data?.agents)
+       console.log(data.agents)
+   } catch (error) {
+    setErr(error)
+   }
+      
+        }
+    getuserreg()
+  },[userurl])    
+    
   return (
     <Fragment>
-      {loading ? (
+      {isLoading ? (
         <>Loading ..</>
       ) : (
         <>
@@ -51,7 +85,6 @@ const { data, loading, error } = UseFetch(
           data?.attributes?.course_subcategories?.data.map(data =>
 
             <div className="subCategory" key={data.id}>
-              {/* <h1 className="subCatName">{data?.attributes?.title}</h1> */}
               <div className="subCatName">
               <Typography variant="h3" marked="center" align="left" component="h3">
               {data?.attributes?.title} </Typography>
@@ -61,7 +94,7 @@ const { data, loading, error } = UseFetch(
                   <div className="images">
                     {data?.attributes?.videos?.data.map((vid, index) => (
                      
-                        <img key={vid?.id}
+                        <img key={vid?.id} style={playingActive}
                           src={
                             `${backend}${vid?.attributes?.videoImage?.data?.attributes?.formats?.thumbnail?.url}` ||
                             `https://source.unsplash.com/600x300/?online`
@@ -74,6 +107,7 @@ const { data, loading, error } = UseFetch(
                               ...prevVideos,
                               [subcategoryId]: videoUrl, // Store the video URL for the specific subcategory
                             }));
+                            setPlayingActive({border:"solid 2px #ba68c8"})
                           }}
                         />
                      
@@ -115,7 +149,8 @@ const { data, loading, error } = UseFetch(
           }
         </>
       )}
-      {error ? "error has occured " : ""}
+     
+      {(error) && <SystemError errorMessage={'OOPPs! our bad, Landed into an error'}/>}
     </Fragment>
   );
 };
