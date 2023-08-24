@@ -6,8 +6,9 @@ import { Box, Grid } from "@mui/material";
 import Typography from "../../Component/modules/components/Typography";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
 import { useParams } from "react-router-dom";
-import { data } from "../../data";
+// import { data } from "../../data";
 import SearchBar from "../../Component/SearchBar";
+import { data } from "../../Data/data";
 
 const SingleVideo = (props = { title: "jesse" }) => {
   const id = parseInt(useParams().id);

@@ -11,11 +11,11 @@ import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
 import withRoot from './modules/withRoot';
 import axios from 'axios';
+import { server } from '../UtilitiesFunctions/Function';
 
 const  SignUp = ()  =>{
   const [sent, setSent] = React.useState(false);
   const [err, setErr] = React.useState(``)
-  const server =process.env.REACT_APP_SERVER_URL
 
   const validate = (values) => {
     const errors = required(['username','firstname', 'lastname', 'email', 'password'], values);
