@@ -1,6 +1,6 @@
 // const key = process.env.REACT_APP_ENCRYPT_KEY
 const client =process.env.REACT_APP_TECH_CLIENT
-const userData = process.env.REACT_APP_USER_CLIENT
+export const userData = process.env.REACT_APP_USER_CLIENT
 
 const encryptData = async (data, sessionKey) => {
     const iv = crypto.getRandomValues(new Uint8Array(12));

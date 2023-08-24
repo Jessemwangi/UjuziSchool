@@ -18,12 +18,15 @@ import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
 import Category from './pages/Category/Category';
 import AboutUs from './pages/AboutUs/AboutUs';
-import LessonValues from './Component/modules/views/LessonValues';
+// import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
 import Course from './pages/Course/Course';
 import PasswordChange from './Component/Passwords/PasswordChange';
 import SubCategories from './pages/SubCategories/SubCategories';
 import ForgotPassword from './Component/ForgotPassword';
+import SignOut from './Component/SignOut';
+import Profile from './Component/profile/Profile';
+import { UserProvider } from './hooks/UserContext';
 
 const router = createBrowserRouter(
   [
@@ -36,12 +39,15 @@ const router = createBrowserRouter(
     element:<Home />
   },
   {
-    path:'/lay',
-    element:<LessonValues />
+    path:'/profile',
+    element:<Profile />
   },
   {
     path:'/courses',
     element:<Course />
+  }, {
+    path:'/sign-out',
+    element:<SignOut />
   },
   
     {
@@ -143,11 +149,13 @@ const router = createBrowserRouter(
   //   </>
   // )
 );
-function App() {
+const App = () => {
 
   return (
     <div className="App">
+      <UserProvider>
        <RouterProvider router={router} />
+      </UserProvider>
     </div>
   );
 }

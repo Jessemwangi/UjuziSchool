@@ -14,11 +14,17 @@ import {
   secureJWTAndID,
   secureUserUid,
 } from "../UtilitiesFunctions/secureUserData";
+import Snackbar from "./modules/components/Snackbar";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../hooks/UserContext";
 
 function SignIn() {
   const [sent, setSent] = React.useState(false);
   const [loading, setLoading] = React.useState();
   const [err, setErr] = React.useState();
+  const [,setSnackbarOpen] =React.useState(false)
+  const navigate = useNavigate()
+  const { updateUser } = useUser();
   const validate = (values) => {
     const errors = required(["email", "password"], values);
 
@@ -45,9 +51,11 @@ function SignIn() {
 
       await secureUserUid(response);
       await secureJWTAndID(response.jwt, response.user.id);
-
+      updateUser(response.user);
       setSent(true);
       setLoading(false);
+      setSnackbarOpen(true)
+      navigate('/profile')
     } catch (error) {
       console.log(error);
       setErr(error.response.data.error.message);
@@ -70,6 +78,9 @@ function SignIn() {
             </Link>
           </Typography>
         </React.Fragment>
+       
+<Snackbar message="Login successful!" closeFunc={() => setSnackbarOpen(false)} />
+
         <Form
           onSubmit={handleSubmit}
           subscription={{ submitting: true }}

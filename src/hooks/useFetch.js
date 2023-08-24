@@ -8,6 +8,7 @@
 import { useEffect, useState } from "react"
 import { makeRequest } from "../UtilitiesFunctions/Function"
 import { getJWTAndID, getSecureUserUid } from "../UtilitiesFunctions/secureUserData"
+const isUserSignedIn = sessionStorage.getItem("sessionKey") !== null;
 
 const useFetch = (url) =>{
 
@@ -31,7 +32,7 @@ useEffect(() => {
       }
         } 
         getData()
-  },[url])
+  },[url,isUserSignedIn])
   return {data,loading, error}
       }
       
@@ -64,7 +65,7 @@ useEffect(() => {
       }
         } 
         getData()
-  },[functionName])
+  },[functionName,isUserSignedIn])
   return {data,loading, error}
       }
 

@@ -51,6 +51,7 @@ export const postData = async (url, data,  apitoken = token) => {
     return response.data
   } catch (error) {
     console.log(error)
+    throw error
   }
 
 }
