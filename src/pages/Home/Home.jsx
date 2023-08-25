@@ -8,6 +8,7 @@ import withRoot from '../../Component/modules/withRoot';
 import { LessonCTA } from '../../Component/modules/views/LessonCTA';
 
 function Index() {
+
   return (
     <React.Fragment>
       <LessonHero/>

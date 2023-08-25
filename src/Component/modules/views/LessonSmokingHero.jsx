@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import ujuzi from '../../../static/assets/newlog.png'
+import ujuzi from '../../../static/assets/logo.png'
 
 export const LessonSmokingHero = () =>{
   return (

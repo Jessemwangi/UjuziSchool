@@ -8,12 +8,14 @@ import RFTextField from "../modules/form/RFTextField";
 import FormButton from "../modules/form/FormButton";
 import withRoot from "../modules/withRoot";
 import axios from "axios";
+import { server } from "../../UtilitiesFunctions/Function";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [sent, setSent] = React.useState(false);
   const [resetToken, setResetToken] = React.useState('');
   const [resetStatus, setResetStatus] = React.useState('');
-  const server =process.env.REACT_APP_SERVER_URL
+const navigate = useNavigate()
 
   React.useEffect(() => {
     
@@ -43,6 +45,8 @@ const SignUp = () => {
       });
       console.log(response.data); 
       setResetStatus('success');
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      navigate('/sign-in')
     } catch (error) {
       console.error(error, 'error message is ', error.response?.data?.error?.message);
       setResetStatus(error.response?.data?.error?.message + 'error');
@@ -92,7 +96,7 @@ const SignUp = () => {
                 required
                 name="password2"
                 autoComplete="new-password"
-                label="Password"
+                label="Confirm Password"
                 type="password"
                 margin="normal"
               />

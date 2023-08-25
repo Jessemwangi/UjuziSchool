@@ -1,9 +1,9 @@
 import React from "react";
 import "./Videos.scss";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
-import { data } from "../../data";
 import Typography from "../../Component/modules/components/Typography";
 import { Grid } from "@mui/material";
+import { data } from "../../Data/data";
 
 const Videos = () => {
   const videos = data;

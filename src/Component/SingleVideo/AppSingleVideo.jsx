@@ -6,8 +6,8 @@ import "./Single_Video.scss";
 import ControlIcons from "../modules/components/videoC/ControlIcons";
 import { formatHours } from "../../UtilitiesFunctions/Function";
 
-const AppSingleVideo = ({ videoUrl }) => {
-  const [playing, setPlaying] = useState(true);
+const AppSingleVideo = ({ videoUrl, isplaying=true }) => {
+  const [playing, setPlaying] = useState(isplaying);
   const [muted, setMuted] = useState(true);
   const [volume, setVolume] = useState(0.5);
   const [playerbackRate, setPlayerbackRate] = useState(1.0);
@@ -95,8 +95,7 @@ const AppSingleVideo = ({ videoUrl }) => {
           width={'100%'}
           height={screenfull.isFullscreen ? '100%' : '50vh'}
           ref={playerRef} 
-          // url={videoUrl}
-          url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+           url= {`${videoUrl}` || `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4`}
           playing={playing}
           volume={volume} 
           playbackRate={playerbackRate}

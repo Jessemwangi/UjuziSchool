@@ -1,0 +1,14 @@
+.systemError{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .buttonControls{
+        display: flex;
+        flex-direction: row;
+        gap: 80px;
+        align-items: center;
+        justify-content: center;
+    }
+
+}

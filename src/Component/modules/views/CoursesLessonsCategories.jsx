@@ -109,7 +109,6 @@ const images = [
 const navigate = useNavigate()
 
   const viewCategory = (id) =>{
-    alert(`you click ${id}`)
     navigate(`/category/${id}`)
   }
 

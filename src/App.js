@@ -17,104 +17,134 @@ import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
 import Category from './pages/Category/Category';
-// import AppSingleVideo from './Component/SingleVideo/AppSingleVideo';
 import AboutUs from './pages/AboutUs/AboutUs';
-import LessonValues from './Component/modules/views/LessonValues';
+// import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
 import Course from './pages/Course/Course';
 import PasswordChange from './Component/Passwords/PasswordChange';
+import SubCategories from './pages/SubCategories/SubCategories';
+import ForgotPassword from './Component/ForgotPassword';
+import SignOut from './Component/SignOut';
+import Profile from './Component/profile/Profile';
+import { UserProvider } from './hooks/UserContext';
+import Dashboard from './Admin/Dashboard';
 
 const router = createBrowserRouter(
   [
     {
-    path:'/',
-    element:<Layout />,
-    children:[
-  {
-    path:'/',
-    element:<Home />
-  },
-  {
-    path:'/lay',
-    element:<LessonValues />
-  },
-  {
-    path:'/courses',
-    element:<Course />
-  },
-  
-    {
-    path:'/sign-in',
-    element:<SignIn />
-  },
-  {
-    path:'/sign-up',
-    element:<SignUp />
-  },
-  {
-    path:'/videohome',
-    element:<Videos/>,
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/courses',
+          element: <Course />
+        }, {
+          path: '/sign-out',
+          element: <SignOut />
+        },
 
-  },
-  {
-    path:'/category/:id', 
-    element:<Category/>,
+        {
+          path: '/sign-in',
+          element: <SignIn />
+        },
+        {
+          path: '/sign-up',
+          element: <SignUp />
+        },
+        {
+          path: '/videohome',
+          element: <Videos />,
 
-  },
-  {
-    path:'/singlevideo/:id', 
-    // element:<AppSingleVideo/>,
-    element:<SingleVideo/>
+        },
+        {
+          path: '/category/:id',
+          element: <Category />,
 
-  },
-  {
-    path:'/home',
-    element:<Main/>
+        },
+        {
+          path: '/singlevideo/:id',
+          element: <SingleVideo />
 
-  },{
-    path:'/lessons',
-    element:<ProductCategories/>
-  },{
-    path:'/lessonhow',
-    element:<LessonHowItWorks/>
-  },
-  {
-    path:'/terms',
-    element:<Terms/>
+        },
+        {
+          path: '/home',
+          element: <Main />
 
-  },
-  {
-    path:'/privacy',
-    element:<Privacy/>
+        }, {
+          path: '/lessons',
+          element: <ProductCategories />
+        }, {
+          path: '/lessonhow',
+          element: <LessonHowItWorks />
+        },
+        {
+          path: '/terms',
+          element: <Terms />
 
-  }
-  ,
-  {
-    path:'/attrib',
-    element:<Attribute/>
+        },
+        {
+          path: '/privacy',
+          element: <Privacy />
 
-  },
-  {
-    path:'/aboutus',
-    element:<AboutUs/>
+        }
+        ,
+        {
+          path: '/attrib',
+          element: <Attribute />
 
-  },
-  {
-    path:'/newpassword',
-    element:<PasswordChange/>
+        },
+        {
+          path: '/aboutus',
+          element: <AboutUs />
 
-  }
-  ,
-  {
-    path:'/resetpassword',
-    element:<AboutUs/>
+        },
+        {
+          path: '/newpassword',
+          element: <PasswordChange />
 
-  }
-  
-]
-  }
-  
-]
+        }
+        ,
+        {
+          path: '/forgot-password',
+          element: <ForgotPassword />
+
+        },
+        {
+          path: '/res/:id',
+          element: <SubCategories />
+
+        },
+        {
+          path: '/member',
+          element: <Dashboard />,
+
+          children: [{
+            path: '/member/admin',
+            element: <Profile />,
+
+            children: [{
+              path: '/member/admin/profile',
+              element: <Profile />
+            },]
+
+          }
+        // {
+        //   path:'/dash',
+        //   element:<DashboardAppPage/>
+        // }
+      ]
+
+
+        }
+
+      ]
+    }
+
+  ]
   // createRoutesFromElements(
   //   <>
   //     <Route element={<Layout />}>
@@ -137,11 +167,13 @@ const router = createBrowserRouter(
   //   </>
   // )
 );
-function App() {
+const App = () => {
 
   return (
     <div className="App">
-       <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </div>
   );
 }

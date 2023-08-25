@@ -2,3 +2,15 @@
     margin: 0;
     box-sizing: border-box;
   }
+
+  .css-1wuilmg-MuiAutocomplete-root{
+    width: 100% !important;
+  }
+
+  .MuiAutocomplete-hasPopupIcon.css-1wuilmg-MuiAutocomplete-root .MuiAutocomplete-inputRoot, .MuiAutocomplete-hasClearIcon.css-1wuilmg-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
+    padding: 0 !important;
+  }
+
+  .css-1wuilmg-MuiAutocomplete-root .MuiInput-root .MuiInput-input{
+    padding: 1.4rem !important;
+  }

@@ -1,20 +1,32 @@
-import * as React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Typography from './modules/components/Typography';
-import AppForm from './modules/views/AppForm';
-import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
-import FormButton from './modules/form/FormButton';
-import FormFeedback from './modules/form/FormFeedback';
-import withRoot from './modules/withRoot';
+import * as React from "react";
+import { Field, Form, FormSpy } from "react-final-form";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Typography from "./modules/components/Typography";
+import AppForm from "./modules/views/AppForm";
+import { email, required } from "./modules/form/validation";
+import RFTextField from "./modules/form/RFTextField";
+import FormButton from "./modules/form/FormButton";
+import FormFeedback from "./modules/form/FormFeedback";
+import withRoot from "./modules/withRoot";
+import { postData, server } from "../UtilitiesFunctions/Function";
+import {
+  secureJWTAndID,
+  secureUserUid,
+} from "../UtilitiesFunctions/secureUserData";
+import Snackbar from "./modules/components/Snackbar";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../hooks/UserContext";
 
 function SignIn() {
   const [sent, setSent] = React.useState(false);
-
+  const [loading, setLoading] = React.useState();
+  const [err, setErr] = React.useState();
+  const [,setSnackbarOpen] =React.useState(false)
+  const navigate = useNavigate()
+  const { updateUser } = useUser();
   const validate = (values) => {
-    const errors = required(['email', 'password'], values);
+    const errors = required(["email", "password"], values);
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -26,8 +38,29 @@ function SignIn() {
     return errors;
   };
 
-  const handleSubmit = () => {
-    setSent(true);
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      console.log(values);
+
+      const response = await postData(`/auth/local`, {
+        identifier: values.email,
+        password: values.password,
+      });
+      console.log(response);
+
+      await secureUserUid(response);
+      await secureJWTAndID(response.jwt, response.user.id);
+      updateUser({...response.user,jwt:response.jwt});
+      setSent(true);
+      setLoading(false);
+      setSnackbarOpen(true)
+      navigate('/member')
+    } catch (error) {
+      console.log(error);
+      setErr(error.response.data.error.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,23 +72,27 @@ function SignIn() {
             Sign In
           </Typography>
           <Typography variant="body2" align="center">
-            {'Not a member yet? '}
-            <Link
-              href="/sign-up"
-              align="center"
-              underline="always"
-            >
+            {"Not a member yet? "}
+            <Link href="/sign-up" align="center" underline="always">
               Sign Up here
             </Link>
           </Typography>
         </React.Fragment>
+       
+<Snackbar message="Login successful!" closeFunc={() => setSnackbarOpen(false)} />
+
         <Form
           onSubmit={handleSubmit}
           subscription={{ submitting: true }}
           validate={validate}
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
-            <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
+            <Box
+              component="form"
+              onSubmit={handleSubmit2}
+              noValidate
+              sx={{ mt: 6 }}
+            >
               <Field
                 autoComplete="email"
                 autoFocus
@@ -96,13 +133,13 @@ function SignIn() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign In'}
+                {submitting || sent ? "In progress…" : "Sign In"}
               </FormButton>
             </Box>
           )}
         </Form>
         <Typography align="center">
-          <Link underline="always" href="/forgot-password/">
+          <Link underline="always" href="/forgot-password">
             Forgot password?
           </Link>
         </Typography>
