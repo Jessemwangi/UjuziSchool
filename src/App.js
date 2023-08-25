@@ -131,11 +131,12 @@ const router = createBrowserRouter(
               element: <Profile />
             },]
 
-          },
-        {
-          path:'/dash',
-          element:<Profile/>
-        }]
+          }
+        // {
+        //   path:'/dash',
+        //   element:<DashboardAppPage/>
+        // }
+      ]
 
 
         }
