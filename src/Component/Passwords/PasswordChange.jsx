@@ -10,11 +10,13 @@ import withRoot from "../modules/withRoot";
 import axios from "axios";
 import { server } from "../../UtilitiesFunctions/Function";
 import { useNavigate } from "react-router-dom";
+import SystemError from "../modules/views/Error/SystemError";
 
 const SignUp = () => {
   const [sent, setSent] = React.useState(false);
   const [resetToken, setResetToken] = React.useState('');
   const [resetStatus, setResetStatus] = React.useState('');
+  const [err, setErr] = React.useState()
 const navigate = useNavigate()
 
   React.useEffect(() => {
@@ -50,10 +52,11 @@ const navigate = useNavigate()
     } catch (error) {
       console.error(error, 'error message is ', error.response?.data?.error?.message);
       setResetStatus(error.response?.data?.error?.message + 'error');
+      setErr(error.response?.data?.error?.message)
     }
   };
 
-
+if (err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}

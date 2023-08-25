@@ -2,7 +2,7 @@ import React from 'react';
 import './WhoIsUjuzi.scss'
 import { Box, Container, Grid } from '@mui/material';
 import Typography from '../modules/components/Typography';
-import dotted from '../../static/assets/UJUZI.jpg'
+import dotted from '../../static/assets/logo.png'
 
 // import dotted from '../../../static/assets/productCTAImageDots.png'
 

@@ -9,7 +9,7 @@ import RFTextField from "./modules/form/RFTextField";
 import FormButton from "./modules/form/FormButton";
 import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
-import { postData, server } from "../UtilitiesFunctions/Function";
+import { postData } from "../UtilitiesFunctions/Function";
 import {
   secureJWTAndID,
   secureUserUid,
@@ -17,6 +17,7 @@ import {
 import Snackbar from "./modules/components/Snackbar";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/UserContext";
+import SystemError from "./modules/views/Error/SystemError";
 
 function SignIn() {
   const [sent, setSent] = React.useState(false);
@@ -41,13 +42,10 @@ function SignIn() {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      console.log(values);
-
-      const response = await postData(`/auth/local`, {
+      const response = await postData(`/auth/local?populate=*`, {
         identifier: values.email,
         password: values.password,
       });
-      console.log(response);
 
       await secureUserUid(response);
       await secureJWTAndID(response.jwt, response.user.id);
@@ -63,6 +61,7 @@ function SignIn() {
     }
   };
 
+  if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}

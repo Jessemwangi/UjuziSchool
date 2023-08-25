@@ -8,12 +8,11 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ujLogo from "../../../static/assets/logo.png";
 import "./AppAppBar.scss"; // Import the custom CSS
-import { useGetUserInfo } from "../../../hooks/useFetch";
 import { Typography } from "@mui/material";
-import { getSecureUserUid } from "../../../UtilitiesFunctions/secureUserData";
 import { useUser } from "../../../hooks/UserContext";
+import SystemError from "./Error/SystemError";
 
-const rightLink = {
+export const rightLink = {
   fontSize: 16,
   color: "#BA68C8",
   ml: 3,
@@ -48,7 +47,6 @@ const AppAppBar = () => {
 const [loading,setLoading] =React.useState(false)
 const [err,setErr]= React.useState()
 const { user } = useUser();
-console.log(user)
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -63,15 +61,14 @@ console.log(user)
   if (loading) return <>Loading ....</>;
   if (err)
     return (
-      <>
-        <p> {JSON.stringify(err)}</p>
-      </>
+      <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
     );
   return (
     <div>
       <AppBar position="fixed" sx={{ background: "#040535" }}>
         <Toolbar sx={{ justifyContent: "space-between", overflow: "hidden" }}>
           <Box sx={{ flex: 1 }}>
+          
             <Link
               variant="h6"
               underline="none"
@@ -86,6 +83,7 @@ console.log(user)
                 sx={{ height: 130, paddingTop: "6px" }}
               />
             </Link>
+            
           </Box>
           <Box
             sx={{
@@ -95,6 +93,15 @@ console.log(user)
               alignItems: "center",
             }}
           >
+            {user && <Link
+              variant="h6"
+              underline="none"
+              color="inherit"
+              href="/member"
+              sx={{ fontSize: 20}}
+            >
+              {"Dashboard"}
+            </Link>}
             <Link
               variant="h6"
               underline="none"

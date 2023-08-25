@@ -6,24 +6,26 @@
  */
 
 import { useEffect, useState } from "react"
-import { makeRequest } from "../UtilitiesFunctions/Function"
+import { get_Data } from "../UtilitiesFunctions/Function"
 import { getJWTAndID, getSecureUserUid } from "../UtilitiesFunctions/secureUserData"
-const isUserSignedIn = sessionStorage.getItem("sessionKey") !== null;
 
-const useFetch = (url) =>{
+const useFetch = (url,token) =>{
 
     const [data, setData] =useState([])
     const [loading, setLoading] =useState(false)
     const [error, setError] =useState(false)
 
 useEffect(() => {
+  if (url){
+
     const getData = async () =>{
+
       try {
         setLoading(true)
-        const {data} =await makeRequest.get(url)
-        setData(data.data)
+        const {data} =await get_Data(url,token)
+        setData(data)
         setLoading(false)
-        // console.log(data);
+        console.log(data);
       
       } catch (error) {
         console.log(error)
@@ -32,7 +34,10 @@ useEffect(() => {
       }
         } 
         getData()
-  },[url,isUserSignedIn])
+  }
+  },[token, url])
+
+
   return {data,loading, error}
       }
       
@@ -43,7 +48,8 @@ useEffect(() => {
     const [error, setError] =useState(false)
 
 useEffect(() => {
-    const getData = async () =>{
+  if(functionName){
+        const getData = async () =>{
       let data ;
       try {
         setLoading(true)
@@ -65,7 +71,8 @@ useEffect(() => {
       }
         } 
         getData()
-  },[functionName,isUserSignedIn])
+  }
+  },[functionName])
   return {data,loading, error}
       }
 

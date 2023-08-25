@@ -12,6 +12,7 @@ import FormFeedback from './modules/form/FormFeedback';
 import withRoot from './modules/withRoot';
 import axios from 'axios';
 import { server } from '../UtilitiesFunctions/Function';
+import SystemError from './modules/views/Error/SystemError';
 
 const  SignUp = ()  =>{
   const [sent, setSent] = React.useState(false);
@@ -32,19 +33,19 @@ const  SignUp = ()  =>{
   };
 
   const handleSubmit = async (values) => {
-    console.log(values)
     setSent(true);
     try {
-      const response = await axios.post(`${server}/auth/local/register`, {
+       await axios.post(`${server}/auth/local/register`, {
         ...values
       });
-      console.log(response.data);
+     
     } catch (error) {
       console.log(error)
       setErr(`${err }. \n ${JSON.stringify(error.response.data.error.message)}`)
     }
   };
 
+  if(err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}
@@ -142,7 +143,6 @@ const  SignUp = ()  =>{
             </Box>
           )}
         </Form>
-        <>{err && err}</>
       </AppForm>
       {/* <AppFooter /> */}
     </React.Fragment>

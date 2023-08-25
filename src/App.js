@@ -28,6 +28,8 @@ import SignOut from './Component/SignOut';
 import Profile from './Component/profile/Profile';
 import { UserProvider } from './hooks/UserContext';
 import Dashboard from './Admin/Dashboard';
+import MemberVideos from './Admin/Videos/MemberVideos';
+import AdminMain from './Admin/AdminMain';
 
 const router = createBrowserRouter(
   [
@@ -124,12 +126,18 @@ const router = createBrowserRouter(
 
           children: [{
             path: '/member/admin',
-            element: <Profile />,
+            element: <AdminMain />,
 
-            children: [{
+            children: [
+              {
               path: '/member/admin/profile',
               element: <Profile />
-            },]
+            },
+            {
+              path: '/member/admin/video',
+              element: <MemberVideos />
+            },
+          ]
 
           }
         // {
