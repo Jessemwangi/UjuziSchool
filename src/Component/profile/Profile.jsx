@@ -13,6 +13,7 @@ import { email, required } from "../modules/form/validation";
 import { useUser } from "../../hooks/UserContext";
 import CountrySelect from "../modules/components/Country";
 import Typography from "../modules/components/Typography";
+import { postData } from "../../UtilitiesFunctions/Function";
 
 
 
@@ -23,6 +24,7 @@ const Profile = () => {
   const [sent, setSent] = React.useState(false);
   const [err, setErr] = React.useState(``)
 const {user} =useUser()
+if(!user) return <><h1>no user logged in</h1></>
 const initialValues = {
   country: "",
   city: "",
@@ -37,14 +39,14 @@ const initialValues = {
 };
   const handleSubmit = async (values) => {
     console.log(user,{...values, surname:user.lastname},user.lastname )
-    // {try {
-    //   const response = await axios.post("/profiles", values);
-    //   console.log("Profile created:", response.data);
+    try {
+      const response = await postData("/profiles", {data:values}, user?.jwt);
+      console.log("Profile created:", response.data);
     
-    // } catch (error) {
-    //   console.error("Error creating profile:", error);
+    } catch (error) {
+      console.error("Error creating profile:", error);
     
-    // }}
+    }
   };
 
   const validate = (values) => {

@@ -27,106 +27,123 @@ import ForgotPassword from './Component/ForgotPassword';
 import SignOut from './Component/SignOut';
 import Profile from './Component/profile/Profile';
 import { UserProvider } from './hooks/UserContext';
+import Dashboard from './Admin/Dashboard';
 
 const router = createBrowserRouter(
   [
     {
-    path:'/',
-    element:<Layout />,
-    children:[
-  {
-    path:'/',
-    element:<Home />
-  },
-  {
-    path:'/profile',
-    element:<Profile />
-  },
-  {
-    path:'/courses',
-    element:<Course />
-  }, {
-    path:'/sign-out',
-    element:<SignOut />
-  },
-  
-    {
-    path:'/sign-in',
-    element:<SignIn />
-  },
-  {
-    path:'/sign-up',
-    element:<SignUp />
-  },
-  {
-    path:'/videohome',
-    element:<Videos/>,
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/courses',
+          element: <Course />
+        }, {
+          path: '/sign-out',
+          element: <SignOut />
+        },
 
-  },
-  {
-    path:'/category/:id', 
-    element:<Category/>,
+        {
+          path: '/sign-in',
+          element: <SignIn />
+        },
+        {
+          path: '/sign-up',
+          element: <SignUp />
+        },
+        {
+          path: '/videohome',
+          element: <Videos />,
 
-  },
-  {
-    path:'/singlevideo/:id', 
-    // element:<AppSingleVideo/>,
-    element:<SingleVideo/>
+        },
+        {
+          path: '/category/:id',
+          element: <Category />,
 
-  },
-  {
-    path:'/home',
-    element:<Main/>
+        },
+        {
+          path: '/singlevideo/:id',
+          element: <SingleVideo />
 
-  },{
-    path:'/lessons',
-    element:<ProductCategories/>
-  },{
-    path:'/lessonhow',
-    element:<LessonHowItWorks/>
-  },
-  {
-    path:'/terms',
-    element:<Terms/>
+        },
+        {
+          path: '/home',
+          element: <Main />
 
-  },
-  {
-    path:'/privacy',
-    element:<Privacy/>
+        }, {
+          path: '/lessons',
+          element: <ProductCategories />
+        }, {
+          path: '/lessonhow',
+          element: <LessonHowItWorks />
+        },
+        {
+          path: '/terms',
+          element: <Terms />
 
-  }
-  ,
-  {
-    path:'/attrib',
-    element:<Attribute/>
+        },
+        {
+          path: '/privacy',
+          element: <Privacy />
 
-  },
-  {
-    path:'/aboutus',
-    element:<AboutUs/>
+        }
+        ,
+        {
+          path: '/attrib',
+          element: <Attribute />
 
-  },
-  {
-    path:'/newpassword',
-    element:<PasswordChange/>
+        },
+        {
+          path: '/aboutus',
+          element: <AboutUs />
 
-  }
-  ,
-  {
-    path:'/forgot-password',
-    element:<ForgotPassword/>
+        },
+        {
+          path: '/newpassword',
+          element: <PasswordChange />
 
-  } ,
-  {
-    path:'/res/:id',
-    element:<SubCategories/>
+        }
+        ,
+        {
+          path: '/forgot-password',
+          element: <ForgotPassword />
 
-  }
-  
-]
-  }
-  
-]
+        },
+        {
+          path: '/res/:id',
+          element: <SubCategories />
+
+        },
+        {
+          path: '/member',
+          element: <Dashboard />,
+
+          children: [{
+            path: '/member/admin',
+            element: <Profile />,
+
+            children: [{
+              path: '/member/admin/profile',
+              element: <Profile />
+            },]
+
+          },
+        {
+          path:'/dash',
+          element:<Profile/>
+        }]
+
+
+        }
+
+      ]
+    }
+
+  ]
   // createRoutesFromElements(
   //   <>
   //     <Route element={<Layout />}>
@@ -154,7 +171,7 @@ const App = () => {
   return (
     <div className="App">
       <UserProvider>
-       <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </UserProvider>
     </div>
   );

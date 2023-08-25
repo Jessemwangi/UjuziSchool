@@ -35,7 +35,7 @@ function ForgotPassword() {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const response = await postData(`${server}/auth/forgot-password`, values);
+      const response = await postData(`/auth/forgot-password`, values);
       console.log(response);
       setSent(true);
       setLoading(false);

@@ -40,7 +40,7 @@ export const makeRequest = axios.create(
 export const postData = async (url, data,  apitoken = token) => {
 
   try {
-    const response = await axios.post(url, data,
+    const response = await axios.post(`${server}${url}`, data,
       {
         headers: {
 

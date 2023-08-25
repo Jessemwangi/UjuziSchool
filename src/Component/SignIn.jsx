@@ -43,7 +43,7 @@ function SignIn() {
     try {
       console.log(values);
 
-      const response = await postData(`${server}/auth/local`, {
+      const response = await postData(`/auth/local`, {
         identifier: values.email,
         password: values.password,
       });
@@ -51,11 +51,11 @@ function SignIn() {
 
       await secureUserUid(response);
       await secureJWTAndID(response.jwt, response.user.id);
-      updateUser(response.user);
+      updateUser({...response.user,jwt:response.jwt});
       setSent(true);
       setLoading(false);
       setSnackbarOpen(true)
-      navigate('/profile')
+      navigate('/member')
     } catch (error) {
       console.log(error);
       setErr(error.response.data.error.message);
