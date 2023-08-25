@@ -13,11 +13,14 @@ import withRoot from './modules/withRoot';
 import axios from 'axios';
 import { server } from '../UtilitiesFunctions/Function';
 import SystemError from './modules/views/Error/SystemError';
+import { useNavigate } from 'react-router-dom';
 
 const  SignUp = ()  =>{
   const [sent, setSent] = React.useState(false);
   const [err, setErr] = React.useState(``)
-
+  const [loading,setLoading] =React.useState(false)
+  const [name,setName] =React.useState()
+const navigate = useNavigate()
   const validate = (values) => {
     const errors = required(['username','firstname', 'lastname', 'email', 'password'], values);
 
@@ -28,28 +31,48 @@ const  SignUp = ()  =>{
         errors.email = emailError;
       }
     }
-
+   
     return errors;
   };
 
   const handleSubmit = async (values) => {
-    setSent(true);
+
     try {
-       await axios.post(`${server}/auth/local/register`, {
+      setLoading(true)
+      await axios.post(`${server}/auth/local/register`, {
         ...values
       });
-     
+      setName(`${values.firstname}  ${values.lastname}`)
+      setSent(true);
+      onSubmitSuccess(values)
+      setLoading(false)
     } catch (error) {
       console.log(error)
-      setErr(`${err }. \n ${JSON.stringify(error.response.data.error.message)}`)
+      setLoading(false)
+      setErr(`${err }. \n ${JSON.stringify(error?.response?.data?.error?.message)}`)
     }
   };
 
+  const onSubmitSuccess = async (values) =>{
+   
+    await new Promise((resolve) => setTimeout(resolve,3000))
+    setSent(false)
+    navigate('/sign-in')
+  }
+
   if(err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
+
+  if (sent) return     (<div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', gap:'4rem',margin:'6rem', border:'1px solid #ccc', padding:'2rem'}}>
+  <Typography variant="h4" component="span" sx={{textAlign:'center'}}>
+  {`Please hold while we sign you up, Creating account for :- ${name}`} </Typography><br/>
+  <p>You will have to activate your account, an email link has been sent to your email address</p>
+</div>)
+
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}
-      <AppForm>
+      :
+    (  <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
             Sign Up
@@ -62,6 +85,7 @@ const  SignUp = ()  =>{
         </React.Fragment>
         <Form
           onSubmit={handleSubmit}
+          onSubmitSuccess={onSubmitSuccess} 
           subscription={{ submitting: true }}
           validate={validate}
         >
@@ -143,7 +167,7 @@ const  SignUp = ()  =>{
             </Box>
           )}
         </Form>
-      </AppForm>
+      </AppForm>)
       {/* <AppFooter /> */}
     </React.Fragment>
   );

@@ -13,7 +13,7 @@ const SignOut = () => {
       setLoading(true);
       sessionStorage.clear();
       setLoading(false)
-      await new Promise((resolve) => setTimeout(resolve, 4000)) 
+      await new Promise((resolve) => setTimeout(resolve, 3000)) 
       navigate("/");
     };
     signOut();
