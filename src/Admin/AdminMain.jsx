@@ -1,11 +1,13 @@
+import { Container } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 const AdminMain = () => {
+
     return (
-        <div>
+        <Container className='adminMain' sx={{}}>
              <Outlet/>
-        </div>
+        </Container>
     );
 };
 

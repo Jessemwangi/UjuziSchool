@@ -12,6 +12,7 @@ import FormFeedback from './modules/form/FormFeedback';
 import withRoot from './modules/withRoot';
 import axios from 'axios';
 import { server } from '../UtilitiesFunctions/Function';
+import SystemError from './modules/views/Error/SystemError';
 
 const  SignUp = ()  =>{
   const [sent, setSent] = React.useState(false);
@@ -45,6 +46,7 @@ const  SignUp = ()  =>{
     }
   };
 
+  if(err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}
@@ -142,7 +144,6 @@ const  SignUp = ()  =>{
             </Box>
           )}
         </Form>
-        <>{err && err}</>
       </AppForm>
       {/* <AppFooter /> */}
     </React.Fragment>
