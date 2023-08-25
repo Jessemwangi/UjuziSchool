@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Form, Field, FormSpy, useForm } from "react-final-form";
+import { Form, Field, FormSpy } from "react-final-form";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import axios from "axios";
 import AppForm from "../modules/views/AppForm";
-import { Grid, Link } from "@mui/material";
+import { Link } from "@mui/material";
 import RFTextField from "../modules/form/RFTextField";
 import FormFeedback from "../modules/form/FormFeedback";
 import FormButton from "../modules/form/FormButton";
@@ -23,7 +20,7 @@ import SystemError from "../modules/views/Error/SystemError";
 
 const Profile = () => {
 
-  const [sent, setSent] = React.useState(false);
+  const [sent, ] = React.useState(false);
   const [err, setErr] = React.useState(``)
   const [profileId,setProfileId] = useState()
 const {user} =useUser()
@@ -38,7 +35,7 @@ useEffect(() => {
 
 if(!user) return <><h1>no user logged in</h1></>
 if (loading) return <p>Loading</p>
-
+if (error) setErr(error?.response?.data?.error?.message)
 
 const initialValues = {
   country: data[0]?.attributes?.country || "",

@@ -1,25 +1,22 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "../../pages/SubCategories/SubCategories.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useFetch } from "../../hooks/useFetch";
-import { backend, server } from "../../UtilitiesFunctions/Function";
+import { backend, get_Data, server } from "../../UtilitiesFunctions/Function";
 import { useUser } from "../../hooks/UserContext";
 import Typography from "../../Component/modules/components/Typography";
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
 import SystemError from "../../Component/modules/views/Error/SystemError";
 
 const MemberVideos = () => {
-  const id = useParams().id;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const recordsPerPage = 5;
   const [playingActive, setPlayingActive] = useState({border:"none"});
   const [subcategoryVideos, setSubcategoryVideos] = useState({});
   const [isLoading,setIsLoading] =useState(false)
   const [err, setErr] =useState()
-  const [userSubData,setUserSubData] = useState()
-  const [userVideo,setUserVideo] =useState([])
-  const [userUnits,setUnits] =useState([])
+
 
   const {user} = useUser()
 console.log(user)
@@ -61,15 +58,10 @@ const { data, loading, error } = useFetch(
   
      const getuserreg = async () => {
       try {
-       const {data} = await axios.get(`${server}/${userurl}`, {
-         headers:{
-         
-         Authorization: `Bearer ${user?.token}`
-       }})
-       setUserSubData(data)
-       setUserVideo(data?.agents)
-       console.log(data.agents)
+       const {data} = await get_Data(userurl) 
+       console.log(data)
    } catch (error) {
+    console.log(error)
     setErr(error?.response?.data?.error?.message)
    }
       
@@ -77,6 +69,8 @@ const { data, loading, error } = useFetch(
     getuserreg()
   },[userurl])    
     
+  if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
+  
   return (
     <Fragment>
       {isLoading ? (
@@ -152,7 +146,7 @@ const { data, loading, error } = useFetch(
         </>
       )}
      
-      {(error) && <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>}
+
     </Fragment>
   );
 };

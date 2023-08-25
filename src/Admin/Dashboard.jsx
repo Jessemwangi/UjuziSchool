@@ -9,8 +9,7 @@ import './admin.scss'
 
 const Dashboard = () => {
   const user = useUser();
-
-  if (!user) {
+  if (!user.user) {
     return <Navigate to="/sign-in" />;
   }
 

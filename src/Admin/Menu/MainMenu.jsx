@@ -8,9 +8,15 @@ import {
     Stack,
     Typography,
   } from "@mui/material";
-  import React from "react";
+  import React, { useEffect } from "react";
+import { useUser } from "../../hooks/UserContext";
   
   const MainMenu = ({ user }) => {
+    const { updateUser } = useUser();
+
+    useEffect(() =>{
+
+    },[])
     const rightLink = {
       fontSize: 16,
       color: "#BA68C8",

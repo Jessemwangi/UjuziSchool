@@ -33,13 +33,12 @@ const  SignUp = ()  =>{
   };
 
   const handleSubmit = async (values) => {
-    console.log(values)
     setSent(true);
     try {
-      const response = await axios.post(`${server}/auth/local/register`, {
+       await axios.post(`${server}/auth/local/register`, {
         ...values
       });
-      console.log(response.data);
+     
     } catch (error) {
       console.log(error)
       setErr(`${err }. \n ${JSON.stringify(error.response.data.error.message)}`)
