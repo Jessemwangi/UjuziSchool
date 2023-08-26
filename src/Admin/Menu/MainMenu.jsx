@@ -8,15 +8,22 @@ import {
     Stack,
     Typography,
   } from "@mui/material";
-  import React, { useEffect } from "react";
+  import React, { useEffect, useState } from "react";
 import { useUser } from "../../hooks/UserContext";
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
   
   const MainMenu = ({ user }) => {
+    const [userPic,setUserPic] = useState()
     const { updateUser } = useUser();
+
 
     useEffect(() =>{
 
     },[])
+    
+    const handleImageChange = () =>{
+        setUserPic()
+    }
     const rightLink = {
       fontSize: 16,
       color: "#BA68C8",
@@ -26,12 +33,42 @@ import { useUser } from "../../hooks/UserContext";
     return (
       <Container sx={{ width: "100%", minHeight: "50vh", display: "flex", justifyContent: "center", alignItems: "center", marginBottom:'1rem' }}>
         <Stack spacing={3} sx={{ textAlign: "center" }}>
+            <Box sx={{position:"relative", objectFit:'contain',  height: 200, width: 200, display:'flex'}}>
           <Box
+            component="div"
+            sx={{ height: 200,background:'none' , display:'flex', alignItems:'center', justifyContent:'center', width: 200, paddingTop: "6px", borderRadius: "50%", position:'absolute',zIndex:'2' }}
+          >
+            <p style={{background:'#0606066f', color:'white',borderRadius:'50%'}}>
+            <label>
+  <input
+    type="file"
+    accept="image/*"
+    style={{ display: 'none' }} 
+    onChange={handleImageChange}
+    name="profilePic"
+  />
+
+  <AddRoundedIcon 
+    sx={{ 
+      fontSize: 60,
+      color: 'white',
+      backgroundColor: '#0606066f',
+      borderRadius: '50%',
+      padding: 1,
+      cursor: 'pointer'
+    }}
+  />
+</label>
+                 </p>
+          </Box>
+           
+            <Box
             component="img"
-            src={`https://source.unsplash.com/1000x1000/?user?auto=format&fit=crop&w=200`}
+            src={`https://source.unsplash.com/1000x1000/?admin?auto=format&fit=crop&w=200`}
             alt="Ujuzi Logo"
-            sx={{ height: 200, width: 200, paddingTop: "6px", borderRadius: "50%" }}
+            sx={{ height: 200, width: 200, paddingTop: "6px", borderRadius: "50%" , position:'absolute', zIndex:'1'}}
           />
+            </Box>
           <Typography variant="h5" sx={{ paddingBottom: "1rem", paddingTop: "3px" }}>
             {`Hello ${user?.user?.firstname}`}
           </Typography>

@@ -46,7 +46,9 @@ const AppAppBar = () => {
   const [data, setData] = React.useState(null);
 const [loading,setLoading] =React.useState(false)
 const [err,setErr]= React.useState()
-const { user } = useUser();
+const {user}  = useUser();
+
+console.log(user)
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&

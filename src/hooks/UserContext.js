@@ -12,11 +12,13 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
      
     const storedUser = async () => {
-      const sesUser = await getSecureUserUid()
-      
+      localStorage.clear()
+      const user = await getSecureUserUid()
      
-      if (sesUser) {
-        const user = await {...sesUser?.user,jwt:sesUser?.jwt}
+      console.log('sesuser',user)
+      if (user) {
+        // const user = await {...sesUser?.user,jwt}
+        // console.log(user)
         setUser(user);
       }
     }
