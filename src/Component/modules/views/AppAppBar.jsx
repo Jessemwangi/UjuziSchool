@@ -46,7 +46,8 @@ const AppAppBar = () => {
   const [data, setData] = React.useState(null);
 const [loading,setLoading] =React.useState(false)
 const [err,setErr]= React.useState()
-const { user } = useUser();
+const {user,ctxLoading}  = useUser();
+
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -148,7 +149,11 @@ const { user } = useUser();
               {"Sponsors"}
             </Link>
           </Box>
-          {user ? (
+          {
+            
+              ctxLoading  ? (<p> loading ...</p>
+            ):
+          user ? (
             <>
              <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
               <Typography
@@ -166,7 +171,8 @@ const { user } = useUser();
                 {"Sign Out"}
               </Link>
               </Box></>
-          ) : (
+          ) :
+           (
             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
               <Link
                 color="inherit"
@@ -186,7 +192,8 @@ const { user } = useUser();
                 {"Sign Up"}
               </Link>
             </Box>
-          )}
+          )
+          }
           {/* Hamburger Menu Icon for Smaller Screens */}
           <Box className="hamburger-menu">
             <IconButton

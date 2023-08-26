@@ -9,7 +9,7 @@ import RFTextField from "./modules/form/RFTextField";
 import FormButton from "./modules/form/FormButton";
 import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
-import { postData } from "../UtilitiesFunctions/Function";
+import { get_Data, postData } from "../UtilitiesFunctions/Function";
 import {
   secureJWTAndID,
   secureUserUid,
@@ -47,9 +47,11 @@ function SignIn() {
         password: values.password,
       });
 
-      await secureUserUid(response);
-      await secureJWTAndID(response.jwt, response.user.id);
-      updateUser({...response.user,jwt:response.jwt});
+      const userinfo =await get_Data(`/users/${response.user.id}?populate=*`,response.jwt)
+      console.log(userinfo)
+      // await secureUserUid(response); profilePic.url
+       await secureJWTAndID(response.jwt, response.user.id);
+      updateUser({...response.user,jwt:response.jwt, profileUrl:userinfo.profilePic.url, profilePic:userinfo.id,profile:userinfo?.profile});
       setSent(true);
       setLoading(false);
       setSnackbarOpen(true)

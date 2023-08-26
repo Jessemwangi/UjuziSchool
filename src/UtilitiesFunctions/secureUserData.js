@@ -32,7 +32,7 @@ const USERINFO ={
     
     const JWTAndID = await encryptData(data, session_J_Key);
     sessionStorage.setItem(client, JWTAndID);
-console.log('jwt snd id for storeage', JWTAndID, 'name visible',client)
+// console.log('jwt snd id for storeage', JWTAndID, 'name visible',client)
 }
 
 export const getJWTAndID = async () => {
@@ -65,7 +65,6 @@ export const secureUserUid = async (USERINFO) => {
     
     const User_Info = await encryptData(data, uid_ss_Key);
     sessionStorage.setItem(userData, User_Info);
-console.log('userdata value stored',userData, 'key used for storage',uid_ss_Key)
 }
 
 
