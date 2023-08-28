@@ -12,7 +12,6 @@ import withRoot from "./modules/withRoot";
 import { get_Data, postData } from "../UtilitiesFunctions/Function";
 import {
   secureJWTAndID,
-  secureUserUid,
 } from "../UtilitiesFunctions/secureUserData";
 import Snackbar from "./modules/components/Snackbar";
 import { useNavigate } from "react-router-dom";
@@ -58,7 +57,7 @@ function SignIn() {
       navigate('/member')
     } catch (error) {
       console.log(error);
-      setErr(error.response.data.error.message);
+      setErr(error?.response?.data?.error?.message);
       setLoading(false);
     }
   };
