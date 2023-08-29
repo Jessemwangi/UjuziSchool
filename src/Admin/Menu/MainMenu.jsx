@@ -1,6 +1,7 @@
 import {
   Box,
   Container,
+  LinearProgress,
   Link,
   MenuItem,
   MenuList,
@@ -11,9 +12,9 @@ import {
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../hooks/UserContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { postData, server } from "../../UtilitiesFunctions/Function";
+import {  server } from "../../UtilitiesFunctions/Function";
 import axios from "axios";
-import Snackbar from "../../Component/modules/components/Snackbar";
+import './MainMenu.scss'
 
 const rightLink = {
   fontSize: 16,
@@ -33,7 +34,6 @@ const MainMenu = ({ user }) => {
   const [profilePic, setProfilePic] = useState(null);
   const [loading, setLoading] = useState(false);
   const { updateUser } = useUser();
-  console.log(user);
 
   useEffect(() => {}, []);
 
@@ -43,8 +43,7 @@ const MainMenu = ({ user }) => {
     const reader = new FileReader();
 
     reader.onloadend = async () => {
-      const posting = await postImageToStrapi(file);
-      console.log(posting)
+      await postImageToStrapi(file);
     };
 
     reader.readAsDataURL(file);
@@ -65,8 +64,6 @@ const MainMenu = ({ user }) => {
             Authorization: `Bearer ${user.jwt}`,
           },
         });
-        console.log(response);
-        //   setPicUpload(response.data[0].id);
         updateUser({ ...user,profileUrl:response.data[0].url, profilePic:response.data[0].id });
         setProfilePic(response.data[0].url)
         return response.data[0].id;
@@ -103,36 +100,10 @@ const deleteProfilePic = async (uploadId) =>{
 { 
 loading ? 
 (
-<p><Snackbar/></p>
+<LinearProgress color="secondary" />
 )
 :
-(    user?.profileUrl ?
-     (<>
-         <Box
-        component="img"
-        src={user?.profileUrl}
-        alt={user.firstname}
-        sx={{
-          height: 200,
-          width: 200,
-          paddingTop: "6px",
-          borderRadius: "50%",
-          position: "absolute",
-          zIndex: "1",
-        }}
-       
-      />
-                    <input
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-              name="profilePic"
-            />
-     </>
-        
-      ):
-      (
+(   
       <>
         <Box
         component="div"
@@ -150,11 +121,7 @@ loading ?
         }}
       >
         <p
-          style={{
-            background: "#0606066f",
-            color: "white",
-            borderRadius: "50%",
-          }}
+          className={user?.profileUrl ? 'content_paragraph':'content_paragraph-normal'}
         >
           <label>
             <input
@@ -181,7 +148,7 @@ loading ?
 
       <Box
         component="img"
-        src={`https://source.unsplash.com/1000x1000/?admin?auto=format&fit=crop&w=200`}
+        src={user?.profileUrl || `https://source.unsplash.com/1000x1000/?admin?auto=format&fit=crop&w=200`}
         alt="Ujuzi Logo"
         sx={{
           height: 200,
@@ -194,7 +161,7 @@ loading ?
       />
       </>
       )
-      )
+      
 }
 
         </Box>
@@ -265,7 +232,16 @@ loading ?
                 {"Take a Test"}
               </Link>
             </MenuItem>
-            <MenuItem>Sign out</MenuItem>
+            <MenuItem>
+            <Link
+                variant="h7"
+                underline="none"
+                color="inherit"
+                href="/sign=out"
+                style={{textAlign:"center",width:"100%"}}
+              >
+                {"Sign out"}
+              </Link></MenuItem>
           </MenuList>
         </Paper>
       </Stack>

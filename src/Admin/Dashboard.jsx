@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AdminMain from "./AdminMain";
 import { useUser } from "../hooks/UserContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Container, Grid } from "@mui/material";
 import MainMenu from "./Menu/MainMenu";

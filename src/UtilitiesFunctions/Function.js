@@ -46,7 +46,6 @@ export const get_Data = async (url, apitoken = token) => {
           Authorization: `Bearer ${apitoken}`
         }
       })
-    console.log(response.data)
     return response.data
   } catch (error) {
     console.log(error)
@@ -58,6 +57,7 @@ export const get_Data = async (url, apitoken = token) => {
 export const postData = async (url, data,  apitoken = token) => {
 
   try {
+    
     const response = await axios.post(`${server}${url}`, data,
       {
         headers: {
@@ -65,7 +65,6 @@ export const postData = async (url, data,  apitoken = token) => {
           Authorization: `Bearer ${apitoken}`
         }
       })
-    console.log(response.data)
     return response.data
   } catch (error) {
     console.log(error)
@@ -84,7 +83,6 @@ export const putData = async (url, data,  apitoken = token) => {
           Authorization: `Bearer ${apitoken}`
         }
       })
-    console.log(response.data)
     return response.data
   } catch (error) {
     console.log(error)

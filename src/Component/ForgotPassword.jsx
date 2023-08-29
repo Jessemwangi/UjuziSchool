@@ -10,15 +10,18 @@ import RFTextField from "./modules/form/RFTextField";
 import FormButton from "./modules/form/FormButton";
 import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
-import { postData, server } from "../UtilitiesFunctions/Function";
-import { Link } from "@mui/material";
+import { postData } from "../UtilitiesFunctions/Function";
+import {  LinearProgress, Link } from "@mui/material";
 import TungstenOutlinedIcon from "@mui/icons-material/TungstenOutlined";
+import { useNavigate } from "react-router-dom";
+import MessageInfo from "./modules/components/MessageInfo";
 
 function ForgotPassword() {
   const [sent, setSent] = React.useState(false);
   const [loading, setLoading] = React.useState();
   const [err, setErr] = React.useState();
-
+  const [userEmail, setUserEmail] = React.useState()
+const navigate =useNavigate()
   const validate = (values) => {
     const errors = required(["email"], values);
 
@@ -36,16 +39,27 @@ function ForgotPassword() {
     setLoading(true);
     try {
       const response = await postData(`/auth/forgot-password`, values);
-      console.log(response);
-      setSent(true);
+     if(response.ok){
       setLoading(false);
+      setUserEmail(values.email)
+       setSent(true);
+       await new Promise((resolve) => setTimeout(resolve,7000))
+       setSent(false)
+       navigate('/sign-in')
+     }
+    
     } catch (error) {
       console.log(error);
-      setErr(error.response.data.error.message);
+      setErr(error?.response?.data?.error?.message);
       setLoading(false);
     }
-    setSent(true);
+    
   };
+
+  
+
+  if (loading) return <LinearProgress color="secondary" />
+if (sent) return <MessageInfo message={`Password reset instruction Sent successfully to:- ${userEmail}`} backgroundColor={'white'} textColor={'#BA68C8'}/>
 
   return (
     <React.Fragment>

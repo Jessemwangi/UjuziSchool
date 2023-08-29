@@ -14,6 +14,7 @@ import axios from 'axios';
 import { server } from '../UtilitiesFunctions/Function';
 import SystemError from './modules/views/Error/SystemError';
 import { useNavigate } from 'react-router-dom';
+import MessageInfo from './modules/components/MessageInfo';
 
 const  SignUp = ()  =>{
   const [sent, setSent] = React.useState(false);
@@ -62,11 +63,7 @@ const navigate = useNavigate()
 
   if(err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
 
-  if (sent) return     (<div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', gap:'4rem',margin:'6rem', border:'1px solid #ccc', padding:'2rem'}}>
-  <Typography variant="h4" component="span" sx={{textAlign:'center'}}>
-  {`Please hold while we sign you up, Creating account for :- ${name}`} </Typography><br/>
-  <p>You will have to activate your account, an email link has been sent to your email address</p>
-</div>)
+  if (sent) return    <MessageInfo message={`Please hold while we sign you up, Creating account for :- ${name}`}/>
 
   return (
     <React.Fragment>

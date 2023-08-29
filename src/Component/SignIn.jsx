@@ -10,10 +10,7 @@ import FormButton from "./modules/form/FormButton";
 import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
 import { get_Data, postData } from "../UtilitiesFunctions/Function";
-import {
-  secureJWTAndID,
-  secureUserUid,
-} from "../UtilitiesFunctions/secureUserData";
+import { secureJWTAndID } from "../UtilitiesFunctions/secureUserData";
 import Snackbar from "./modules/components/Snackbar";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/UserContext";
@@ -23,8 +20,8 @@ function SignIn() {
   const [sent, setSent] = React.useState(false);
   const [loading, setLoading] = React.useState();
   const [err, setErr] = React.useState();
-  const [,setSnackbarOpen] =React.useState(false)
-  const navigate = useNavigate()
+  const [, setSnackbarOpen] = React.useState(false);
+  const navigate = useNavigate();
   const { updateUser } = useUser();
   const validate = (values) => {
     const errors = required(["email", "password"], values);
@@ -42,28 +39,42 @@ function SignIn() {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const response = await postData(`/auth/local?populate=*`, {
+      const response = await postData(`/auth/local`, {
         identifier: values.email,
         password: values.password,
       });
 
-      const userinfo =await get_Data(`/users/${response.user.id}?populate=*`,response.jwt)
-      console.log(userinfo)
+      const userinfo = await get_Data(
+        `/users/${response.user.id}?populate=*`,
+        response.jwt
+      );
       // await secureUserUid(response); profilePic.url
-       await secureJWTAndID(response.jwt, response.user.id);
-      updateUser({...response.user,jwt:response.jwt, profileUrl:userinfo.profilePic.url, profilePic:userinfo.id,profile:userinfo?.profile});
+      await secureJWTAndID(response.jwt, response.user.id);
+      updateUser({
+        ...response.user,
+        jwt: response.jwt,
+        profileUrl: userinfo?.profilePic?.url,
+        profilePic: userinfo?.id,
+        profile: userinfo?.profile,
+        userClient: userinfo?.userClient,
+      });
       setSent(true);
       setLoading(false);
-      setSnackbarOpen(true)
-      navigate('/member')
+      setSnackbarOpen(true);
+      navigate("/member");
     } catch (error) {
       console.log(error);
-      setErr(error.response.data.error.message);
+      setErr(error?.response?.data?.error?.message);
       setLoading(false);
     }
   };
 
-  if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
+  if (err)
+    return (
+      <SystemError
+        errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}
+      />
+    );
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}
@@ -79,8 +90,11 @@ function SignIn() {
             </Link>
           </Typography>
         </React.Fragment>
-       
-<Snackbar message="Login successful!" closeFunc={() => setSnackbarOpen(false)} />
+
+        <Snackbar
+          message="Login successful!"
+          closeFunc={() => setSnackbarOpen(false)}
+        />
 
         <Form
           onSubmit={handleSubmit}
