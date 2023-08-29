@@ -1,0 +1,24 @@
+.css-9gqzpi {
+    .content_paragraph-normal{
+        background: #0606066f;
+        color: white;
+        border-Radius: 50%;
+    }
+    .content_paragraph {
+        /* visibility: hidden; */
+        display: none;
+    
+    }
+    &:hover{
+
+    .content_paragraph {
+    background: rgba(6, 6, 6, 0.686);
+    color: white;
+    border-radius: 50%;
+    visibility: visible !important;
+    display: block !important;
+    cursor: pointer;
+    }
+
+    }
+}
