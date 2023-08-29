@@ -11,6 +11,7 @@ import axios from "axios";
 import { server } from "../../UtilitiesFunctions/Function";
 import { useNavigate } from "react-router-dom";
 import SystemError from "../modules/views/Error/SystemError";
+import MessageInfo from "../modules/components/MessageInfo";
 
 const SignUp = () => {
   const [sent, setSent] = React.useState(false);
@@ -36,16 +37,13 @@ const navigate = useNavigate()
   };
 
   const handleSubmit = async (values) => {
-    console.log(values);
      setSent(true);
-     let  response
     try {
-        response  = await axios.post(`${server}/auth/reset-password`, {
+        await axios.post(`${server}/auth/reset-password`, {
         password: values.password,
         passwordConfirmation:values.password2,
         code: resetToken,
       });
-      console.log(response.data); 
       setResetStatus('success');
       await new Promise((resolve) => setTimeout(resolve, 2000));
       navigate('/sign-in')
@@ -57,6 +55,7 @@ const navigate = useNavigate()
   };
 
 if (err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
+if (resetStatus === 'success') return <MessageInfo message="You password was changed successfull, Sign In to continue" backgroundColor={'#BA68C8'} textColor={'#040535'} show={false}/>
   return (
     <React.Fragment>
       {/* <AppAppBar /> */}

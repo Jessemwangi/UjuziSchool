@@ -2,6 +2,7 @@ import { Box,  Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bg2 from '../static/assets/bg2.png'
+import MessageInfo from "./modules/components/MessageInfo";
 
 
 const SignOut = () => {
@@ -32,14 +33,13 @@ component="section"
 sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 9 }}
 >
 {loading ? (<>
-    <Typography variant="h4" component="span">
-    Please hold while we sign you out
-  </Typography>
+    <MessageInfo message="Please hold while we sign you out" show="false" backgroundColor={'#040535'} textColor={'#BA68C8'}>  
+  </MessageInfo>
 </>):
 (<>
- <Typography variant="h4" component="span">
- Successfully signed out!
-  </Typography>
+ <MessageInfo message=" Successfully signed out!" show="false" backgroundColor={'#040535'} textColor={'#BA68C8'}>  
+  </MessageInfo>
+ 
 </>)
 }
 

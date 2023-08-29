@@ -1,7 +1,7 @@
 import {
   Box,
-  CircularProgress,
   Container,
+  LinearProgress,
   Link,
   MenuItem,
   MenuList,
@@ -12,9 +12,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../hooks/UserContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { postData, server } from "../../UtilitiesFunctions/Function";
+import {  server } from "../../UtilitiesFunctions/Function";
 import axios from "axios";
-import Snackbar from "../../Component/modules/components/Snackbar";
 import './MainMenu.scss'
 
 const rightLink = {
@@ -101,7 +100,7 @@ const deleteProfilePic = async (uploadId) =>{
 { 
 loading ? 
 (
-<CircularProgress variant="primary"/>
+<LinearProgress color="secondary" />
 )
 :
 (   
