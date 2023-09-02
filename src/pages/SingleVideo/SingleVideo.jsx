@@ -7,12 +7,14 @@ import Typography from "../../Component/modules/components/Typography";
 import { Box, Container, Grid } from "@mui/material";
 import arrow from "../../static/assets/arrow.png";
 import bg2 from '../../static/assets/bg2.png'
+import { backend } from "../../UtilitiesFunctions/Function";
 
 const SingleVideo = () => {
   const location = useLocation();
   const id = useParams().id;
 
   const { video } = location.state;
+  console.log(location.state)
   return (
     <div className="singleVideo">
       <Box component={'img'} 
@@ -36,7 +38,7 @@ const SingleVideo = () => {
           {video.title}
         </Typography>
       </Box>
-      <AppSingleVideo videoUrl={video.url} key={id} />{" "}
+      <AppSingleVideo videoUrl={`${backend}${video?.videoUrl?.url}`} key={id} />{" "}
       {/*  //to pass url and the title */}
       <Container xs={10} className="desc">
         <Grid xs={3} className="arrow">

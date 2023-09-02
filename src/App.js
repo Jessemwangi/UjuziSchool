@@ -16,7 +16,7 @@ import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
-import Category from './pages/Category/Category';
+// import Category from './pages/Category/SingleCategory';
 import AboutUs from './pages/AboutUs/AboutUs';
 // import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
@@ -30,6 +30,7 @@ import { UserProvider } from './hooks/UserContext';
 import Dashboard from './Admin/Dashboard';
 import MemberVideos from './Admin/Videos/MemberVideos';
 import AdminMain from './Admin/AdminMain';
+import SingleCategory from './pages/Category/SingleCategory';
 
 const router = createBrowserRouter(
   [
@@ -64,7 +65,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/category/:id',
-          element: <Category />,
+          element: <SingleCategory />,
 
         },
         {
