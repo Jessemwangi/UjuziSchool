@@ -31,6 +31,7 @@ import Dashboard from './Admin/Dashboard';
 import MemberVideos from './Admin/Videos/MemberVideos';
 import AdminMain from './Admin/AdminMain';
 import SingleCategory from './pages/Category/SingleCategory';
+import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
 
 const router = createBrowserRouter(
   [
@@ -103,6 +104,11 @@ const router = createBrowserRouter(
         {
           path: '/aboutus',
           element: <AboutUs />
+
+        },
+        {
+          path: '/aboutv2',
+          element: <AboutUjuzi />
 
         },
         {
@@ -183,6 +189,7 @@ const App = () => {
       <UserProvider>
         <RouterProvider router={router} />
       </UserProvider>
+      
     </div>
   );
 }
