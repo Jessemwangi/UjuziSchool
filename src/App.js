@@ -32,6 +32,8 @@ import MemberVideos from './Admin/Videos/MemberVideos';
 import AdminMain from './Admin/AdminMain';
 import SingleCategory from './pages/Category/SingleCategory';
 import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
+import Contact_Us from './contact-us/Contact_Us';
+import WriteUs from './contact-me/WriteUs';
 
 const router = createBrowserRouter(
   [
@@ -50,7 +52,16 @@ const router = createBrowserRouter(
           path: '/sign-out',
           element: <SignOut />
         },
-
+        {
+          path: '/contact',
+          element: <Contact_Us />
+        },
+        {
+          path: '/writeus',
+          element: <WriteUs />
+        },
+        
+        
         {
           path: '/sign-in',
           element: <SignIn />

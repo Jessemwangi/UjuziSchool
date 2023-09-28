@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useMouseMoveUI } from '../../contexts/mouse-move-context';
-import { SocialShare } from '../social-share';
+import { SocialShare } from '../Component/modules/components';
+import { useMouseMoveUI } from '../Component/contexts/mouse-move-context';
 
 const ContactMeArea = () => {
     const { mouseDirection, mouseReverse } = useMouseMoveUI();

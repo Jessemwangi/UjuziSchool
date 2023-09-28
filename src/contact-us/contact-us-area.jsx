@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useMouseMoveUI } from '../../contexts/mouse-move-context';
-import ContactUsForm from '../forms/contact-us-form';
-import { SocialShare } from '../social-share';
+import { useMouseMoveUI } from '../Component/contexts/mouse-move-context';
+import { SocialShare } from '../Component/modules/components';
+import ContactUsForm from '../Component/modules/form/contact-us-form';
 
 const ContactUsArea = () => {
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
@@ -16,15 +16,15 @@ const ContactUsArea = () => {
                             <ul className="address-list">
                                 <li>
                                     <h5 className="title">Address</h5>
-                                    <p>Studio 76d, Riley Ford, North Michael chester, CF99 6QQ</p>
+                                    <p> Runeberginkatu 14-16, Helsinki, Southern Finland, 00100</p>
                                 </li>
                                 <li>
                                     <h5 className="title">Email</h5>
-                                    <p><a href="mailto:edublink@example.com">edublink@example.com</a></p>
+                                    <p><a href="mailto:info@ujuzi.io">info@ujuzi.io</a></p>
                                 </li>
                                 <li>
                                     <h5 className="title">Phone</h5>
-                                    <p><a href="tel:+0914135548598">(+091) 413 554 8598</a></p>
+                                    <p><a href="tel:+35814135548598">(+358) 4135548598</a></p>
                                 </li>
                             </ul>
                             <ul className="social-share">
@@ -50,7 +50,7 @@ const ContactUsArea = () => {
                                         y: mouseReverse(30).y
                                     } }
                                 >
-                                    <img src="/assets/images/about/shape-13.png" alt="Shape" />
+                                    <img src={require('../images/about/shape-13.png')} alt="Shape" />
                                 </motion.li>
                                 <motion.li className="shape-2 scene"
                                     animate={ {
@@ -58,7 +58,7 @@ const ContactUsArea = () => {
                                         y: mouseDirection(30).y
                                     } }
                                 >
-                                    <img src="/assets/images/counterup/shape-02.png" alt="Shape" />
+                                    <img src={require('../images/counterup/shape-02.png')} alt="Shape" />
                                 </motion.li>
                             </ul>
                         </div>

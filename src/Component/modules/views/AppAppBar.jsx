@@ -125,10 +125,10 @@ const {user,ctxLoading}  = useUser();
               variant="h6"
               underline="none"
               color="inherit"
-              href="/"
+              href="contact"
               sx={{ fontSize: 16 }}
             >
-              {"Exams"}
+              {"Say Hi"}
             </Link>
             <Link
               variant="h6"

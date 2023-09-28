@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useMouseMoveUI } from '../../contexts/mouse-move-context';
-import ContactMeForm from '../forms/contact-me-form';
+import ContactMeForm from '../Component/modules/form/contact-me-form';
+import { useMouseMoveUI } from '../Component/contexts/mouse-move-context';
 
 const ContactMeFormArea = () => {
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
