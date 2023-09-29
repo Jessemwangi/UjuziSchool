@@ -37,11 +37,11 @@ const AboutUsArea = () => {
                                 <span className="shape-line"><i className="icon-19"></i></span>
                                 <p>
                                 Ujuzi Solutions is a technology company based in Finland. We capitalize on the excellent Finnish model and collaborate with Finnish companies to solve
-                                 multifaceted African problems and foster socio-economic development between Finland and Africa..</p>
+                                 multifaceted problems and foster socio-economic development between Europe (Finland) and Africa.</p>
                             </div>
                             <div className="about-mission">
-                                <MissionItem color="02" icon="51" title="Our Mission" text="Develop resources, technologies, and platforms that enhance technology sharing to facilitate practical skills development for young Africans." />
-                                <MissionItem color="06" icon="52" title="Our Vision" text="To Enhance the participation of African youth in innovation and problem-solving within the continent." />
+                                <MissionItem color="02" icon="51" title="Our Mission" text="We empower young learners by developing cutting-edge resources, technologies, and platforms that foster the sharing of tech knowledge and practical skills. Our goal is to enable them to lead innovation and drive lasting change across the continent." />
+                                <MissionItem color="06" icon="52" title="Our Vision" text="To cultivate a vibrant ecosystem where the youth actively lead in innovation and solution-driven endeavours, empowering the globe's future." />
                             </div>
                         </div>
                     </div>
