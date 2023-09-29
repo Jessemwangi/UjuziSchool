@@ -34,6 +34,7 @@ import SingleCategory from './pages/Category/SingleCategory';
 import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
 import Contact_Us from './contact-us/Contact_Us';
 import WriteUs from './contact-me/WriteUs';
+import TeamDetails from './Component/team-member/team-details';
 
 const router = createBrowserRouter(
   [
@@ -155,6 +156,12 @@ const router = createBrowserRouter(
               path: '/member/admin/video',
               element: <MemberVideos />
             },
+            {
+              path: ' /team-details/:id',
+              element: <TeamDetails />
+            },
+            
+           
           ]
 
           }

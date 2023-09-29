@@ -5,7 +5,7 @@ const instructors_data = [
         social_links:[
             {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-            {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'}
+            {link: 'https://www.linkedin.com/in/boniphace-kanyathare-phd-0582a356/', target: '_blank', icon: 'icon-linkedin2'}
         ],
         name:'Kanyathare',
         title:'Founder and CEO',
@@ -18,7 +18,7 @@ const instructors_data = [
         social_links:[
             {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-            {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'}
+            {link: 'https://www.linkedin.com/in/jesse-mwangi/', target: '_blank', icon: 'icon-linkedin2'}
         ],
         name:'Jesse',
         title:'Co founder and CTO',
