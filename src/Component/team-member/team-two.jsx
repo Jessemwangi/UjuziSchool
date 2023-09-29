@@ -1,4 +1,5 @@
-import Link from 'next/link';
+
+import { Link } from '@mui/material';
 import React from 'react';
 
 const TeamTwo = ({ instructor, image_location_path='02' }) => {

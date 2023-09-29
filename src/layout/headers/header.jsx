@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import MainMenu from '../headers/component/main-menu';
 import HeaderTopRight from '../headers/component/header-top-right';
@@ -10,6 +9,7 @@ import { wishlistItems } from '../../redux/features/wishlist-slice';
 import useCartInfo from '../../hooks/use-cart-info';
 import OffCanvas from '../../components/common/sidebar/off-canvas';
 import Cart from './component/cart';
+import { Link } from '@mui/material';
 
 const categories = [
     { link: '/course-style-1', title: 'Design' },
@@ -55,10 +55,10 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                             <div className="header-brand">
                                 <div className="logo">
                                     <Link href={'/'}>
-                                        <a>
+                                       
                                             <img className="logo-light" src='/assets/images/logo/logo-dark.png' alt="logo" />
                                             <img className="logo-dark" src='/assets/images/logo/logo-white.png' alt="logo" />
-                                        </a>
+                                      
                                     </Link>
                                 </div>
 
@@ -72,7 +72,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                                         {
                                                             categories.map((category, i) => (
                                                                 <li key={i}>
-                                                                    <Link href={`${category.link}`}><a>{category.title}</a></Link>
+                                                                    <Link href={`${category.link}`}>{category.title}</Link>
                                                                 </li>
                                                             ) )
                                                         }
