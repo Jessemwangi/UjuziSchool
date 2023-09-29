@@ -13,8 +13,9 @@ import { useUser } from "../../../hooks/UserContext";
 import SystemError from "./Error/SystemError";
 
 export const rightLink = {
-  fontSize: 16,
+  fontSize: '1.8vh',
   color: "#BA68C8",
+  whiteSpace:'nowrap',
   ml: 3,
 };
 

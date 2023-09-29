@@ -6,9 +6,9 @@ const TeamFour = ({ instructor }) => {
             <div className="inner">
                 <div className="thumbnail-wrap">
                     <div className="thumbnail">
-                        <a>
+                     
                             <img src={`/assets/images/team/yoga-instructor/${instructor.img}`} alt="team images" />
-                        </a>
+                      
                     </div>
                     <ul className="team-share-info">
                         {instructor.social_links.map((social, i) => (
@@ -22,7 +22,7 @@ const TeamFour = ({ instructor }) => {
                 </div>
                 <div className="content">
                     <h5 className="title">
-                        <a>{instructor.name}</a>
+                       {instructor.name}
                     </h5>
                     <span className="designation">{instructor.title}</span>
                 </div>

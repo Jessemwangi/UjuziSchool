@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@mui/material';
 import React from 'react';
 
 const TeamFive = ({ instructor }) => {
@@ -8,9 +8,9 @@ const TeamFive = ({ instructor }) => {
                 <div className="thumbnail-wrap">
                     <div className="thumbnail">
                         <Link href={`/team-details/${instructor.id}`}>
-                            <a>
+                    
                                 <img src={`/assets/images/team/team-02/${instructor.img}`} alt="team images" />
-                            </a>
+                          
                         </Link>
                     </div>
                     <ul className="team-share-info">
@@ -26,7 +26,7 @@ const TeamFive = ({ instructor }) => {
                 <div className="content">
                     <h5 className="title">
                         <Link href={`/team-details/${instructor.id}`}>
-                            <a>{instructor.name}</a>
+                            {instructor.name}
                         </Link>
                     </h5>
                     <span className="designation">{instructor.title}</span>
