@@ -1,12 +1,12 @@
-import { Link } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 const TeamThree = ({ instructor }) => {
     return (
         <div className="edu-team-grid team-style-3">
             <div className="inner">
                 <div className="thumbnail-wrap">
                     <div className="thumbnail">
-                        <Link href={`/team-details/${instructor.id}`}>
+                        <Link to={`/team-details/${instructor.id}`}>
                           
                                 <img src={require(`../../images/team/team-02/${instructor.img}`)} alt="team images" />
                             
@@ -24,7 +24,7 @@ const TeamThree = ({ instructor }) => {
                 </div>
                 <div className="content">
                     <h5 className="title">
-                        <Link href={`/team-details/${instructor.id}`}>
+                        <Link to={`/team-details/${instructor.id}`}>
                             {instructor.name}
                         </Link>
                     </h5>

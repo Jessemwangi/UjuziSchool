@@ -33,7 +33,7 @@ const AboutUsArea = () => {
                         <div className="about-content">
                             <div className="section-title section-left" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                                 <span className="pre-title">About Us</span>
-                                <h2 className="title">We Provide Best <span className="color-secondary">Education</span> Services For You.</h2>
+                                <h2 className="title">We empower <span className="color-secondary">Innovators</span> and creators of tomorrow.</h2>
                                 <span className="shape-line"><i className="icon-19"></i></span>
                                 <p>
                                 Ujuzi Solutions is a technology company based in Finland. We capitalize on the excellent Finnish model and collaborate with Finnish companies to solve
