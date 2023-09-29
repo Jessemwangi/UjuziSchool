@@ -112,13 +112,13 @@ const router = createBrowserRouter(
           element: <Attribute />
 
         },
+        // {
+        //   path: '/aboutus',
+        //   element: <AboutUs />
+
+        // },
         {
           path: '/aboutus',
-          element: <AboutUs />
-
-        },
-        {
-          path: '/aboutv2',
           element: <AboutUjuzi />
 
         },

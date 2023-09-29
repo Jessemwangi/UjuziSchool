@@ -3,11 +3,11 @@ import CounterArea from "./counter-area";
 import AboutUsArea from "./about-us-area";
 import TestimonialArea from "./testimonial-area";
 import WhyChose from "./why-chose";
-import HeaderTwo from "../../../layout/headers/header-2";
-import Footer from "../../../layout/footers/footer";
+// import HeaderTwo from "../../../layout/headers/header-2";
+// import Footer from "../../../layout/footers/footer";
 import CtaArea from "./cta-area";
 import TeamArea from "./team-area";
-import BreadcrumbTwo from "./breadcrumb-2";
+// import BreadcrumbTwo from "./breadcrumb-2";
 
 const About = () => {
   return (
@@ -21,7 +21,7 @@ const About = () => {
         <CtaArea />
         <TeamArea about_p_3={true} />
         <TestimonialArea />
-        <Footer style_2={"footer-dark bg-image footer-style-2"} />
+        {/* <Footer style_2={"footer-dark bg-image footer-style-2"} /> */}
       </div>
     </div>
   );

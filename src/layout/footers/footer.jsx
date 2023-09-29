@@ -4,10 +4,10 @@ import FooterSocial from "./component/footer-social";
 const footer_contents = {
     logoLight: '/assets/images/logo/logo-dark.png',
     logoDark: '/assets/images/logo/logo-white.png',
-    desc: 'Lorem ipsum dolor amet consecto adi pisicing elit sed eiusm tempor incidid unt labore dolore.',
-    add: '70-80 Upper St Norwich NR2',
-    call: '+01 123 5641 231',
-    email: 'info@edublink.com',
+    desc: 'A Finnish EduTech company aim at experiential learning in STEM.',
+    add: 'Runeberginkatu 14-16, Helsinki, Southern Finland, 00100',
+    call: '+358 45 196 4808',
+    email: 'info@ujuzi.io',
     widgets: [
         {
             col: '3',
@@ -27,7 +27,7 @@ const footer_contents = {
             class: 'quick-link-widget',
             widget_title: 'Links',
             footer_links: [
-                { link: 'contact-us', title: 'Contact Us' },
+                { link: 'contact', title: 'Contact Us' },
                 { link: 'gallery-grid', title: 'Gallery' },
                 { link: 'blog-standard', title: 'News & Articles' },
                 { link: 'faq', title: "FAQ's" },
@@ -70,8 +70,8 @@ const Footer = ({ style_2, dark_bg,home_4 }) => {
                                 <div className="widget-information">
                                     <ul className="information-list">
                                         <li><span>Add:</span>{add}</li>
-                                        <li><span>Call:</span><a href="tel:+011235641231">{call}</a></li>
-                                        <li><span>Email:</span><a href="mailto:info@edublink.com" rel="noreferrer" target="_blank">{email}</a></li>
+                                        <li><span>Call:</span><a href="tel:+358 41 12394555">{call}</a></li>
+                                        <li><span>Email:</span><a href="mailto:info@ujuzi.io" rel="noreferrer" target="_blank">{email}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ const Footer = ({ style_2, dark_bg,home_4 }) => {
                                     <h4 className="widget-title">{w.widget_title}</h4>
                                     <div className="inner">
                                         <ul className="footer-link link-hover">
-                                            {w.footer_links.map((l, i) => <li key={i}><Link href={`/${l.link}`}><a>{l.title}</a></Link></li>)}
+                                            {w.footer_links.map((l, i) => <li key={i}><Link to={`/${l.link}`}>{l.title}</Link></li>)}
                                         </ul>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@ const Footer = ({ style_2, dark_bg,home_4 }) => {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="inner text-center">
-                                <p>Copyright {new Date().getFullYear()} <a href="https://1.envato.market/AoJezj" rel="noreferrer" target="_blank">EduBlink</a> Designed By <a href="https://1.envato.market/YgGJbj" rel="noreferrer" target="_blank">DevsBlink</a>. All Rights Reserved</p>
+                                <p>Copyright {new Date().getFullYear()} <a href="https://ujuzi.io" rel="noreferrer" target="_blank">Ujuzi</a> Designed By <a href="https://ujuzi.io" rel="noreferrer" target="_blank">Ujuzi Oy</a>. All Rights Reserved</p>
                             </div>
                         </div>
                     </div>
