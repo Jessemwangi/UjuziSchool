@@ -82,7 +82,7 @@ const {user,ctxLoading}  = useUser();
                 component="img"
                 src={ujLogo}
                 alt="Ujuzi Logo"
-                sx={{ height: 130, paddingTop: "6px" }}
+                sx={{ height: 90, paddingTop: "6px" }}
               />
             </Link>
             
