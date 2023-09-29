@@ -22,7 +22,7 @@ export default function LessonHero() {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Reach for Quality
+      Experiential Learning, innovation and Impact
       </Typography>
       <Typography
         color="inherit"
@@ -30,7 +30,7 @@ export default function LessonHero() {
         variant="h5"
         sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
       >
-        Enjoy the secret of learning, made like a getaway holiday for you to undestand.
+        Empowering young minds to explore STEM through experiential learning, igniting innovation for a brighter tomorrow.
       </Typography>
       <Button
         color="secondary"
@@ -43,7 +43,7 @@ export default function LessonHero() {
         Register
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-        Knowledge and hands on experience
+        What the hand touches the mind will remember.
       </Typography>
     </LessonHeroLayout>
   );
