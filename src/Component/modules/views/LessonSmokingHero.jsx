@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import ujuzi from '../../../static/assets/logo.png'
+import ujuzi from '../../../static/assets/equipt1.jpg'
 
 export const LessonSmokingHero = () =>{
   return (
@@ -32,7 +32,7 @@ export const LessonSmokingHero = () =>{
         component="img"
         src={ujuzi}
         alt="buoy"
-        sx={{ width: 60 }}
+        sx={{ width: 80, borderRadius:'9px', border: 'solid 4px #040535', boxShadow:'2px 3px 7px #040535' }}
       />
     </Container>
   );

@@ -32,9 +32,10 @@ import MemberVideos from './Admin/Videos/MemberVideos';
 import AdminMain from './Admin/AdminMain';
 import SingleCategory from './pages/Category/SingleCategory';
 import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
-import Contact_Us from './contact-us/Contact_Us';
+import ContactUs from './contact-us/Contact_Us';
 import WriteUs from './contact-me/WriteUs';
-import TeamDetails from './Component/team-member/team-details';
+import DynamicTeamDetails from './Component/team-member/team-details/DynamicTeamDetails';
+import TestingMe from './Component/team-member/team-details/TestingMe';
 
 const router = createBrowserRouter(
   [
@@ -42,6 +43,10 @@ const router = createBrowserRouter(
       path: '/',
       element: <Layout />,
       children: [
+        {
+          path: ' /team',
+          element: <TestingMe/>
+        },
         {
           path: '/',
           element: <Home />
@@ -55,7 +60,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/contact',
-          element: <Contact_Us />
+          element: <ContactUs />
         },
         {
           path: '/writeus',
@@ -139,6 +144,7 @@ const router = createBrowserRouter(
           element: <SubCategories />
 
         },
+     
         {
           path: '/member',
           element: <Dashboard />,
@@ -156,10 +162,7 @@ const router = createBrowserRouter(
               path: '/member/admin/video',
               element: <MemberVideos />
             },
-            {
-              path: ' /team-details/:id',
-              element: <TeamDetails />
-            },
+           
             
            
           ]
