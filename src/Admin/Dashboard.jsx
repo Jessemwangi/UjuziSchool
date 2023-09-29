@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AdminMain from "./AdminMain";
 import { useUser } from "../hooks/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Container, Grid } from "@mui/material";
 import MainMenu from "./Menu/MainMenu";
@@ -10,6 +10,9 @@ import './admin.scss'
 const Dashboard = () => {
   const navigate = useNavigate()
   const {user,ctxLoading} = useUser();
+  const [userVideos, setUserVideo]  = useState()
+  const [units,setUnits] = useState()
+  
 
   useEffect(() => {
     if (ctxLoading === false) {
@@ -28,7 +31,7 @@ const Dashboard = () => {
             <MainMenu user={user} />
           </Grid>
           <Grid item md={9} lg={10}>
-            <AdminMain />
+          <Outlet/>
           </Grid>
         </Grid>
       </Container>

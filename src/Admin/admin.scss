@@ -9,4 +9,41 @@
     background-image: url('../static/assets/productCurvyLines.png');
     background-repeat: repeat;
     background-size: cover;
+
+    .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        margin-left: 240px; // Adjust based on your sidebar width
+      
+        @media (max-width: 960px) {
+          margin-left: 0;
+        }
+      }
 }
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  
+    .MuiFormControl-root {
+      margin-right: 20px;
+      min-width: 150px;
+    }
+  
+    .search-input {
+      flex-grow: 1;
+    }
+  
+    @media (max-width: 600px) {
+      flex-direction: column;
+  
+      .MuiFormControl-root,
+      .search-input {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+    }
+  }

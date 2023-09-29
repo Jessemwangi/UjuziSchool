@@ -12,18 +12,18 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
+import { backend } from "../../../../UtilitiesFunctions/Function";
+import moment from "moment/moment";
 const desiredDuration = 10;
 
-const LeftCards = ({title,desc,url,id}) => {
-const video = {title,desc,url,id}
-
+const VideoCard = ({title,desc,videoUrl,id}) => {
+const video = {title,desc,videoUrl,id}
   const videoRef = useRef(null);
   const [isPlay, setIsPlay] = useState(false);
   const [videoDuration, setVideoDuration] = useState(0);
   const navigate = useNavigate();
-
-  const videoShare = (videoUrl) => {
-    alert(`Not allowed to share !!!${videoUrl}`);
+  const videoShare = (url) => {
+    alert(`Not allowed to share !!!${videoUrl.name}`);
   };
 
   const moreOptions = () => {
@@ -64,14 +64,14 @@ e.preventDefault();
               </IconButton>
             }
             title={`${title.substring(0, 50)} ${title.length > 50 ? '...' : ''}`}
-            subheader="September 14, 2016"
+            subheader={`published: ${moment(videoUrl.updatedAt).fromNow()}`}
           />
           <div onMouseOver={(e) => handlePlay(e)} onMouseLeave={handleStop}>
             {/* videoRef.current?.play() */}
             <ReactPlayer
               ref={videoRef}
               // url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
-              url={url}
+              url={`${backend}${videoUrl.url}`}
               height="100%"
               width="100%"
               controls={false}
@@ -98,7 +98,7 @@ e.preventDefault();
             <IconButton aria-label="Watch" onClick={(e) => viewVideo(e,id)}>
               <PlayCircleFilledOutlinedIcon />
             </IconButton>
-            <IconButton aria-label="save" onClick={() => videoShare(url)}>
+            <IconButton aria-label="save" onClick={() => videoShare(videoUrl.url)}>
               <ShareIcon />
             </IconButton>
           </CardActions>
@@ -108,4 +108,4 @@ e.preventDefault();
   );
 };
 
-export default LeftCards;
+export default VideoCard;

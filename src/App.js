@@ -16,7 +16,7 @@ import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
-import Category from './pages/Category/Category';
+// import Category from './pages/Category/SingleCategory';
 import AboutUs from './pages/AboutUs/AboutUs';
 // import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
@@ -30,6 +30,10 @@ import { UserProvider } from './hooks/UserContext';
 import Dashboard from './Admin/Dashboard';
 import MemberVideos from './Admin/Videos/MemberVideos';
 import AdminMain from './Admin/AdminMain';
+import SingleCategory from './pages/Category/SingleCategory';
+import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
+import Contact_Us from './contact-us/Contact_Us';
+import WriteUs from './contact-me/WriteUs';
 
 const router = createBrowserRouter(
   [
@@ -48,7 +52,16 @@ const router = createBrowserRouter(
           path: '/sign-out',
           element: <SignOut />
         },
-
+        {
+          path: '/contact',
+          element: <Contact_Us />
+        },
+        {
+          path: '/writeus',
+          element: <WriteUs />
+        },
+        
+        
         {
           path: '/sign-in',
           element: <SignIn />
@@ -64,7 +77,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/category/:id',
-          element: <Category />,
+          element: <SingleCategory />,
 
         },
         {
@@ -99,9 +112,14 @@ const router = createBrowserRouter(
           element: <Attribute />
 
         },
+        // {
+        //   path: '/aboutus',
+        //   element: <AboutUs />
+
+        // },
         {
           path: '/aboutus',
-          element: <AboutUs />
+          element: <AboutUjuzi />
 
         },
         {
@@ -182,6 +200,7 @@ const App = () => {
       <UserProvider>
         <RouterProvider router={router} />
       </UserProvider>
+      
     </div>
   );
 }

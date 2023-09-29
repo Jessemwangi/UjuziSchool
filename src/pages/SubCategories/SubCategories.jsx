@@ -1,3 +1,5 @@
+// from click home >> cat >> we come to this page  replace single video with subcategory
+//searching based on subcategory unlike user video we get all video that belong to that user ???...
 import React, { Fragment, useEffect, useState } from "react";
 import "./SubCategories.scss";
 import { Link, useParams } from "react-router-dom";
@@ -87,7 +89,7 @@ const { data, loading, error } = useFetch(
             <div className="subCategory" key={data.id}>
               <div className="subCatName">
               <Typography variant="h3" marked="center" align="left" component="h3">
-              {data?.attributes?.title} </Typography>
+             <Link> view all in {data?.attributes?.title} </Link></Typography>
               </div>
               <div className="upper">
                 <div className="left">

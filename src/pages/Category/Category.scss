@@ -31,7 +31,12 @@ flex: 5;
 
 .introVideo{
 min-height: 400px;
+object-fit: contain;
 background: #040535;
+
+img{
+  width: 100%;
+}
 }
 
 .videoInCategory{
