@@ -26,7 +26,7 @@ const contents = {
         },
         {
             ratings: [1, 2, 3, 4, 5],
-            desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
+            desc: '“Last year, I thought about giving up science subjects due to all the theories. Thanks to STEMEX, Im now committed to pursuing STEM and working towards developing technology solutions for my community”.',
             author: 'images/testimonial/testimonial-03.png',
             name: 'Atieno',
             title: 'Student in Kenya'
