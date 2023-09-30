@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Container from '@mui/material/Container';
 import Typography from '../../modules/components/Typography';
 import { useParams } from 'react-router-dom';
@@ -10,7 +9,6 @@ import CourseArea from './course-area';
  const OurTeamInfo = () => {
   let { id } = useParams();
   const team = instructors_data.find(item => Number(item.id) === Number(id))
-  console.log(team)
   return (
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
       <Typography variant="h4" marked="center" align="center" component="h2">

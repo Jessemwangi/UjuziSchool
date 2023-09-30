@@ -69,7 +69,7 @@ const {user,ctxLoading}  = useUser();
     <div>
       <AppBar position="fixed" sx={{ background: "#040535" }}>
         <Toolbar sx={{ justifyContent: "space-between", overflow: "hidden" }}>
-          <Box sx={{ flex: 1 }}>
+          <Box sx={{ flex: 2,flexDirection:'row',display:'flex', alignItems:'center',justifyContent:'flex-start', gap:'30px'}}>
           
             <Link
               variant="h6"
@@ -85,7 +85,15 @@ const {user,ctxLoading}  = useUser();
                 sx={{ height: 90, paddingTop: "6px" }}
               />
             </Link>
-            
+            <Link className="edu-btn btn-medium"
+              variant="h6"
+              underline="none"
+              color="inherit"
+              href="/Courses"
+       sx={{textAlign:'center', fontSize:20}}
+            >
+              {"Learn Now"}  <i className="icon-4"></i>
+            </Link>
           </Box>
           <Box
             sx={{
@@ -104,16 +112,16 @@ const {user,ctxLoading}  = useUser();
             >
               {"Dashboard"}
             </Link>}
-            <Link
+            {/* <Link className="edu-btn btn-medium"
               variant="h6"
               underline="none"
               color="inherit"
               href="/Courses"
-              sx={{ fontSize: 16 }}
+       sx={{textAlign:'center', fontSize:20}}
             >
-              {"Courses"}
-            </Link>
-            <Link
+              {"Learn Now"}  <i className="icon-4"></i>
+            </Link> */}
+            {/* <Link
               variant="h6"
               underline="none"
               color="inherit"
@@ -121,7 +129,7 @@ const {user,ctxLoading}  = useUser();
               sx={{ fontSize: 16 }}
             >
               {"Practicals"}
-            </Link>
+            </Link> */}
             <Link
               variant="h6"
               underline="none"

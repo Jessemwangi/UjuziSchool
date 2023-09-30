@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import FooterSocial from "./component/footer-social";
-
+import logolight from '../../static/assets/logo.png'
 const footer_contents = {
-    logoLight: '/assets/images/logo/logo-dark.png',
-    logoDark: '/assets/images/logo/logo-white.png',
+    logoLight: logolight,
+    logoDark: logolight,
     desc: 'A Finnish EduTech company aim at experiential learning in STEM.',
     add: 'Runeberginkatu 14-16, Helsinki, Southern Finland, 00100',
     call: '+358 45 196 4808',
@@ -49,19 +49,19 @@ const Footer = ({ style_2, dark_bg,home_4 }) => {
                     <div className="row g-5">
                         <div className="col-lg-3 col-md-6">
                             <div className="edu-footer-widget">
-                                <div className="logo">
-                                    <Link href={'/'}>
+                                <div className="logo"  >
+                                    {/* <Link href={'/'}>
                                         
                                             {!dark_bg && <>
-                                                {!style_2 && <img className="logo-light" src={logoLight} alt="Corporate Logo" />}
+                                                {!style_2 && <img  className="logo-light" style={{height:'70px'}} src={logoLight} alt="Corporate Logo" />}
                                                 <img className="logo-dark" src={logoDark} alt="Corporate Logo" />
                                             </>}
                                        
-                                    </Link>
+                                    </Link> */}
 
                                     <Link href={'/'}>
                                      
-                                            {dark_bg && <img className="logo-light" src={home_4?'/assets/images/logo/logo-white.png' :'/assets/images/logo/logo-light-2.png'} alt="Corporate Logo" />}
+                                           <img  style={{height:'70px'}} src={logolight} alt="Corporate Logo" />
                                        
                                     </Link>
                                 </div>

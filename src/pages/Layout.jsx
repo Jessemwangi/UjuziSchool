@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Main from './Main/Main';
-import AppFooter from '../Component/modules/views/AppFooter';
 import AppAppBar from '../Component/modules/views/AppAppBar';
 // import { useGetUserInfo } from '../hooks/useFetch';
 import '../index.scss'
-import { getSecureUserUid, userData } from '../UtilitiesFunctions/secureUserData';
 import ScrollToTop from '../layout/scroll-to-top';
 import { ToastContainer } from 'react-toastify';
 import { MouseMoveProvider } from '../Component/contexts/mouse-move-context';

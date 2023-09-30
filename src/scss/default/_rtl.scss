@@ -87,6 +87,7 @@ html[dir="rtl"]{
     .header-style-1  {
         .header-brand {
             .logo {
+                height: 70px;
                 margin-right: 27px;
                 @media #{$sm-layout} {
                     margin-right: 0;

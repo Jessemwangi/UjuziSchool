@@ -1782,13 +1782,16 @@
             .footer-top {
                 .edu-footer-widget {
                     .logo {
+                        height: 70px;
                        a {
                         img {
                             &.logo-light {
                                 display: none;
+                                height: '60px';
                             } 
                             &.logo-dark {
                                 display: inline-block;
+                                height: '60px';
                             }
                         }
                        } 
@@ -1864,6 +1867,7 @@
             
                         &.logo-dark {
                             display: inline-block;
+                            height: '60px';
                         }
                     }
                 }
@@ -2065,6 +2069,7 @@
     
                 &.logo-dark {
                     display: inline-block;
+                    height: '60px';
                 }
             }
         }
@@ -2127,6 +2132,7 @@
                 
                             &.logo-dark {
                                 display: inline-block;
+                                height: '60px';
                             }
                         }
                     }
@@ -2192,6 +2198,7 @@
     
                 &.logo-dark {
                     display: inline-block;
+                    height: '60px';
                 }
             }
         }
