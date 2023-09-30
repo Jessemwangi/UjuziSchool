@@ -13,6 +13,7 @@ export default function LessonHero() {
         backgroundImage: `url(${backgroundImage})`,
         backgroundColor: '#7fc7d9', // Average color of the background image.
         backgroundPosition: 'center',
+
       }}
     >
       {/* Increase the network loading priority of the background image. */}
