@@ -11,7 +11,6 @@ import SignUp from './Component/SignUp';
 import Terms from './Component/Terms';
 import Privacy from './Component/Privacy';
 import SignIn from './Component/SignIn';
-import ProductCategories from './Component/modules/views/LessonsCategories';
 import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
@@ -34,8 +33,8 @@ import SingleCategory from './pages/Category/SingleCategory';
 import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
 import ContactUs from './contact-us/Contact_Us';
 import WriteUs from './contact-me/WriteUs';
-import DynamicTeamDetails from './Component/team-member/team-details/DynamicTeamDetails';
-import TestingMe from './Component/team-member/team-details/TestingMe';
+import FooterTwo from './layout/footers/footer-2';
+import OurTeamInfo from './Component/team-member/team-details/OurTeamInfo';
 
 const router = createBrowserRouter(
   [
@@ -43,10 +42,7 @@ const router = createBrowserRouter(
       path: '/',
       element: <Layout />,
       children: [
-        {
-          path: ' /team',
-          element: <TestingMe/>
-        },
+     
         {
           path: '/',
           element: <Home />
@@ -57,6 +53,10 @@ const router = createBrowserRouter(
         }, {
           path: '/sign-out',
           element: <SignOut />
+        },
+        {
+          path: ' /ft2',
+          element: <FooterTwo/>
         },
         {
           path: '/contact',
@@ -96,8 +96,8 @@ const router = createBrowserRouter(
           element: <Main />
 
         }, {
-          path: '/lessons',
-          element: <ProductCategories />
+          path: '/teamdetails/:id',
+          element: <OurTeamInfo />
         }, {
           path: '/lessonhow',
           element: <LessonHowItWorks />

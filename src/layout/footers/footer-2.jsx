@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import FooterSocial from './component/footer-social';
+
 import { Link } from 'react-router-dom';
 import { useMouseMoveUI } from '../../Component/contexts/mouse-move-context';
+import FooterSocial from './component/footer-social';
 
 const footer_contents = {
     desc: 'Lorem ipsum dolor amet consecto adi pisicing elit sed eiusm tempor incidid unt labore dolore.',

@@ -8,7 +8,7 @@ const TeamArea = ({ team }) => {
                     <div className="col-lg-4">
                         <div className="team-details-thumb">
                             <div className="thumbnail">
-                                <img src={`/assets/images/team/team-02/${team.img}`} alt="team images" />
+                                <img src={require( '../../../images/team/team-02/'+ team.img)} alt="team images" />
                             </div>
 
                             <ul className="social-share">
@@ -27,11 +27,11 @@ const TeamArea = ({ team }) => {
                     <div className="col-lg-8">
                         <div className="team-details-content">
                             <div className="main-info">
-                                <span className="subtitle">Instructor</span>
+                                <span className="subtitle">Ujuzi Member</span>
                                 <h3 className="title">{team?.name}</h3>
                                 <span className="designation">{team?.title}</span>
                                 <ul className="team-meta">
-                                    <li><i className="icon-25"></i>20 Students</li>
+                                    <li><i className="icon-25"></i>10 Years</li>
                                     <li>
                                         <div className="rating">
                                             <i className="icon-23"></i>

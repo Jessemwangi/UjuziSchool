@@ -8,7 +8,7 @@ import useModal from '../../../hooks/use-modal';
 
 const contents = {
     pre_title: 'Testimonials',
-    title: <>What Our Students <br /> Have To Say</>,
+    title: <>What students say <br /> about Ujuzi</>,
     testimonials: [
         {
             ratings: [1, 2, 3, 4, 5],
