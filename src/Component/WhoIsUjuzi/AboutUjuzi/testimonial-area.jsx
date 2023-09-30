@@ -12,24 +12,24 @@ const contents = {
     testimonials: [
         {
             ratings: [1, 2, 3, 4, 5],
-            desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
-            author: '/assets/images/testimonial/testimonial-01.png',
-            name: 'Haley Bennet',
-            title: 'Designer'
+            desc: '“Thanks to STEMEX equipment, learning STEM is easy and hands-on. Its bringing me one step closer to my dream of becoming an engineer”.',
+            author: 'images/testimonial/testimonial-01.png',
+            name: 'Faraja',
+            title: 'student in Tazania'
+        },
+        {
+            ratings: [1, 2, 3, 4, 5],
+            desc: '“STEMEX by Ujuzi bridges STEM studies with real-world applications, revealing their importance and sparking a renewed passion for STEM in me.”.',
+            author: 'images/testimonial/testimonial-02.png',
+            name: 'Kai',
+            title: 'Student in Finland'
         },
         {
             ratings: [1, 2, 3, 4, 5],
             desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
-            author: '/assets/images/testimonial/testimonial-02.png',
-            name: 'Richard Gere',
-            title: 'Developer'
-        },
-        {
-            ratings: [1, 2, 3, 4, 5],
-            desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
-            author: '/assets/images/testimonial/testimonial-03.png',
-            name: 'Megan Foxx',
-            title: 'Designer'
+            author: 'images/testimonial/testimonial-03.png',
+            name: 'Atieno',
+            title: 'Student in Kenya'
         }
     ],
     video_title: 'Take a Video Tour to Learn Intro of Campus',
@@ -84,7 +84,7 @@ const TestimonialArea = () => {
                                                     <p>{desc}</p>
                                                     <div className="author-info">
                                                         <div className="thumb">
-                                                            <img src={author} alt="Testimonial" />
+                                                            <img src={require('../../../' +author)} alt="Testimonial" />
                                                         </div>
                                                         <div className="info">
                                                             <h5 className="title">{name}</h5>
