@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import { useMouseMoveUI } from '../../contexts/mouse-move-context';
 import VideoModal from '../../modules/components/popup-modal/video-modal';
 import useModal from '../../../hooks/use-modal';
+import image1 from '../../../images/testimonial/testimonial-01.png';
+import image2 from '../../../images/testimonial/testimonial-02.png';
+import image3 from '../../../images/testimonial/testimonial-03.png';
 
 const contents = {
     pre_title: 'Testimonials',
@@ -12,29 +15,30 @@ const contents = {
     testimonials: [
         {
             ratings: [1, 2, 3, 4, 5],
-            desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
-            author: '/assets/images/testimonial/testimonial-01.png',
-            name: 'Haley Bennet',
-            title: 'Designer'
+            desc: '“Thanks to STEMEX equipment, learning STEM is easy and hands-on. Its bringing me one step closer to my dream of becoming an engineer”.',
+            author: image1,
+            name: 'Faraja',
+            title: 'student in Tazania'
         },
         {
             ratings: [1, 2, 3, 4, 5],
-            desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
-            author: '/assets/images/testimonial/testimonial-02.png',
-            name: 'Richard Gere',
-            title: 'Developer'
+            desc: '“STEMEX by Ujuzi bridges STEM studies with real-world applications, revealing their importance and sparking a renewed passion for STEM in me.”.',
+            author: image2,
+            name: 'Kai',
+            title: 'Student in Finland'
         },
         {
             ratings: [1, 2, 3, 4, 5],
-            desc: '“Lorem ipsum dolor amet consectur elit adicing elit sed do umod tempor ux incididunt enim ad minim veniam quis sit nosrud citation laboris nisiste aliquip comodo perspiatix une omnis iste natus error sit voluptatem accusantium dolore que laudantum”.',
-            author: '/assets/images/testimonial/testimonial-03.png',
-            name: 'Megan Foxx',
-            title: 'Designer'
+            desc: '“Last year, I thought about giving up science subjects due to all the theories. Thanks to STEMEX, Im now committed to pursuing STEM and working towards developing technology solutions for my community”.',
+            author: image3,
+            name: 'Atieno',
+            title: 'Student in Kenya'
         }
     ],
     video_title: 'Take a Video Tour to Learn Intro of Campus',
     video_id: 'PICj5tr9hcc'
 }
+
 
 const { pre_title, testimonials, title,video_id,video_title } = contents;
 

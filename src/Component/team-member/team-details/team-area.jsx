@@ -55,8 +55,8 @@ const TeamArea = ({ team }) => {
                                 <h4 className="title">Contact Me</h4>
                                 <ul>
                                     <li><span>Address:</span>North Helenavile, FV77 8WS</li>
-                                    <li><span>Email:</span><a href="mailto:edublink@example.com" target="_blank" rel="noreferrer">edublink@example.com</a></li>
-                                    <li><span>Phone:</span><a href="tel:+37(417)683-4409">+37 (417) 683-4409</a></li>
+                                    <li><span>Email:</span><a href="mailto:info@ujuzi.com" target="_blank" rel="noreferrer">info@ujuzi.com</a></li>
+                                    <li><span>Phone:</span><a href="tel:+37(417)683-4409">+358 (41) 683-4409</a></li>
                                 </ul>
                             </div>
                         </div>
