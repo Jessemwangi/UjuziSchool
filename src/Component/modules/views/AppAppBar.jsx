@@ -99,7 +99,8 @@ const {user,ctxLoading}  = useUser();
             sx={{
               display: { xs: "none", md: "flex" },
               flex: 6,
-              justifyContent: "space-around",
+              justifyContent: "flex-end",
+              gap:'60px',
               alignItems: "center",
             }}
           >
@@ -130,15 +131,7 @@ const {user,ctxLoading}  = useUser();
             >
               {"Practicals"}
             </Link> */}
-            <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="contact"
-              sx={{ fontSize: 16 }}
-            >
-              {"Say Hi"}
-            </Link>
+           
             <Link
               variant="h6"
               underline="none"
@@ -152,10 +145,28 @@ const {user,ctxLoading}  = useUser();
               variant="h6"
               underline="none"
               color="inherit"
+              href="/partners"
+              sx={{ fontSize: 16 }}
+            >
+              {"Partners"}
+            </Link>
+            <Link
+              variant="h6"
+              underline="none"
+              color="inherit"
               href="/attrib"
               sx={{ fontSize: 16 }}
             >
-              {"Sponsors"}
+              {"Attributes"}
+            </Link>
+            <Link
+              variant="h6"
+              underline="none"
+              color="inherit"
+              href="contact"
+              sx={{ fontSize: 16 }}
+            >
+              {"Say Hi"} &#x1F44B;
             </Link>
           </Box>
           {

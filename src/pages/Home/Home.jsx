@@ -6,6 +6,7 @@ import withRoot from '../../Component/modules/withRoot';
 import { LessonCTA } from '../../Component/modules/views/LessonCTA';
 import WhyChose from '../../Component/WhoIsUjuzi/AboutUjuzi/why-chose';
 import AboutUsArea from '../../Component/WhoIsUjuzi/AboutUjuzi/about-us-area';
+import OurPartners from '../../Component/WhoIsUjuzi/AboutUjuzi/OurPartners';
 
 function Index() {
 
@@ -14,6 +15,7 @@ function Index() {
       <LessonHero/>
       <WhyChose />
       <AboutUsArea />
+      <OurPartners/>
       <LessonHowItWorks />
       <LessonCTA/>
       <LessonSmokingHero />

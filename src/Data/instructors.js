@@ -31,10 +31,10 @@ const instructors_data = [
         social_links:[
             {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-            {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'}
+            {link: 'https://www.linkedin.com/in/linda-dinda', target: '_blank', icon: 'icon-linkedin2'}
         ],
         name:'Linda',
-        title:'Co founder and Business Development',
+        title:'Co founder and COO',
         delay:'150',
         sm_text:"MBA and Snr Nurse, Bussiness developments and adminstration"
     },

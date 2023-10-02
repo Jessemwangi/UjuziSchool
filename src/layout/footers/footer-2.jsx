@@ -9,7 +9,7 @@ const footer_contents = {
     desc: 'Lorem ipsum dolor amet consecto adi pisicing elit sed eiusm tempor incidid unt labore dolore.',
     add: '70-80 Upper St Norwich NR2',
     call: '+01 123 5641 231',
-    email: 'info@edublink.com',
+    email: 'info@ujuzi.io',
     widgets: [
         {
             col: '3',
@@ -57,8 +57,8 @@ const FooterTwo = () => {
                                     <div className="widget-information">
                                         <ul className="information-list">
                                             <li><span>Add:</span>{add}</li>
-                                            <li><span>Call:</span><a href="tel:+011235641231">{call}</a></li>
-                                            <li><span>Email:</span><a href="mailto:info@edublink.com"
+                                            <li><span>Call:</span><a href="tel:+358 41 5634885">{call}</a></li>
+                                            <li><span>Email:</span><a href="mailto:info@ujuzi.io"
                                             target="_blank" rel="noreferrer">{email}</a></li>
                                         </ul>
                                     </div>

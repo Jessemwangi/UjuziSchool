@@ -13,8 +13,8 @@ const HeaderTopRight = () => {
         <ul className="header-info">
             <li><Link to="/sign-in">Login</Link></li>
             <li><Link to="/sign-in">Register</Link></li>
-            <li><a href="tel:+011235641231"><i className="icon-phone"></i>Call: 123 4561 5523</a></li>
-            <li><a href="mailto:info@edublink.com" rel="noreferrer" target="_blank"><i className="icon-envelope"></i>Email: info@edublink.com</a></li>
+            <li><a href="tel:+358 41 5634885"><i className="icon-phone"></i>Call: +358 41 5634885</a></li>
+            <li><a href="mailto:info@ujuzi.io" rel="noreferrer" target="_blank"><i className="icon-envelope"></i>Email: info@ujuzi.io</a></li>
             <li className="social-icon">
                 {social_share.map((social, i) => (
                     <a key={i} href={social.link} target={social.target ? social.target : ''} className={`${social.color}`}>

@@ -35,6 +35,7 @@ import ContactUs from './contact-us/Contact_Us';
 import WriteUs from './contact-me/WriteUs';
 import FooterTwo from './layout/footers/footer-2';
 import OurTeamInfo from './Component/team-member/team-details/OurTeamInfo';
+import PartnersPage from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersPage';
 
 const router = createBrowserRouter(
   [
@@ -116,6 +117,11 @@ const router = createBrowserRouter(
         {
           path: '/attrib',
           element: <Attribute />
+
+        },
+        {
+          path: '/partners',
+          element: <PartnersPage />
 
         },
         // {
