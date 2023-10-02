@@ -102,11 +102,18 @@
                 &.day {
                     line-height: 1;
                     margin-bottom: 4px;
+                    font-size: 14px;
                 }
                 &.month {
                     line-height: 1;
                     font-size: 14px;
                     font-weight: 500;
+                    margin-bottom: 4px;
+                }
+                &.year {
+                    line-height: 1;
+                    font-size: 16px;
+                    font-weight: 700;
                 }
             }
         }
