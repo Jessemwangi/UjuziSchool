@@ -22,7 +22,7 @@ const WeProvide = () => {
                                 <span className="pre-title">As Ujuzi member</span>
                                 <h2 className="title">Did you know<span className="color-secondary"> StemEx learning</span> should be innovative.</h2>
                                 <span className="shape-line"><i className="icon-19"></i></span>
-                                <p>Lorem ipsum dolor sit amet consectur adipiscing elit sed eiusmod ex tempor incididunt labore dolore magna aliquaenim ad minim.</p>
+                                <p>“Ujuzi is a platform designed to bring joy to your learning experience as we simplify the implementation of STEM in the modern world. Our mission is to provide you with a comprehensive understanding of your school curriculum through practical, guided instructions. We encourage innovation by challenging you to create your own custom equipment. But we don’t stop there. We urge you to delve deeper, exploring the potential applications of your creations and the positive impact they could have on both your local community and the world at large.”</p>
                             </div>
                             <ul className="features-list" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                                 {lists.map((l,i) => <li key={i}>{l}</li>)}

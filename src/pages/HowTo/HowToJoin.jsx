@@ -10,12 +10,13 @@ const HowToJoin = () => {
                         <div className="privacy-policy purchase-guide">
                             <div className="text-block">
                                 <h3 className="title">Become a Part of Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nis aliquip commodo consequat aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat. </p>
+                                <p>We are seeking partners who share our vision of transforming STEM education worldwide. Whether you're an investor looking for a promising opportunity, 
+                                    a school aiming to enhance your curriculum, or an NGO dedicated to improving education access, Ujuzi StemEx is the solution that can make a real difference. </p>
                             </div>
 
                             <div className="text-block">
                                 <h4 className="title">Institution Account Registering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>To create your account, we’ll need some information from you. This data helps us provide a more personalized experience and ensures the security of your account. Here’s what we’ll ask for:.</p>
                                 <div className="row">
                                     <div className="col-lg-5">
                                         <ul>
@@ -38,10 +39,15 @@ const HowToJoin = () => {
                                         </ul>
                                     </div>
                                 </div>
+                                <p>Please note that your privacy is important to us. We adhere to strict privacy policies and your information will be stored securely and you can always delete your information from the dashboard. Let’s get started with your registration!</p>
                             </div>
                             <div className="text-block">
                                 <h4 className="title">Account Registration for students only</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nis aliquip commodo consequat aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.</p>
+                                <p>Agents will play a crucial role in the registration process for children. Depending on the chosen subscription package, agents can create a certain number of child accounts. This involves creating a username and password for each student, which will then be shared with them individually.
+
+In addition to account creation, agents also have the authority to revoke a student’s access if necessary. To register a student, the following information will be required:
+
+Please note that the exact details needed for registration may vary, but this gives a general idea of the process. We appreciate the important work our agents do in managing these registrations and maintaining the integrity of our platform.</p>
                                 <div className="row">
                                     <div className="col-lg-5">
                                         <ul>
@@ -53,28 +59,31 @@ const HowToJoin = () => {
                             </div>
                             <div className="text-block">
                                 <h4 className="title">How to Purchase a Course?</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nis aliquip commodo consequat aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.</p>
+                                <p>To purchase a package, you have the option to choose from our list of available packages, or you can contact us for a customized package tailored to your specific needs. Our packages are designed with flexibility in mind to accommodate your budget, the number of students, and contract length. We strive to be as accommodating and flexible as possible to meet your needs.</p>
                             </div>
 
                             <div className="text-block">
                                 <h4 className="title">Accepted Credit Cards</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>We accept online payment form the following, This allows us to provide you with a secure and convenient payment process..</p>
                                 <ul>
                                     <li>Visa</li>
                                     <li>Mastercards</li>
                                     <li>American Express</li>
-                                    <li>Discover</li>
+                                    <li>Mobile transfer</li>
+                                    <li>Paypal</li>
+                                    <li>Bank transfer</li>
                                 </ul>
                             </div>
 
                             <div className="text-block">
                                 <h4 className="title">Why be part of Ujuzi?</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Ujuzi stemEx is a cutting-edge educational platform designed to revolutionize STEM learning. Our solution combines the power of technology, interactive multimedia, and physical equipment to create a holistic and engaging learning experience.</p>
                                 <ul>
                                     <li>Updated content on a regular basis</li>
                                     <li>Secure & hassle-free payment</li>
-                                    <li>1-click checkout</li>
                                     <li>Easy access & smart user dashboard</li>
+                                    <li>Interactive Learning</li>
+                                    <li>Customized Learning Paths</li>
                                 </ul>
                             </div>
                         </div>
