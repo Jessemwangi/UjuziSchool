@@ -14,11 +14,13 @@ const WhyChooseUs2 = () => {
                     <span className="shape-line"><i className="icon-19"></i></span>
                 </div>
                 <div className="row g-5">
-                    <ChoseBox color="color-primary-style" icon="45" title="High Quality online instructions" subtitle="Lorem ipsum dolor sit amet conset ur elit sed eiusmod ex tempor inc labore dolore magna." />
+                    <ChoseBox color="color-primary-style" icon="45" title="High Quality online instructions" subtitle="These instructions are meticulously designed by subject matter experts to ensure clarity, comprehensibility, and engagement. They often include interactive elements such as practicles, discussion forums, and multimedia content to enhance the learning experience." />
 
-                    <ChoseBox color="color-secondary-style" icon="46" title="Unlock Personalized growth in education" subtitle="Lorem ipsum dolor sit amet conset ur elit sed eiusmod ex tempor inc labore dolore magna." />
+                    <ChoseBox color="color-secondary-style" icon="46" title="Unlock Personalized growth in education" subtitle="
+get tailored learning for each individual’s unique needs and abilities. Ujuzi recognizes that each learner is unique and that a one-size-fits-all approach may not be the most effective. Unlocking personalized growth in education empowers learners to take ownership of their learning journey
+" />
 
-                    <ChoseBox color="color-extra08-style" icon="47" title="Understand and innovate" subtitle="Lorem ipsum dolor sit amet conset ur elit sed eiusmod ex tempor inc labore dolore magna." />
+                    <ChoseBox color="color-extra08-style" icon="47" title="Understand and innovate" subtitle="Ujuzi emphasizes the importance of gaining a deep understanding of a subject and then using that knowledge to create new and improved solutions. This approach fosters creativity, critical thinking, and problem-solving skills, encouraging learners to be innovative" />
                 </div>
                 <ul className="shape-group">
                     <li className="shape-5" data-sal-delay="500" data-sal="fade" data-sal-duration="200">
