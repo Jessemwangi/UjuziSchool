@@ -14,12 +14,12 @@ const footer_contents = {
             class: 'explore-widget',
             widget_title: 'Online Platform',
             footer_links: [
-                { link: 'about-1', title: 'About' },
-                { link: 'course-style-1', title: 'Courses' },
-                { link: 'team-1', title: 'Instructor' },
-                { link: 'event-grid', title: 'Events' },
-                { link: 'team-details', title: 'Instructor Profile' },
-                { link: 'purchase-guide', title: 'Purchase Guide' }
+                { link: 'aboutus', title: 'About' },
+                { link: 'comingsoon', title: 'leaners guide' },
+                { link: 'comingsoon', title: 'Team' },
+                { link: 'comingsoon', title: 'Events' },
+                { link: 'join-us', title: 'Join us' },
+                { link: 'comingsoon', title: 'help' }
             ]
         },
         {
@@ -28,11 +28,11 @@ const footer_contents = {
             widget_title: 'Links',
             footer_links: [
                 { link: 'contact', title: 'Contact Us' },
-                { link: 'gallery-grid', title: 'Gallery' },
-                { link: 'blog-standard', title: 'News & Articles' },
+                { link: 'comingsoon', title: 'Gallery' },
+                { link: 'comingsoon', title: 'News & Articles' },
                 { link: 'faq', title: "FAQ's" },
                 { link: 'sign-in', title: 'Sign In/Registration' },
-                { link: 'coming-soon', title: 'Coming Soon' }
+                { link: 'comingsoon', title: 'goodies' }
             ]
         }
     ]

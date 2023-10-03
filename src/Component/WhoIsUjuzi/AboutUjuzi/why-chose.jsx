@@ -28,7 +28,11 @@ const WhyChose = () => {
             <div className="container edublink-animated-shape">
                 <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                     <span className="pre-title">Why Ujuzi</span>
-                    <h2 className="title">Experiential <span className="color-secondary">learning</span>  in STEM. <br />(STEMEx)</h2>
+                    <h2 className="title">Experiential <span className="color-secondary">learning
+                    </span>  in STEM.
+                     <br />(STEM<sub>Ex)</sub>
+
+                     </h2>
                     <span className="shape-line"><i className="icon-19"></i></span>
                 </div>
                 <div className="row g-5">
