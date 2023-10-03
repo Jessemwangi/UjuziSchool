@@ -8,8 +8,6 @@ import withRoot from '../withRoot';
 
 import curvy from '../../../static/assets/productCurvyLines.png'
 import p_values1 from '../../../static/assets/productValues1.svg'
-import unsplash from '../../../static/images/Unsplash_Logo_Full.png'
-import youtube from '../../../static/images/YouTube_Logo_(2013-2017).svg'
 
 const item = {
   display: 'flex',
