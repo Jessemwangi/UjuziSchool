@@ -7,8 +7,6 @@ const PartnerListItem = ({ item }) => {
         dateSigned,
         month,
         year,
-        id,
-        logo,
         name,
         descrip,
     } = item || {};
