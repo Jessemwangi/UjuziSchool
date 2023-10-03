@@ -131,7 +131,15 @@ const {user,ctxLoading}  = useUser();
             >
               {"Practicals"}
             </Link> */}
-           
+                       <Link
+              variant="h6"
+              underline="none"
+              color="inherit"
+              href="/join-us"
+              sx={{ fontSize: 16 }}
+            >
+              {"Join US"}
+            </Link>
             <Link
               variant="h6"
               underline="none"

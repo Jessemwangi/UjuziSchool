@@ -34,14 +34,14 @@ export default function LessonHero() {
         Empowering young minds to explore STEM through experiential learning, igniting innovation for a brighter tomorrow.
       </Typography>
       <Button
-        color="secondary"
+       className='edu-btn btn-medium'
         variant="contained"
-        size="large"
+        
         component="a"
         href="/sign-up/"
-        sx={{ minWidth: 200 }}
+        sx={{ minWidth: 250 }}
       >
-        Register
+        Register 📝
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         What the hand touches the mind will remember.

@@ -36,6 +36,7 @@ import WriteUs from './contact-me/WriteUs';
 import FooterTwo from './layout/footers/footer-2';
 import OurTeamInfo from './Component/team-member/team-details/OurTeamInfo';
 import PartnersPage from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersPage';
+import HowToBeMember from './pages/HowTo/HowToBeMember';
 
 const router = createBrowserRouter(
   [
@@ -49,8 +50,8 @@ const router = createBrowserRouter(
           element: <Home />
         },
         {
-          path: '/courses',
-          element: <Course />
+          path: '/join-us',
+          element: <HowToBeMember />
         }, {
           path: '/sign-out',
           element: <SignOut />

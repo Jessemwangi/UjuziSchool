@@ -4,8 +4,18 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import ujuzi from '../../../static/assets/equipt1.jpg'
+import { keyframes } from '@emotion/react';
 
 export const LessonSmokingHero = () =>{
+  const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5%);
+  }
+`;
   return (
     <Container
       component="section"
@@ -32,7 +42,7 @@ export const LessonSmokingHero = () =>{
         component="img"
         src={ujuzi}
         alt="buoy"
-        sx={{ width: 80, borderRadius:'9px', border: 'solid 4px #040535', boxShadow:'2px 3px 7px #040535' }}
+        sx={{ width: 80, borderRadius:'9px', border: 'solid 4px #040535', boxShadow:'2px 3px 7px #040535', animation: `${bounce} 1s infinite` }}
       />
     </Container>
   );
