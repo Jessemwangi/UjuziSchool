@@ -10,7 +10,7 @@ const WhyChooseUs2 = () => {
             <div className="container edublink-animated-shape">
                 <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                     <span className="pre-title">Harvest the fruits of Ujuzi</span>
-                    <h2 className="title">The Best <span className="color-secondary">Experitial</span> learning <br /> in STEMex</h2>
+                    <h2 className="title">The Best <span className="color-secondary">Experitial</span> learning <br /> in STEM<sub>Ex</sub></h2>
                     <span className="shape-line"><i className="icon-19"></i></span>
                 </div>
                 <div className="row g-5">

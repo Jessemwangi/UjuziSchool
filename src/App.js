@@ -16,10 +16,8 @@ import Home from './pages/Home/Home';
 import Attribute from './Component/modules/views/Attribute';
 import Videos from './pages/Videos/Videos';
 // import Category from './pages/Category/SingleCategory';
-import AboutUs from './pages/AboutUs/AboutUs';
 // import LessonValues from './Component/modules/views/LessonValues';
 import SingleVideo from './pages/SingleVideo/SingleVideo';
-import Course from './pages/Course/Course';
 import PasswordChange from './Component/Passwords/PasswordChange';
 import SubCategories from './pages/SubCategories/SubCategories';
 import ForgotPassword from './Component/ForgotPassword';
@@ -33,10 +31,11 @@ import SingleCategory from './pages/Category/SingleCategory';
 import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
 import ContactUs from './contact-us/Contact_Us';
 import WriteUs from './contact-me/WriteUs';
-import FooterTwo from './layout/footers/footer-2';
 import OurTeamInfo from './Component/team-member/team-details/OurTeamInfo';
 import PartnersPage from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersPage';
 import HowToBeMember from './pages/HowTo/HowToBeMember';
+import ErrorPage from './pages/404';
+import ComingSoon from './pages/coming-soon';
 
 const router = createBrowserRouter(
   [
@@ -57,8 +56,8 @@ const router = createBrowserRouter(
           element: <SignOut />
         },
         {
-          path: ' /ft2',
-          element: <FooterTwo/>
+          path: '*',
+          element: <ErrorPage />
         },
         {
           path: '/contact',
@@ -125,11 +124,11 @@ const router = createBrowserRouter(
           element: <PartnersPage />
 
         },
-        // {
-        //   path: '/aboutus',
-        //   element: <AboutUs />
+        {
+          path: '/comingsoon',
+          element: <ComingSoon />
 
-        // },
+        },
         {
           path: '/aboutus',
           element: <AboutUjuzi />
