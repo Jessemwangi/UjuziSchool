@@ -190,10 +190,10 @@ loading ?
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/admin/video"
+                href="/member/admin/packages"
                 sx={{ ...rightLink }}
               >
-                {"My Videos"}
+                {"View Packages"}
               </Link>
             </MenuItem>
             <MenuItem>
@@ -202,10 +202,10 @@ loading ?
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/"
+                href="/member/admin/packages"
                 sx={{ ...rightLink }}
               >
-                {"My Games"}
+                {"Active subscriptions"}
               </Link>
             </MenuItem>
             <MenuItem>

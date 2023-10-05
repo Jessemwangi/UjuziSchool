@@ -4,7 +4,7 @@ import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 const VideoList = ({ videos }) => {
   return (
     <div className="video-list">
-      {videos.map(video => (
+      {videos?.map(video => (
         <Card key={video.id}>
           <CardMedia component="img" image={video.thumbnail} alt={video.title} />
           <CardContent>

@@ -38,8 +38,8 @@ const attribData =[
       id: 3,
       title:"University of Eastern Finland",
       logo: "",
-      address: "Yliopistonranta 1, FI-70210 Kuopio, Finland",
-      location: "Kuopio, Finland",
+      address: "PO Box 111 (Yliopistokatu 2) FI-80101 Joensuu, Finland",
+      location: "Joensuu, Finland",
       description: "The University of Eastern Finland is a multidisciplinary university, which offers teaching in more than 100 major subjects. The university comprises four faculties: the Philosophical Faculty, the Faculty of Science and Forestry, the Faculty of Health Sciences, and the Faculty of Social Sciences and Business Studies.",
       url: "https://www.uef.fi/en"
   },

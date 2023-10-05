@@ -18,7 +18,7 @@ const CountrySelect =(props) => {
   return (
     <Autocomplete
       id="country-select-demo"
-      sx={{ width: 300 }}
+      sx={{ width: '100%', height: '100%' }}
       options={allCountries}
       autoHighlight
       getOptionLabel={(option) => option.name}
@@ -43,6 +43,10 @@ const CountrySelect =(props) => {
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill
+            style: {
+              height: '45px',
+              paddingLeft:'12px' // Adjust the height as needed
+            },
           }}
               helperText={touched ? error || submitError : ''}
       variant="standard"
