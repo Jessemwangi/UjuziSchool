@@ -43,7 +43,7 @@ function SignIn() {
         identifier: values.email,
         password: values.password,
       });
-
+console.log(response)
       const userinfo = await get_Data(
         `/users/${response.user.id}?populate=*`,
         response.jwt
@@ -64,7 +64,8 @@ function SignIn() {
       navigate("/member");
     } catch (error) {
       console.log(error);
-      setErr(error?.response?.data?.error?.message);
+      const smoothError = error?.response?.data?.error?.status ===500 ? 'Invalid Username or password' : error?.response?.data?.error?.message
+      setErr(smoothError || error.message);
       setLoading(false);
     }
   };

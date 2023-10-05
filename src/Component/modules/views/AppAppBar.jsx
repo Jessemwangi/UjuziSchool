@@ -11,11 +11,12 @@ import "./AppAppBar.scss"; // Import the custom CSS
 import { Typography } from "@mui/material";
 import { useUser } from "../../../hooks/UserContext";
 import SystemError from "./Error/SystemError";
+import { menuItems } from "../../../Data/mainMenu";
 
 export const rightLink = {
-  fontSize: '1.8vh',
+  fontSize: "1.8vh",
   color: "#BA68C8",
-  whiteSpace:'nowrap',
+  whiteSpace: "nowrap",
   ml: 3,
 };
 
@@ -42,12 +43,13 @@ const mobiLink = {
   },
 };
 
+
 const AppAppBar = () => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [data, setData] = React.useState(null);
-const [loading,setLoading] =React.useState(false)
-const [err,setErr]= React.useState()
-const {user,ctxLoading}  = useUser();
+  const [loading, setLoading] = React.useState(false);
+  const [err, setErr] = React.useState();
+  const { user, ctxLoading } = useUser();
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -63,14 +65,24 @@ const {user,ctxLoading}  = useUser();
   if (loading) return <>Loading ....</>;
   if (err)
     return (
-      <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
+      <SystemError
+        errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}
+      />
     );
   return (
     <div>
       <AppBar position="fixed" sx={{ background: "#040535" }}>
         <Toolbar sx={{ justifyContent: "space-between", overflow: "hidden" }}>
-          <Box sx={{ flex: 2,flexDirection:'row',display:'flex', alignItems:'center',justifyContent:'flex-start', gap:'30px'}}>
-          
+          <Box
+            sx={{
+              flex: 2,
+              flexDirection: "row",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: "30px",
+            }}
+          >
             <Link
               variant="h6"
               underline="none"
@@ -82,37 +94,44 @@ const {user,ctxLoading}  = useUser();
                 component="img"
                 src={ujLogo}
                 alt="Ujuzi Logo"
-                sx={{ height: 90, paddingTop: "6px" }}
+                sx={{ height: 90, width:74, paddingTop: "6px" }}
               />
             </Link>
-            <Link className="edu-btn btn-medium"
+            <Link
+              className="edu-btn btn-medium"
               variant="h6"
               underline="none"
               color="inherit"
               href="/Courses"
-       sx={{textAlign:'center', fontSize:20}}
+              sx={{ textAlign: "center", fontSize: 20 }}
             >
-              {"Learn Now"}  <i className="icon-4"></i>
+              {"Learn Now"} <i className="icon-4"></i>
             </Link>
           </Box>
           <Box
             sx={{
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", // md:'flex',
+              '@media (min-width: 1180px)': {
+               
+                display: 'flex',
+              }, },
               flex: 6,
               justifyContent: "flex-end",
-              gap:'60px',
+              gap: "60px",
               alignItems: "center",
             }}
           >
-            {user && <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/member"
-              sx={{ fontSize: 20}}
-            >
-              {"Dashboard"}
-            </Link>}
+            {user && (
+              <Link
+                variant="h6"
+                underline="none"
+                color="inherit"
+                href="/member"
+                sx={{ fontSize: 20 }}
+              >
+                {"Dashboard"}
+              </Link>
+            )}
             {/* <Link className="edu-btn btn-medium"
               variant="h6"
               underline="none"
@@ -131,76 +150,44 @@ const {user,ctxLoading}  = useUser();
             >
               {"Practicals"}
             </Link> */}
-                       <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/join-us"
-              sx={{ fontSize: 16 }}
-            >
-              {"Join US"}
-            </Link>
-            <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/aboutus"
-              sx={{ fontSize: 16 }}
-            >
-              {"About Us"}
-            </Link>
-            <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/partners"
-              sx={{ fontSize: 16 }}
-            >
-              {"Partners"}
-            </Link>
-            <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/attrib"
-              sx={{ fontSize: 16 }}
-            >
-              {"Attributes"}
-            </Link>
-            <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="contact"
-              sx={{ fontSize: 16 }}
-            >
-              {"Say Hi"} &#x1F44B;
-            </Link>
+  {menuItems.map(({ id, label, href, emoji }) => (
+        <Link
+          key={id}
+          variant="h6"
+          underline="none"
+          color="inherit"
+          href={href}
+          sx={{ fontSize: 16 }}
+        >
+          {label} {emoji && emoji}
+        </Link>
+      ))}
           </Box>
-          {
-            
-              ctxLoading  ? (<p> loading ...</p>
-            ):
-          user ? (
+          {ctxLoading ? (
+            <p> loading ...</p>
+          ) : user ? (
             <>
-             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-              <Typography
-              variant="h6"
-              color="inherit"
-              sx={{ ...rightLink, textTransform: 'capitalize' }}>
-              {'Hi '} {user?.username} 
-              </Typography>
-              <Link
-                variant="h6"
-                underline="none"
-                href="/sign-out"
-                sx={{ ...rightLink }}
+              <Box
+                sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}
               >
-                {"Sign Out"}
-              </Link>
-              </Box></>
-          ) :
-           (
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{ ...rightLink, textTransform: "capitalize" }}
+                >
+                  {"Hi "} {user?.username}
+                </Typography>
+                <Link
+                  variant="h6"
+                  underline="none"
+                  href="/sign-out"
+                  sx={{ ...rightLink }}
+                >
+                  {"Sign Out"}
+                </Link>
+              </Box>
+            </>
+          ) : (
             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
               <Link
                 color="inherit"
@@ -220,8 +207,7 @@ const {user,ctxLoading}  = useUser();
                 {"Sign Up"}
               </Link>
             </Box>
-          )
-          }
+          )}
           {/* Hamburger Menu Icon for Smaller Screens */}
           <Box className="hamburger-menu">
             <IconButton
@@ -260,7 +246,19 @@ const {user,ctxLoading}  = useUser();
             alignItems: "center",
           }}
         >
-          <Link variant="h6" underline="none" href="/Courses" sx={mobiLink}>
+          {menuItems.map(({ id, label, href, emoji }) => (
+        <Link
+          key={id}
+          variant="h6"
+          underline="none"
+          color="inherit"
+          href={href}
+          sx={mobiLink}
+        >
+          {label} {emoji && emoji}
+        </Link>
+      ))}
+          {/* <Link variant="h6" underline="none" href="/Courses" sx={mobiLink}>
             {"Courses"}
           </Link>
           <Link variant="h6" underline="none" href="/" sx={mobiLink}>
@@ -274,7 +272,7 @@ const {user,ctxLoading}  = useUser();
           </Link>
           <Link variant="h6" underline="none" href="/attrib" sx={mobiLink}>
             {"Sponsors"}
-          </Link>
+          </Link> */}
           <Link
             color="inherit"
             variant="h6"

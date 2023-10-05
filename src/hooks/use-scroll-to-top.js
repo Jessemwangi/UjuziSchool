@@ -8,7 +8,7 @@ function useScrollToTop() {
 
     useEffect(() => {
         const scrollHandler = () => {
-            const scrollPos = window.pageYOffset;
+            const scrollPos = window.scrollY;
             if (scrollPos > 50) {
                 setStick(true);
             } else {

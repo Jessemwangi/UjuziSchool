@@ -36,6 +36,8 @@ import PartnersPage from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/Partner
 import HowToBeMember from './pages/HowTo/HowToBeMember';
 import ErrorPage from './pages/404';
 import ComingSoon from './pages/coming-soon';
+import Page1 from './Admin/pages/page1';
+import Pricing from './Admin/pages/pricing-table/Pricing';
 
 const router = createBrowserRouter(
   [
@@ -155,7 +157,10 @@ const router = createBrowserRouter(
           path: '/member',
           element: <Dashboard />,
 
-          children: [{
+          children: [ {
+            path: '/member/yonko',
+            element: <Page1 />
+          },{
             path: '/member/admin',
             element: <AdminMain />,
 
@@ -165,9 +170,14 @@ const router = createBrowserRouter(
               element: <Profile />
             },
             {
-              path: '/member/admin/video',
-              element: <MemberVideos />
+              path: '/member/admin/packages',
+              element: <Pricing />
             },
+            {
+              path: '/member/admin/video',
+              element: <ComingSoon />
+            },
+           
            
             
            

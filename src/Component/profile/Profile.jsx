@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Field, FormSpy } from "react-final-form";
 import Box from "@mui/material/Box";
 import AppForm from "../modules/views/AppForm";
-import { Link } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import RFTextField from "../modules/form/RFTextField";
 import FormFeedback from "../modules/form/FormFeedback";
 import FormButton from "../modules/form/FormButton";
@@ -26,9 +26,9 @@ const Profile = () => {
 const {user} =useUser()
 
 const  {data,loading, error} = useFetch(user?.id ? `/profiles?populate=*&filters[user]=${user?.id}` : null)
-
+console.log(data)
 useEffect(() => {
-  if (data.length > 0) {
+  if (data?.length > 0) {
     setProfileId(data[0].id);
   }
 }, [data])
@@ -85,49 +85,49 @@ console.log(values)
 
   if(err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
   return (
-    <React.Fragment>
-    <AppForm>
-    <React.Fragment>
-      <Typography variant="h3" gutterBottom marked="center" align="center" >
+<React.Fragment>
+      <Typography variant="h3" gutterBottom marked="center" align="center">
         Create a Profile
       </Typography>
-      <Typography variant="body2" align="center">
-        <Link href={`/delete/${user?.id}`}  underline="always">
-          you can delete your account anytime
+      <Typography variant="body2" align="center" sx={{cursor:'pointer'}}>
+        <Link href={`/delete/${user?.id}`} underline="always" style={{color:'red', cursor:'pointer'}}>
+          You can delete your account anytime
         </Link>
       </Typography>
-    </React.Fragment>
-    <Form
-          onSubmit={handleSubmit}
-          subscription={{ submitting: true }}
-          validate={validate}
-          initialValues={initialValues}
-        >
-          {({ handleSubmit: handleSubmit2, submitting }) => (
-            <Box  xs={12}  component="form" onSubmit={handleSubmit2}  noValidate sx={{ mt: 6 }}>
-
+      <Form
+        onSubmit={handleSubmit}
+        subscription={{ submitting: true }}
+        initialValues={initialValues}
+        validate={validate}
+      >
+        {({ handleSubmit: handleSubmit2, submitting }) => (
+          <form onSubmit={handleSubmit2} noValidate>
+            <Grid container spacing={5}>
+              <Grid item xs={12} sm={6}>
                 <Field
-            name="country"
-            component={CountrySelect} // Use the custom input component
-            autoComplete="country"
-            disabled={submitting || sent}
-            margin="normal"
-            value={initialValues.country}
-          label="Choose a country"
-            size ="medium"
-          />
-              <Field
-                fullWidth
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="city"
-                value={initialValues.city}
-                autoComplete="address-level2"
-                label="city / Town"
-                margin="normal"
-              />
-                            <Field
+                  fullWidth
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  required
+                  name="city"
+                  autoComplete="address-level2"
+                  label="City / Town"
+                  margin="normal"
+                />
+                {/* Add more fields for the left column */}
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Field
+                  name="country"
+                  component={CountrySelect}
+                  autoComplete="country"
+                  disabled={submitting || sent}
+                  margin="normal"
+                  label="Choose a country"
+                  size="medium"
+                /> </Grid>
+                <Grid item xs={12} sm={6} sx={{ marginTop: '-16px'}}>
+				<Field
                 fullWidth
                 component={RFTextField}
                 disabled={submitting || sent}
@@ -137,7 +137,9 @@ console.log(values)
                 label="address"
                 margin="normal"
               />
-                            <Field
+              </Grid>
+			    <Grid item xs={12} sm={6} sx={{ marginTop: '-16px'}} >
+				 <Field
                 fullWidth
                 component={RFTextField}
                 disabled={submitting || sent}
@@ -146,7 +148,10 @@ console.log(values)
                 autoComplete="postal-code"
                 label="postalCode"
                 margin="normal"
-              />              <Field
+              />
+              </Grid>
+			  			    <Grid item xs={12} sm={6}>
+				<Field
               fullWidth
               component={RFTextField}
               disabled={submitting || sent}
@@ -156,7 +161,10 @@ console.log(values)
               label="occupation"
               value={initialValues.occupation}
               margin="normal"
-            />              <Field
+            />  
+              </Grid>
+			  			    <Grid item xs={12} sm={6}>
+				<Field
             fullWidth
             component={RFTextField}
             disabled={submitting || sent}
@@ -166,7 +174,9 @@ console.log(values)
             label="pronoun"
             margin="normal"
           />
-              <Field
+              </Grid>
+			   			  			    <Grid item xs={12} sm={6}>
+				              <Field
                 autoComplete="tel"
                 component={RFTextField}
                 disabled={submitting || sent}
@@ -176,7 +186,9 @@ console.log(values)
                 name="phoneNumber"
                 required
               />
-              <Field
+              </Grid>
+			  			  			    <Grid item xs={12} sm={6}>
+				              <Field
                 fullWidth
                 component={RFTextField}
                 disabled={submitting || sent}
@@ -186,28 +198,29 @@ console.log(values)
                 label="title"
                 margin="normal"
               />
-              <FormSpy subscription={{ submitError: true }}>
-                {({ submitError }) =>
-                  submitError ? (
-                    <FormFeedback error sx={{ mt: 2 }}>
-                      {submitError}
-                    </FormFeedback>
-                  ) : null
-                }
-              </FormSpy>
-              <FormButton
-                sx={{ mt: 3, mb: 2 }}
-                disabled={submitting || sent}
-                color="secondary"
-                fullWidth
-              >
-                {submitting || sent ? 'In progress…' : 'save profile'}
-              </FormButton>
-            </Box>
-          )}
-        </Form>
-      </AppForm>
-      </React.Fragment>
+              </Grid>			  			  			   
+            </Grid>
+            <FormSpy subscription={{ submitError: true }}>
+              {({ submitError }) =>
+                submitError ? (
+                  <FormFeedback error sx={{ mt: 2 }}>
+                    {submitError}
+                  </FormFeedback>
+                ) : null
+              }
+            </FormSpy>
+            <FormButton
+              sx={{ mt: 3, mb: 2 ,fontSize: 16,  padding: '10px 20px',width: 'max-content',}}
+              disabled={submitting || sent}
+              color="secondary"
+              fullWidth
+            >
+              {submitting || sent ? 'In progress…' : 'Save Profile'}
+            </FormButton>
+          </form>
+        )}
+      </Form>
+    </React.Fragment>
   );
 };
 
