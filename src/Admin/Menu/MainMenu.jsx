@@ -202,7 +202,7 @@ loading ?
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/admin/packages"
+                href="/member/admin/soon"
                 sx={{ ...rightLink }}
               >
                 {"Active subscriptions"}
@@ -214,7 +214,7 @@ loading ?
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/"
+                href="/member/admin/soon"
                 sx={{ ...rightLink }}
               >
                 {"My Units"}
@@ -226,7 +226,7 @@ loading ?
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/"
+                href="/member/admin/soon"
                 sx={{ ...rightLink }}
               >
                 {"Take a Test"}

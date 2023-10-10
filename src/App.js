@@ -174,7 +174,7 @@ const router = createBrowserRouter(
               element: <Pricing />
             },
             {
-              path: '/member/admin/video',
+              path: '/member/admin/soon',
               element: <ComingSoon />
             },
            
