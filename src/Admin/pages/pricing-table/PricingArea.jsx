@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useFetch } from "../../../hooks/useFetch";
+import { useEffect } from "react";
+import { get_Data } from "../../../UtilitiesFunctions/Function";
+import SystemError from "../../../Component/modules/views/Error/SystemError";
 
 function PricingTable({
   title,
@@ -8,13 +12,15 @@ function PricingTable({
   sm_text,
   item_off_1,
   item_off_2,
+  list,
 }) {
+  console.log(list)
   return (
     <div
       className="col-lg-4"
       data-sal-delay={delay}
-      data-sal="slide-up"
-      data-sal-duration="800"
+      // data-sal="slide-up"
+      data-sal-duration="400"
     >
       <div className="pricing-table">
         <div className="pricing-header">
@@ -40,7 +46,7 @@ function PricingTable({
             <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Course discussions
             </li>
-            <li className={`${item_off_2 ? "item-off" : ""}`}>
+            <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Offline learning
             </li>
           </ul>
@@ -57,13 +63,51 @@ function PricingTable({
 }
 
 const PricingArea = () => {
+  // console.log(packages)
+  const [subscription, setSubscription] =useState()
+  const [isLoading,setIsLoading] =useState(false)
+  const [err, setErr] =useState()
+  const [itemsPerPackage, setItemsPerPackage] = useState([]);
+  const url ='/subscription-packages?populate[]=item_per_packages.subscription_package_items&populate=*'
+  const { data, loading, error }  =useFetch(url)
+  useEffect(() => {
+
+    if (error) {
+      setErr(error?.response?.data?.error?.message);
+      setIsLoading(false); 
+    }
+    
+    if (!error && loading) {
+      setIsLoading(true);
+    }
+  
+    if (!error && !loading) {
+      setErr();
+      setIsLoading(false);
+    }
+    if (data?.length > 0) {
+      setSubscription(data);
+      // const extractedItems = data.flatMap(item =>
+      //   item.attributes?.item_per_packages?.data?.flatMap(subItem =>
+      //     subItem.attributes?.subscription_package_items.data
+      //   )
+      // );
+      // setItemsPerPackage(
+      //   extractedItems
+      // );
+    }
+  
+  }, [data, error, loading]);
+    // console.log(itemsPerPackage);
+    if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
+    if (isLoading) return <h2>loading .....</h2>
   return (
     <div className="edu-section-gap">
       <div className="container">
         <div
           className="section-title section-center"
           data-sal="slide-up"
-          data-sal-duration="800"
+          data-sal-duration="400"
         >
           <span className="pre-title">View membership Plans</span>
           <h2 className="title">Great Membership Plan</h2>
@@ -73,58 +117,26 @@ const PricingArea = () => {
         </div>
 
         <div className="row g-5">
-          <PricingTable
-            delay="100"
-            title="Silver Plan"
-            amount="29.00"
-            duration="Per month"
+          {subscription &&
+            subscription?.map(({attributes,id})=>
+            <PricingTable
+            key={id}
+            delay="500"
+            title={attributes?.packageName}
+            amount={attributes?.charges?.data?.reduce((acc, item) => acc + item.attributes.amount, 0)}
+            duration={attributes?.duration}
             item_off_1={true}
-            sm_text="Lorem ipsum dolor sit amet consect adipisicing elit sed. do eilt sed"
+            sm_text={attributes?.descritpion}
             item_off_2={true}
+            list ={attributes?.item_per_packages?.data?.flatMap(subItem =>
+              subItem.attributes?.subscription_package_items.data
+            )}
           />
+      
+            
+            )
+          }
 
-          <PricingTable
-            delay="200"
-            title="Gold Plan"
-            amount="49.00"
-            duration="Per month"
-            sm_text="Lorem ipsum dolor sit amet consect adipisicing elit sed. do eilt sed"
-            item_off_2={true}
-          />
-
-          <PricingTable
-            delay="300"
-            title="Diamond Plan"
-            amount="79.00"
-            duration="Per month"
-            sm_text="Lorem ipsum dolor sit amet consect adipisicing elit sed. do eilt sed"
-          />
-          <PricingTable
-            delay="100"
-            title="Silver Plan"
-            amount="29.00"
-            duration="Per month"
-            item_off_1={true}
-            sm_text="Lorem ipsum dolor sit amet consect adipisicing elit sed. do eilt sed"
-            item_off_2={true}
-          />
-
-          <PricingTable
-            delay="200"
-            title="Gold Plan"
-            amount="49.00"
-            duration="Per month"
-            sm_text="Lorem ipsum dolor sit amet consect adipisicing elit sed. do eilt sed"
-            item_off_2={true}
-          />
-
-          <PricingTable
-            delay="300"
-            title="Diamond Plan"
-            amount="79.00"
-            duration="Per month"
-            sm_text="Lorem ipsum dolor sit amet consect adipisicing elit sed. do eilt sed"
-          />
         </div>
       </div>
     </div>

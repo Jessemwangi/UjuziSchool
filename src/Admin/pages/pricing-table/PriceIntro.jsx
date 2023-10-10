@@ -2,7 +2,6 @@ import { useMouseMoveUI } from '../../../Component/contexts/mouse-move-context';
 import { motion } from 'framer-motion';
 import useModal from '../../../hooks/use-modal';
 import VideoModal from '../../../Component/modules/components/popup-modal/video-modal';
-import g from '../../../'
 
 const features_list = ['Affordable prices','Customizable','Lifetime Access','Quick and easy Setup']
 
@@ -16,11 +15,11 @@ const PriceIntro = () => {
                     <div className="row g-5 align-items-center">
                         <div className="col-lg-6">
                             <div className="about-image-gallery">
-                                <img className="main-img-1" src={require('../../../images/about/about-01.webp')} alt="About Image" />
+                                <img className="main-img-1" src={require('../../../images/about/about-01.webp')} alt="affordable prices " />
                                 <div className="video-box" data-sal-delay="150" data-sal="slide-down" data-sal-duration="800">
                                     <div className="inner">
                                         <div className="thumb">
-                                            <img src={require('../../../images/about/about-02.webp')} alt="About Image" />
+                                            <img src={require('../../../images/about/about-02.webp')} alt="price one" />
                                             <button onClick={() => setIsVideoOpen(true)} className="popup-icon video-popup-activation border-0">
                                             <i className="icon-18"></i>
                                             </button>

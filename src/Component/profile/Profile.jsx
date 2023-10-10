@@ -26,7 +26,7 @@ const Profile = () => {
 const {user} =useUser()
 
 const  {data,loading, error} = useFetch(user?.id ? `/profiles?populate=*&filters[user]=${user?.id}` : null)
-console.log(data)
+
 useEffect(() => {
   if (data?.length > 0) {
     setProfileId(data[0].id);
@@ -72,7 +72,7 @@ const initialValues = {
   
   const validate = (values) => {
     const errors = required(['country','city', 'address', 'postalCode', 'occupation','pronoun','phoneNumber','title'], values);
-console.log(values)
+
     if (!errors.email) {
       const emailError = email(values.email);
       if (emailError) {

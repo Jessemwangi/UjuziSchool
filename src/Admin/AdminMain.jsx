@@ -6,6 +6,7 @@ const AdminMain = () => {
 
     return (
         <Container className='adminMain' sx={{paddingTop:'3rem'}}>
+
 <Outlet/>         
         </Container>
     );
