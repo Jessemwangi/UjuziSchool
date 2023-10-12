@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useFetch } from "../../../hooks/useFetch";
 import { useEffect } from "react";
-import { get_Data } from "../../../UtilitiesFunctions/Function";
 import SystemError from "../../../Component/modules/views/Error/SystemError";
+import { Link } from "react-router-dom";
 
 function PricingTable({
   title,
+  id,
   delay,
   amount,
   duration,
@@ -53,9 +54,9 @@ function PricingTable({
         </div>
 
         <div className="pricing-btn">
-          <a className="edu-btn btn-border btn-medium" href="#">
+          <Link className="edu-btn btn-border btn-medium" to={`/member/admin/package/${id}`}>
             Select plan<i className="icon-east"></i>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -87,18 +88,10 @@ const PricingArea = () => {
     }
     if (data?.length > 0) {
       setSubscription(data);
-      // const extractedItems = data.flatMap(item =>
-      //   item.attributes?.item_per_packages?.data?.flatMap(subItem =>
-      //     subItem.attributes?.subscription_package_items.data
-      //   )
-      // );
-      // setItemsPerPackage(
-      //   extractedItems
-      // );
     }
   
   }, [data, error, loading]);
-    // console.log(itemsPerPackage);
+
     if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
     if (isLoading) return <h2>loading .....</h2>
   return (
@@ -121,6 +114,7 @@ const PricingArea = () => {
             subscription?.map(({attributes,id})=>
             <PricingTable
             key={id}
+            id={id}
             delay="500"
             title={attributes?.packageName}
             amount={attributes?.charges?.data?.reduce((acc, item) => acc + item.attributes.amount, 0)}

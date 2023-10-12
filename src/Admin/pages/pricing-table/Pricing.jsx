@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CtaArea from '../../../Component/WhoIsUjuzi/AboutUjuzi/cta-area';
 import PriceIntro from './PriceIntro';
 import PricingArea from './PricingArea';
-import { useFetch } from '../../../hooks/useFetch';
 
 const Pricing = () => {
 
