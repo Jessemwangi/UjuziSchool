@@ -6,7 +6,7 @@ import Toolbar from "../components/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ujLogo from "../../../static/assets/logo.png";
+import ujLogo from "../../../static/assets/logosmall.png";
 import "./AppAppBar.scss"; // Import the custom CSS
 import { Typography } from "@mui/material";
 import { useUser } from "../../../hooks/UserContext";
@@ -94,7 +94,6 @@ const AppAppBar = () => {
                 component="img"
                 src={ujLogo}
                 alt="Ujuzi Logo"
-                sx={{ height: 90, width:74, paddingTop: "6px" }}
               />
             </Link>
             <Link
