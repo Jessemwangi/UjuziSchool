@@ -38,6 +38,7 @@ import ErrorPage from './pages/404';
 import ComingSoon from './pages/coming-soon';
 import Page1 from './Admin/pages/page1';
 import Pricing from './Admin/pages/pricing-table/Pricing';
+import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
 
 const router = createBrowserRouter(
   [
@@ -172,6 +173,10 @@ const router = createBrowserRouter(
             {
               path: '/member/admin/packages',
               element: <Pricing />
+            },
+            {
+              path: '/member/admin/package/:id',
+              element: <SinglePrice />
             },
             {
               path: '/member/admin/soon',
