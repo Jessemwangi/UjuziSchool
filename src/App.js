@@ -40,6 +40,7 @@ import Page1 from './Admin/pages/page1';
 import Pricing from './Admin/pages/pricing-table/Pricing';
 import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
 import RegisterStudent from './Admin/pages/RegisterStudent/RegisterStudent';
+import StudentDetails from './Admin/pages/RegisterStudent/StudentDetails/StudentDetails';
 
 const router = createBrowserRouter(
   [
@@ -178,6 +179,10 @@ const router = createBrowserRouter(
             {
               path: '/member/admin/student',
               element: <RegisterStudent />
+            },
+            {
+              path: '/member/admin/student/details',
+              element: <StudentDetails />
             },
             {
               path: '/member/admin/package/:id',

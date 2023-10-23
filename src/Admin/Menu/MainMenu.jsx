@@ -196,6 +196,17 @@ loading ?
               </Link>
             </MenuItem>
             <MenuItem>
+              <Link
+                variant="h6"
+                underline="none"
+                color="inherit"
+                href="/member/admin/student/details"
+                sx={{ ...rightLink }}
+              >
+                {"Students List"}
+              </Link>
+            </MenuItem>
+            <MenuItem>
               {" "}
               <Link
                 variant="h6"

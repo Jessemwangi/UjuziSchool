@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import'./SystemError.scss'
 import { purple } from '@mui/material/colors';
 
-const primary = purple[500]; // #f44336
+// const primary = purple[500]; 
 
 
 const SystemError =({errorMessage}) => {
