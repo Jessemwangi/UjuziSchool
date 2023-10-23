@@ -14,64 +14,79 @@ import { postData, putData } from "../../../UtilitiesFunctions/Function";
 import { useFetch } from "../../../hooks/useFetch";
 import SystemError from "../../../Component/modules/views/Error/SystemError";
 
-
-
-
-
 const Profile = () => {
+  const [sent] = React.useState(false);
+  const [err, setErr] = React.useState(``);
+  const [profileId, setProfileId] = useState();
+  const { user } = useUser();
 
-  const [sent, ] = React.useState(false);
-  const [err, setErr] = React.useState(``)
-  const [profileId,setProfileId] = useState()
-const {user} =useUser()
+  const { data, loading, error } = useFetch(
+    user?.id ? `/profiles?populate=*&filters[user]=${user?.id}` : null
+  );
 
-const  {data,loading, error} = useFetch(user?.id ? `/profiles?populate=*&filters[user]=${user?.id}` : null)
+  useEffect(() => {
+    if (data?.length > 0) {
+      setProfileId(data[0].id);
+    }
+  }, [data]);
 
-useEffect(() => {
-  if (data?.length > 0) {
-    setProfileId(data[0].id);
-  }
-}, [data])
+  if (!user)
+    return (
+      <>
+        <h1>no user logged in</h1>
+      </>
+    );
+  if (loading) return <p>Loading</p>;
+  if (error) setErr(error?.response?.data?.error?.message);
 
-if(!user) return <><h1>no user logged in</h1></>
-if (loading) return <p>Loading</p>
-if (error) setErr(error?.response?.data?.error?.message)
-
-const initialValues = {
-  country: data[0]?.attributes?.country || "",
-  city: data[0]?.attributes?.city || "eldoret",
-  address:data[0]?.attributes?.address || "",
-  postalCode:data[0]?.attributes?.postalCode || "",
-  occupation:data[0]?.attributes?.occupation || "fdgfgfg",
-  pronoun:data[0]?.attributes?.pronoun || "",
-  otherName:data[0]?.attributes?.otherName || "",
-  phoneNumber:data[0]?.attributes?.phoneNumber || "",
-  title:data[0]?.attributes?.title || "",
-  imageUrl:data[0]?.attributes?.imageUrl || null,
-};
+  const initialValues = {
+    country: data[0]?.attributes?.country || "",
+    city: data[0]?.attributes?.city || "eldoret",
+    address: data[0]?.attributes?.address || "",
+    postalCode: data[0]?.attributes?.postalCode || "",
+    occupation: data[0]?.attributes?.occupation || "fdgfgfg",
+    pronoun: data[0]?.attributes?.pronoun || "",
+    otherName: data[0]?.attributes?.otherName || "",
+    phoneNumber: data[0]?.attributes?.phoneNumber || "",
+    title: data[0]?.attributes?.title || "",
+    imageUrl: data[0]?.attributes?.imageUrl || null,
+  };
 
   const handleSubmit = async (values) => {
     try {
-      const data ={...values, user:[user?.id]}
-      console.log(data)
+      const data = { ...values, user: [user?.id] };
+      console.log(data);
       let response;
-      if(profileId){
-        response = await putData(`/profiles/${profileId}`, {data}, user?.jwt);
-      }
-      else{
-        response = await postData("/profiles", {data}, user?.jwt);
+      if (profileId) {
+        response = await putData(`/profiles/${profileId}`, { data }, user?.jwt);
+      } else {
+        response = await postData("/profiles", { data }, user?.jwt);
       }
       console.log("Profile created:", response.data);
-    
     } catch (error) {
-      console.error("Error creating profile:", error.response.data.error.message);
-      console.log(error)
-      setErr(error.response.data.error.message)
+      console.error(
+        "Error creating profile:",
+        error.response.data.error.message
+      );
+      console.log(error);
+      setErr(error.response.data.error.message);
     }
   };
-  
+
   const validate = (values) => {
-    const errors = required(['country','city', 'address', 'postalCode', 'occupation','pronoun','phoneNumber','title'], values);
+    const errors = required(
+      [
+        "country",
+        "city",
+        "address",
+        "postalCode",
+        "occupation",
+        "pronoun",
+        "phoneNumber",
+        "title",
+      ],
+      values
+    );
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -83,14 +98,23 @@ const initialValues = {
     return errors;
   };
 
-  if(err) return  <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}/>
+  if (err)
+    return (
+      <SystemError
+        errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}
+      />
+    );
   return (
-<React.Fragment>
+    <React.Fragment>
       <Typography variant="h3" gutterBottom marked="center" align="center">
         Create a Profile
       </Typography>
-      <Typography variant="body2" align="center" sx={{cursor:'pointer'}}>
-        <Link href={`/delete/${user?.id}`} underline="always" style={{color:'red', cursor:'pointer'}}>
+      <Typography variant="body2" align="center" sx={{ cursor: "pointer" }}>
+        <Link
+          href={`/delete/${user?.id}`}
+          underline="always"
+          style={{ color: "red", cursor: "pointer" }}
+        >
           You can delete your account anytime
         </Link>
       </Typography>
@@ -125,80 +149,81 @@ const initialValues = {
                   margin="normal"
                   label="Choose a country"
                   size="medium"
-                /> </Grid>
-                <Grid item xs={12} sm={6} sx={{ marginTop: '-16px'}}>
-				<Field
-                fullWidth
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="address"
-                autoComplete="street-address"
-                label="address"
-                margin="normal"
-              />
+                />{" "}
               </Grid>
-			    <Grid item xs={12} sm={6} sx={{ marginTop: '-16px'}} >
-				 <Field
-                fullWidth
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="postalCode"
-                autoComplete="postal-code"
-                label="postalCode"
-                margin="normal"
-              />
+              <Grid item xs={12} sm={6} sx={{ marginTop: "-16px" }}>
+                <Field
+                  fullWidth
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  required
+                  name="address"
+                  autoComplete="street-address"
+                  label="address"
+                  margin="normal"
+                />
               </Grid>
-			  			    <Grid item xs={12} sm={6}>
-				<Field
-              fullWidth
-              component={RFTextField}
-              disabled={submitting || sent}
-              required
-              name="occupation"
-              autoComplete="organization"
-              label="occupation"
-              value={initialValues.occupation}
-              margin="normal"
-            />  
+              <Grid item xs={12} sm={6} sx={{ marginTop: "-16px" }}>
+                <Field
+                  fullWidth
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  required
+                  name="postalCode"
+                  autoComplete="postal-code"
+                  label="postalCode"
+                  margin="normal"
+                />
               </Grid>
-			  			    <Grid item xs={12} sm={6}>
-				<Field
-            fullWidth
-            component={RFTextField}
-            disabled={submitting || sent}
-            required
-            name="pronoun"
-            autoComplete="honorific-prefix"
-            label="pronoun"
-            margin="normal"
-          />
+              <Grid item xs={12} sm={6}>
+                <Field
+                  fullWidth
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  required
+                  name="occupation"
+                  autoComplete="organization"
+                  label="occupation"
+                  value={initialValues.occupation}
+                  margin="normal"
+                />
               </Grid>
-			   			  			    <Grid item xs={12} sm={6}>
-				              <Field
-                autoComplete="tel"
-                component={RFTextField}
-                disabled={submitting || sent}
-                fullWidth
-                label="phoneNumber"
-                margin="normal"
-                name="phoneNumber"
-                required
-              />
+              <Grid item xs={12} sm={6}>
+                <Field
+                  fullWidth
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  required
+                  name="pronoun"
+                  autoComplete="honorific-prefix"
+                  label="pronoun"
+                  margin="normal"
+                />
               </Grid>
-			  			  			    <Grid item xs={12} sm={6}>
-				              <Field
-                fullWidth
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="title"
-                autoComplete="title"
-                label="title"
-                margin="normal"
-              />
-              </Grid>			  			  			   
+              <Grid item xs={12} sm={6}>
+                <Field
+                  autoComplete="tel"
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  fullWidth
+                  label="phoneNumber"
+                  margin="normal"
+                  name="phoneNumber"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Field
+                  fullWidth
+                  component={RFTextField}
+                  disabled={submitting || sent}
+                  required
+                  name="title"
+                  autoComplete="title"
+                  label="title"
+                  margin="normal"
+                />
+              </Grid>
             </Grid>
             <FormSpy subscription={{ submitError: true }}>
               {({ submitError }) =>
@@ -210,12 +235,18 @@ const initialValues = {
               }
             </FormSpy>
             <FormButton
-              sx={{ mt: 3, mb: 2 ,fontSize: 16,  padding: '10px 20px',width: 'max-content',}}
+              sx={{
+                mt: 3,
+                mb: 2,
+                fontSize: 16,
+                padding: "10px 20px",
+                width: "max-content",
+              }}
               disabled={submitting || sent}
               color="secondary"
               fullWidth
             >
-              {submitting || sent ? 'In progress…' : 'Save Profile'}
+              {submitting || sent ? "In progress…" : "Save Profile"}
             </FormButton>
           </form>
         )}

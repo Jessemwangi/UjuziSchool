@@ -11,6 +11,7 @@ import { server } from "../../../UtilitiesFunctions/Function";
 import axios from "axios";
 import { required } from "../../../Component/modules/form/validation";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../../../hooks/UserContext";
 
 const RegisterStudent = () => {
   const [sent, setSent] = React.useState(false);
@@ -21,6 +22,7 @@ const RegisterStudent = () => {
   const searchParams = new URLSearchParams(location.search);
   const reg = searchParams.get("reg");
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const validate = (values) => {
     const errors = required(
@@ -35,6 +37,7 @@ const RegisterStudent = () => {
       setLoading(true);
       await axios.post(`${server}/student/sign-up`, {
         ...values,
+        agents_detail:user.id
       });
       setName(values.studentName);
       setSent(true);
