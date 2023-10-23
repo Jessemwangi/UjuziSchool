@@ -22,7 +22,7 @@ import PasswordChange from './Component/Passwords/PasswordChange';
 import SubCategories from './pages/SubCategories/SubCategories';
 import ForgotPassword from './Component/ForgotPassword';
 import SignOut from './Component/SignOut';
-import Profile from './Component/profile/Profile';
+import Profile from './Admin/pages/profile/Profile';
 import { UserProvider } from './hooks/UserContext';
 import Dashboard from './Admin/Dashboard';
 import MemberVideos from './Admin/Videos/MemberVideos';
@@ -39,6 +39,7 @@ import ComingSoon from './pages/coming-soon';
 import Page1 from './Admin/pages/page1';
 import Pricing from './Admin/pages/pricing-table/Pricing';
 import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
+import RegisterStudent from './Admin/pages/RegisterStudent/RegisterStudent';
 
 const router = createBrowserRouter(
   [
@@ -173,6 +174,10 @@ const router = createBrowserRouter(
             {
               path: '/member/admin/packages',
               element: <Pricing />
+            },
+            {
+              path: '/member/admin/student',
+              element: <RegisterStudent />
             },
             {
               path: '/member/admin/package/:id',

@@ -185,6 +185,17 @@ loading ?
               </Link>
             </MenuItem>
             <MenuItem>
+              <Link
+                variant="h6"
+                underline="none"
+                color="inherit"
+                href="/member/admin/student?reg=Create Account"
+                sx={{ ...rightLink }}
+              >
+                {"Register Student"}
+              </Link>
+            </MenuItem>
+            <MenuItem>
               {" "}
               <Link
                 variant="h6"

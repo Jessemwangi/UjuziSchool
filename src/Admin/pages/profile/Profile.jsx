@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Form, Field, FormSpy } from "react-final-form";
 import Box from "@mui/material/Box";
-import AppForm from "../modules/views/AppForm";
+import AppForm from "../../../Component/modules/views/AppForm";
 import { Grid, Link } from "@mui/material";
-import RFTextField from "../modules/form/RFTextField";
-import FormFeedback from "../modules/form/FormFeedback";
-import FormButton from "../modules/form/FormButton";
-import { email, required } from "../modules/form/validation";
-import { useUser } from "../../hooks/UserContext";
-import CountrySelect from "../modules/components/Country";
-import Typography from "../modules/components/Typography";
-import { postData, putData } from "../../UtilitiesFunctions/Function";
-import { useFetch } from "../../hooks/useFetch";
-import SystemError from "../modules/views/Error/SystemError";
+import RFTextField from "../../../Component/modules/form/RFTextField";
+import FormFeedback from "../../../Component/modules/form/FormFeedback";
+import FormButton from "../../../Component/modules/form/FormButton";
+import { email, required } from "../../../Component/modules/form/validation";
+import { useUser } from "../../../hooks/UserContext";
+import CountrySelect from "../../../Component/modules/components/Country";
+import Typography from "../../../Component/modules/components/Typography";
+import { postData, putData } from "../../../UtilitiesFunctions/Function";
+import { useFetch } from "../../../hooks/useFetch";
+import SystemError from "../../../Component/modules/views/Error/SystemError";
 
 
 
