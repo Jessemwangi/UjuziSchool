@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import'./SystemError.scss'
 import { purple } from '@mui/material/colors';
 
-const primary = purple[500]; // #f44336
+// const primary = purple[500]; 
 
 
 const SystemError =({errorMessage}) => {
@@ -14,19 +14,19 @@ const SystemError =({errorMessage}) => {
         alignItems: 'center',
         flexDirection: 'column',
         minHeight: '100vh',
-        backgroundColor: primary,
+        // backgroundColor: '#9c27b0',
       }}
     >
-      <Typography variant="h1" style={{ color: 'white' }}>
+      <Typography variant="h1" style={{ color: 'black' }}>
         Sorry an Error 
       </Typography>
-      <Typography variant="h6" style={{ color: 'white' }}>
+      <Typography variant="h4" style={{ color: 'red' }}>
        {errorMessage}
       </Typography>
       <div className='buttonControls'>
 
-      <Button variant="contained">Back Home</Button>
-      <Button variant="contained" onClick={()=>{
+      <Button sx={{ mt: 3, mb: 2, fontSize: 16,  padding: '10px 30px',width: 'max-content', background:'#040535',}} color='secondary' variant="contained">Back Home</Button>
+      <Button sx={{ mt: 3, mb: 2, fontSize: 16,  padding: '10px 30px',width: 'max-content',}} variant="contained" color='secondary' onClick={()=>{
         window.location.reload(true)
       }}>Try Refresh</Button>
       </div>
