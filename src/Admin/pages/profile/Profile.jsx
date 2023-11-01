@@ -25,26 +25,22 @@ const Profile = () => {
   );
 
   useEffect(() => {
-    if (data?.length > 0) {
+    if (!loading && error && data && data.length > 0) {
       setProfileId(data[0].id);
     }
-  }, [data]);
+  }, [data, error, loading]);
 
-  if (!user)
-    return (
-      <>
-        <h1>no user logged in</h1>
-      </>
-    );
   if (loading) return <p>Loading</p>;
-  if (error) setErr(error?.response?.data?.error?.message);
+  if (error) {
+    setErr(error?.response?.data?.error?.message);
+  }
 
   const initialValues = {
     country: data[0]?.attributes?.country || "",
-    city: data[0]?.attributes?.city || "eldoret",
+    city: data[0]?.attributes?.city || "",
     address: data[0]?.attributes?.address || "",
     postalCode: data[0]?.attributes?.postalCode || "",
-    occupation: data[0]?.attributes?.occupation || "fdgfgfg",
+    occupation: data[0]?.attributes?.occupation || "",
     pronoun: data[0]?.attributes?.pronoun || "",
     otherName: data[0]?.attributes?.otherName || "",
     phoneNumber: data[0]?.attributes?.phoneNumber || "",
@@ -54,15 +50,12 @@ const Profile = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const data = { ...values, user: [user?.id] };
-      console.log(data);
-      let response;
+      const profileData = { ...values, user: [user?.id] };
       if (profileId) {
-        response = await putData(`/profiles/${profileId}`, { data }, user?.jwt);
+        await putData(`/profiles/${profileId}`, { profileData }, user?.jwt);
       } else {
-        response = await postData("/profiles", { data }, user?.jwt);
+        await postData("/profiles", { profileData }, user?.jwt);
       }
-      console.log("Profile created:", response.data);
     } catch (error) {
       console.error(
         "Error creating profile:",
