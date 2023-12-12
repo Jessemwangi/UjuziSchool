@@ -9,6 +9,7 @@ import howit1 from '../../../static/assets/productHowItWorks1.svg'
 import howit2 from '../../../static/assets/productHowItWorks2.svg'
 import howit3 from '../../../static/assets/productHowItWorks3.svg'
 import curvy from '../../../static/assets/productCurvyLines.png'
+import { Link } from '@mui/material';
 
 const item = {
   display: 'flex',
@@ -20,7 +21,7 @@ const item = {
 const number = {
   fontSize: 24,
   fontFamily: 'default',
-  color: 'secondary.main',
+  color: '#5e0f6b',
   fontWeight: 'medium',
 };
 
@@ -108,16 +109,16 @@ function LessonHowItWorks() {
             </Grid>
           </Grid>
         </div>
-        <Button
-          color="secondary"
-          size="large"
-          variant="contained"
-          component="a"
-          href="/sign-up"
-          sx={{ mt: 8 }}
-        >
-          Get started
-        </Button>
+        <Link
+                  className="edu-btn btn-medium"
+                  variant="h6"
+                  underline="none"
+                  color="inherit"
+                  href="/sign-up"
+                  sx={{ textAlign: "center", fontSize: 20, marginTop:"1rem", }}
+                >
+                  {"Get started"}
+                </Link>
       </Container>
     </Box>
   );

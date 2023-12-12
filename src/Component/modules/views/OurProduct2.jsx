@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 import React from "react";
 import img1 from "../../../static/assets/productHowItWorks1.svg";
-import "../../../pages/AboutUs/AboutUs.scss";
+import "../../../pages/AboutUs_Old/AboutUs.scss";
 
 const OurProduct2 = () => {
   return (

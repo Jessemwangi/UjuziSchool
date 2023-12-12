@@ -14,10 +14,10 @@ const counter_data = [
     },
     {
         color: 'secondary-color',
-        count: 32.4,
+        count: 2.4,
         icon: '47',
         text: 'K',
-        title: 'Class Completed',
+        title: 'Agents Enrolled',
         decimal: 1
     },
     {
