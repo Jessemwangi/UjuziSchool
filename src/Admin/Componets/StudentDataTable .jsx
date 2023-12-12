@@ -20,14 +20,14 @@ const StudentDataTable = ({ data }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState({
-    name: "",
-    dateRegistered: "",
-    grade: "",
+    studentName: data?.studentName,
+    dateRegistered: data?.dateRegistered,
+    studyLevel: data.studyLevel,
   });
   const [dialogFormData, setDialogFormData] = useState({
-    name: "",
-    dateRegistered: "",
-    grade: "",
+    studentName: data?.studentName,
+    dateRegistered: data?.dateRegistered,
+    studyLevel: data.studyLevel,
   });
 
   const columns = [
@@ -116,7 +116,7 @@ const StudentDataTable = ({ data }) => {
             }
           />
           <TextField
-            label="Name"
+            label="studyLevel"
             value={selectedStudent.studyLevel}
             onChange={(e) =>
               setSelectedStudent({

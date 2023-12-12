@@ -30,7 +30,7 @@ const WhyChose = () => {
                     <span className="pre-title">Why Ujuzi</span>
                     <h2 className="title">Experiential <span className="color-secondary">learning
                     </span>  in STEM.
-                     <br />(STEM<sub>Ex)</sub>
+                     <br />(STEMEX)
 
                      </h2>
                     <span className="shape-line"><i className="icon-19"></i></span>

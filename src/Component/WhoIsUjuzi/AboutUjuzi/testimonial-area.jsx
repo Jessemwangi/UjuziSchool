@@ -35,8 +35,8 @@ const contents = {
             title: 'Student in Kenya'
         }
     ],
-    video_title: 'Take a Video Tour to Learn Intro of Campus',
-    video_id: 'PICj5tr9hcc'
+    video_title: 'Learn more about Ujuzi STEMEX revolution',
+    video_id: 'svTS0WAl52E'
 }
 
 

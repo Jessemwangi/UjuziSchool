@@ -8,6 +8,7 @@ import about_16 from '../../../images/about/about-16.webp';
 import shape_33 from '../../../images/about/shape-33.png';
 import shape_25 from '../../../images/about/shape-25.png';
 import shape_13 from '../../../images/about/shape-13.png';
+import { Link } from '@mui/material';
 
 
 // MissionItem
@@ -38,7 +39,20 @@ const AboutUsArea = () => {
                                 <p>
                                 Ujuzi Solutions is a technology company based in Finland. We capitalize on the excellent Finnish model and collaborate with Finnish companies to solve
                                  multifaceted problems and foster socio-economic development between Europe (Finland) and Africa.</p>
+                                 <div>
+                                 <Link
+                  className="edu-btn btn-medium"
+                  variant="h6"
+                  underline="none"
+                  color="inherit"
+                  href="/community"
+                  sx={{ textAlign: "center", fontSize: 20 }}
+                >
+                  {"Join our Community 👩🏽‍👩🏽‍👧🏽‍👦🏽"}
+                </Link>
+                                 </div>
                             </div>
+                            
                             <div className="about-mission">
                                 <MissionItem color="02" icon="51" title="Our Mission" text="We empower young learners by developing cutting-edge resources, technologies, and platforms that foster the sharing of tech knowledge and practical skills. Our goal is to enable them to lead innovation and drive lasting change across the continent." />
                                 <MissionItem color="06" icon="52" title="Our Vision" text="To cultivate a vibrant ecosystem where the youth actively lead in innovation and solution-driven endeavours, empowering the globe's future." />

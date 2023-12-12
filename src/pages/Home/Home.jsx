@@ -16,7 +16,7 @@ function Index() {
       <WhyChose />
       <AboutUsArea />
       <OurPartners/>
-      <LessonHowItWorks />
+      {/* <LessonHowItWorks /> */}
       <LessonCTA/>
       <LessonSmokingHero />
     
