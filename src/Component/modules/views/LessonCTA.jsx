@@ -35,10 +35,10 @@ export const LessonCTA =() =>{
           >
             <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
               <Typography variant="h2" component="h2" gutterBottom>
-                Receive offers
+                Want more Info
               </Typography>
               <Typography variant="h5">
-                Taste the holidays of the everyday close to home.
+                Leave your email and we will get in touch.
               </Typography>
               <TextField
                 noBorder
