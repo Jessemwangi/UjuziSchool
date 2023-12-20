@@ -4,7 +4,7 @@ import logolight from '../../static/assets/logo.png'
 const footer_contents = {
     logoLight: logolight,
     logoDark: logolight,
-    desc: 'A Finnish EduTech company aim at experiential learning in STEM.',
+    desc: 'A Finnish company which deals with scientific and technical research and development.',
     add: 'Runeberginkatu 14-16, Helsinki, Southern Finland, 00100',
     call: '+358 45 196 4808',
     email: 'info@ujuzi.io',
