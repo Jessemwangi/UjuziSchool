@@ -3,7 +3,7 @@ import { Link } from "@mui/material";
 export const brand_contents = {
   pre_title: "Our Partners",
   title: "Meet our business Partners",
-  text: "Lorem ipsum dolor sit amet consectur adipiscing elit sed eiusmod tempor incididunt.",
+  text: "We thrive on collaborative problem-solving. Partnering with like-minded organizations, we deliver impactful solutions.",
   brands: [
     { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-01.jpg', year:'24', id:'1', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-01.png", name: "institution 1" },
     { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-02.jpg', year:'24', id:'2', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-02.png", name: "institution 2" },

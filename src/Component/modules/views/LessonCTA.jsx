@@ -35,10 +35,10 @@ export const LessonCTA =() =>{
           >
             <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
               <Typography variant="h2" component="h2" gutterBottom>
-                Want more Info
+                Become a Partner
               </Typography>
-              <Typography variant="h5">
-                Leave your email and we will get in touch.
+              <Typography variant="h5">Join US to Reshape STEM Education from Theory to Experiential, let create an impact through STEMEX
+              
               </Typography>
               <TextField
                 noBorder
@@ -46,14 +46,22 @@ export const LessonCTA =() =>{
                 variant="standard"
                 sx={{ width: '100%', mt: 3, mb: 2 }}
               />
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                sx={{ width: '100%' }}
-              >
-                Keep me updated
-              </Button>
+    <Button
+      type="submit"
+      color="primary"
+      variant="contained"
+      sx={{
+        width: '100%',
+        backgroundColor: '#040535',
+        borderRadius:'6px',
+        '&:hover': {
+          backgroundColor: '#9c27b0', 
+        },
+        fontSize: '16px', 
+      }}
+    >
+      Start partnership journey
+    </Button>
             </Box>
           </Box>
         </Grid>
@@ -94,7 +102,7 @@ export const LessonCTA =() =>{
       <Snackbar
         open={open}
         closeFunc={handleClose}
-        message="We will send you our updates and news, once a week."
+        message="We will get back to you as soon as possible, mostly within 24 hours."
       />
     </Container>
   );

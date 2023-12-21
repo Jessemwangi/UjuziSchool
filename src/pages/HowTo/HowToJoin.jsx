@@ -11,7 +11,7 @@ const HowToJoin = () => {
                             <div className="text-block">
                                 <h3 className="title">Become a Part of Us</h3>
                                 <p>We are seeking partners who share our vision of transforming STEM education worldwide. Whether you're an investor looking for a promising opportunity, 
-                                    a school aiming to enhance your curriculum, or an NGO dedicated to improving education access, Ujuzi STEM<sub>Ex</sub> is the solution that can make a real difference. </p>
+                                    a school aiming to enhance your curriculum, or an NGO dedicated to improving education access, Ujuzi STEMEX is the solution that can make a real difference. </p>
                             </div>
 
                             <div className="text-block">
@@ -77,7 +77,7 @@ Please note that the exact details needed for registration may vary, but this gi
 
                             <div className="text-block">
                                 <h4 className="title">Why be part of Ujuzi?</h4>
-                                <p>Ujuzi STEM<sub>Ex</sub> is a cutting-edge educational platform designed to revolutionize STEM learning. Our solution combines the power of technology, interactive multimedia, and physical equipment to create a holistic and engaging learning experience.</p>
+                                <p>Ujuzi STEMEX is a cutting-edge educational platform designed to revolutionize STEM learning. Our solution combines the power of technology, interactive multimedia, and physical equipment to create a holistic and engaging learning experience.</p>
                                 <ul>
                                     <li>Updated content on a regular basis</li>
                                     <li>Secure & hassle-free payment</li>
