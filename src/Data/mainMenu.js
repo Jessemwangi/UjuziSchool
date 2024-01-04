@@ -3,6 +3,6 @@ export const menuItems = [
     { id: 2, label: "About Us", href: "/aboutus" },
     { id: 3, label: "Partners", href: "/partners" },
     { id: 4, label: "Attributes", href: "/attrib" },
-    { id: 5, label: "Events", href: "/comingsoon" },
+    { id: 5, label: "Events", href: "/events" },
     { id: 6, label: "Say Hi", href: "/contact", emoji: "👋" },
   ];
