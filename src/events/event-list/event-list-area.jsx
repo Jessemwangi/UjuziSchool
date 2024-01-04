@@ -8,10 +8,13 @@ import { initializeEvents } from "../../redux/features/get-events-slice";
 import { useMouseMoveUI } from "../../Component/contexts/mouse-move-context";
 
 const EventListArea = () => {
+    // const Url =`${process.env.REACT_APP_SERVER_URL}/events?populate=*`;
+    const Url =`https://ujuziapi.onrender.com/api/events?populate=*`;
+    
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(initializeEvents())
-      }, [dispatch]);
+        dispatch(initializeEvents(Url))
+      }, [Url, dispatch]);
     const { categories } = useSelector((state) => state.event);
     const eventsData = useSelector((state) => state.setEvents.eventsData);
     const event_lists = eventsData?.data;
@@ -21,13 +24,13 @@ const EventListArea = () => {
     ? categories?.some((item2) => attributes.category == item2)
     : attributes
     );
-    console.log('^^^^^^^^^^^^^^^^^^^^ ', filterData ,' *********************************88')
+    
 
     return (
         <div className='sticky-header'>
-        <div id="main-wrapper" className="main-wrapper">
+        <div id="main-wrapper" className="main-wrapper" style={{ paddingTop: '10rem' }} >
    
-        <section className="why-choose-area-4 edu-section-gap">
+        <section className="why-choose-area-4" >
             <div className="container edublink-animated-shape">
                 <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                 
@@ -63,14 +66,14 @@ const EventListArea = () => {
             <div className="container">
                 <div className="row g-5">
                     <div className="col-lg-3 order-lg-2">
-                        <EventSidebar />
+                        <EventSidebar events={event_lists}/>
                     </div>
                     <div className="col-lg-9 order-lg-1 col-pr--35">
                         <div className="row g-5">
-                            {filterData?.length !== 0 && filterData?.map(({attributes}, i) => (
+                            {filterData?.length !== 0 && filterData?.map(({attributes,id}) => (
                                 <div key={attributes.id} className="col-12">
                                     <div className="edu-event-list event-list-2">
-                                        <EventListItem item={attributes} />
+                                        <EventListItem item={attributes} id={id} />
                                     </div>
                                 </div>
                             ))}

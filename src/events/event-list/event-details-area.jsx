@@ -1,35 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import { instructors_data } from '../../data';
 import Time from '../../UtilitiesFunctions/time';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { initializeSingleEvents } from '../../redux/features/get-single-events-slice';
 // import TeamOne from "../team-member/team-one";
 
-const EventDetailsArea = ({event}) => {
+const EventDetailsArea = () => {
+    const { id } = useParams();
+    console.log(id)
+    
+    const dispatch = useDispatch();
+    const Url =`https://ujuziapi.onrender.com/api/events/${id}?populate=*`;
+    useEffect(() => {
+        dispatch(initializeSingleEvents(Url))
+      }, [dispatch,id]);
+      const singleEvent = useSelector((state) => state.singleEvent.singleEventsData);
+      console.log('^^^^^^^^^^^^^^^^^^^^ ', singleEvent ,' *********************************88')
+      const eventDetails=singleEvent?.data?.attributes
   return (
         <section className="event-details-area edu-section-gap">
             <div className="container">
                 <div className="event-details">
                     <div className="main-thumbnail">
-                        <img src="/assets/images/event/event-21.jpg" alt="Event" />
+                        <img src={eventDetails?.img?.data[0]?.attributes?.formats?.large?.url} alt="Event" />
                     </div>
                     <div className="row row--30">
                         <div className="col-lg-8">
                             <div className="details-content">
-                                <h3>About The Event</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exerec tation ullamco laboris nis aliquip commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores.</p>
-                                <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.</p>
-                                <ul>
-                                    <li>Aute irure dolor in reprehenderit</li>
-                                    <li>Occaecat cupidatat non proident sunt in culpa</li>
-                                    <li>Pariatur enim ipsam.</li>
-                                </ul>
+                                <h3>{eventDetails.title}</h3>
+                                <p>{eventDetails.sm_desc}</p>
                                 <h3>Event Location</h3>
-                                <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam. </p>
                                 <ul className="event-meta">
-                                    <li><i className="icon-40"></i>Newyork City, USA</li>
-                                    <li><i className="icon-71"></i>+012 (345) 6789</li>
+                                    <li><i className="icon-40"></i>{eventDetails.event_meta}</li>
+                                    <li><i className="icon-71"></i>+358 (415) 6789</li>
                                 </ul>
                                 <div className="gmap_canvas">
-                                    <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=melbourne,%20Australia&t=&z=15&ie=UTF8&iwloc=&output=embed" ></iframe>
+                                <iframe id="gmap_canvas" title='Event Location'
+  src={`https://maps.google.com/maps?q=${encodeURIComponent(eventDetails.event_meta)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+></iframe>
                                 </div>
                             </div>
                         </div>

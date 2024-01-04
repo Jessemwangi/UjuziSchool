@@ -8,6 +8,7 @@ import eventSlice from './features/event-slice';
 // import  lessonSlice  from './features/lessons-slice';
 // import loginSlice from './features/loginSlice';
 import setEventsSlice  from './features/get-events-slice';
+import  setSingleEventsSlice  from './features/get-single-events-slice';
 
 const rootReducer = combineReducers({
     // auth:authSlice,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     // cart:cartSlice,
     // wishlist:wishlistSlice,
     event:eventSlice,
+    singleEvent:setSingleEventsSlice,
     // filter:filterSlice,
     // less:lessonSlice,
     // authLogin:loginSlice,

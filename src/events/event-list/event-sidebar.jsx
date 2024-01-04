@@ -2,9 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { add_category } from '../../redux/features/event-slice';
 
-const all_categories = ['Art & Design', 'Development', 'Business', 'Marketing']
 
-const EventSidebar = () => {
+const EventSidebar = ({events}) => {
+
+    const all_categories = [...new Set(events?.map(event => event.attributes.category))];
+    // const all_categories =events.map(cat => cat.category)
+     console.log(events)
     const { categories } = useSelector(state => state.event);
     const dispatch = useDispatch();
     // handleCategory
