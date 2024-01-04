@@ -2,15 +2,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const EventListItem = ({ item }) => {
-    const { id, img, date, time, title, sm_desc, event_meta } = item || {};
+const EventListItem = ({ item, id }) => {
+    const { img, date, time, title, sm_desc, event_meta } = item || {};
     return (
         <div className="inner">
             <div className="thumbnail">
                 <Link to={`/event-details/${id}`}>
                  
-                        <img src={img} alt="Event Images" />
-                  
+                        <img src={img.data[0].attributes.formats.thumbnail.url} alt="Event Images" />
+                        
                 </Link>
             </div>
             <div className="content">
@@ -24,7 +24,7 @@ const EventListItem = ({ item }) => {
                     </Link>
                 </h4>
                 <span className="event-location"><i className="icon-40"></i>{event_meta}</span>
-                <p>{sm_desc}</p>
+                <p>{sm_desc.slice(0, 120)}....</p>
                 <div className="read-more-btn">
                     <Link  className="edu-btn btn-medium btn-border" to={`/event-details/${id}`}>
                         

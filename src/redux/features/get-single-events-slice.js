@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
 import getd from '../../UtilitiesFunctions/getData'
 const initialState = {
-    eventsData:[],
+    singleEventsData:{},
     isLoading:false,
 }
 
-export const setEventsSlice = createSlice({
-    name:'eventsData',
+export const setSingleEventsSlice = createSlice({
+    name:'singleEventsData',
     initialState,
     reducers:{
-        setEvents: (state,action)=>{
+        setSingleEvents: (state,action)=>{
             console.log(action.payload)
-                           state.eventsData = action.payload;
+                           state.singleEventsData = action.payload;
 
             }
             ,
@@ -22,17 +22,17 @@ export const setEventsSlice = createSlice({
     
 })
 
-export const { setEvents, setLoading } = setEventsSlice.actions;
+export const { setSingleEvents, setLoading } = setSingleEventsSlice.actions;
 
-export const initializeEvents = (url) => {
+export const initializeSingleEvents = (url) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
       const events = await getd.getAll(url);
-      dispatch(setEvents(events));
+      dispatch(setSingleEvents(events));
       dispatch(setLoading(false))
   
     };
   };
   
  
-  export default setEventsSlice.reducer;
+  export default setSingleEventsSlice.reducer;
