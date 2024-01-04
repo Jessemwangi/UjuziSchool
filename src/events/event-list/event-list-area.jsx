@@ -8,8 +8,8 @@ import { initializeEvents } from "../../redux/features/get-events-slice";
 import { useMouseMoveUI } from "../../Component/contexts/mouse-move-context";
 
 const EventListArea = () => {
-    // const Url =`${process.env.REACT_APP_SERVER_URL}/events?populate=*`;
-    const Url =`https://ujuziapi.onrender.com/api/events?populate=*`;
+    const Url =`${process.env.REACT_APP_SERVER_URL}/events?populate=*`;
+    // const Url =`https://ujuziapi.onrender.com/api/events?populate=*`;
     
     const dispatch = useDispatch();
     useEffect(() => {

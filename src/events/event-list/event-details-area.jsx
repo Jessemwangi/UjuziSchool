@@ -11,10 +11,11 @@ const EventDetailsArea = () => {
     console.log(id)
     
     const dispatch = useDispatch();
-    const Url =`https://ujuziapi.onrender.com/api/events/${id}?populate=*`;
+    // const Url =`https://ujuziapi.onrender.com/api/events/${id}?populate=*`;
+    const Url =`${process.env.REACT_APP_SERVER_URL}/events/${id}?populate=*`;
     useEffect(() => {
         dispatch(initializeSingleEvents(Url))
-      }, [dispatch,id]);
+      }, [Url, dispatch, id]);
       const singleEvent = useSelector((state) => state.singleEvent.singleEventsData);
       console.log('^^^^^^^^^^^^^^^^^^^^ ', singleEvent ,' *********************************88')
       const eventDetails=singleEvent?.data?.attributes
@@ -28,16 +29,16 @@ const EventDetailsArea = () => {
                     <div className="row row--30">
                         <div className="col-lg-8">
                             <div className="details-content">
-                                <h3>{eventDetails.title}</h3>
-                                <p>{eventDetails.sm_desc}</p>
+                                <h3>{eventDetails?.title}</h3>
+                                <p>{eventDetails?.sm_desc}</p>
                                 <h3>Event Location</h3>
                                 <ul className="event-meta">
-                                    <li><i className="icon-40"></i>{eventDetails.event_meta}</li>
+                                    <li><i className="icon-40"></i>{eventDetails?.event_meta}</li>
                                     <li><i className="icon-71"></i>+358 (415) 6789</li>
                                 </ul>
                                 <div className="gmap_canvas">
                                 <iframe id="gmap_canvas" title='Event Location'
-  src={`https://maps.google.com/maps?q=${encodeURIComponent(eventDetails.event_meta)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+  src={`https://maps.google.com/maps?q=${encodeURIComponent(eventDetails?.event_meta)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
 ></iframe>
                                 </div>
                             </div>
