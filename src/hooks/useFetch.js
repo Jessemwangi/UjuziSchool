@@ -25,7 +25,7 @@ useEffect(() => {
         const {data} =await get_Data(url,token)
         setData(data)
         setLoading(false)
-        console.log(data);
+  
       
       } catch (error) {
         console.log(error)

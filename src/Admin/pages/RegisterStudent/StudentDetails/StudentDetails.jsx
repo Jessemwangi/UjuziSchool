@@ -26,7 +26,6 @@ const StudentDetails = () => {
         studyLevel: item.studyLevel,
     }));
     
-    console.log(convertedData);
     //   console.log(data)
     return (
         <div>

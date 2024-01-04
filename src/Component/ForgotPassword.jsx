@@ -49,7 +49,6 @@ const navigate =useNavigate()
      }
     
     } catch (error) {
-      console.log(error);
       setErr(error?.response?.data?.error?.message);
       setLoading(false);
     }
