@@ -41,6 +41,10 @@ import Pricing from './Admin/pages/pricing-table/Pricing';
 import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
 import RegisterStudent from './Admin/pages/RegisterStudent/RegisterStudent';
 import StudentDetails from './Admin/pages/RegisterStudent/StudentDetails/StudentDetails';
+import EventListArea from './events/event-list/event-list-area';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import EventDetailsArea from './events/event-list/event-details-area';
 
 const router = createBrowserRouter(
   [
@@ -72,7 +76,15 @@ const router = createBrowserRouter(
           path: '/writeus',
           element: <WriteUs />
         },
-        
+        {
+          path: '/events',
+          element: <EventListArea />
+        },
+        {
+          path: '/event-details/:id',
+          element: <EventDetailsArea />
+        },
+       
         
         {
           path: '/sign-in',
@@ -238,9 +250,12 @@ const App = () => {
 
   return (
     <div className="App">
+        <Provider store={ store }>
+
       <UserProvider>
         <RouterProvider router={router} />
       </UserProvider>
+        </Provider>
       
     </div>
   );
