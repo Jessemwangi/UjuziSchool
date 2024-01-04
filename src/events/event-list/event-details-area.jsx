@@ -8,8 +8,6 @@ import { initializeSingleEvents } from '../../redux/features/get-single-events-s
 
 const EventDetailsArea = () => {
     const { id } = useParams();
-    console.log(id)
-    
     const dispatch = useDispatch();
     // const Url =`https://ujuziapi.onrender.com/api/events/${id}?populate=*`;
     const Url =`${process.env.REACT_APP_SERVER_URL}/events/${id}?populate=*`;
@@ -17,7 +15,6 @@ const EventDetailsArea = () => {
         dispatch(initializeSingleEvents(Url))
       }, [Url, dispatch, id]);
       const singleEvent = useSelector((state) => state.singleEvent.singleEventsData);
-      console.log('^^^^^^^^^^^^^^^^^^^^ ', singleEvent ,' *********************************88')
       const eventDetails=singleEvent?.data?.attributes
   return (
         <section className="event-details-area edu-section-gap">

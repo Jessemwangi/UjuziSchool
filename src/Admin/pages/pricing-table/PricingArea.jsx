@@ -15,7 +15,6 @@ function PricingTable({
   item_off_2,
   list,
 }) {
-  console.log(list)
   return (
     <div
       className="col-lg-4"

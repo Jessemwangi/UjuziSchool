@@ -50,7 +50,7 @@ const SinglePrice = () => {
 
     if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
     if (isLoading) return <h2>loading .....</h2>
-console.log(id)
+
     return (
       <section className="edu-section-gap course-details-area">
       <div className="container">
