@@ -4,7 +4,7 @@ const initialState = {
     eventsData:[],
     isLoading:false,
 }
-const Url ='http://localhost:1337/api/events';
+const Url =`${process.env.REACT_APP_SERVER_URL}/events`;
 export const setEventsSlice = createSlice({
     name:'eventsData',
     initialState,
