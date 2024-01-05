@@ -25,8 +25,8 @@ const course_data = [
     social_links:[
       {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
       {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-      {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'},
-      {link: 'https://www.youtube.com/', target: '_blank', icon: 'icon-youtube'}
+      {link: 'https://www.linkedin.com/company/ujuzi-fin/', target: '_blank', icon: 'icon-linkedin2'},
+      {link: 'https://www.youtube.com/@UJUZI2023/', target: '_blank', icon: 'icon-youtube'}
     ],
     language: 'English',
     certificate: 'yes',
