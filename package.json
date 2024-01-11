@@ -40,7 +40,7 @@
     "sass": "^1.62.1",
     "screenfull": "^6.0.2",
     "styled-components": "^5.3.10",
-    "swiper": "^10.3.0",
+    "swiper": "^10.3.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
