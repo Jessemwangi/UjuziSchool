@@ -21,7 +21,7 @@ const InstructionsMasonryArea = () => {
                                             <div className="inner">
                                                 <div className="thumbnail">
                                                     <Link to={`/blog-details/${id}`}>
-                                                        <>{console.log(`../../${img}`)}</>
+                                                      
                                                             <img src={require(`../../images/blog/${img}`)} alt="Blog Images" />
                                                            
                                                     </Link>
