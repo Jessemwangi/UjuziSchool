@@ -3,11 +3,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import Typography from '../components/Typography';
-import withRoot from '../withRoot';
+import Typography from '../../../modules/components/Typography';
+import withRoot from '../../../modules/withRoot';
 
-import curvy from '../../../static/assets/productCurvyLines.png'
-import p_values1 from '../../../static/assets/productValues1.svg'
+import curvy from '../../../../static/assets/productCurvyLines.png'
+import p_values1 from '../../../../static/assets/productValues1.svg'
 
 const item = {
   display: 'flex',
@@ -70,7 +70,13 @@ const Attribute = () => {
           alt="curvy lines"
           sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
         />
-                <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
+                <Typography variant="h4" marked="center"  sx={{
+                   mb: 14, fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
+                   fontWeight: 400,
+                   fontWize: "2.125rem",
+                   lineHeight: 1,
+                   letterSpacing: "0.00735em",
+                    }}>
           We would like to Attribute the following:-
         </Typography>
         <Grid container spacing={5}>

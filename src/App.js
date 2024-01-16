@@ -13,7 +13,7 @@ import Privacy from './Component/Privacy';
 import SignIn from './Component/SignIn';
 import LessonHowItWorks from './Component/modules/views/LessonHowItWorks';
 import Home from './pages/Home/Home';
-import Attribute from './Component/modules/views/Attribute';
+import Attribute from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/Attribute';
 import Videos from './pages/Videos/Videos';
 // import Category from './pages/Category/SingleCategory';
 // import LessonValues from './Component/modules/views/LessonValues';
@@ -45,6 +45,9 @@ import EventListArea from './events/event-list/event-list-area';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import EventDetailsArea from './events/event-list/event-details-area';
+import Instructions from './pages/Instructions/Instructions';
+import InstructionsDetails from './pages/Instructions/InstructionsDetails';
+import PartnersArea from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersArea';
 
 const router = createBrowserRouter(
   [
@@ -71,6 +74,14 @@ const router = createBrowserRouter(
         {
           path: '/contact',
           element: <ContactUs />
+        },
+        {
+          path:'/resources',
+          element:<Instructions/>
+        },
+        {
+          path:'/instruction/:id',
+          element:<InstructionsDetails/>
         },
         {
           path: '/writeus',
@@ -131,6 +142,11 @@ const router = createBrowserRouter(
 
         }
         ,
+        {
+          path: '/champions',
+          element: <PartnersArea />
+
+        },
         {
           path: '/attrib',
           element: <Attribute />

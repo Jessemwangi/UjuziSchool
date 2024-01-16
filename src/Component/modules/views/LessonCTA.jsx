@@ -60,7 +60,7 @@ export const LessonCTA =() =>{
         fontSize: '16px', 
       }}
     >
-      Start partnership journey
+      Get Updated With Goodies!
     </Button>
             </Box>
           </Box>

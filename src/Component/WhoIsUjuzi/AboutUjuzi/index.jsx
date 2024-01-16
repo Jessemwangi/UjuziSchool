@@ -1,10 +1,11 @@
 import React from "react";
 import CounterArea from "./counter-area";
 import AboutUsArea from "./about-us-area";
-import TestimonialArea from "./testimonial-area";
+// import TestimonialArea from "./testimonial-area";
 import WhyChose from "./why-chose";
 import CtaArea from "./cta-area";
 import TeamArea from "./team-area";
+import TestimonialArea from "../../Testimonials/testimonial-area";
 
 const About = () => {
   return (

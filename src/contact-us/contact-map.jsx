@@ -5,7 +5,15 @@ const ContactMap = () => {
         <div className="google-map-area">
             <div className="mapouter">
                 <div className="gmap_canvas">
-                    <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=Runeberginkatu%2014-16,%20Helsinki,%20Southern%20Finland,%2000100&t=&z=15&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" loading="lazy"></iframe>
+                <iframe
+  id="gmap_canvas"
+  title="Ujuzi Location"
+  src="https://maps.google.com/maps?q=Simonkyl%C3%A4ntie%2011%20B%209,%2001390%20Vantaa&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  frameborder="0"
+  marginheight="0"
+  marginwidth="0"
+  loading="lazy"
+></iframe>
                 </div>
             </div>
         </div>

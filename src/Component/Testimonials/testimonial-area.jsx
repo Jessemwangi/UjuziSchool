@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from 'swiper/modules';
 import { motion } from 'framer-motion';
-import { useMouseMoveUI } from '../../contexts/mouse-move-context';
-import VideoModal from '../../modules/components/popup-modal/video-modal';
-import useModal from '../../../hooks/use-modal';
-import image1 from '../../../images/testimonial/testimonial-01.png';
-import image2 from '../../../images/testimonial/testimonial-02.png';
-import image3 from '../../../images/testimonial/testimonial-03.png';
+import { useMouseMoveUI } from '../contexts/mouse-move-context';
+import VideoModal from '../modules/components/popup-modal/video-modal';
+import useModal from '../../hooks/use-modal';
+import image1 from '../../images/testimonial/testimonial-01.png';
+import image2 from '../../images/testimonial/testimonial-02.png';
+import image3 from '../../images/testimonial/testimonial-03.png';
 
 const contents = {
     pre_title: 'Testimonials',
@@ -107,7 +107,7 @@ const TestimonialArea = () => {
                         <div className="col-lg-6">
                             <div className="video-gallery video-gallery-5" data-sal-delay="150" data-sal="slide-left" data-sal-duration="800">
                                 <div className="thumbnail">
-                                    <img src={require('../../../images/others/video-03.webp')} alt="Thumb" />
+                                    <img src={require('../../images/others/video-03.webp')} alt="Thumb" />
                                     <button onClick={() => setIsVideoOpen(true)} className="video-play-btn video-popup-activation">
                                         <i className="icon-18"></i>
                                     </button>
@@ -125,7 +125,7 @@ const TestimonialArea = () => {
                                 y: mouseReverse(30).y
                             } }
                         >
-                            <img src={require('../../../images/about/shape-25.png')} alt="Shape" />
+                            <img src={require('../../images/about/shape-25.png')} alt="Shape" />
                         </motion.li>
                         <motion.li className="shape-3 scene" data-sal-delay="200" data-sal="fade" data-sal-duration="1000"
                             animate={ {
@@ -139,7 +139,7 @@ const TestimonialArea = () => {
                 </div>
                 <ul className="shape-group">
                     <li className="shape-1" data-sal-delay="200" data-sal="fade" data-sal-duration="1000">
-                        <img className="rotateit" src={require('../../../images/about/shape-13.png')} alt="Shape" />
+                        <img className="rotateit" src={require('../../images/about/shape-13.png')} alt="Shape" />
                     </li>
                 </ul>
             </section>
