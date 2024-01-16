@@ -16,7 +16,7 @@ const ContactUsArea = () => {
                             <ul className="address-list">
                                 <li>
                                     <h5 className="title">Address</h5>
-                                    <p> Runeberginkatu 14-16, Helsinki, Southern Finland, 00100</p>
+                                    <p>Simonkyläntie 11 B 9 01390 Vantaa</p>
                                 </li>
                                 <li>
                                     <h5 className="title">Email</h5>

@@ -3,7 +3,6 @@ import { useMouseMoveUI } from '../../contexts/mouse-move-context';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-
 const AdBanner = ({ home_4 }) => {
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
     return (
@@ -29,7 +28,7 @@ const AdBanner = ({ home_4 }) => {
                                 y: mouseDirection(25).y
                             } }
                         >
-                            <img src="/assets/images/cta/shape-10.png" alt="shape" />
+                            <img src= {require("../../../images/cta/shape-10.png")} alt="shape" />
                         </motion.li>
                         <motion.li className="shape-02 scene"
                             animate={ {
@@ -37,7 +36,7 @@ const AdBanner = ({ home_4 }) => {
                                 y: mouseReverse(25).y
                             } }
                         >
-                            <img src="/assets/images/cta/shape-09.png" alt="shape" />
+                            <img src={require("../../../images/cta/shape-09.png")}  alt="shape" />
                         </motion.li>
                         <motion.li className="shape-03 scene"
                             animate={ {
@@ -45,7 +44,7 @@ const AdBanner = ({ home_4 }) => {
                                 y: mouseReverse(25).y
                             } }
                         >
-                            <img src="/assets/images/cta/shape-08.png" alt="shape" />
+                            <img src={require("../../../images/cta/shape-08.png")}  alt="shape" />
                         </motion.li>
                         <motion.li className="shape-04 scene"
                             animate={ {
@@ -53,7 +52,7 @@ const AdBanner = ({ home_4 }) => {
                                 y: mouseDirection(25).y
                             } }
                         >
-                            <img src="/assets/images/about/shape-13.png" alt="shape" />
+                            <img src={require("../../../images/about/shape-13.png")}  alt="shape" />
                         </motion.li>
                     </ul>
                 </div>
