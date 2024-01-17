@@ -5,8 +5,8 @@ const footer_contents = {
     logoLight: logolight,
     logoDark: logolight,
     desc: 'A Finnish company which deals with scientific and technical research and development.',
-    add: 'Runeberginkatu 14-16, Helsinki, Southern Finland, 00100',
-    call: '+358 45 196 4808',
+    add: 'Simonkyläntie 11 B 9 01390 Vantaa',
+    call: '+358 46 904 5739',
     email: 'info@ujuzi.io',
     widgets: [
         {
