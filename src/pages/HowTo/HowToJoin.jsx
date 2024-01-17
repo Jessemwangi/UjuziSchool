@@ -58,7 +58,7 @@ Please note that the exact details needed for registration may vary, but this gi
                             </div>
                             </div>
                             <div className="text-block">
-                                <h4 className="title">How to Purchase a Course?</h4>
+                                <h4 className="title">How to support STEMEX?</h4>
                                 <p>To purchase a package, you have the option to choose from our list of available packages, or you can contact us for a customized package tailored to your specific needs. Our packages are designed with flexibility in mind to accommodate your budget, the number of students, and contract length. We strive to be as accommodating and flexible as possible to meet your needs.</p>
                             </div>
 
