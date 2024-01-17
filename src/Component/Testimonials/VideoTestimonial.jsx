@@ -13,7 +13,7 @@ import { useMouseMoveUI } from "../contexts/mouse-move-context";
 
 const testimonial_data = [
     {
-        img: '/assets/images/testimonial/testimonial-01.png',
+        videoId: '/assets/images/testimonial/testimonial-01.png',
         desc: 'Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.',
         ratings: <>
             <i className="icon-23"></i>
@@ -26,7 +26,7 @@ const testimonial_data = [
         title: 'Student'
     },
     {
-        img: '/assets/images/testimonial/testimonial-02.png',
+        videoId: '/assets/images/testimonial/testimonial-02.png',
         desc: 'Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.',
         ratings: <>
             <i className="icon-23"></i>
@@ -39,7 +39,7 @@ const testimonial_data = [
         title: 'Designer'
     },
     {
-        img: '/assets/images/testimonial/testimonial-03.png',
+        videoId: '/assets/images/testimonial/testimonial-03.png',
         desc: 'Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.',
         ratings: <>
             <i className="icon-23"></i>
@@ -52,7 +52,7 @@ const testimonial_data = [
         title: 'Developer'
     },
     {
-        img: '/assets/images/testimonial/testimonial-04.png',
+        videoId: '/assets/images/testimonial/testimonial-04.png',
         desc: 'Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.',
         ratings: <>
             <i className="icon-23"></i>
@@ -70,8 +70,10 @@ export default function VideoTestimonial() {
     const [loop,setLoop] = useState(true);
     const { isVideoOpen, setIsVideoOpen } = useModal();
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
+    const [videoId,setVideoId] = useState('73LDNRUjSis')
     // useEffect(() => setLoop(true) ,[])
-    const handleVideoClick = () => {
+    const handleVideoClick = (vd) => {
+        console.log(vd)
         setLoop(false);
         setIsVideoOpen(true);
       };
@@ -142,7 +144,7 @@ export default function VideoTestimonial() {
                                     <div className="video-gallery video-gallery-5" >
                                 <div className="thumbnail">
                                     <img src={require('../../images/others/video-03.webp')} alt="Thumb" />
-                                    <button onClick={handleVideoClick} className="video-play-btn video-popup-activation">
+                                    <button onClick={()=>handleVideoClick(testi.videoId)} className="video-play-btn video-popup-activation">
                                         <i className="icon-18"></i>
                                     </button>
                                 </div>
@@ -154,8 +156,7 @@ export default function VideoTestimonial() {
                             // </div>
                                 ))}
                         </Swiper>
-                        {/* <VideoModal isVideoOpen={isVideoOpen} setIsVideoOpen={setIsVideoOpen} videoId={'svTS0WAl52E'} /> */}
-                        <VideoModal isVideoOpen={isVideoOpen} setIsVideoOpen={handleVideoClose} videoId={'svTS0WAl52E'} />                       
+                        <VideoModal isVideoOpen={isVideoOpen} setIsVideoOpen={handleVideoClose} videoId={videoId} />                       
 <ul className="shape-group">
                         <motion.li className="shape-2 scene" data-sal-delay="200" data-sal="fade" data-sal-duration="1000"
                             animate={ {
