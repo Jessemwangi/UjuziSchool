@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useMouseMoveUI } from '../Component/contexts/mouse-move-context';
 import { SocialShare } from '../Component/modules/components';
 import ContactUsForm from '../Component/modules/form/contact-us-form';
+import { Link } from 'react-router-dom';
 
 const ContactUsArea = () => {
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
@@ -24,11 +25,11 @@ const ContactUsArea = () => {
                                 </li>
                                 <li>
                                     <h5 className="title">Phone</h5>
-                                    <p><a href="tel:+35814135548598">(+358) 4135548598</a></p>
+                                    <p><a href="tel:+358469045739">(+358) 46 904 5739</a></p>
                                 </li>
                             </ul>
                             <ul className="social-share">
-                                <li><a href="#"><i className="icon-share-alt"></i></a></li>
+                                <li><Link to="#"><i className="icon-share-alt"></i></Link></li>
                                 <SocialShare/>
                             </ul>
                         </div>
