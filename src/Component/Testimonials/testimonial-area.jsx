@@ -36,7 +36,7 @@ const contents = {
         }
     ],
     video_title: 'Learn more about Ujuzi STEMEX revolution',
-    video_id: 'svTS0WAl52E'
+    video_id: '73LDNRUjSis'
 }
 
 

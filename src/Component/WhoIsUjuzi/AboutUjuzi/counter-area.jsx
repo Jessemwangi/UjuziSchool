@@ -6,7 +6,7 @@ import Counter from '../../modules/components/counter';
 const counter_data = [
     {
         color: 'primary-color',
-        count: 29.3,
+        count: 1.3,
         icon: '48',
         text: 'K',
         title: 'Student Enrolled',
@@ -14,10 +14,10 @@ const counter_data = [
     },
     {
         color: 'secondary-color',
-        count: 2.4,
+        count: 14,
         icon: '47',
-        text: 'K',
-        title: 'Agents Enrolled',
+        text: '#',
+        title: 'School Enrolled',
         decimal: 1
     },
     {
@@ -29,10 +29,10 @@ const counter_data = [
     },
     {
         color: 'extra05-color',
-        count: 354,
+        count: 16,
         icon: '50',
-        text: '%',
-        title: 'Top Instructors'
+        text: 'Ps',
+        title: 'Partnering Institution'
     }
 ]
 
