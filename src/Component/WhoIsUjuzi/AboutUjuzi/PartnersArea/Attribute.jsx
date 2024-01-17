@@ -8,6 +8,7 @@ import withRoot from '../../../modules/withRoot';
 
 import curvy from '../../../../static/assets/productCurvyLines.png'
 import p_values1 from '../../../../static/assets/productValues1.svg'
+import { Link } from 'react-router-dom';
 
 const item = {
   display: 'flex',
@@ -76,6 +77,7 @@ const Attribute = () => {
                    fontWize: "2.125rem",
                    lineHeight: 1,
                    letterSpacing: "0.00735em",
+                   textTransform:'none',
                     }}>
           We would like to Attribute the following:-
         </Typography>
@@ -96,7 +98,9 @@ const Attribute = () => {
             <Typography variant="h5">
 <p>{description}</p>
 <p>📍{address } {' '} {location}</p>
-<p>{url}</p>
+<p>                        <Link to={url} target='_blank' className="edu-btn btn-small btn-secondary">
+                            Visit there site <i className="icon-4"></i>
+                        </Link></p>
             </Typography>
           </Box>
         </Grid>

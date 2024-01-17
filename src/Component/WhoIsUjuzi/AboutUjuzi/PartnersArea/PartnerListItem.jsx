@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PartnerListItem = ({ item }) => {
     const  {
@@ -34,9 +35,9 @@ const PartnerListItem = ({ item }) => {
                     <li><i className="icon-40"></i>{country}</li>
                 </ul>
                 <div className="read-more-btn">
-                        <a className="edu-btn btn-small btn-secondary">
+                        <Link className="edu-btn btn-small btn-secondary">
                             Visit there site <i className="icon-4"></i>
-                        </a>
+                        </Link>
                     
                 </div>
             </div>
