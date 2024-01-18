@@ -14,7 +14,7 @@ const InstructionsMasonryArea = () => {
                     <ResponsiveMasonry columnsCountBreakPoints={{ 0: 1, 750: 2, 992: 3 }}>
                         <Masonry gutter="30px">
                             {blog_items.map((blog) => {
-                                const { id, img, desc, title, date, category, comment } = blog;
+                                const { id, img, desc, title, date, category, comment, downloadUrl } = blog;
                                 return (
                                     <div key={id}>
                                         <div className="edu-blog blog-style-5">
@@ -46,8 +46,8 @@ const InstructionsMasonryArea = () => {
                                                         <li><i className="icon-27"></i>{date}</li>
                                                         <li><i className="icon-28"></i>Com {comment}</li>
                                                     </ul>
-                                                    <p>{desc.split(' ').slice(0, 60).join(' ')}{desc.split(' ').length > 20 ? ' ...' : ''}</p>
-                                                    <Link className="edu-btn" to="#">
+                                                    <p>{desc.split(' ').slice(0, 20).join(' ')}{desc.split(' ').length > 20 ? ' ...' : ''}</p>
+                                                    <Link className="edu-btn" to={downloadUrl} target='_blank'>
                                     Download doc<i className="icon-4"></i> 🗎
                                      
                                 </Link>
