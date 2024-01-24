@@ -63,7 +63,7 @@ const Attribute = () => {
       sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}
     >
 
-      <Container sx={{ mt: 15, mb: 30, display: 'flex',  flexDirection:'column', position: 'relative' }}>
+      <Container sx={{ mt: 15, mb: 8, display: 'flex',  flexDirection:'column', position: 'relative' }}>
        
         <Box
           component="img"

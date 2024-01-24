@@ -4,7 +4,7 @@ import PartnersPage from './PartnersPage';
 
 const PartnersArea = () => {
     return (
-        <div className="edu-event-area event-area-1 section-gap-equal">
+        <div className="edu-event-area event-area-1">
             
             <Attribute/>
             <PartnersPage/>
