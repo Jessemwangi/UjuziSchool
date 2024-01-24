@@ -10,6 +10,8 @@ const PartnerListItem = ({ item }) => {
         year,
         name,
         descrip,
+        website,
+        logo
     } = item || {};
     return (
         <div className="inner">
@@ -17,7 +19,7 @@ const PartnerListItem = ({ item }) => {
                         <img src={require('../../../../images/brand/' + img)} alt={name} />
 
                 <div className="event-time">
-                    <span>🫱🏻‍🫲🏽</span>
+                    <span><img src={require('../../../../images/brand/' + logo)} title='logo' alt='logo' style={{width:'40px'}}/></span>
                 </div>
             </div>
             <div className="content">
@@ -35,7 +37,7 @@ const PartnerListItem = ({ item }) => {
                     <li><i className="icon-40"></i>{country}</li>
                 </ul>
                 <div className="read-more-btn">
-                        <Link className="edu-btn btn-small btn-secondary">
+                        <Link className="edu-btn btn-small btn-secondary" to={website}>
                             Visit there site <i className="icon-4"></i>
                         </Link>
                     
