@@ -20,16 +20,16 @@ const InstructionsMasonryArea = () => {
                                         <div className="edu-blog blog-style-5">
                                             <div className="inner">
                                                 <div className="thumbnail">
-                                                    <Link to={`/blog-details/${id}`}>
+                                                    {/* <Link to={downloadUrl} target='_blank'> */}
                                                       
                                                             <img src={require(`../../images/blog/${img}`)} alt="Blog Images" />
                                                            
-                                                    </Link>
+                                                    {/* </Link> */}
                                                 </div>
 
                                                 <div className="content position-top">
                                                     <div className="read-more-btn">
-                                                        <Link className="btn-icon-round" to={`/blog-details/${id}`}>
+                                                        <Link className="btn-icon-round" to={downloadUrl} target='_blank'>
                                                             <i className="icon-4"></i>
                                                         </Link>
                                                     </div>
@@ -37,7 +37,7 @@ const InstructionsMasonryArea = () => {
                                                         <Link to="#" className="blog-category">{category}</Link>
                                                     </div>
                                                     <h5 className="title">
-                                                        <Link to={`/blog-details/${id}`}>
+                                                        <Link to={downloadUrl} target='_blank'>
                                                        
                                                         {title.split(' ').slice(0, 60).join(' ')}{title.split(' ').length > 3 ? ' ...' : ''}...
                                                         </Link>
