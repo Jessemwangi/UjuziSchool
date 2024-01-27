@@ -1,15 +1,15 @@
 const blog_data = [
-  {
-    id: 1,
-    img:'tutorial.png',
-    category: 'PDF',
-    title: 'Setting up a simple parallel circuits',
-    date: "Oct 10, 2023",
-    comment: 9,
-    desc: 'The curriculum aims to ignite a curiosity for innovation and underscore the real-world applications of electricity in their daily lives. By doing so, students will gain an appreciation for the significance of electrical knowledge across diverse fields,.',
-    blog_masonry:true,
-    downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1705585934/STEMEXMANUAL_4_1a4dd0228b.pdf'
-  },
+  // {
+  //   id: 1,
+  //   img:'tutorial.png',
+  //   category: 'PDF',
+  //   title: 'Setting up a simple parallel circuits',
+  //   date: "Oct 10, 2023",
+  //   comment: 9,
+  //   desc: 'The curriculum aims to ignite a curiosity for innovation and underscore the real-world applications of electricity in their daily lives. By doing so, students will gain an appreciation for the significance of electrical knowledge across diverse fields,.',
+  //   blog_masonry:true,
+  //   downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1705585934/STEMEXMANUAL_4_1a4dd0228b.pdf'
+  // },
   {
     id: 2,
     img:'tutorial.png',
