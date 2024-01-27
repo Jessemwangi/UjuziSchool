@@ -101,7 +101,7 @@ const AppAppBar = () => {
               variant="h6"
               underline="none"
               color="inherit"
-              href="/Courses"
+              href="/resources"
               sx={{ textAlign: "center", fontSize: 20 }}
             >
               {"Learn Now"} <i className="icon-4"></i>
@@ -135,7 +135,7 @@ const AppAppBar = () => {
               variant="h6"
               underline="none"
               color="inherit"
-              href="/Courses"
+              href="/resources"
        sx={{textAlign:'center', fontSize:20}}
             >
               {"Learn Now"}  <i className="icon-4"></i>
