@@ -11,17 +11,6 @@ const blog_data = [
   //   downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1705585934/STEMEXMANUAL_4_1a4dd0228b.pdf'
   // },
   {
-    id: 2,
-    img:'tutorial.png',
-    category: 'LECTURE',
-    title: 'Measurement solution with STEMEX - Exploring Photometry with Arduino and Excel',
-    date: "Jan 26 2024",
-    comment: 15,
-    desc: 'Throughout the Measurement solutions with STEMEX lessons, students will not only cultivate a solid foundational understanding but also develop practical problem-solving skills. The curriculum aims to spark a curiosity for innovation and emphasize the real-world applications of STEM in solving measurement problems in their daily lives.',
-    blog_masonry:true,
-    downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706274897/3_STEMEX_MEASUREMENT_SOLUTION_USER_GUIDE_compressed_0d7ac80688.pdf'
-  },
-  {
     id: 3,
     img:'tutorial.png',
     category: 'GUIDE',
@@ -32,7 +21,6 @@ const blog_data = [
     blog_masonry:true,
     downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706275316/2_STEMEX_AUTOMATION_USER_GUIDE_compressed_739dabf155.pdf'
   },
-  
   {
     id: 4,
     img:'tutorial.png',
@@ -44,6 +32,20 @@ const blog_data = [
     blog_masonry:true,
     downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706275601/1_STEMEX_BASIC_ELECTRICITY_USER_GUIDE_compressed_568611d535.pdf'
   },
+  {
+    id: 2,
+    img:'tutorial.png',
+    category: 'LECTURE',
+    title: 'Measurement solution with STEMEX - Exploring Photometry with Arduino and Excel',
+    date: "Jan 26 2024",
+    comment: 15,
+    desc: 'Throughout the Measurement solutions with STEMEX lessons, students will not only cultivate a solid foundational understanding but also develop practical problem-solving skills. The curriculum aims to spark a curiosity for innovation and emphasize the real-world applications of STEM in solving measurement problems in their daily lives.',
+    blog_masonry:true,
+    downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706274897/3_STEMEX_MEASUREMENT_SOLUTION_USER_GUIDE_compressed_0d7ac80688.pdf'
+  },
+
+  
+
 
 
 ]
