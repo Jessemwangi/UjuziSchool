@@ -1,7 +1,7 @@
 export const cert_data = [
     {
       id: 1,
-      img: 'course-01.jpg',
+      img: 'incub.png',
       awarder_on: 'December 28 2023',
       level: 'Incubator',
       title: 'Edutech Incubator Helsinki Batch 5',
@@ -24,7 +24,7 @@ export const cert_data = [
     },
     {
       id: 2,
-      img: 'course-02.jpg',
+      img: 'pre_incub.jpg',
       awarder_on: 'December 14 2023',
       level: 'Pre-Incubator',
       title: 'Saro/Fractured pre - Incubation Programme',
