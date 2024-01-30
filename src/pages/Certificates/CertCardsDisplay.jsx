@@ -13,7 +13,7 @@ const CertCardsDisplay = ({ data, classes }) => {
         <div className={`edu-course course-style-5 ${ classes ? classes : '' }`}>
             <div className="inner">
                 <div className="thumbnail">
-                    <Link href={`/course-details/${data.id}`}>
+                    <Link to={data.download_url} target='_blank'>
                         
                             <img src={require(`../../images/course/course-04/${data.img}`)} alt="Course Meta" />
                       
@@ -23,7 +23,7 @@ const CertCardsDisplay = ({ data, classes }) => {
                     <div className="course-price price-round"><img className='certImg' src={require(`../../images/cert/${data.download_icon}`)} alt='download file'/> </div>
                     <span className="course-level">{data.level}</span>
                     <h5 className="title">
-                        <Link href={`/course-details/${data.id}`}>
+                        <Link to={data.download_url} target='_blank' >
                             {data.title}
                         </Link>
                     </h5>
@@ -49,7 +49,7 @@ const CertCardsDisplay = ({ data, classes }) => {
                 <div className="content">
                     <span className="course-level">{ data.level }</span>
                     <h5 className="title">
-                        <n-link to="/course/course-details">{ data.title }</n-link>
+                        <Link to={data.download_url} target='_blank' >{ data.title }</Link>
                     </h5>
                     <div className="course-rating">
                         <div className="rating">
@@ -75,15 +75,13 @@ const CertCardsDisplay = ({ data, classes }) => {
                         </ul>
                     </div>
                     <div className="button-group">
-                        <a className="edu-btn btn-medium" 
-                        style={{cursor:'pointer'}}>
+                        <Link className="edu-btn btn-medium" 
+                        style={{cursor:'pointer'}} to={data.download_url} target='_blank'>
                            Download / View
                             <i className="icon-4"></i>
-                        </a>
+                        </Link>
 
-                        <button className={`wishlist-btn btn-outline-dark active}`}>
-                            <i className="icon-22"></i>
-                        </button>
+                       
                     </div>
                 </div>
             </div>
