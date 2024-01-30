@@ -10,7 +10,7 @@ const CertCardsDisplay = ({ data, classes }) => {
         <div className="thumbnail">
           <Link to={data.download_url} target="_blank">
             <img
-              src={require(`../../images/course/course-04/${data.img}`)}
+              src={require(`../../images/cert/${data.img}`)}
               alt="Course Meta"
             />
           </Link>

@@ -14,7 +14,7 @@ import SystemError from "./Error/SystemError";
 import { menuItems } from "../../../Data/mainMenu";
 
 export const rightLink = {
-  fontSize: "1.8vh",
+  fontSize: "10px",
   color: "#BA68C8",
   whiteSpace: "nowrap",
   ml: 3,
@@ -80,7 +80,7 @@ const AppAppBar = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-start",
-              gap: "20px",
+              gap: "24px",
             }}
           >
             <Link
@@ -116,7 +116,7 @@ const AppAppBar = () => {
               }, },
               flex: 6,
               justifyContent: "flex-end",
-              gap: "20px",
+              gap: "24px",
               alignItems: "center",
             }}
           >
@@ -126,7 +126,7 @@ const AppAppBar = () => {
                 underline="none"
                 color="inherit"
                 href="/member"
-                sx={{ fontSize: 20 }}
+                sx={{ fontSize: 16 }}
               >
                 {"Dashboard"}
               </Link>
