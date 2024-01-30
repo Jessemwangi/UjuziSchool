@@ -80,7 +80,7 @@ const AppAppBar = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-start",
-              gap: "30px",
+              gap: "20px",
             }}
           >
             <Link

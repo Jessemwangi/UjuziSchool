@@ -45,9 +45,10 @@ import EventListArea from './events/event-list/event-list-area';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import EventDetailsArea from './events/event-list/event-details-area';
-import Instructions from './pages/Instructions/Instructions';
-import InstructionsDetails from './pages/Instructions/InstructionsDetails';
+import Instructions from './pages/Resources/Instructions';
+import InstructionsDetails from './pages/Resources/InstructionsDetails';
 import PartnersArea from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersArea';
+import Certificates from './pages/Certificates/Certificates';
 
 const router = createBrowserRouter(
   [
@@ -80,12 +81,8 @@ const router = createBrowserRouter(
           element:<Instructions/>
         },
         {
-          path:'/instruction/:id',
-          element:<InstructionsDetails/>
-        },
-        {
-          path: '/writeus',
-          element: <WriteUs />
+          path:'certificates',
+          element:<Certificates/>
         },
         {
           path: '/events',
@@ -95,6 +92,15 @@ const router = createBrowserRouter(
           path: '/event-details/:id',
           element: <EventDetailsArea />
         },
+        {
+          path:'/instruction/:id',
+          element:<InstructionsDetails/>
+        },
+        {
+          path: '/writeus',
+          element: <WriteUs />
+        },
+       
        
         
         {
