@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+// import rm from '../../images/cert/';
 const CertCardsDisplay = ({ data, classes }) => {
 
 
@@ -14,17 +14,17 @@ const CertCardsDisplay = ({ data, classes }) => {
             <div className="inner">
                 <div className="thumbnail">
                     <Link href={`/course-details/${data.id}`}>
-                        <a>
-                            <img src={`/assets/images/course/course-04/${data.img}`} alt="Course Meta" />
-                        </a>
+                        
+                            <img src={require(`../../images/course/course-04/${data.img}`)} alt="Course Meta" />
+                      
                     </Link>
                 </div>
                 <div className="content">
-                    <div className="course-price price-round">${Math.trunc(data.course_price)}</div>
+                    <div className="course-price price-round"><img className='certImg' src={require(`../../images/cert/${data.download_icon}`)} alt='download file'/> </div>
                     <span className="course-level">{data.level}</span>
                     <h5 className="title">
                         <Link href={`/course-details/${data.id}`}>
-                            <a>{data.title}</a>
+                            {data.title}
                         </Link>
                     </h5>
                     <div className="course-rating">
@@ -35,7 +35,7 @@ const CertCardsDisplay = ({ data, classes }) => {
                             <i className="icon-23"></i>
                             <i className="icon-23"></i>
                         </div>
-                        <span className="rating-count">({data.rating})</span>
+                       
                     </div>
                     <p>{data.short_desc}</p>
                     <ul className="course-meta">
@@ -47,7 +47,7 @@ const CertCardsDisplay = ({ data, classes }) => {
             
             <div className="hover-content-aside">
                 <div className="content">
-                    <span className="course-level">{ data.category }</span>
+                    <span className="course-level">{ data.level }</span>
                     <h5 className="title">
                         <n-link to="/course/course-details">{ data.title }</n-link>
                     </h5>
@@ -59,15 +59,15 @@ const CertCardsDisplay = ({ data, classes }) => {
                             <i className="icon-23"></i>
                             <i className="icon-23"></i>
                         </div>
-                        <span className="rating-count">({ data.rating })</span>
+                      
                     </div>
                     <ul className="course-meta">
-                        <li>{ data.lesson } { data.lesson + data.lesson > 1 ? 'Lessons' : 'Lesson' }</li>
-                        <li>{ data.duration }</li>
-                        <li>{ data.level }</li>
+                      
+                        <li>{ data.awarder_on}</li>
+                       
                     </ul>
                     <div className="course-feature">
-                        <h6 className="title">What You’ll Learn?</h6>
+                        <h6 className="title">What we achieved?</h6>
                         <ul>
                             { 
                                 data.features.slice(0, 3).map( (feature, featurekey) => <li key={ featurekey }>{ feature }</li> )
