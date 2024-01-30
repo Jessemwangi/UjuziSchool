@@ -116,7 +116,7 @@ const AppAppBar = () => {
               }, },
               flex: 6,
               justifyContent: "flex-end",
-              gap: "60px",
+              gap: "20px",
               alignItems: "center",
             }}
           >
