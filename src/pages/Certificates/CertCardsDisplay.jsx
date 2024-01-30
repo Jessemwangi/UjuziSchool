@@ -39,8 +39,10 @@ const CertCardsDisplay = ({ data, classes }) => {
                     </div>
                     <p>{data.short_desc}</p>
                     <ul className="course-meta">
-                        <li><i className="icon-24"></i>{data.lesson} Lessons</li>
-                        <li><i className="icon-25"></i>{data.student} Students</li>
+                    <li><i className="icon-facebook"></i> FaceBook</li>
+                                    <li><i className="icon-linkedin2"></i>LinkedIn</li>
+                        {/* <li><i className="icon-24"></i>{data.lesson} Lessons</li>
+                        <li><i className="icon-25"></i>{data.student} Students</li> */}
                     </ul>
                 </div>
             </div>
