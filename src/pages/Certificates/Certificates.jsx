@@ -16,7 +16,7 @@ const Certificates = () => {
             <div className="container">
                 {/* <CertSortingArea cert_items={cert_data} num={certs?.slice(0,next)?.length} setCourses={setCerts} certs={certs} /> */}
                 <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                    <h2 className="title">Ujuzi Certified and Achievements</h2>
+                    <h2 className="title">Credentials</h2>
                     <span className="shape-line"><i className="icon-19"></i></span>
                 </div>
                 <div className="row g-5">
