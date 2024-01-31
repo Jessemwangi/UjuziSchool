@@ -14,7 +14,7 @@ const AdBanner = ({ home_4 }) => {
                             <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                                 <h2 className="title">Meet Our <span className="color-primary">Partners</span> </h2>
                                 <p>We thrive on collaborative problem-solving. Partnering with like-minded organizations, we deliver impactful solutions.</p>
-                                <Link className="edu-btn btn-secondary" to="/contact-us">
+                                <Link className="edu-btn btn-secondary" to="/champions">
                                 View All Partners <i className="icon-4"></i>
                                 
                                 </Link>

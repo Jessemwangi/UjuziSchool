@@ -63,7 +63,7 @@ const Attribute = () => {
       sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}
     >
 
-      <Container sx={{ mt: 15, mb: 8, display: 'flex',  flexDirection:'column', position: 'relative' }}>
+      <Container sx={{ mt: 8, mb: 8, display: 'flex',  flexDirection:'column', position: 'relative' }}>
        
         <Box
           component="img"
@@ -79,7 +79,7 @@ const Attribute = () => {
                    letterSpacing: "0.00735em",
                    textTransform:'none',
                     }}>
-          We would like to Attribute the following:-
+          OUR MENTORS
         </Typography>
         <Grid container spacing={5}>
         {

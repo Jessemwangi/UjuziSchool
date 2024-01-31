@@ -1,7 +1,7 @@
-const instructors_data = [
+const members = [
     {
         id:1,
-        img:'team-01.webp',
+        img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706718083/Boni_Founder_kdksje.jpg',
         social_links:[
             {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
@@ -14,7 +14,7 @@ const instructors_data = [
     },
     {
         id:2,
-        img:'team-02.webp',
+        img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706717924/Jesse_CTO_ygmhdo.jpg',
         social_links:[
             {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
@@ -70,4 +70,4 @@ export const yoga_instructor = [
     }
 ];
 
-export default instructors_data;
+export default members;
