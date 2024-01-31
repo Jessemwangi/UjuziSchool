@@ -1,22 +1,9 @@
 import { Link } from "@mui/material";
+import { partner_data } from "../../../Data/partners_data";
 
-export const brand_contents = {
-  pre_title: "Our Partners",
-  title: "Meet our business Partners",
-  text: "We thrive on collaborative problem-solving. Partnering with like-minded organizations, we deliver impactful solutions.",
-  brands: [
-    { country:'Finland', dateSigned:'1', month:'Jan', img: 'sopu-intro.png', year:'24', id:'2', descrip:'We provide world-class negotiation skills programs for people from all around the world. Our goal is to support students to develop communication skills that are needed throughout life.', logo: "Sopu_Academy_black.png", name: "Sopu Academy",website:"https://sopuacademy.com" },
-    { country:'Finland', dateSigned:'23', month:'Jan', img: 'phoenix-intro.png', year:'24', id:'5', descrip:'We are a coaching company passionate about social change, with a mission to mainstream the power of coaching to achieve positive change in the world.', logo: "Phoenix-logoB-02.png", name: "Phoenix Coaching" ,website:"www.phoenixcoaching.fi"},
-    { country:'Finland', dateSigned:'27', month:'Jan', img: 'cogknit-intro.png', year:'24', id:'6', descrip:'Connects Companies, Academics, Mentors, Students and allows various projects to be utilised in innovations and ensure future skills for learners', logo: "Cogknit_logo.png", name: "Cogknit " ,website:"https://www.cogknit.io"},
-    { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-01.jpg', year:'24', id:'1', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-01.png", name: "institution 1" ,website:"https://sopuacademy.com" },
-    { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-04.jpg', year:'24', id:'4', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-04.png", name: "institution 4" ,website:"https://dev.ujuzi.io/champions"},
-    { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-03.jpg', year:'24', id:'3', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-03.png", name: "institution 3" ,website:"https://dev.ujuzi.io/champions"},
-    { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-07.jpg', year:'24', id:'7', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-07.png", name: "institution 1" ,website:"https://dev.ujuzi.io/champions"},
-    { country:'Country Name', dateSigned:'30', month:'Sep', img: 'event-08.jpg', year:'24', id:'8', descrip:'Best learining institution in the application of modern day Stem, Aim at forstering Stem knowledge', logo: "brand-08.png", name: "institution 1" ,website:"https://dev.ujuzi.io/champions"},
-  ],
-};
 
-const { pre_title, title, text, brands } = brand_contents;
+
+const { pre_title, title, text, brands } = partner_data;
 
 const OurPartners = () => {
   return (

@@ -37,8 +37,9 @@ export const LessonCTA =() =>{
               <Typography variant="h2" component="h2" gutterBottom>
                 Become a Partner
               </Typography>
-              <Typography variant="h5">Join US to Reshape STEM Education from Theory to Experiential, let create an impact through STEMEX
-              
+              <Typography variant="h5">
+              Join us in crafting a brighter future for our youth. Together, let's change the world through education, youth empowerment, and innovation.
+Join us in crafting a brighter future for our youth.
               </Typography>
               <TextField
                 noBorder
