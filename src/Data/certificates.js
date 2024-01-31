@@ -28,7 +28,7 @@ export const cert_data = [
       awarder_on: 'December 14 2023',
       level: 'Pre-Incubator',
       title: 'Saro/Fracture pre - Incubation Programme',
-      download_icon:"word.png",
+      download_icon:"pic.png",
       download_url:"https://res.cloudinary.com/dk4ruyonq/image/upload/v1706648814/1963_001_74b97f4be9.pdf",
       lesson: 15,
       student: 35,
