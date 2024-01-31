@@ -98,9 +98,9 @@ export default function VideoTestimonial() {
                         <div className="testimonial-heading-area">
                             <div className="section-title section-left" data-sal-delay="50" data-sal="slide-up" data-sal-duration="800">
                                 <span className="pre-title">Testimonials</span>
-                                <h2 className="title">Why Our STEMEX solution</h2>
+                                <h2 className="title">Why STEMEX solution</h2>
                                 <span className="shape-line"><i className="icon-19"></i></span>
-                                <p>Lorem ipsum dolor sit amet consectur adipiscing elit sed eiusmod tempor incididunt labore dolore magna aliquaenim ad minim.</p>
+                                <p>STEMEX catalyzes innovation and cultivates future-ready skills by nurturing teamwork, fostering problem-solving abilities, and honing digital proficiency.</p>
                                 <Link to="#" className="edu-btn btn-large">View All Testimonials<i className="icon-4"></i></Link>
                             </div>
                         </div>
