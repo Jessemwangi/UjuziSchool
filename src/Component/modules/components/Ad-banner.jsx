@@ -12,7 +12,7 @@ const AdBanner = ({ home_4 }) => {
                     <div className="row justify-content-center">
                         <div className="col-lg-7">
                             <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                                <h2 className="title">Meet Our STEMEX <span className="color-primary">Business</span> Partners and Champions </h2>
+                                <h2 className="title">Meet Our <span className="color-primary">Partners</span> </h2>
                                 <p>We thrive on collaborative problem-solving. Partnering with like-minded organizations, we deliver impactful solutions.</p>
                                 <Link className="edu-btn btn-secondary" to="/contact-us">
                                 View All Partners <i className="icon-4"></i>
