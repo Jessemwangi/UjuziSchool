@@ -1,6 +1,6 @@
 import React from 'react';
 import TeamThree from "../../team-member/team-three";
-import instructors_data from '../../../Data/instructors';
+ import members from '../../../Data/members';
 
 const TeamArea = () => {
     return (
@@ -13,9 +13,9 @@ const TeamArea = () => {
                 </div>
 
                 <div className="row g-5">
-                    {instructors_data.slice(0,3).map((instructor) => (
-                        <div key={instructor.id} className="col-lg-4 col-md-6" data-sal-delay={instructor.delay} data-sal="slide-up" data-sal-duration="800">
-                            <TeamThree instructor={instructor} />
+                    {members.slice(0,3).map((member) => (
+                        <div key={member.id} className="col-lg-4 col-md-6" data-sal-delay={member.delay} data-sal="slide-up" data-sal-duration="800">
+                            <TeamThree member={member} />
                         </div>
                     ))}
                 </div>

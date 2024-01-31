@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const TeamThree = ({ instructor }) => {
+const TeamThree = ({ member }) => {
     return (
         <div className="edu-team-grid team-style-3">
             <div className="inner">
                 <div className="thumbnail-wrap">
                     <div className="thumbnail">
-                        <Link to={`/teamdetails/${instructor.id}`}>
+                        <Link to={`/teamdetails/${member.id}`}>
                           
-                                <img src={require(`../../images/team/team-02/${instructor.img}`)} alt="team images" />
+                                <img src={member.img} alt="team images" />
                             
                         </Link>
                     </div>
                     <ul className="team-share-info">
-                        {instructor.social_links.map((social, i) => (
+                        {member.social_links.map((social, i) => (
                             <li key={i}>
                                 <a href={social.link} target={social.target ? social.target : ''}>
                                     <i className={social.icon}></i>
@@ -23,12 +23,12 @@ const TeamThree = ({ instructor }) => {
                     </ul>
                 </div>
                 <div className="content">
-                    <h5 className="title">
-                        <Link to={`/teamdetails/${instructor.id}`}>
-                            {instructor.name}
+                    <h5 className="title" style={{color:"white", background:"#12111185"}}>
+                        <Link to={`/teamdetails/${member.id}`}>
+                            {member.name}
                         </Link>
                     </h5>
-                    <span className="designation">{instructor.title}</span>
+                    <span className="designation" style={{color:"white",background:"#12111185"}}>{member.title}</span>
                 </div>
             </div>
         </div>

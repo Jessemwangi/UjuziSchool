@@ -8,7 +8,7 @@ const TeamArea = ({ team }) => {
                     <div className="col-lg-4">
                         <div className="team-details-thumb">
                             <div className="thumbnail">
-                                <img src={require( '../../../images/team/team-02/'+ team.img)} alt="team images" />
+                                <img src={team.img} alt="team images" />
                             </div>
 
                             <ul className="social-share">
