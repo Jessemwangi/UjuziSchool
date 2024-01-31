@@ -1,7 +1,7 @@
 export const cert_data = [
     {
       id: 1,
-      img: 'incub.png',
+      img: 'pre_incub.jpg',
       awarder_on: 'December 28 2023',
       level: 'Incubator',
       title: 'Edutech Incubator Helsinki Batch 5',
@@ -17,14 +17,12 @@ export const cert_data = [
       ], 
       social_links:[
         {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
-        {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
         {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'},
-        {link: 'https://www.youtube.com/', target: '_blank', icon: 'icon-youtube'}
       ],
     },
     {
       id: 2,
-      img: 'pre_incub.jpg',
+      img: 'incub.png',
       awarder_on: 'December 14 2023',
       level: 'Pre-Incubator',
       title: 'Saro/Fracture pre - Incubation Programme',
@@ -40,9 +38,29 @@ export const cert_data = [
       ], 
       social_links:[
         {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
-        {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
         {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'},
-        {link: 'https://www.youtube.com/', target: '_blank', icon: 'icon-youtube'}
+      ],
+
+    },
+    {
+      id: 2,
+      img: 'incub.png',
+      awarder_on: 'December 14 2023',
+      level: 'Team',
+      title: 'Founder Certification',
+      download_icon:"pic.png",
+      download_url:"https://res.cloudinary.com/dk4ruyonq/image/upload/v1706648814/1963_001_74b97f4be9.pdf",
+      lesson: 15,
+      student: 35,
+      short_desc:"To ensure excellence, our foundation is equipped with the requisite knowledge, experience, and tools, ensuring that the quality delivered is of the highest standard",
+      features: [
+        'Expertise: Our foundation boasts extensive expertise, guaranteeing excellence in every endeavor.',
+        'Experience: With a wealth of experience, we navigate challenges adeptly, ensuring top-notch quality.',
+        'Tools: Equipped with cutting-edge tools, our foundation is primed for delivering excellence at all levels.'
+      ], 
+      social_links:[
+        {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
+        {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'},
       ],
 
     },
