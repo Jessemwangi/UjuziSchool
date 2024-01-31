@@ -2,9 +2,9 @@ import React from 'react';
  import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Link } from 'react-router-dom';
 import PaginationTwo from '../../Component/paginatio-2';
-import blog_data from '../../Data/blog-data';
+import resource_data from '../../Data/resource_data';
 // import m from '../../images'
-const blog_items = blog_data.filter(blog => blog.blog_masonry);
+const blog_items = resource_data.filter(blog => blog.blog_masonry);
 
 const InstructionsMasonryArea = () => {
   return (

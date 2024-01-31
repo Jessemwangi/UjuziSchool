@@ -1,4 +1,4 @@
-const blog_data = [
+const resource_data = [
   // {
   //   id: 1,
   //   img:'tutorial.png',
@@ -11,17 +11,6 @@ const blog_data = [
   //   downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1705585934/STEMEXMANUAL_4_1a4dd0228b.pdf'
   // },
   {
-    id: 3,
-    img:'tutorial.png',
-    category: 'GUIDE',
-    title: 'Introduction to Automation using Arduino, relay, and computer programming.',
-    date: "Jan 26 2024",
-    comment: 12,
-    desc: 'Throughout the fundamentals of automation and computer programming lessons, students will not only cultivate a solid foundational understanding but also develop practical problem-solving skills.',
-    blog_masonry:true,
-    downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706275316/2_STEMEX_AUTOMATION_USER_GUIDE_compressed_739dabf155.pdf'
-  },
-  {
     id: 4,
     img:'tutorial.png',
     category: 'ONLINE',
@@ -32,6 +21,18 @@ const blog_data = [
     blog_masonry:true,
     downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706275601/1_STEMEX_BASIC_ELECTRICITY_USER_GUIDE_compressed_568611d535.pdf'
   },
+  {
+    id: 3,
+    img:'tutorial.png',
+    category: 'GUIDE',
+    title: 'Introduction to Automation using Arduino, relay, and computer programming.',
+    date: "Jan 26 2024",
+    comment: 12,
+    desc: 'Throughout the fundamentals of automation and computer programming lessons, students will not only cultivate a solid foundational understanding but also develop practical problem-solving skills.',
+    blog_masonry:true,
+    downloadUrl:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706275316/2_STEMEX_AUTOMATION_USER_GUIDE_compressed_739dabf155.pdf'
+  },
+ 
   {
     id: 2,
     img:'tutorial.png',
@@ -50,4 +51,4 @@ const blog_data = [
 
 ]
 
-export default blog_data;
+export default resource_data;
