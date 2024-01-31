@@ -4,11 +4,13 @@ import PartnersPage from './PartnersPage';
 
 const PartnersArea = () => {
     return (
-        <div className="edu-event-area event-area-1">
+        <section className="section-gap-equal">
+            <div className="container">
             
-            <Attribute/>
             <PartnersPage/>
-        </div>
+            <Attribute/>
+            </div>
+        </section>
     );
 };
 
