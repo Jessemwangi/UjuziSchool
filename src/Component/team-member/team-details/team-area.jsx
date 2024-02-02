@@ -40,23 +40,23 @@ const TeamArea = ({ team }) => {
                                             <i className="icon-23"></i>
                                             <i className="icon-23"></i>
                                         </div>
-                                        <span className="rating-count">(720 Rating)</span>
+                                        <span className="rating-count"></span>
                                     </li>
                                 </ul>
                             </div>
 
                             <div className="bio-describe">
                                 <h4 className="title">About Me</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur elit sed do eius mod tempor incidid labore dolore magna aliqua. enim ad minim eniam quis nostrud exercitation ullamco laboris nisi aliquip ex commodo consequat. duis aute irure dolor in repreed ut perspiciatis unde omnis iste natus error sit voluptat em acus antium.</p>
-                                <p>doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi arch itecto beatae vitae dicta sunt explicabo.</p>
+                                <p>{team?.about_me}</p>
+                               
                             </div>
 
                             <div className="contact-info">
                                 <h4 className="title">Contact Me</h4>
                                 <ul>
-                                    <li><span>Address:</span>North Helenavile, FV77 8WS</li>
-                                    <li><span>Email:</span><a href="mailto:info@ujuzi.com" target="_blank" rel="noreferrer">info@ujuzi.com</a></li>
-                                    <li><span>Phone:</span><a href="tel:+37(417)683-4409">+358 (41) 683-4409</a></li>
+                                    <li><span>Address:</span>{team?.address}</li>
+                                    <li><span>Email:</span><a href={team?.email} target="_blank" rel="noreferrer">{team?.email}</a></li>
+                                    <li><span>Phone:</span><a href={team?.phone}>{team?.phone}</a></li>
                                 </ul>
                             </div>
                         </div>
