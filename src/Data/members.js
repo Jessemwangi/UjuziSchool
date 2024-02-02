@@ -7,10 +7,14 @@ const members = [
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
             {link: 'https://www.linkedin.com/in/boniphace-kanyathare-phd-0582a356/', target: '_blank', icon: 'icon-linkedin2'}
         ],
-        name:'Kanyathare',
+        name:'Boniphace Kanyathare',
         title:'Founder and CEO',
         delay:'50',
-        sm_text:"Pdh, Dr, and Teacher in physics as a Stem enabler"
+        about_me:'Founder and CEO',
+        contact_me:'',
+        address:'Finland',
+        phone:'+358 (46) 904 5739',
+        email:'boniphace@ujuzi.io',
     },
     {
         id:2,
@@ -20,54 +24,34 @@ const members = [
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
             {link: 'https://www.linkedin.com/in/jesse-mwangi/', target: '_blank', icon: 'icon-linkedin2'}
         ],
-        name:'Jesse',
+        name:'Jesse Mwangi',
         title:'Co founder and CTO',
         delay:'100',
-        sm_text:"Mentor and Senior ICT developer and Administration"
-    },
-
-]
-
-export const yoga_instructor = [
-    {
-        id:1,
-        img:'team-01.webp',
-        social_links:[
-            {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
-            {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-            {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'}
-        ],
-        name:'Nancy Dew',
-        title:'Yoga Trainer',
-        delay:'50',
-        sm_text:"Consectetur adipisicing elit, sed do eius mod tempor incididunt"
-    },
-    {
-        id:2,
-        img:'team-02.webp',
-        social_links:[
-            {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
-            {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-            {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'}
-        ],
-        name:'Jared Hayes',
-        title:'Yoga Trainer',
-        delay:'100',
-        sm_text:"Consectetur adipisicing elit, sed do eius mod tempor incididunt"
+        about_me:"I'm a full-stack developer with over a decade of experience in the IT industry and software development. \nI have a strong passion for software development and a commitment to continuous learning. Over the years, I've attended various workshops and training sessions in Kenya, India, and Finland to enhance my skills",
+        contact_me:'',
+        address:'Helsinki, Finland',
+        phone:'+358 (41) 310 4557',
+        email:'jesse@ujuzi.io',
     },
     {
         id:3,
-        img:'team-03.webp',
+        img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1706876524/Wende_Luvinga_d6ca03a658.jpg',
         social_links:[
             {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
             {link: 'http://twitter.com', target: '_blank', icon: 'icon-twitter'},
-            {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'}
+            {link: 'https://www.linkedin.com/in/jesse-mwangi/', target: '_blank', icon: 'icon-linkedin2'}
         ],
-        name:'Rebecca Roye',
-        title:'Yoga Trainer',
+        name:'Wende Luvinga',
+        title:'Business Consultant',
         delay:'150',
-        sm_text:"Consectetur adipisicing elit, sed do eius mod tempor incididunt"
-    }
-];
+        about_me:'Business Consultant',
+        contact_me:'',
+        address:'',
+        phone:'',
+        email:'',
+    },
+]
+
+
 
 export default members;
