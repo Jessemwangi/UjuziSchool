@@ -37,7 +37,7 @@ const AboutUsArea = () => {
                                 <h2 className="title">We empower <span className="color-secondary">Innovators</span> and creators of tomorrow.</h2>
                                 <span className="shape-line"><i className="icon-19"></i></span>
                                 <p>
-                                Ujuzi Solutions is a technology company based in Finland. We capitalize on the excellent Finnish model and collaborate with Finnish companies to solve
+                                Ujuzi is a technology company based in Finland. We capitalize on the excellent Finnish model and collaborate with Finnish companies to solve
                                  multifaceted problems and foster socio-economic development between Europe (Finland) and Africa.</p>
                                  <div>
                                  <Link

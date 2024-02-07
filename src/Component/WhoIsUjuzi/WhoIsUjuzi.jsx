@@ -30,7 +30,7 @@ const WhoIsUjuzi = () => {
               Who we are
               </Typography>
               <Typography variant="h5">
-              Ujuzi Solutions is a technology company based in Finland. We capitalize on the excellent Finnish
+              Ujuzi is a technology company based in Finland. We capitalize on the excellent Finnish
 model and collaborate with Finnish companies to solve multifaceted African problems and foster
 socio-economic development between Finland and Africa.
 

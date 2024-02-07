@@ -49,6 +49,7 @@ import Instructions from './pages/Resources/Instructions';
 import InstructionsDetails from './pages/Resources/InstructionsDetails';
 import PartnersArea from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersArea';
 import Certificates from './pages/Certificates/Certificates';
+import ViewCertificate from './pages/Certificates/ViewCertificate';
 
 const router = createBrowserRouter(
   [
@@ -100,8 +101,10 @@ const router = createBrowserRouter(
           path: '/writeus',
           element: <WriteUs />
         },
-       
-       
+        {
+          path: '/viewcert',
+          element: <ViewCertificate />
+        },     
         
         {
           path: '/sign-in',
