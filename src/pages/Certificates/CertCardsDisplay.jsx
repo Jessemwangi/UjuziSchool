@@ -82,7 +82,7 @@ const CertCardsDisplay = ({ data, classes }) => {
             <Link
               className="edu-btn btn-medium"
               style={{ cursor: "pointer" }}
-              to={data.download_url}
+              to={`/viewcert?url=${data.download_url}&title=${data.title}`}
               target="_blank"
             >
               Download / View

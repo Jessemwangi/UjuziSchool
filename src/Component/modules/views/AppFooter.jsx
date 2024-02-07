@@ -12,7 +12,7 @@ function Copyright() {
     <React.Fragment>
       {'© '}
       <Link color="inherit" href="/">
-        Ujuzi Solution
+        Ujuzi
       </Link>{' '}
       {new Date().getFullYear()}
     </React.Fragment>
