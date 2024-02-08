@@ -42,26 +42,26 @@ export const cert_data = [
       ],
 
     },
-    // {
-    //   id: 2,
-    //   img: 'boniphace_certs.png',
-    //   awarder_on: 'December 14 2023',
-    //   level: 'Team',
-    //   title: 'Founder Certification',
-    //   download_icon:"pic.png",
-    //   download_url:"https://res.cloudinary.com/dk4ruyonq/image/upload/v1706716890/boni_cert_a4f9d237c6.pdf",
-    //   lesson: 15,
-    //   student: 35,
-    //   short_desc:"To ensure excellence, our foundation is equipped with the requisite knowledge, experience, and tools, ensuring that the quality delivered is of the highest standard",
-    //   features: [
-    //     'Expertise: Our foundation boasts extensive expertise, guaranteeing excellence in every endeavor.',
-    //     'Experience: With a wealth of experience, we navigate challenges adeptly, ensuring top-notch quality.',
-    //     'Tools: Equipped with cutting-edge tools, our foundation is primed for delivering excellence at all levels.'
-    //   ], 
-    //   social_links:[
-    //     {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
-    //     {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'},
-    //   ],
+    {
+      id: 2,
+      img: 'boniphace_certs.png',
+      awarder_on: 'December 14 2023',
+      level: 'Team',
+      title: 'Founder Certification',
+      download_icon:"pic.png",
+      download_url:"https://res.cloudinary.com/dk4ruyonq/image/upload/v1707425407/Boniphace_CV_bed98303aa.pdf",
+      lesson: 15,
+      student: 35,
+      short_desc:"To ensure excellence, our foundation is equipped with the requisite knowledge, experience, and tools, ensuring that the quality delivered is of the highest standard",
+      features: [
+        'Expertise: Our foundation boasts extensive expertise, guaranteeing excellence in every endeavor.',
+        'Experience: With a wealth of experience, we navigate challenges adeptly, ensuring top-notch quality.',
+        'Tools: Equipped with cutting-edge tools, our foundation is primed for delivering excellence at all levels.'
+      ], 
+      social_links:[
+        {link: 'http://facebook.com', target: '_blank', icon: 'icon-facebook'},
+        {link: 'https://www.linkedin.com/', target: '_blank', icon: 'icon-linkedin2'},
+      ],
 
-    // },
+    },
 ]
