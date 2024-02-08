@@ -45,7 +45,7 @@ const members = [
         title:'Business Consultant',
         delay:'150',
         about_me:'Business Consultant',
-        contact_me:'',
+        contact_me:'Wende Luvinga is a business development and sustainability consultant with over 10 years of experience in developing strategies, managing, and implementing,  business projects. She has experience and knowledge of various aspects of business to optimize performance and drive success. Wende has worked with projects for international clients in several countries in Europe and East Africa. As a sustainability consultant, she has experience in guiding businesses to become socially and environmentally responsible.',
         address:'',
         phone:'',
         email:'',
