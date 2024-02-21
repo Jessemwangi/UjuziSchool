@@ -21,7 +21,7 @@ const AllPartners = ({ itemsPerPage, items }) => {
         <>
             {currentItems && currentItems.map((item, i) => {
                 return (
-                    <div key={i} className="col-lg-4 col-md-6">
+                    <div key={item.id} className="col-lg-4 col-md-6">
                         <div className="edu-event event-style-1">
                             <PartnerListItem item={item} />
                         </div>
