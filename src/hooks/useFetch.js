@@ -9,20 +9,21 @@ import { useEffect, useState } from "react"
 import { get_Data } from "../UtilitiesFunctions/Function"
 import { getJWTAndID, getSecureUserUid } from "../UtilitiesFunctions/secureUserData"
 
-const useFetch = (url,token) =>{
-
+const useFetch =  (url,token) =>{
     const [data, setData] =useState([])
     const [loading, setLoading] =useState(false)
     const [error, setError] =useState(false)
 
 useEffect(() => {
+  
   if (url){
 
     const getData = async () =>{
-
+      const tokenn = await getJWTAndID()
+      console.log(tokenn)
       try {
         setLoading(true)
-        const {data} =await get_Data(url,token)
+        const {data} =await get_Data(url,tokenn.JWT)
         setData(data)
         setLoading(false)
   

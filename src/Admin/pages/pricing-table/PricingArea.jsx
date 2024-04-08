@@ -19,8 +19,8 @@ function PricingTable({
     <div
       className="col-lg-4"
       data-sal-delay={delay}
-      // data-sal="slide-up"
-      data-sal-duration="400"
+      //  data-sal="slide-up"
+      data-sal-duration="800"
     >
       <div className="pricing-table">
         <div className="pricing-header">
