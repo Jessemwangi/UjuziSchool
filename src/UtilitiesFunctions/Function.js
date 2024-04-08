@@ -1,9 +1,9 @@
 
 import axios from "axios";
-export const token = process.env.REACT_APP_SERVER_API;
+import { getJWT } from "./secureUserData";
+export const token =await getJWT();
 export const server = process.env.REACT_APP_SERVER_URL
 export const backend = process.env.REACT_APP_SERVER
-
 // video time functions 
 
 export const formatHours = (seconds) => {
@@ -26,11 +26,12 @@ export const formatHours = (seconds) => {
 
 
 
-export const makeRequest = axios.create(
+export const makeRequest =(token,url)=> axios.create(
+  
   {
-    baseURL: server,
+    baseURL: `${server}${url}`,
     headers: {
-
+      // Accept: "application/json",
       Authorization: `Bearer ${token}`
     }
   }
