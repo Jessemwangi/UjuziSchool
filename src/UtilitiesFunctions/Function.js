@@ -1,6 +1,5 @@
 
 import axios from "axios";
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { getJWT } from "./secureUserData";
 export const token =await getJWT();
 export const server = process.env.REACT_APP_SERVER_URL
