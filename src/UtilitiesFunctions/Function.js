@@ -1,7 +1,6 @@
 
 import axios from "axios";
-import { getJWT } from "./secureUserData";
-export const token =await getJWT();
+export const token = process.env.REACT_APP_SERVER_API;
 export const server = process.env.REACT_APP_SERVER_URL
 export const backend = process.env.REACT_APP_SERVER
 // video time functions 
