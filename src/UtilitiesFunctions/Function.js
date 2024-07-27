@@ -36,7 +36,7 @@ export const makeRequest =(token,url)=> axios.create(
   }
 )
 
-export const get_Data = async (url, apitoken = token) => {
+export const get_Data = async (url, apitoken) => {
 
   try {
     const response = await axios.get(`${server}${url}`, 

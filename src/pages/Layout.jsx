@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Main from './Main/Main';
 import AppAppBar from '../Component/modules/views/AppAppBar';
-// import { useGetUserInfo } from '../hooks/useFetch';
 import '../index.scss'
 import ScrollToTop from '../layout/scroll-to-top';
 import { ToastContainer } from 'react-toastify';
