@@ -2,9 +2,8 @@
 import React, { Fragment, useEffect, useState } from "react"; 
 import "../../pages/SubCategories/SubCategories.scss";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useFetch } from "../../hooks/useFetch";
-import { backend, get_Data, server } from "../../UtilitiesFunctions/Function";
+import { backend, get_Data } from "../../UtilitiesFunctions/Function";
 import { useUser } from "../../hooks/UserContext";
 import Typography from "../../Component/modules/components/Typography";
 import AppSingleVideo from "../../Component/SingleVideo/AppSingleVideo";
@@ -58,7 +57,7 @@ const { data, loading, error } = useFetch(
   
      const getuserreg = async () => {
       try {
-       const {data} = await get_Data(userurl) 
+       const {data} = await get_Data(userurl,user.jwt) 
        console.log(data)
    } catch (error) {
     console.log(error)
@@ -67,7 +66,7 @@ const { data, loading, error } = useFetch(
       
         }
     getuserreg()
-  },[userurl])    
+  },[user.jwt, userurl])    
     
   if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
   

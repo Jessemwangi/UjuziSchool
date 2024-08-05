@@ -43,7 +43,6 @@ function SignIn() {
         identifier: values.email,
         password: values.password,
       });
-console.log(response)
       const userinfo = await get_Data(
         `/users/${response.user.id}?populate=*`,
         response.jwt

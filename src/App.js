@@ -25,7 +25,7 @@ import SignOut from './Component/SignOut';
 import Profile from './Admin/pages/profile/Profile';
 import { UserProvider } from './hooks/UserContext';
 import Dashboard from './Admin/Dashboard';
-import MemberVideos from './Admin/Videos/MemberVideos';
+// import MemberVideos from './Admin/Videos/MemberVideos';
 import AdminMain from './Admin/AdminMain';
 import SingleCategory from './pages/Category/SingleCategory';
 import AboutUjuzi from './Component/modules/components/pages/AboutUjuzi';
@@ -50,6 +50,7 @@ import InstructionsDetails from './pages/Resources/InstructionsDetails';
 import PartnersArea from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnersArea';
 import Certificates from './pages/Certificates/Certificates';
 import ViewCertificate from './pages/Certificates/ViewCertificate';
+import CoursesLessonsCategories from './Component/modules/views/CoursesLessonsCategories';
 
 const router = createBrowserRouter(
   [
@@ -72,6 +73,10 @@ const router = createBrowserRouter(
         {
           path: '*',
           element: <ErrorPage />
+        },
+        {
+          path:'/cats',
+          element:<CoursesLessonsCategories/>
         },
         {
           path: '/contact',

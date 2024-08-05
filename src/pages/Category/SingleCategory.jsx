@@ -9,15 +9,18 @@ import { useParams } from "react-router-dom";
 // import { data } from "../../data";
 import SearchBar from "../../Component/SearchBar";
 import { useUser } from "../../hooks/UserContext";
-import { get_Data } from "../../UtilitiesFunctions/Function";
 import MessageInfo from "../../Component/modules/components/MessageInfo";
+import { useFetch } from "../../hooks/useFetch";
+
+
 
 const SingleCategory = (props = { title: "jesse" }) => {
   const { user } = useUser();
   const id = parseInt(useParams().id);
   const [searchQuery, setSearchQuery] = useState();
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(true);
   const [catVideos, setCatVideos] = useState();
+  const [err,setErr] =useState('')
   const [subCategories, setSubCategories] = useState();
   const [units, setUnits] = useState();
   const [games, setGame] = useState();
@@ -27,65 +30,73 @@ const SingleCategory = (props = { title: "jesse" }) => {
   const freeVideos =
     "?populate[subscription_packages][filters][name][$eq]=FreeVideo&populate[subscription_packages][populate]=videos.videoUrl&populate=pic&populate[topics]=*&populate[course_subcategories]=*&populate[questions]=*";
   const userVideos = `?populate=*&filters[user]=${user?.id}`;
-
+  const { data, loading:isloading, error }  =useFetch(`/coursecategories/${id}/${freeVideos}`)
   useEffect(() => {
-    const getCategory = async () => {
+
+    if (error) {
+      setErr(error?.response?.data?.error?.message);
+      setIsLoading(false); 
+    }
+    
+    if (!error && isloading) {
       setIsLoading(true);
-      const response = await get_Data(`/coursecategories/${id}/${freeVideos}`);
-      // console.log(response)
-      // setCatVideos()
-      setCategory(response.data);
+    }
+  
+    if (!error && !isloading) {
+      setErr();
+      setIsLoading(false);
+    }
+    if (data?.length > 0) {
+      setCategory(data);
       const  rawUnsortedVideo = (
-        response?.data?.attributes?.subscription_packages?.data.map(
+        data?.attributes?.subscription_packages?.data.map(
           (freeVideos) => freeVideos?.attributes?.videos?.data
         )
       );
-      // const videoarray[]
-      // console.log(videoarray[0])
-      setCatVideos( await vvideo(rawUnsortedVideo))
-      setExam(response?.data?.attributes?.questions?.data.length);
-      setGame(response?.data?.attributes?.questions?.data.length);
-      setSimulation(response?.data?.attributes?.simulations?.data.length);
-      setUnits(await vvideo(response?.data?.attributes?.topics?.data));
+      setCatVideos(async ()=> await vvideo(rawUnsortedVideo))
+      setExam(data?.attributes?.questions?.data.length);
+      setGame(data?.attributes?.questions?.data.length);
+      setSimulation(data?.attributes?.simulations?.data.length);
+      setUnits(async () =>await vvideo(data?.attributes?.topics?.data));
       setSubCategories(
-        response?.data?.attributes?.course_subcategories?.data.length
+        data?.attributes?.course_subcategories?.data.length
       );
-      setIsLoading(false)
-    };
-    getCategory();
-    setIsLoading(false)
-    const vvideo = async (rawVideo) => {
-      if (!rawVideo) return []; // Return an empty array if rawVideo is null or undefined
-      
-      // Flatten the two-level nested array
-      const flattenedVideo = rawVideo.flat();
-      setIsLoading(true)
-      const attribVideo = await Promise.all(flattenedVideo.map(async (video) => {
-        const { id, attributes } = video;
-        //  console.log(attributes)
-        const {
-          createdAt,
-          updatedAt,
-          title,
-          description,
-        } = attributes;
-    
-        const videoUrl = attributes.videoUrl?.data?.attributes        ;
-    
-        return {
-          id,
-          createdAt,
-          updatedAt,
-          title,
-          description,
-          videoUrl,
-        };
-      }));
-    setIsLoading(false)
-      return attribVideo;
-    };
-  }, [id]);
+    }
   
+  }, [data, error, isloading]);
+
+  
+  const vvideo = async (rawVideo) => {
+    if (!rawVideo) return []; // Return an empty array if rawVideo is null or undefined
+    
+    // Flatten the two-level nested array
+    const flattenedVideo = rawVideo.flat();
+    setIsLoading(true)
+    const attribVideo = await Promise.all(flattenedVideo.map(async (video) => {
+      const { id, attributes } = video;
+      //  console.log(attributes)
+      const {
+        createdAt,
+        updatedAt,
+        title,
+        description,
+      } = attributes;
+  
+      const videoUrl = attributes.videoUrl?.data?.attributes        ;
+  
+      return {
+        id,
+        createdAt,
+        updatedAt,
+        title,
+        description,
+        videoUrl,
+      };
+    }));
+  setIsLoading(false)
+    return attribVideo;
+  };
+
   const [maxPlay, setMaxPlay] = useState(1000);
   const [sort, setSort] = useState();
   console.log(units)

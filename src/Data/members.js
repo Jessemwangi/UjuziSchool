@@ -25,7 +25,7 @@ const members = [
             {link: 'https://www.linkedin.com/in/jesse-mwangi/', target: '_blank', icon: 'icon-linkedin2'}
         ],
         name:'Jesse Mwangi',
-        title:'Co founder and CTO',
+        title:'Co Founder and CTO',
         delay:'100',
         about_me:"I'm a full-stack developer with over a decade of experience in the IT industry and software development. \nI have a strong passion for software development and a commitment to continuous learning. Over the years, I've attended various workshops and training sessions in Kenya, India, and Finland to enhance my skills",
         contact_me:'',
