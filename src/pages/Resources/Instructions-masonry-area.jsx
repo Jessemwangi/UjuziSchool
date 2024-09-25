@@ -13,7 +13,7 @@ const InstructionsMasonryArea = () => {
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const data = await getdata.getAll('https://api.ujuzi.io/api/study-resources?populate=image&populate=file');
+              const data = await getdata.getAll(`${process.env.REACT_APP_SERVER_URL}/study-resources?populate=image&populate=file`);
               setResources(data.data);
             } catch (error) {
               console.error('Error fetching data:', error);
