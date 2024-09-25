@@ -37,7 +37,6 @@ export const makeRequest =(token,url)=> axios.create(
 )
 
 export const get_Data = async (url, apitoken) => {
-
   try {
     const response = await axios.get(`${server}${url}`, 
       {
@@ -65,6 +64,19 @@ export const postData = async (url, data,  apitoken = token) => {
           Authorization: `Bearer ${apitoken}`
         }
       })
+    return response.data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+
+}
+
+export const postNoToken = async (url, data) => {
+
+  try {
+    
+    const response = await axios.post(`${server}${url}`, data,)
     return response.data
   } catch (error) {
     console.log(error)

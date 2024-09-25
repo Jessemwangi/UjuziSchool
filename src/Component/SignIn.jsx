@@ -9,7 +9,7 @@ import RFTextField from "./modules/form/RFTextField";
 import FormButton from "./modules/form/FormButton";
 import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
-import { get_Data, postData } from "../UtilitiesFunctions/Function";
+import { get_Data, postNoToken } from "../UtilitiesFunctions/Function";
 import { secureJWTAndID } from "../UtilitiesFunctions/secureUserData";
 import Snackbar from "./modules/components/Snackbar";
 import { useNavigate } from "react-router-dom";
@@ -39,9 +39,9 @@ function SignIn() {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const response = await postData(`/auth/local`, {
-        identifier: values.email,
-        password: values.password,
+      const response = await postNoToken(`/auth/local`, {
+        "identifier": values.email,
+        "password": values.password,
       });
       const userinfo = await get_Data(
         `/users/${response.user.id}?populate=*`,

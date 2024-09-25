@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
  import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import PaginationTwo from '../../Component/paginatio-2';
-import resource_data from '../../Data/resource_data';
 import getdata from '../../UtilitiesFunctions/getData'
 import { timeformat } from '../../UtilitiesFunctions/formatTime';
 
 const InstructionsMasonryArea = () => {
         const [resources, setResources] = useState(null);
+        const [metaInfo, setMetaInfo] = useState(null)
         const [err,setErr] = useState('')
-      
+        const [searchParams] = useSearchParams();
+
+  // Get the 'age' parameter from the query string
+  const pageNo = searchParams.get('page') || 1;
+
+      const url =`/study-resources?populate=image&populate=file&filters[isDeleted]=false&pagination[pageSize]=5&pagination[page]=${pageNo}`
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const data = await getdata.getAll(`${process.env.REACT_APP_SERVER_URL}/study-resources?populate=image&populate=file`);
+              const data = await getdata.getAll(`${process.env.REACT_APP_SERVER_URL}${url}`);
               setResources(data.data);
+              setMetaInfo(data?.meta)
             } catch (error) {
               console.error('Error fetching data:', error);
               setErr(error.message)
@@ -22,7 +28,7 @@ const InstructionsMasonryArea = () => {
           };
       
           fetchData();
-        }, []);
+        }, [url]);
   return (
         <section className="section-gap-equal">
             <div className="container">
@@ -88,7 +94,7 @@ const InstructionsMasonryArea = () => {
                 </div>
                 <ul className="edu-pagination top-space-30">
                     {/* pagination start */}
-                    {/* <PaginationTwo /> */}
+                  {  metaInfo && <PaginationTwo meta={metaInfo}/> }
                     {/* pagination end */}
                 </ul>
             </div>

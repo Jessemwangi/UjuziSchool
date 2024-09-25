@@ -20,10 +20,11 @@ useEffect(() => {
 
     const getData = async () =>{
       const userInfo = await getJWTAndID()
-   
+   const token = userInfo.JWT;
       try {
         setLoading(true)
-        const {data} =await get_Data(url,userInfo.jwt)
+        const {data} =await get_Data(url,token)
+        console.log('hello data', data)
         setData(data)
         setLoading(false)
        
