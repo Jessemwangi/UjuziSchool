@@ -7,8 +7,7 @@ import { Box, Grid } from "@mui/material";
 import { Field, Form, FormSpy } from "react-final-form";
 import FormFeedback from "../../../Component/modules/form/FormFeedback";
 import FormButton from "../../../Component/modules/form/FormButton";
-import { server } from "../../../UtilitiesFunctions/Function";
-import axios from "axios";
+import { postData } from "../../../UtilitiesFunctions/Function";
 import { required } from "../../../Component/modules/form/validation";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../../hooks/UserContext";
@@ -35,10 +34,12 @@ const RegisterStudent = () => {
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
-      await axios.post(`${server}/student/sign-up`, {
+      const data = {
         ...values,
         agents_detail:user.id
-      });
+      }
+      await postData(`/student/sign-up`, { data }, user?.jwt);
+      // await axios.post(`${server}/student/sign-up`, data);
       setName(values.studentName);
       setSent(true);
       onSubmitSuccess(values);

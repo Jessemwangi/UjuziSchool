@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Form, Field, FormSpy } from "react-final-form";
-import Box from "@mui/material/Box";
-import AppForm from "../../../Component/modules/views/AppForm";
 import { Grid, Link } from "@mui/material";
 import RFTextField from "../../../Component/modules/form/RFTextField";
 import FormFeedback from "../../../Component/modules/form/FormFeedback";
@@ -24,16 +22,21 @@ const Profile = () => {
     user?.id ? `/profiles?populate=*&filters[user]=${user?.id}` : null
   );
 
-  useEffect(() => {
-    if (!loading && error && data && data.length > 0) {
-      setProfileId(data[0].id);
-    }
-  }, [data, error, loading]);
+    // Set profileId when data is fetched
+    useEffect(() => {
+      if (!loading && data && data.length > 0) {
+        setProfileId(data[0].id);
+      }
+    }, [data, loading]);
+
+ // Handle errors in a side effect to prevent re-renders
+ useEffect(() => {
+  if (error) {
+    setErr(error?.response?.data?.error?.message || 'An unknown error occurred');
+  }
+}, [error]);
 
   if (loading) return <p>Loading</p>;
-  if (error) {
-    setErr(error?.response?.data?.error?.message);
-  }
 
   const initialValues = {
     country: data[0]?.attributes?.country || "",
@@ -50,11 +53,11 @@ const Profile = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const profileData = { ...values, user: [user?.id] };
+      const data = { ...values, user: [user?.id] };
       if (profileId) {
-        await putData(`/profiles/${profileId}`, { profileData }, user?.jwt);
+        await putData(`/profiles/${profileId}`, { data }, user?.jwt);
       } else {
-        await postData("/profiles", { profileData }, user?.jwt);
+        await postData("/profiles", { data}, user?.jwt);
       }
     } catch (error) {
       console.error(
