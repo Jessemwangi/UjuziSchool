@@ -23,7 +23,7 @@ useEffect(() => {
    const token = userInfo.JWT;
       try {
         setLoading(true)
-        const {data} =await get_Data(url,token)
+        const data =await get_Data(url,token)
         console.log('hello data', data)
         setData(data)
         setLoading(false)
