@@ -34,11 +34,8 @@ const RegisterStudent = () => {
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
-      const data = {
-        ...values,
-        agents_detail:user.id
-      }
-      await postData(`/student/sign-up`, { data }, user?.jwt);
+      await postData(`/student/sign-up`, {  ...values,
+        agents_detail:user.id }, user?.jwt);
       // await axios.post(`${server}/student/sign-up`, data);
       setName(values.studentName);
       setSent(true);
