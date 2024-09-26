@@ -19,13 +19,13 @@ const Profile = () => {
   const { user } = useUser();
 
   const { data, loading, error } = useFetch(
-    user?.id ? `/profiles?populate=*&filters[user]=${user?.id}` : null
+    user?.id ? `/users/${user?.id}?populate=*` : null
   );
-
+console.log(data, loading, error)
     // Set profileId when data is fetched
     useEffect(() => {
       if (!loading && data && data.length > 0) {
-        setProfileId(data[0].id);
+        setProfileId(data?.profile?.id);
       }
     }, [data, loading]);
 
@@ -39,16 +39,16 @@ const Profile = () => {
   if (loading) return <p>Loading</p>;
 
   const initialValues = {
-    country: data[0]?.attributes?.country || "",
-    city: data[0]?.attributes?.city || "",
-    address: data[0]?.attributes?.address || "",
-    postalCode: data[0]?.attributes?.postalCode || "",
-    occupation: data[0]?.attributes?.occupation || "",
-    pronoun: data[0]?.attributes?.pronoun || "",
-    otherName: data[0]?.attributes?.otherName || "",
-    phoneNumber: data[0]?.attributes?.phoneNumber || "",
-    title: data[0]?.attributes?.title || "",
-    imageUrl: data[0]?.attributes?.imageUrl || null,
+    country: data?.profile?.country || "",
+    city: data?.profile?.city || "",
+    address: data?.profile?.address || "",
+    postalCode: data?.profile?.postalCode || "",
+    occupation: data?.profile?.occupation || "",
+    pronoun: data?.profile?.pronoun || "",
+    otherName: data?.profile?.otherName || "",
+    phoneNumber: data?.profile?.phoneNumber || "",
+    title: data?.profile?.title || "",
+    imageUrl: data?.profile?.imageUrl || null,
   };
 
   const handleSubmit = async (values) => {
