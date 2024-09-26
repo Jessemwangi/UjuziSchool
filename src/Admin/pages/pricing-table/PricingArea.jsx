@@ -68,7 +68,7 @@ const PricingArea = () => {
   const [isLoading,setIsLoading] =useState(false)
   const [err, setErr] =useState()
   const [itemsPerPackage, setItemsPerPackage] = useState([]);
-  const url ='/subscription-packages?populate[]=item_per_packages.subscription_package_items&populate=*'
+  const url ='/subscription-packages?populate[]=item_per_packages.subscription_package_items'
   const { data, loading, error }  =useFetch(url)
   useEffect(() => {
 
@@ -85,8 +85,8 @@ const PricingArea = () => {
       setErr();
       setIsLoading(false);
     }
-    if (data?.length > 0) {
-      setSubscription(data);
+    if (!loading && !error && data) {
+      setSubscription(data.data);
     }
   
   }, [data, error, loading]);
@@ -107,7 +107,7 @@ const PricingArea = () => {
             <i className="icon-19"></i>
           </span>
         </div>
-
+{console.log(subscription)}
         <div className="row g-5">
           {subscription &&
             subscription?.map(({attributes,id})=>
