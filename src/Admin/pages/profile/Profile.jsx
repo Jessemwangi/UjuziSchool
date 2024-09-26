@@ -21,13 +21,13 @@ const Profile = () => {
   const { data, loading, error } = useFetch(
     user?.id ? `/users/${user?.id}?populate=*` : null
   );
-console.log(data, loading, error)
+
     // Set profileId when data is fetched
     useEffect(() => {
-      if (!loading && data && data.length > 0) {
+      if (!loading && !error && data) {
         setProfileId(data?.profile?.id);
       }
-    }, [data, loading]);
+    }, [data, error, loading]);
 
  // Handle errors in a side effect to prevent re-renders
  useEffect(() => {

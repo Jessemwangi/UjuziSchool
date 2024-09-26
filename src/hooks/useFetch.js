@@ -24,7 +24,7 @@ useEffect(() => {
       try {
         setLoading(true)
         const data =await get_Data(url,token)
-        console.log('hello data', data)
+        // console.log('hello data', data)
         setData(data)
         setLoading(false)
        
