@@ -9,8 +9,8 @@ const Pricing = () => {
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
                 <PriceIntro/>
-            <CtaArea/>
               <PricingArea/>
+            <CtaArea/>
             </div>
         </div>
 

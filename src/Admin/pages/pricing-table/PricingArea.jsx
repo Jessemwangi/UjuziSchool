@@ -46,9 +46,9 @@ function PricingTable({
             <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Course discussions
             </li>
-            <li className={`${item_off_1 ? "item-off" : ""}`}>
+            {/* <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Offline learning
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -68,7 +68,7 @@ const PricingArea = () => {
   const [isLoading,setIsLoading] =useState(false)
   const [err, setErr] =useState()
   const [itemsPerPackage, setItemsPerPackage] = useState([]);
-  const url ='/subscription-packages?populate[]=item_per_packages.subscription_package_items'
+  const url ='/subscription-packages?populate[0]=item_per_packages.subscription_package_items&populate[]=charges'
   const { data, loading, error }  =useFetch(url)
   useEffect(() => {
 
@@ -94,7 +94,7 @@ const PricingArea = () => {
     if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
     if (isLoading) return <h2>loading .....</h2>
   return (
-    <div className="edu-section-gap">
+   
       <div className="container">
         <div
           className="section-title section-center"
@@ -132,7 +132,7 @@ const PricingArea = () => {
 
         </div>
       </div>
-    </div>
+   
   );
 };
 
