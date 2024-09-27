@@ -14,7 +14,7 @@ const InstructionsMasonryArea = () => {
   // Get the 'age' parameter from the query string
   const pageNo = searchParams.get('page') || 1;
 
-      const url =`/study-resources?populate=image&populate=file&filters[isDeleted]=false&pagination[pageSize]=5&pagination[page]=${pageNo}`
+      const url =`/study-resources?populate=image&populate=file&filters[isDeleted]=false&pagination[pageSize]=6&pagination[page]=${pageNo}`
         useEffect(() => {
           const fetchData = async () => {
             try {
