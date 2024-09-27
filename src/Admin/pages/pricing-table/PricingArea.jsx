@@ -46,9 +46,9 @@ function PricingTable({
             <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Course discussions
             </li>
-            <li className={`${item_off_1 ? "item-off" : ""}`}>
+            {/* <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Offline learning
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -68,7 +68,7 @@ const PricingArea = () => {
   const [isLoading,setIsLoading] =useState(false)
   const [err, setErr] =useState()
   const [itemsPerPackage, setItemsPerPackage] = useState([]);
-  const url ='/subscription-packages?populate[]=item_per_packages.subscription_package_items&populate=*'
+  const url ='/subscription-packages?populate[0]=item_per_packages.subscription_package_items&populate[]=charges'
   const { data, loading, error }  =useFetch(url)
   useEffect(() => {
 
@@ -85,8 +85,8 @@ const PricingArea = () => {
       setErr();
       setIsLoading(false);
     }
-    if (data?.length > 0) {
-      setSubscription(data);
+    if (!loading && !error && data) {
+      setSubscription(data.data);
     }
   
   }, [data, error, loading]);
@@ -94,7 +94,7 @@ const PricingArea = () => {
     if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
     if (isLoading) return <h2>loading .....</h2>
   return (
-    <div className="edu-section-gap">
+   
       <div className="container">
         <div
           className="section-title section-center"
@@ -107,7 +107,7 @@ const PricingArea = () => {
             <i className="icon-19"></i>
           </span>
         </div>
-
+{console.log(subscription)}
         <div className="row g-5">
           {subscription &&
             subscription?.map(({attributes,id})=>
@@ -132,7 +132,7 @@ const PricingArea = () => {
 
         </div>
       </div>
-    </div>
+   
   );
 };
 

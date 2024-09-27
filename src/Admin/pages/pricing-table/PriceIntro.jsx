@@ -10,7 +10,7 @@ const PriceIntro = () => {
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
     return (
         <>
-            <div className="gap-bottom-equal edu-about-area about-style-1">
+            <div className="edu-about-area about-style-1">
                 <div className="container edublink-animated-shape">
                     <div className="row g-5 align-items-center">
                         <div className="col-lg-6">
