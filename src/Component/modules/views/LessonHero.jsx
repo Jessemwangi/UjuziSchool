@@ -4,7 +4,7 @@ import Typography from '../components/Typography';
 import LessonHeroLayout from'./LessonHeroLayout'
 
 const backgroundImage =
-  'https://source.unsplash.com/1400x720/?online';
+  'https://res.cloudinary.com/dk4ruyonq/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1731078002/herobanner_e6hrso.png';
 
 export default function LessonHero() {
   return (
