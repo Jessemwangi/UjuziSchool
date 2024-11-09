@@ -13,7 +13,7 @@ const members = [
         about_me:'Founder and CEO',
         contact_me:'',
         address:'Finland',
-        phone:'+358 (46) 904 5739',
+        phone:'+358 (45) 196 4808',
         email:'boniphace@ujuzi.io',
     },
     {

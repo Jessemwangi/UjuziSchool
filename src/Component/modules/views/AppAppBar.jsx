@@ -46,9 +46,9 @@ const mobiLink = {
 
 const AppAppBar = () => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [data, setData] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
-  const [err, setErr] = React.useState();
+  // const [data, setData] = React.useState(null);
+  const [loading] = React.useState(false);
+  const [err] = React.useState();
   const { user, ctxLoading } = useUser();
 
   const toggleDrawer = (open) => (event) => {

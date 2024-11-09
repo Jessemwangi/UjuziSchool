@@ -52,11 +52,11 @@ const ContactMeArea = () => {
                                         </li>
                                         <li>
                                             <h5 className="title">Phone</h5>
-                                            <p><a href="tel:+358 46 904 5739">(+358) 46 904 5739</a></p>
+                                            <p><a href="tel:+358 45 196 4808">(+358) 45 196 4808</a></p>
                                         </li>
                                     </ul>
                                     <ul className="social-share">
-                                        <li><a href="#"><i className="icon-share-alt"></i></a></li>
+                                        <li><a href="/"><i className="icon-share-alt"></i></a></li>
                                         <SocialShare/>
                                     </ul>
                                 </div>

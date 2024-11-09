@@ -4,8 +4,6 @@ import { LessonSmokingHero } from '../../Component/modules/views/LessonSmokingHe
 import withRoot from '../../Component/modules/withRoot';
 import { LessonCTA } from '../../Component/modules/views/LessonCTA';
 import WhyChose from '../../Component/WhoIsUjuzi/AboutUjuzi/why-chose';
-import AboutUsArea from '../../Component/WhoIsUjuzi/AboutUjuzi/about-us-area';
-import OurPartners from '../../Component/WhoIsUjuzi/AboutUjuzi/OurPartners';
 import AdBanner from '../../Component/modules/components/Ad-banner';
 import VideoTestimonial from '../../Component/Testimonials/VideoTestimonial';
 

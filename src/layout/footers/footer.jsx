@@ -6,7 +6,7 @@ const footer_contents = {
     logoDark: logolight,
     desc: 'A Finnish company which deals with scientific and technical research and development.',
     add: 'Simonkyläntie 11 B 9 01390 Vantaa',
-    call: '+358 46 904 5739',
+    call: '+358 45 196 4808',
     email: 'info@ujuzi.io',
     widgets: [
         {
@@ -39,7 +39,7 @@ const footer_contents = {
 
 }
 
-const { logoDark, logoLight, desc, add, call, email, widgets } = footer_contents;
+const { desc, add, call, email, widgets } = footer_contents;
 
 const Footer = ({ style_2, dark_bg,home_4 }) => {
     return (
