@@ -23,7 +23,7 @@ const CtaArea = () => {
                                 <div className="content">
                                     <span className="subtitle">Call Us Via:</span>
                                     <h3 className="title">
-                                        <a href="tel:+358 46 904 5739">+358 46 904 5739</a>
+                                        <a href="tel:+358 45 196 4808">+358 45 196 4808</a>
                                     </h3>
                                 </div>
                             </div>

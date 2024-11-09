@@ -25,7 +25,7 @@ const ContactUsArea = () => {
                                 </li>
                                 <li>
                                     <h5 className="title">Phone</h5>
-                                    <p><a href="tel:+358469045739">(+358) 46 904 5739</a></p>
+                                    <p><a href="tel:+358 45 196 4808">(+358) 45 196 4808</a></p>
                                 </li>
                             </ul>
                             <ul className="social-share">
