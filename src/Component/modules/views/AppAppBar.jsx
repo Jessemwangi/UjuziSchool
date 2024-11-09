@@ -101,7 +101,7 @@ const AppAppBar = () => {
               variant="h6"
               underline="none"
               color="inherit"
-              href="/resources"
+              href="https://learn.ujuzi.io/course-style-2"
               sx={{ textAlign: "center", fontSize: 20 }}
             >
               {"Learn Now"} <i className="icon-4"></i>
