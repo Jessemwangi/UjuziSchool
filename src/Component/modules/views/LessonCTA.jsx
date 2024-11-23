@@ -7,7 +7,6 @@ import TextField from '../components/TextField';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 import dotted from '../../../static/assets/productCTAImageDots.png'
-import library from '../../../static/images/library.png'
 
 export const LessonCTA =() =>{
   const [open, setOpen] = React.useState(false);
@@ -87,7 +86,7 @@ Join us in crafting a brighter future for our youth.
           <Box
             component="img"
      
-            src={library}
+            src={'https://res.cloudinary.com/dk4ruyonq/image/upload/v1732388256/library_cnxh5h.png'}
             alt="call to action"
             sx={{
               position: 'absolute',

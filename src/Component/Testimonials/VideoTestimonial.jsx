@@ -143,7 +143,7 @@ export default function VideoTestimonial() {
                                 <SwiperSlide key={i}>
                                     <div className="video-gallery video-gallery-5" >
                                 <div className="thumbnail">
-                                    <img src={require('../../images/others/video-03.webp')} alt="Thumb" />
+                                    <img src={'https://res.cloudinary.com/dk4ruyonq/image/upload/v1732387923/video-03_evsjyd.png'} alt="Thumb" />
                                     <button onClick={()=>handleVideoClick(testi.videoId)} className="video-play-btn video-popup-activation">
                                         <i className="icon-18"></i>
                                     </button>

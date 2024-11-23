@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-import ujuzi from '../../../static/assets/equipt1.jpg'
 import { keyframes } from '@emotion/react';
 
 export const LessonSmokingHero = () =>{
@@ -40,7 +39,7 @@ export const LessonSmokingHero = () =>{
       </Typography>
       <Box
         component="img"
-        src={ujuzi}
+        src={'https://res.cloudinary.com/dk4ruyonq/image/upload/v1732388570/equipt1_siczrn.png'}
         alt="buoy"
         sx={{ width: 80, borderRadius:'9px', border: 'solid 4px #040535', boxShadow:'2px 3px 7px #040535', animation: `${bounce} 1s infinite` }}
       />
