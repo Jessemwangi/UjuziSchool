@@ -6,6 +6,7 @@ import { LessonCTA } from '../../Component/modules/views/LessonCTA';
 import WhyChose from '../../Component/WhoIsUjuzi/AboutUjuzi/why-chose';
 import AdBanner from '../../Component/modules/components/Ad-banner';
 import VideoTestimonial from '../../Component/Testimonials/VideoTestimonial';
+ import CounterStatistics from '../../Component/Counter/CounterStatistics'
 
 function Index() {
 
@@ -13,7 +14,8 @@ function Index() {
     <React.Fragment>
       <LessonHero/>
       <WhyChose />
-      {/* <AboutUsArea /> */}
+     {/* <AboutUsArea />  */}
+     <CounterStatistics/>
       <AdBanner/>
       {/* <OurPartners/> */}
       {/* <LessonHowItWorks /> */}
