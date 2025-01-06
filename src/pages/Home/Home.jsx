@@ -7,6 +7,7 @@ import WhyChose from '../../Component/WhoIsUjuzi/AboutUjuzi/why-chose';
 import AdBanner from '../../Component/modules/components/Ad-banner';
 import VideoTestimonial from '../../Component/Testimonials/VideoTestimonial';
  import CounterStatistics from '../../Component/Counter/CounterStatistics'
+// import PartnerSlider from '../../Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/PartnerSlider';
 
 function Index() {
 
