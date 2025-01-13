@@ -82,7 +82,7 @@
     .content {
         background-color: var(--color-white);
         box-shadow: var(--shadow-darker);
-        padding: 35px 28px 35px 40px;
+        // padding: 35px 28px 35px 40px;
         border-radius: 4px;
         margin-bottom: 30px;
         margin-top: 30px;
@@ -103,10 +103,25 @@
     .author-info {
         display: flex;
         align-items: center;
+        @media #{$small-mobile} {
+            width: 50px;
+            height: 50px; 
+        }
+        @media (max-width: 750px) {
+            width: 60px;
+            height: 60px; 
+        }
         .thumb {
             margin-right: 20px;
             img {
-                border-radius: 50%;
+                // border-radius: 50%;
+                filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease; 
+
+    &:hover {
+        filter: grayscale(0%);
+        transform: rotate(360deg); 
+    }
             }
         }
         .info {
@@ -136,7 +151,7 @@
     &.testimonial-style-3 {
         .content {
             background-color: transparent;
-            padding: 0;
+            padding: 20px;
             box-shadow: none;
             margin: 0;
             .rating-icon {
@@ -183,6 +198,9 @@
     }
     .swiper-pagination {
         bottom: -70px;
+        display: flex;
+        align-items: center;
+        background-color: pink;
     }
 
     .shape-group {
@@ -209,90 +227,90 @@
     }
 }
 
-.testimonial-area-3 {
-    position: relative;
-    mask-image: url(../../images/others/mask-04.png);
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    -webkit-mask-position: center;
-    background-color: var(--color-lighten04);
-    padding: 115px 0 250px;
-    @media #{$md-layout} {
-        padding: 95px 0 200px;
-    }
-    @media #{$sm-layout} {
-        padding: 75px 0 180px;
-    }
-    .testimonial-activation-2 {
-        margin: 0 -45px;
-        padding: 0 30px;
+// .testimonial-area-3 {
+//     position: relative;
+//     mask-image: url(../../images/others/mask-04.png);
+//     -webkit-mask-repeat: no-repeat;
+//     -webkit-mask-size: cover;
+//     -webkit-mask-position: center;
+//     background-color: var(--color-lighten04);
+//     padding: 115px 0 250px;
+//     @media #{$md-layout} {
+//         padding: 95px 0 200px;
+//     }
+//     @media #{$sm-layout} {
+//         padding: 75px 0 180px;
+//     }
+//     .testimonial-activation-2 {
+//         margin: 0 -45px;
+//         padding: 0 30px;
 
-        .testimonial-slide {
-            .content {
-                margin-top: 0;
-                margin-bottom: 50px;
-            }
-        }
-        .swiper-wrapper {
-            .swiper-slide {
-                opacity: 0;
-                visibility: hidden;
+//         .testimonial-slide {
+//             .content {
+//                 margin-top: 0;
+//                 margin-bottom: 50px;
+//             }
+//         }
+//         .swiper-wrapper {
+//             .swiper-slide {
+//                 opacity: 0;
+//                 visibility: hidden;
 
-                &.swiper-slide-active,
-                &.swiper-slide-next {
-                    opacity: 1;
-                    visibility: visible;
-                }
-            }
-            .swiper-slide {
-                @media #{$md-layout-1} {
-                    &.swiper-slide-next {
-                       opacity: 0;
-                    }
-                }
-            }
-        }
-    }
-    .swiper-pagination {
-        bottom: 235px;
-        @media #{$md-layout-1} {
-            bottom: 170px;
-        }
-    }
-   .shape-group {
-        @media #{$sm-layout} {
-            display: none;
-        }
-        li {
-            &.shape-1 {
-                top: 95px;
-                left: 95px;
-            } 
-            &.shape-2 {
-                bottom: 215px;
-                left: 245px;
-            }
-            &.shape-3 {
-                bottom: 150px;
-                right: 170px;
-            }
-            &.shape-4 {
-                top: 120px;
-                right: 70px;
-            }
-            &.shape-5 {
-                bottom: 140px;
-                left: 50%;
-                transform: translateX(-50%);
+//                 &.swiper-slide-active,
+//                 &.swiper-slide-next {
+//                     opacity: 1;
+//                     visibility: visible;
+//                 }
+//             }
+//             .swiper-slide {
+//                 @media #{$md-layout-1} {
+//                     &.swiper-slide-next {
+//                        opacity: 0;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .swiper-pagination {
+//         bottom: 235px;
+//         @media #{$md-layout-1} {
+//             bottom: 170px;
+//         }
+//     }
+//    .shape-group {
+//         @media #{$sm-layout} {
+//             display: none;
+//         }
+//         li {
+//             &.shape-1 {
+//                 top: 95px;
+//                 left: 95px;
+//             } 
+//             &.shape-2 {
+//                 bottom: 215px;
+//                 left: 245px;
+//             }
+//             &.shape-3 {
+//                 bottom: 150px;
+//                 right: 170px;
+//             }
+//             &.shape-4 {
+//                 top: 120px;
+//                 right: 70px;
+//             }
+//             &.shape-5 {
+//                 bottom: 140px;
+//                 left: 50%;
+//                 transform: translateX(-50%);
 
-                img {
-                    transform: scaleX(1);
-                    opacity: 1;
-                }
-            }
-        }
-    }
-}
+//                 img {
+//                     transform: scaleX(1);
+//                     opacity: 1;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 .testimonial-area-4 {
     padding: 120px 0 70px;
@@ -665,14 +683,19 @@
 
 
 .swiper-pagination {
+    display: flex;
+   flex-direction: row;
+   justify-content: center;
+   margin-top: 0.5rem;
     .swiper-pagination-bullet {
-        height: 7px;
-        width: 7px;
-        background-color: rgba(26, 182, 157, .3);
+        height: 12px;
+        width: 12px;
+        background-color: var(--color-secondary);
         opacity: 1;
         margin: 0 8px !important;
+        border: purple 1px solid;
         &.swiper-pagination-bullet-active {
-            background-color: rgba(26, 182, 157, 1);
+            background-color: var(--color-secondary);
         }
     }
 }
@@ -707,7 +730,7 @@
    
     .swiper-pagination {
         bottom: 30px;
-        text-align: right;
+        text-align: center;
     }
 
     .shape-group {
