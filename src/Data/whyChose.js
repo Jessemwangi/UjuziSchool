@@ -12,7 +12,7 @@ export const whyChose =[
         color:'color-secondary-style',
         img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176188/Unlock_Applicability_dlyg6s.png',
         icon:'46',
-        title:'Community Epowerment and Engagement',
+        title:'Community Empowerment and Engagement',
         text:'Throuogh our AfroCom, engage in conversation that will get you empowered as you empower others to.',
         link:``,
     },
