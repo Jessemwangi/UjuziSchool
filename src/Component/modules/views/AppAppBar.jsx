@@ -96,7 +96,7 @@ const AppAppBar = () => {
                 alt="Ujuzi Logo"
               />
             </Link>
-            <Link
+            {/* <Link
               className="edu-btn btn-medium"
               variant="h6"
               underline="none"
@@ -105,7 +105,7 @@ const AppAppBar = () => {
               sx={{ textAlign: "center", fontSize: 12 }}
             >
               {"Learn Now"} <i className="icon-4"></i>
-            </Link>
+            </Link> */}
           </Box>
           <Box
             sx={{
