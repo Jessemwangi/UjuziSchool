@@ -5,16 +5,16 @@ export const whyChose =[
         icon:'45',
         title:'Experiential learning of STEM',
         text:'We enable experiential learning of STEM by combining theory, simulation, practical demonstration, project learning, and gamification.',
-        link:``,
+        link:`https://learn.ujuzi.io/course-style-2`,
 
     },
     {
         color:'color-secondary-style',
         img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176188/Unlock_Applicability_dlyg6s.png',
         icon:'46',
-        title:'Community Empowerment and Engagement',
-        text:'Throuogh our AfroCom, engage in conversation that will get you empowered as you empower others to.',
-        link:``,
+        title:`Your 'Go-To' For All Things Africa`,
+        text:'A space where users co-create, share knowledge, and engage in meaningful interactions that uplift both individuals and the broader Afro-community.',
+        link:`https://www.afro-com.com/`,
     },
      {
         color:'color-extra08-style',
