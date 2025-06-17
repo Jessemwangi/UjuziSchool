@@ -13,7 +13,7 @@ export const whyChose =[
         img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176188/Unlock_Applicability_dlyg6s.png',
         icon:'8',
         title:`Your 'Go-To' For All Things Africa`,
-        text:'A space where users co-create, share knowledge, and engage in meaningful interactions that uplift both individuals and the broader Afro-community.',
+        text:'AfroCom is a space where users co-create, share knowledge, and engage in meaningful interactions that uplift both individuals and the broader Afro-community.',
         link:`https://www.afro-com.com/`,
     },
      {
@@ -25,3 +25,6 @@ export const whyChose =[
         link:``,
     }
 ]
+
+// What we do:
+// With a vision to cultivate a vibrant ecosystem where the youth actively lead in innovation and solution-driven endeavours, empowering the globe's future,  we currently offer the following services/solutions
