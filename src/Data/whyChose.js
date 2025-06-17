@@ -19,17 +19,9 @@ export const whyChose =[
      {
         color:'color-extra08-style',
         img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176131/Hands_on_learning_bkf8x1.png',
-        icon:'47',
+        icon:'34',
         title:'View whats happening in Tanzania',
         text:'Check out what happening in our Tanzanian .',
         link:``,
     }
-    // {
-    //     color:'color-extra08-style',
-    //     img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176131/Hands_on_learning_bkf8x1.png',
-    //     icon:'47',
-    //     title:'Hands-on teaching methods',
-    //     text:'Our teaching methods emphasize hands-on skills to prepare students for future STEM-related opportunities.',
-    //     link:``,
-    // }
 ]
