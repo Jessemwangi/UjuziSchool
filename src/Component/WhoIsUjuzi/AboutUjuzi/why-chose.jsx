@@ -207,10 +207,10 @@ const WhyChose = () => {
                     <span className="pre-title">Ujuzi Global Impact</span>
                     <h2 className="title">
 
+                       Explore <span className="color-primary">Ujuzi's global </span>network & Initiatives
                        
-                        Explore our worldwide network of  <span className="color-primary">Ujuzi Oy</span> and its initiatives 
-                        <br />
-                        <br />(ACROSS CONTINENTS)
+                        
+                        <p>(ACROSS CONTINENTS)</p>
                     </h2>
                     <span className="shape-line"><i className="icon-19"></i></span>
                 </div>
