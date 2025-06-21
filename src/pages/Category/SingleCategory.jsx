@@ -6,7 +6,6 @@ import { Box, Grid } from "@mui/material";
 import Typography from "../../Component/modules/components/Typography";
 import LeftCards from "../../Component/modules/components/LeftCards/LeftCards";
 import { useParams } from "react-router-dom";
-// import { data } from "../../data";
 import SearchBar from "../../Component/SearchBar";
 import { useUser } from "../../hooks/UserContext";
 import MessageInfo from "../../Component/modules/components/MessageInfo";
@@ -29,7 +28,7 @@ const SingleCategory = (props = { title: "jesse" }) => {
   const [category, setCategory] = useState();
   const freeVideos =
     "?populate[subscription_packages][filters][name][$eq]=FreeVideo&populate[subscription_packages][populate]=videos.videoUrl&populate=pic&populate[topics]=*&populate[course_subcategories]=*&populate[questions]=*";
-  const userVideos = `?populate=*&filters[user]=${user?.id}`;
+  // const userVideos = `?populate=*&filters[user]=${user?.id}`;
   const { data, loading:isloading, error }  =useFetch(`/coursecategories/${id}/${freeVideos}`)
   useEffect(() => {
 
@@ -74,7 +73,7 @@ const SingleCategory = (props = { title: "jesse" }) => {
     setIsLoading(true)
     const attribVideo = await Promise.all(flattenedVideo.map(async (video) => {
       const { id, attributes } = video;
-      //  console.log(attributes)
+     
       const {
         createdAt,
         updatedAt,
@@ -97,9 +96,8 @@ const SingleCategory = (props = { title: "jesse" }) => {
     return attribVideo;
   };
 
-  const [maxPlay, setMaxPlay] = useState(1000);
+  // const [maxPlay, setMaxPlay] = useState(1000);
   const [sort, setSort] = useState();
-  console.log(units)
   if (loading) return <MessageInfo message={'fetch data'} show={false}/>
   return (
     <React.Fragment>
@@ -167,7 +165,7 @@ const SingleCategory = (props = { title: "jesse" }) => {
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                 xs={12}
               >
-           {/* {console.log(catVideos)} */}
+         
            {catVideos?.length > 0 ? (
   searchQuery ? 
   (

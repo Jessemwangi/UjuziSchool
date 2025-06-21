@@ -68,7 +68,6 @@ const { data, loading, error } = useFetch(
        }})
        setUserSubData(data)
        setUserVideo(data?.agents)
-       console.log(data.agents)
    } catch (error) {
     setErr(error)
    }

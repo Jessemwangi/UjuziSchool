@@ -48,7 +48,6 @@ const navigate = useNavigate()
       onSubmitSuccess(values)
       setLoading(false)
     } catch (error) {
-      console.log(error)
       setLoading(false)
       setErr(`${err }. \n ${JSON.stringify(error?.response?.data?.error?.message)}`)
     }

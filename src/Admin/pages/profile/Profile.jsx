@@ -64,7 +64,6 @@ const Profile = () => {
         "Error creating profile:",
         error.response.data.error.message
       );
-      console.log(error);
       setErr(error.response.data.error.message);
     }
   };

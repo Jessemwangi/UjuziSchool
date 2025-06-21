@@ -40,7 +40,7 @@ export const LessonSmokingHero = () =>{
       <Box
         component="img"
         src={'https://res.cloudinary.com/dk4ruyonq/image/upload/v1732388570/equipt1_siczrn.png'}
-        alt="buoy"
+        alt="Ujuzi"
         sx={{ width: 80, borderRadius:'9px', border: 'solid 4px #040535', boxShadow:'2px 3px 7px #040535', animation: `${bounce} 1s infinite` }}
       />
     </Container>

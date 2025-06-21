@@ -63,7 +63,6 @@ function PricingTable({
 }
 
 const PricingArea = () => {
-  // console.log(packages)
   const [subscription, setSubscription] =useState()
   const [isLoading,setIsLoading] =useState(false)
   const [err, setErr] =useState()
@@ -107,7 +106,6 @@ const PricingArea = () => {
             <i className="icon-19"></i>
           </span>
         </div>
-{console.log(subscription)}
         <div className="row g-5">
           {subscription &&
             subscription?.map(({attributes,id})=>

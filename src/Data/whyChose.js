@@ -5,20 +5,26 @@ export const whyChose =[
         icon:'45',
         title:'Experiential learning of STEM',
         text:'We enable experiential learning of STEM by combining theory, simulation, practical demonstration, project learning, and gamification.',
+        link:`https://learn.ujuzi.io/course-style-2`,
 
     },
     {
         color:'color-secondary-style',
         img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176188/Unlock_Applicability_dlyg6s.png',
-        icon:'46',
-        title:'Unlock applicability of STEM',
-        text:'We enable students to connect theoretical concepts learned in STEM subjects like physics with real-world applications.',
+        icon:'8',
+        title:`Your 'Go-To' For All Things Africa`,
+        text:'AfroCom is a space where users co-create, share knowledge, and engage in meaningful interactions that uplift both individuals and the broader Afro-community.',
+        link:`https://www.afro-com.com/`,
     },
-    {
+     {
         color:'color-extra08-style',
         img:'https://res.cloudinary.com/dk4ruyonq/image/upload/v1731176131/Hands_on_learning_bkf8x1.png',
-        icon:'47',
-        title:'Hands-on teaching methods',
-        text:'Our teaching methods emphasize hands-on skills to prepare students for future STEM-related opportunities.',
+        icon:'34',
+        title:'View whats happening in Tanzania',
+        text:'Check out what happening in our Tanzanian .',
+        link:``,
     }
 ]
+
+// What we do:
+// With a vision to cultivate a vibrant ecosystem where the youth actively lead in innovation and solution-driven endeavours, empowering the globe's future,  we currently offer the following services/solutions

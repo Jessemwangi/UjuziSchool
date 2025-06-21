@@ -44,7 +44,6 @@ const video = {title,desc,videoUrl,id}
 
   const viewVideo = (e, id) => {
 e.preventDefault();
-// console.log(singleVideo)
     navigate(`/singlevideo/${id}`, {state:{video}});
   };
 

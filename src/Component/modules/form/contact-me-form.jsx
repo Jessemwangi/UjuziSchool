@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
 import emailjs from 'emailjs-com';
+import { emailJs_service, emailJs_template, emailJs_user } from '../../../UtilitiesFunctions/Function';
 
 const Result = () => {
     return (
@@ -14,16 +15,16 @@ const ContactMeForm = () => {
         e.preventDefault();
         emailjs
         .sendForm(
-            'service_bxh6md3', 
-            'template_1g7v07n', 
+            emailJs_service, 
+           emailJs_template, 
             e.target, 
-            'user_8Lx0gfI1ktOoeEN8DTV10'
+           emailJs_user,
         )
         .then( ( result ) => {
-            console.log( result.text );
+           
             }, 
             ( error ) => {
-                console.log( error.text );
+              
             }
         );
         e.target.reset();

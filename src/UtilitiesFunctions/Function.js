@@ -3,6 +3,10 @@ import axios from "axios";
 export const token = process.env.REACT_APP_SERVER_API;
 export const server = process.env.REACT_APP_SERVER_URL
 export const backend = process.env.REACT_APP_SERVER
+export const emailJs_service = process.env.REACT_APP_EMAILJS_SERVICE_ID
+export const emailJs_template = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+export const emailJs_user = process.env.REACT_APP_EMAILJS_USER_ID
+
 // video time functions 
 
 export const formatHours = (seconds) => {
@@ -47,7 +51,6 @@ export const get_Data = async (url, apitoken) => {
       })
     return response.data
   } catch (error) {
-    console.log(error)
     throw error
   }
 
@@ -66,7 +69,7 @@ export const postData = async (url, data,  apitoken = token) => {
       })
     return response.data
   } catch (error) {
-    console.log(error)
+   
     throw error
   }
 
@@ -79,7 +82,7 @@ export const postNoToken = async (url, data) => {
     const response = await axios.post(`${server}${url}`, data,)
     return response.data
   } catch (error) {
-    console.log(error)
+   
     throw error
   }
 
@@ -97,7 +100,7 @@ export const putData = async (url, data,  apitoken = token) => {
       })
     return response.data
   } catch (error) {
-    console.log(error)
+  
     throw error
   }
 

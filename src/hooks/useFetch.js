@@ -24,12 +24,12 @@ useEffect(() => {
       try {
         setLoading(true)
         const data =await get_Data(url,token)
-        // console.log('hello data', data)
+       
         setData(data)
         setLoading(false)
        
       } catch (error) {
-        console.log(error)
+      
         setError(true)
         setLoading(false)
       }
@@ -63,11 +63,9 @@ useEffect(() => {
         }
         setData(data)
         setLoading(false)
-        // console.log(data);
-      
+            
       } catch (error) {
-        console.log(error)
-        setError(true)
+       setError(true)
         setLoading(false)
       }
         } 

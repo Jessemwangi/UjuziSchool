@@ -96,16 +96,16 @@ const AppAppBar = () => {
                 alt="Ujuzi Logo"
               />
             </Link>
-            <Link
+            {/* <Link
               className="edu-btn btn-medium"
               variant="h6"
               underline="none"
               color="inherit"
               href="https://learn.ujuzi.io/course-style-2"
-              sx={{ textAlign: "center", fontSize: 20 }}
+              sx={{ textAlign: "center", fontSize: 12 }}
             >
               {"Learn Now"} <i className="icon-4"></i>
-            </Link>
+            </Link> */}
           </Box>
           <Box
             sx={{

@@ -58,9 +58,7 @@ const { data, loading, error } = useFetch(
      const getuserreg = async () => {
       try {
        const {data} = await get_Data(userurl,user.jwt) 
-       console.log(data)
    } catch (error) {
-    console.log(error)
     setErr(error?.response?.data?.error?.message)
    }
       
