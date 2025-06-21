@@ -14,7 +14,6 @@ const SingleVideo = () => {
   const id = useParams().id;
 
   const { video } = location.state;
-  console.log(location.state)
   return (
     <div className="singleVideo">
       <Box component={'img'} 

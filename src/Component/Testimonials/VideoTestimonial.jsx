@@ -73,7 +73,6 @@ export default function VideoTestimonial() {
     const [videoId,setVideoId] = useState('73LDNRUjSis')
     // useEffect(() => setLoop(true) ,[])
     const handleVideoClick = (vd) => {
-        console.log(vd)
         setLoop(false);
         setIsVideoOpen(true);
       };

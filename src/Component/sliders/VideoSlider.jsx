@@ -6,17 +6,16 @@ import './VideoSlider.scss'
 const VideoSlider = () => {
     const [currentSlide, setCurrentSlide]= useState(0)
 
-    const images = [
-        'https://source.unsplash.com/1000x1000/?school',
-        'https://source.unsplash.com/1000x1000/?library',
-        'https://source.unsplash.com/1000x1000/?lesson',
-        'https://source.unsplash.com/1000x1000/?coding',
-        'https://source.unsplash.com/1000x1000/?physics',
-        'https://source.unsplash.com/1000x1000/?math',
-    ]
+const images = [
+    'https://images.pexels.com/photos/289738/pexels-photo-289738.jpeg', // school
+    'https://images.pexels.com/photos/256559/pexels-photo-256559.jpeg', // library
+    'https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg', // lesson
+    'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg', // coding
+    'https://images.pexels.com/photos/256369/pexels-photo-256369.jpeg', // physics
+    'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg', // math
+];
 
     const prevSlide = () =>{
-      console.log(currentSlide)
 setCurrentSlide(currentSlide === 0 ? images.length : (prev) => prev - 1 )
     }
     const nextSlide = () =>{

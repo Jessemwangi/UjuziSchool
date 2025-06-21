@@ -42,12 +42,10 @@ const InstructionsMasonryArea = () => {
                       }
                         {!err && resources &&
                         <Masonry gutter="30px">
-                            {console.log(resources)}
                             {resources?.map(({attributes,id}) => {
                                const {  name, description, createdAt, category, comment, image, file ,meta } = attributes;
                                 return (
                                     <div key={id}>
-                                         {console.log(description)}
                                         <div className="edu-blog blog-style-5">
                                             <div className="inner">
                                                 <div className="thumbnail">

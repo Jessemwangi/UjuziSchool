@@ -62,7 +62,6 @@ function SignIn() {
       setSnackbarOpen(true);
       navigate("/member");
     } catch (error) {
-      console.log(error);
       const smoothError = error?.response?.data?.error?.status ===500 ? 'Invalid Username or password' : error?.response?.data?.error?.message
       setErr(smoothError || error.message);
       setLoading(false);

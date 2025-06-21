@@ -10,7 +10,7 @@ export const setSingleEventsSlice = createSlice({
     initialState,
     reducers:{
         setSingleEvents: (state,action)=>{
-            console.log(action.payload)
+         
                            state.singleEventsData = action.payload;
 
             }

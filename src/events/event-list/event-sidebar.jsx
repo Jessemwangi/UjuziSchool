@@ -7,7 +7,6 @@ const EventSidebar = ({events}) => {
 
     const all_categories = [...new Set(events?.map(event => event.attributes.category))];
     // const all_categories =events.map(cat => cat.category)
-     console.log(events)
     const { categories } = useSelector(state => state.event);
     const dispatch = useDispatch();
     // handleCategory

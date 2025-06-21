@@ -32,7 +32,6 @@ const USERINFO ={
     
     const JWTAndID = await encryptData(data, session_J_Key);
     sessionStorage.setItem(client, JWTAndID);
-// console.log('jwt snd id for storeage', JWTAndID, 'name visible',client)
 }
 
 export const getJWTAndID = async () => {
@@ -48,7 +47,7 @@ export const getJWTAndID = async () => {
       // Decrypt and return the session storage data
       const decryptedString = await decryptData(JWTAndID, sessionKey);
       const JWT_AND_ID = await JSON.parse(decryptedString);
-// console.log(JWT_AND_ID)
+
       return JWT_AND_ID;
    } catch (error) {
     throw error
