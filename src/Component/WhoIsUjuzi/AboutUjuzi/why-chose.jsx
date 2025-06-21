@@ -204,10 +204,13 @@ const WhyChose = () => {
         <section className="why-choose-area-4 edu-section-gap">
             <div className="container edublink-animated-shape">
                 <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                    <span className="pre-title">Ujuzi Portfolios</span>
+                    <span className="pre-title">Ujuzi Global Impact</span>
                     <h2 className="title">
-                        Experiential <span className="color-secondary">learning</span> in STEM.
-                        <br />(STEMEX)
+
+                       
+                        Explore our worldwide network of  <span className="color-primary">Ujuzi Oy</span> and its initiatives 
+                        <br />
+                        <br />(ACROSS CONTINENTS)
                     </h2>
                     <span className="shape-line"><i className="icon-19"></i></span>
                 </div>
