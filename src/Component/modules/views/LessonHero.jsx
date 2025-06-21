@@ -109,11 +109,11 @@ export default function LessonHero() {
               }}
             >
               <RocketLaunchRoundedIcon /> 
-              Explore StemEX
+              {' '}Explore StemEX
             </Button>
           </div>
 
-          {/* AfromCom Section */}
+          {/* AfroCom Section */}
           <div style={{ textAlign: 'center' }}>
             <Typography
               color="inherit"
@@ -125,7 +125,7 @@ export default function LessonHero() {
                 fontSize: { xs: '1rem', sm: '1.3rem' }
               }}
             >
-              View our global community
+              join our Afro-Community Platform
             </Typography>
             <Button
               className="edu-btn btn-medium"
@@ -155,7 +155,7 @@ export default function LessonHero() {
               }}
             >
               <GroupsRoundedIcon /> 
-             {' '} Explore AfromCom
+             {' '} Explore AfroCom
             </Button>
           </div>
         </div>
