@@ -207,7 +207,7 @@ const WhyChose = () => {
                     <span className="pre-title">Ujuzi Global Impact</span>
                     <h2 className="title">
 
-                       Explore <span className="color-primary">Ujuzi's global </span>network & Initiatives
+                       Explore <span className="color-primary">Ujuzi's Global </span>Network & Initiatives
                        
                         
                         <p>(ACROSS CONTINENTS)</p>
