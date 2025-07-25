@@ -85,7 +85,7 @@ export default function LessonHero() {
               className="edu-btn btn-medium"
               variant="contained"
               component="a"
-              href="https://ujuzi-learn.vercel.app/"
+              href="https://learn.ujuzi.io/"
               sx={{
                 minWidth: { xs: 240, sm: 260 },
                 height: 48,
