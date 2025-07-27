@@ -10,7 +10,7 @@ const StudentDetails = () => {
   const { user } = useUser();
   
   // Construct the URL if the user is available
-  const url = user?.id ? `/student/agentlist/${user.id}` : null;
+  const url = user?.id ? `/student/agentstudentlist/${user.id}` : null;
   
   // Fetch data with the constructed URL
   const { data, error, loading } = useFetch(url, user?.jwt);
