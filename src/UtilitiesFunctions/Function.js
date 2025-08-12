@@ -1,6 +1,8 @@
 
 import axios from "axios";
-export const token = process.env.REACT_APP_SERVER_API;
+import { getJWTAndID } from "./secureUserData";
+  const userInfo = await getJWTAndID();
+  export const token = userInfo.JWT;
 export const server = process.env.REACT_APP_SERVER_URL
 export const backend = process.env.REACT_APP_SERVER
 export const emailJs_service = process.env.REACT_APP_EMAILJS_SERVICE_ID
