@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import AdminMain from "./AdminMain";
+import React, { useEffect } from "react";
 import { useUser } from "../hooks/UserContext";
 import { Outlet, useNavigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -10,8 +9,6 @@ import './admin.scss'
 const Dashboard = () => {
   const navigate = useNavigate()
   const {user,ctxLoading} = useUser();
-  const [userVideos, setUserVideo]  = useState()
-  const [units,setUnits] = useState()
   
 
   useEffect(() => {
@@ -31,7 +28,7 @@ const Dashboard = () => {
             <MainMenu user={user} />
           </Grid>
           <Grid item md={9} lg={10}>
-          <Outlet/>
+          <Outlet context={{ user }}/>
           </Grid>
         </Grid>
       </Container>

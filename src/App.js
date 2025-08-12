@@ -33,7 +33,6 @@ import PartnersPage from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/Partner
 import HowToBeMember from './pages/HowTo/HowToBeMember';
 import ErrorPage from './pages/404';
 import ComingSoon from './pages/coming-soon';
-import Page1 from './Admin/pages/page1';
 import Pricing from './Admin/pages/pricing-table/Pricing';
 import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
 import RegisterStudent from './Admin/pages/RegisterStudent/RegisterStudent';
@@ -48,6 +47,7 @@ import PartnersArea from './Component/WhoIsUjuzi/AboutUjuzi/PartnersArea/Partner
 import Certificates from './pages/Certificates/Certificates';
 import ViewCertificate from './pages/Certificates/ViewCertificate';
 import CoursesLessonsCategories from './Component/modules/views/CoursesLessonsCategories';
+import AgentDashboard from './Admin/pages/subscription/AgentDashboard ';
 
 const router = createBrowserRouter(
   [
@@ -199,10 +199,12 @@ const router = createBrowserRouter(
           path: '/member',
           element: <Dashboard />,
 
-          children: [ {
-            path: '/member/yonko',
-            element: <Page1 />
-          },{
+          children: [ 
+            {
+            path: '/member/agent-dashboard',
+            element: <AgentDashboard />
+          },
+          {
             path: '/member/admin',
             element: <AdminMain />,
 
