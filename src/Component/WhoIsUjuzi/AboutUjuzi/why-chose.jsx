@@ -205,11 +205,12 @@ const WhyChose = () => {
             <div className="container edublink-animated-shape">
                 <div className="section-title section-center" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                     <span className="pre-title">Ujuzi Global Impact</span>
-                    <h2 className="title">
 
-                       Explore <span className="color-primary">Ujuzi's Global </span>Network & Initiatives
-                       
-                        
+                    <h2 className="title">
+                       Explore <span className="color-primary">
+                        Ujuzi's Global 
+                        </span>
+                        Network & Initiatives                          
                         <p>(ACROSS CONTINENTS)</p>
                     </h2>
                     <span className="shape-line"><i className="icon-19"></i></span>

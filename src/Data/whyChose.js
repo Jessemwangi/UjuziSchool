@@ -25,6 +25,3 @@ export const whyChose =[
         link:``,
     }
 ]
-
-// What we do:
-// With a vision to cultivate a vibrant ecosystem where the youth actively lead in innovation and solution-driven endeavours, empowering the globe's future,  we currently offer the following services/solutions

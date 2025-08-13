@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Field, FormSpy } from "react-final-form";
 import { 
   Grid, 
@@ -19,7 +19,9 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Paper
+  Paper,
+  CircularProgress,
+  
 } from "@mui/material";
 import { 
   CloudUpload as CloudUploadIcon,
@@ -28,30 +30,55 @@ import {
   Error as ErrorIcon,
   Info as InfoIcon
 } from "@mui/icons-material";
-
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { postData, token } from "../UtilitiesFunctions/Function";
+import { postData } from "../UtilitiesFunctions/Function";
 import Typography from "../Component/modules/components/Typography";
 import RFTextField from "../Component/modules/form/RFTextField";
 import FormFeedback from "../Component/modules/form/FormFeedback";
 import FormButton from "../Component/modules/form/FormButton";
+import { useFetch } from "../hooks/useFetch";
+
 
 const AgentRegistration = () => {
   const { user } = useOutletContext();
   const navigate = useNavigate();
   const [sent, setSent] = useState(false);
+  const [isAlreadyRegistered, setIsAlreadyRegistered] = useState(false);
+  const [isCheckingRegistration, setIsCheckingRegistration] = useState(true);
   const [contractDoc, setContractDoc] = useState(null);
+   const [agentFetchUrl, setAgentFetchUrl] = useState(null);
+
+  // Check if user is already registered when component mounts
+  useEffect(() => {
+ if (user?.id) {
+      setAgentFetchUrl(`/agents-details?filters[users_permissions_user][id][$eq]=${user.id}`);
+    }
+  }, [user]);
+
+   const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
+  useEffect(() => {
+    if (agentData) {
+      if (agentData?.data?.length > 0) {
+        setIsAlreadyRegistered(true);
+        setIsCheckingRegistration(false);
+      } else {
+        setIsCheckingRegistration(false);
+      }
+    } else if (agentError) {
+      console.error("Error fetching agent data:", agentError);
+      setIsCheckingRegistration(false);
+    }
+  }, [agentData, agentError]);
+
   const [otherDocuments, setOtherDocuments] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const [uploadErrors, setUploadErrors] = useState({});
 
-  // Generate agent number
-  const generateAgentNumber = () => {
-    return `AGT${Date.now().toString().slice(-7)}`;
-  };
+  // Generate agent number only once
+  const [agentNumber] = useState(() => `AGT${Date.now().toString().slice(-7)}`);
 
   const initialValues = {
-    agentNumber: generateAgentNumber(),
+    agentNumber: agentNumber,
     engagementType: "Independent Contractor",
     isActive: true,
     isApproved: false,
@@ -76,36 +103,29 @@ const AgentRegistration = () => {
     const formData = new FormData();
     formData.append('files', file);
 
+    let progressInterval;
     try {
       setUploadProgress(prev => ({ ...prev, [file.name]: 0 }));
       
       // Simulate upload progress
-      const progressInterval = setInterval(() => {
+      progressInterval = setInterval(() => {
         setUploadProgress(prev => ({
           ...prev,
           [file.name]: Math.min((prev[file.name] || 0) + 10, 90)
         }));
       }, 200);
 
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      // For file uploads, pass FormData directly, not wrapped in data object
+      const response = await postData('/upload', formData);
 
       clearInterval(progressInterval);
       setUploadProgress(prev => ({ ...prev, [file.name]: 100 }));
 
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const data = await response.json();
-      return data[0]; // Strapi returns array of uploaded files
+      // Strapi returns array of uploaded files
+      return response[0];
     } catch (error) {
-      setUploadErrors(prev => ({ ...prev, [file.name]: error.message }));
+      if (progressInterval) clearInterval(progressInterval);
+      setUploadErrors(prev => ({ ...prev, [file.name]: error.response?.data?.error?.message || error.message || 'Upload failed' }));
       setUploadProgress(prev => {
         const newProgress = { ...prev };
         delete newProgress[file.name];
@@ -224,13 +244,35 @@ const AgentRegistration = () => {
       if (response) {
         setSent(true);
         setTimeout(() => {
-          navigate('/member/agent-dashboard');
+          navigate('/agent/dashboard');
         }, 2000);
       }
     } catch (error) {
-      throw new Error(error.message || 'Registration failed. Please try again.');
+      // Handle specific error for already registered user
+      if (error.response?.data?.error?.message === "Agent user already exists") {
+        setIsAlreadyRegistered(true);
+        throw new Error('You are already registered as an agent. Redirecting to dashboard...');
+      }
+      
+      // Handle other errors
+      const errorMessage = error.response?.data?.error?.message || error.message || 'Registration failed. Please try again.';
+      throw new Error(errorMessage);
     }
   };
+
+  // Show loading while checking registration status
+  if (isCheckingRegistration) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+        <Box sx={{ textAlign: 'center' }}>
+          <CircularProgress size={60} />
+          <Typography variant="h6" sx={{ mt: 2 }}>
+            Checking registration status...
+          </Typography>
+        </Box>
+      </Box>
+    );
+  }
 
   if (sent) {
     return (
@@ -246,8 +288,61 @@ const AgentRegistration = () => {
     );
   }
 
+  // Handle already registered user
+  if (isAlreadyRegistered) {
+    return (
+      <Box sx={{ textAlign: 'center', mt: 4, p: 4 }}>
+        <Alert 
+          severity="info" 
+          sx={{ 
+            mb: 3, 
+            p: 3,
+            fontSize: '1.1rem',
+            '& .MuiAlert-message': { textAlign: 'center', width: '100%' }
+          }}
+        >
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+            You're Already Registered!
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            You are already registered as an agent in our system. You can access your dashboard to manage your subscriptions and view your performance.
+          </Typography>
+        </Alert>
+        
+        <Box sx={{ mt: 3 }}>
+          <FormButton
+            sx={{
+              fontSize: 16,
+              padding: "12px 30px",
+              borderRadius: 2,
+              mr: 2
+            }}
+            color="primary"
+            onClick={() => navigate('/member/agent-dashboard')}
+          >
+            Go to Dashboard
+          </FormButton>
+          
+          <FormButton
+            sx={{
+              fontSize: 16,
+              padding: "12px 30px",
+              borderRadius: 2,
+            }}
+            variant="outlined"
+            onClick={() => navigate('/')}
+          >
+            Back to Home
+          </FormButton>
+        </Box>
+      </Box>
+    );
+  }
+
   return (
-    <Box sx={{ maxWidth: 1000, mx: 'auto', p: 3 }}>
+   <>
+   {!agentLoading &&
+   <Box sx={{ maxWidth: 1000, mx: 'auto', p: 3 }}>
       <Paper elevation={0} sx={{ p: 4, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', borderRadius: 3, mb: 4 }}>
         <Typography variant="h3" gutterBottom align="center" sx={{ fontWeight: 'bold' }}>
           Agent Registration
@@ -561,6 +656,8 @@ const AgentRegistration = () => {
         )}
       </Form>
     </Box>
+   }
+   </> 
   );
 };
 

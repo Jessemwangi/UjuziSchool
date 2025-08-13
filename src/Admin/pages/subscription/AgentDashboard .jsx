@@ -30,8 +30,6 @@ const navigate = useNavigate();
 
   const { data: subscriptionData, loading: subscriptionLoading, error: subscriptionError } = useFetch(subscriptionFetchUrl);
 
-  console.log('Agent data:', agentData, 'Subscription data:', subscriptionData);
-
   // Show loading if user is not available
   if (!user) {
     return (
@@ -106,10 +104,6 @@ const navigate = useNavigate();
       </div>
     );
   }
-
-  // You can now use both agent and subscriptionData
-  console.log('Agent:', agent);
-  console.log('Subscription Data:', subscriptionData);
 
   // Chart configurations
   const studentsChartOptions = {

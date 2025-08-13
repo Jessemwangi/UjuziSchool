@@ -2,7 +2,7 @@
 import axios from "axios";
 import { getJWTAndID } from "./secureUserData";
   const userInfo = await getJWTAndID();
-  export const token = userInfo.JWT;
+  export const token = userInfo?.JWT;
 export const server = process.env.REACT_APP_SERVER_URL
 export const backend = process.env.REACT_APP_SERVER
 export const emailJs_service = process.env.REACT_APP_EMAILJS_SERVICE_ID
@@ -58,24 +58,26 @@ export const get_Data = async (url, apitoken) => {
 
 }
 
-export const postData = async (url, data,  apitoken = token) => {
-
+export const postData = async (url, data, apitoken = token) => {
   try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${apitoken}`
+      }
+    };
+
+    // Don't set Content-Type for FormData - let axios handle it
+    if (!(data instanceof FormData)) {
+      config.headers['Content-Type'] = 'application/json';
+    }
+
+    const response = await axios.post(`${server}${url}`, data, config);
     
-    const response = await axios.post(`${server}${url}`, data,
-      {
-        headers: {
-
-          Authorization: `Bearer ${apitoken}`
-        }
-      })
-    return response.data
+    return response.data;
   } catch (error) {
-   
-    throw error
+    throw error;
   }
-
-}
+};
 
 export const postNoToken = async (url, data) => {
 
