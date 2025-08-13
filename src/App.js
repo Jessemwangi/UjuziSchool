@@ -48,6 +48,7 @@ import Certificates from './pages/Certificates/Certificates';
 import ViewCertificate from './pages/Certificates/ViewCertificate';
 import CoursesLessonsCategories from './Component/modules/views/CoursesLessonsCategories';
 import AgentDashboard from './Admin/pages/subscription/AgentDashboard ';
+import AgentRegistration from './Admin/AgentRegistration';
 
 const router = createBrowserRouter(
   [
@@ -203,6 +204,10 @@ const router = createBrowserRouter(
             {
             path: '/member/agent-dashboard',
             element: <AgentDashboard />
+          },
+          {
+            path: '/member/agent-registration',
+            element: <AgentRegistration />
           },
           {
             path: '/member/admin',

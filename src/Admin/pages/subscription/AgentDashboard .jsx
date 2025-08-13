@@ -3,13 +3,14 @@ import { Typography, Grid, Pagination, CircularProgress, Alert, Button } from "@
 import Chart from "react-apexcharts";
 import '../../admin.scss';
 import { useFetch } from "../../../hooks/useFetch";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const AgentDashboard = () => {
   const [page, setPage] = useState(1);
   const [agentFetchUrl, setAgentFetchUrl] = useState(null);
   const [subscriptionFetchUrl, setSubscriptionFetchUrl] = useState(null);
   const { user } = useOutletContext();
+const navigate = useNavigate();
 
   // First fetch: Get agent details using user ID
   useEffect(() => {
@@ -28,8 +29,6 @@ const AgentDashboard = () => {
   }, [agentData, page]);
 
   const { data: subscriptionData, loading: subscriptionLoading, error: subscriptionError } = useFetch(subscriptionFetchUrl);
-
-  console.log('Agent data:', agentData, 'Subscription data:', subscriptionData);
 
   // Show loading if user is not available
   if (!user) {
@@ -72,7 +71,7 @@ const AgentDashboard = () => {
       <div className="adminMain">
         <div className="main-content">
           <Alert severity="info" sx={{ marginBottom: '1rem' }}>You are not an agent</Alert>
-          <Button variant="contained" onClick={() => {/* navigate to agent registration */}}>Register as Agent</Button>
+          <Button variant="contained" onClick={() => navigate('/member/agent-registration')}>Register as Agent</Button>
         </div>
       </div>
     );
@@ -105,10 +104,6 @@ const AgentDashboard = () => {
       </div>
     );
   }
-
-  // You can now use both agent and subscriptionData
-  console.log('Agent:', agent);
-  console.log('Subscription Data:', subscriptionData);
 
   // Chart configurations
   const studentsChartOptions = {

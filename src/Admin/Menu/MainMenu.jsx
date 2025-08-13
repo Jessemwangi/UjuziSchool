@@ -184,6 +184,18 @@ loading ?
                 {"Profile"}
               </Link>
             </MenuItem>
+                        <MenuItem>
+              {" "}
+              <Link
+                variant="h6"
+                underline="none"
+                color="inherit"
+                href="/member/agent-registration"
+                sx={{ ...rightLink }}
+              >
+                {"Register as Agent"}
+              </Link>
+            </MenuItem>
             <MenuItem>
               <Link
                 variant="h6"
@@ -228,18 +240,6 @@ loading ?
                 sx={{ ...rightLink }}
               >
                 {"Active subscriptions"}
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              {" "}
-              <Link
-                variant="h6"
-                underline="none"
-                color="inherit"
-                href="/member/admin/soon"
-                sx={{ ...rightLink }}
-              >
-                {"My Units"}
               </Link>
             </MenuItem>
             <MenuItem>
