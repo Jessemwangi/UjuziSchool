@@ -173,7 +173,6 @@ const CoursePreview = () => {
   if (!transformedPackage.courses.length) {
     return renderState('No Courses Available', "This package doesn't have any courses yet.", <MenuBook color="primary" sx={{ fontSize: 48 }} />);
   }
-console.log(transformedPackage);
   const totalAmount = transformedPackage.charges.reduce((sum, charge) => sum + charge.amount, 0);
   const currentCourse = transformedPackage.courses[selectedCourse];
 
