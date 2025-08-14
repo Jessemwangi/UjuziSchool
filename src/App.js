@@ -34,7 +34,7 @@ import HowToBeMember from './pages/HowTo/HowToBeMember';
 import ErrorPage from './pages/404';
 import ComingSoon from './pages/coming-soon';
 import Pricing from './Admin/pages/pricing-table/Pricing';
-import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
+// import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
 import RegisterStudent from './Admin/pages/RegisterStudent/RegisterStudent';
 import StudentDetails from './Admin/pages/RegisterStudent/StudentDetails/StudentDetails';
 import EventListArea from './events/event-list/event-list-area';
@@ -49,6 +49,7 @@ import ViewCertificate from './pages/Certificates/ViewCertificate';
 import CoursesLessonsCategories from './Component/modules/views/CoursesLessonsCategories';
 import AgentDashboard from './Admin/pages/subscription/AgentDashboard ';
 import AgentRegistration from './Admin/AgentRegistration';
+import CoursePreview from './Admin/pages/pricing-table/singlePrice/CoursePreview';
 
 const router = createBrowserRouter(
   [
@@ -232,7 +233,7 @@ const router = createBrowserRouter(
             },
             {
               path: '/member/admin/package/:id',
-              element: <SinglePrice />
+              element: <CoursePreview />
             },
             {
               path: '/member/admin/soon',
