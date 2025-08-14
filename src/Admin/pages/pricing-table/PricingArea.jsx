@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import { useFetch } from "../../../hooks/useFetch";
-import { useEffect } from "react";
-import SystemError from "../../../Component/modules/views/Error/SystemError";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Alert, Button, CircularProgress } from "@mui/material";
 
 function PricingTable({
   title,
@@ -53,7 +51,10 @@ function PricingTable({
         </div>
 
         <div className="pricing-btn">
-          <Link className="edu-btn btn-border btn-medium" to={`/member/admin/package/${id}`}>
+          <Link
+            className="edu-btn btn-border btn-medium"
+            to={`/member/admin/package/${id}`}
+          >
             Select plan<i className="icon-east"></i>
           </Link>
         </div>
@@ -63,74 +64,112 @@ function PricingTable({
 }
 
 const PricingArea = () => {
-  const [subscription, setSubscription] =useState()
-  const [isLoading,setIsLoading] =useState(false)
-  const [err, setErr] =useState()
-  const [itemsPerPackage, setItemsPerPackage] = useState([]);
-  const url ='/subscription-packages?populate[0]=item_per_packages.subscription_package_items&populate[]=charges'
-  const { data, loading, error }  =useFetch(url)
-  useEffect(() => {
+  const url =
+    "/subscription-packages?populate[0]=item_per_packages.subscription_package_items&populate[]=charges";
+  const { data, loading, error } = useFetch(url);
+  const navigate = useNavigate();
 
-    if (error) {
-      setErr(error?.response?.data?.error?.message);
-      setIsLoading(false); 
-    }
-    
-    if (!error && loading) {
-      setIsLoading(true);
-    }
-  
-    if (!error && !loading) {
-      setErr();
-      setIsLoading(false);
-    }
-    if (!loading && !error && data) {
-      setSubscription(data.data);
-    }
-  
-  }, [data, error, loading]);
-
-    if (err)  return <SystemError errorMessage={`OOPPs! our bad, Landed into an error : ${err}` }/>
-    if (isLoading) return <h2>loading .....</h2>
-  return (
-   
-      <div className="container">
-        <div
-          className="section-title section-center"
-          data-sal="slide-up"
-          data-sal-duration="400"
-        >
-          <span className="pre-title">View membership Plans</span>
-          <h2 className="title">Great Membership Plan</h2>
-          <span className="shape-line">
-            <i className="icon-19"></i>
-          </span>
+  if (error) {
+    const errorMessage =
+      error?.response?.data?.error?.message ||
+      error.message ||
+      "Something went wrong";
+    if (errorMessage === "Forbidden") {
+      return (
+        <div className="adminMain">
+          <div className="main-content">
+            <Alert severity="info" sx={{ marginBottom: "1rem" }}>
+              You are not an agent
+            </Alert>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/member/agent-registration")}
+            >
+              Register as Agent
+            </Button>
+          </div>
         </div>
-        <div className="row g-5">
-          {subscription &&
-            subscription?.map(({attributes,id})=>
-            <PricingTable
-            key={id}
-            id={id}
-            delay="500"
-            title={attributes?.packageName}
-            amount={attributes?.charges?.data?.reduce((acc, item) => acc + item.attributes.amount, 0)}
-            duration={attributes?.duration}
-            item_off_1={true}
-            sm_text={attributes?.descritpion}
-            item_off_2={true}
-            list ={attributes?.item_per_packages?.data?.flatMap(subItem =>
-              subItem.attributes?.subscription_package_items.data
-            )}
-          />
-      
-            
-            )
-          }
+      );
+    } else {
+      return (
+        <div className="adminMain">
+          <div className="main-content">
+            <Alert severity="error" sx={{ marginBottom: "1rem" }}>
+              {errorMessage}
+            </Alert>
+            <Button
+              variant="contained"
+              onClick={() => window.location.reload()}
+            >
+              Retry
+            </Button>
+          </div>
+        </div>
+      );
+    }
+  }
 
+  if (loading) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <CircularProgress />
         </div>
       </div>
-   
+    );
+  }
+
+  if (!data?.data?.length || !data?.data > 0) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <Alert severity="info" sx={{ marginBottom: "1rem" }}>
+            Sorry but we could not find any package
+          </Alert>
+        </div>
+      </div>
+    );
+  }
+ 
+  return (
+    <div className="container">
+      <div
+        className="section-title section-center"
+        data-sal="slide-up"
+        data-sal-duration="400"
+      >
+        <span className="pre-title">View membership Plans</span>
+        <h2 className="title">Great Membership Plan</h2>
+        <span className="shape-line">
+          <i className="icon-19"></i>
+        </span>
+      </div>
+      <div className="row g-5">
+        {data?.data &&
+          data?.data?.map(({ attributes, id }) => (
+            <PricingTable
+              key={id}
+              id={id}
+              delay="500"
+              title={attributes?.packageName}
+              amount={attributes?.charges?.data?.reduce(
+                (acc, item) => acc + item.attributes.amount,
+                0
+              )}
+              duration={attributes?.duration}
+              item_off_1={true}
+              sm_text={attributes?.descritpion}
+              item_off_2={true}
+              list={
+                attributes?.item_per_packages?.data?.flatMap(
+                  (subItem) =>
+                    subItem.attributes?.subscription_package_items?.data || []
+                ) || []
+              }
+            />
+          ))}
+      </div>
+    </div>
   );
 };
 

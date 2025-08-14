@@ -3,7 +3,7 @@ import { Typography, Grid, Pagination, CircularProgress, Alert, Button } from "@
 import Chart from "react-apexcharts";
 import '../../admin.scss';
 import { useFetch } from "../../../hooks/useFetch";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const AgentDashboard = () => {
   const [page, setPage] = useState(1);

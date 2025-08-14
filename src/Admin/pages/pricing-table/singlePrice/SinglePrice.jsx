@@ -22,8 +22,7 @@ const reviews =[
 
 const SinglePrice = () => {
     const {id} =useParams()
-    const url =`/subscription-packages/${id}?populate[]=item_per_packages.subscription_package_items&populate=*`
-    const [subscription, setSubscription] =useState()
+    const url =`/subscription-packages/${id}?populate=*`
     const [isLoading,setIsLoading] =useState(false)
     const [err, setErr] =useState()
   const { data, loading, error }  =useFetch(url)
@@ -42,9 +41,7 @@ const SinglePrice = () => {
       setErr();
       setIsLoading(false);
     }
-    if (data?.length > 0) {
-      setSubscription(data);
-    }
+   
   
   }, [data, error, loading]);
 
