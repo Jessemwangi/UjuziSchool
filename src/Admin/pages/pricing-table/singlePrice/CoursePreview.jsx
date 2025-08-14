@@ -2,6 +2,26 @@ import React, { useState } from 'react';
 import { useFetch } from '../../../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  Chip,
+  Tabs,
+  Tab,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Paper,
+  Stack,
+  Alert,
+} from '@mui/material';
+import {
   PlayArrow,
   AccessTime,
   Group,
@@ -11,390 +31,346 @@ import {
   EmojiEvents,
   TrackChanges,
   CalendarToday,
+  ReportProblem,
+  AddCircleOutline,
+  RemoveCircleOutline,
 } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Updated light theme with the new primary color
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#ba68c8', // New primary purple
+    },
+    secondary: {
+      main: '#6366f1', // indigo-500
+    },
+    success: {
+        main: '#16a34a', // green-600
+    },
+    error: {
+        main: '#dc2626', // red-600
+    },
+    background: {
+      default: '#f8fafc', // slate-50
+      paper: '#ffffff', // white
+    },
+    text: {
+      primary: '#1e293b', // slate-800
+      secondary: '#64748b', // slate-500
+    },
+  },
+  typography: {
+    fontFamily: 'inherit',
+    h1: { fontWeight: 700 },
+    h2: { fontWeight: 700 },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 600 },
+    h5: { fontWeight: 600 },
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '16px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+          border: '1px solid #e2e8f0', // slate-200
+        },
+      },
+    },
+    MuiPaper: {
+        styleOverrides: {
+          root: {
+            borderRadius: '16px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+          },
+        },
+      },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+          textTransform: 'none',
+          fontWeight: 600,
+        },
+      },
+    },
+  },
+});
 
-// Main component that takes API data as props
 const CoursePreview = () => {
   const [selectedCourse, setSelectedCourse] = useState(0);
   const [expandedSection, setExpandedSection] = useState('overview');
-   const {id} =useParams()
+  const { id } = useParams();
 
-  const query = `?populate[courses][populate][courses_subcategories]=*&populate[courses][populate][courses_instructors]=*&populate[courses][populate][course_intro_video]=*&populate[courses][populate][course_intro_img]=*&populate[courses][populate][course_target_groups]=*&populate[courses][populate][course_learn_lists]=*&populate[courses][populate][course_qualification_equirements]=*&populate[courses][populate][course_reviews]=*&populate[courses][populate][courses_features]=*&populate[courses][populate][courses_weekly_curricula]=*&populate[courses][populate][course_ratings]=*&populate[courses][populate][questions]=*`
-  const url =`/subscription-packages/${id}${query}`;
-const { data, loading, error } = useFetch(url); 
-  // Handle loading and error states
+  // Updated query to populate all necessary fields from the new data structure
+  const query = `?populate[courses][populate][courses_features]=*&populate[courses][populate]
+  [courses_weekly_curricula][populate][course_lessons]=*&populate[charges]=*`;
+  const query2 =`?populate[courses][populate][courses_subcategories]=*&populate[courses][populate][courses_instructors]=*&populate[courses][populate]
+  [course_intro_video]=*&populate[courses][populate][course_intro_img]=*&populate[courses][populate][course_target_groups]=*&populate[courses]
+  [populate][course_learn_lists]=*&populate[courses][populate][course_qualification_equirements]=*&populate[courses][populate]
+  [course_reviews]=*&populate[courses][populate]=courses_features&populate[courses][populate][courses_weekly_curricula][populate]=lesson_resources,
+  lesson_quizzes&populate[courses][populate][course_ratings]=*&populate[courses][populate][questions]=*&populate[charges]=*`
+  const url = `/subscription-packages/${id}${query}`;
+  const { data, loading, error } = useFetch(url);
+
+  const handleTabChange = (event, newValue) => {
+    setExpandedSection(newValue);
+  };
+
+  const renderState = (title, message, icon) => (
+    <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: 'background.default', p: 3 }}>
+      <Paper sx={{ textAlign: 'center', p: 6, maxWidth: '400px' }}>
+        {icon}
+        <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 2 }}>
+          {title}
+        </Typography>
+        <Typography color="text.secondary">{message}</Typography>
+        {error && (
+            <Button variant="contained" sx={{ mt: 3 }} onClick={() => window.location.reload()}>
+                Retry
+            </Button>
+        )}
+      </Paper>
+    </Box>
+  );
+
   if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white text-lg">Loading course details...</p>
-        </div>
-      </div>
-    );
+    return renderState('Loading...', 'Please wait while we fetch the course details.', <CircularProgress size={48} />);
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-red-400 text-6xl mb-4">⚠️</div>
-          <h2 className="text-white text-2xl font-bold mb-2">Oops! Something went wrong</h2>
-          <p className="text-gray-400 mb-6">We couldn't load the course details. Please try again.</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
+  if (error || !data?.data) {
+    return renderState('Oops! Something went wrong', "We couldn't load the course details.", <ReportProblem color="error" sx={{ fontSize: 48 }} />);
   }
-
-  // Extract package data from API response
-  const packageData = data?.data?.attributes || {};
+  
+  // Updated data transformation logic based on the provided sample
+  const packageData = data.data.attributes;
   const courses = packageData.courses?.data || [];
   const charges = packageData.charges?.data || [];
 
-  // Transform API data to component format
   const transformedPackage = {
-    id: data?.data?.id,
+    id: data.data.id,
     packageName: packageData.packageName || "Course Package",
     duration: packageData.duration || "N/A",
-    description: packageData.descritpion || packageData.description || "No description available",
+    description: packageData.descritpion || "No description available",
     totalMaxUsers: packageData.totalMaxUsers || 0,
     charges: charges.map(charge => ({
       id: charge.id,
       name: charge.attributes.name,
-      amount: charge.attributes.amount
+      amount: charge.attributes.amount,
     })),
     courses: courses.map(course => ({
       id: course.id,
-      course_name: course.attributes.course_name,
-      short_desc: course.attributes.short_desc,
-      duration: course.attributes.duration,
-      level: course.attributes.level,
-      language: course.attributes.language || 'en',
-      course_outline: course.attributes.course_outline,
-      quizes: course.attributes.quizes,
-      certificate: course.attributes.certificate,
-      isActive: course.attributes.isActive
-    }))
+      ...course.attributes,
+      // Map nested data arrays correctly
+      courses_features: course.attributes.courses_features?.data || [],
+      courses_weekly_curricula: course.attributes.courses_weekly_curricula?.data || [],
+    })),
   };
 
-  // Show message if no courses available
-  if (!courses.length) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-gray-400 text-6xl mb-4">📚</div>
-          <h2 className="text-white text-2xl font-bold mb-2">No Courses Available</h2>
-          <p className="text-gray-400 mb-6">This package doesn't have any courses yet.</p>
-        </div>
-      </div>
-    );
+  if (!transformedPackage.courses.length) {
+    return renderState('No Courses Available', "This package doesn't have any courses yet.", <MenuBook color="primary" sx={{ fontSize: 48 }} />);
   }
-
-  const mockModules = [
-    {
-      title: "Introduction to STEMEX",
-      lessons: 6,
-      duration: "2h 30m",
-      completed: false,
-      preview: true
-    },
-    {
-      title: "Arduino Fundamentals",
-      lessons: 8,
-      duration: "3h 45m",
-      completed: false,
-      preview: true
-    },
-    {
-      title: "Data Analysis with Excel",
-      lessons: 10,
-      duration: "4h 15m",
-      completed: false,
-      preview: false
-    },
-    {
-      title: "Real-world Applications",
-      lessons: 12,
-      duration: "5h 30m",
-      completed: false,
-      preview: false
-    }
-  ];
-
   const totalAmount = transformedPackage.charges.reduce((sum, charge) => sum + charge.amount, 0);
   const currentCourse = transformedPackage.courses[selectedCourse];
 
-  const features = [
-    "Interactive video lessons with expert instructors",
-    "Hands-on projects using Arduino and Excel",
-    "Real-world problem-solving scenarios",
-    "Comprehensive learning materials and resources",
-    "Certificate of completion",
-    "24/7 community support and discussion forums"
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-900/90 via-purple-900/90 to-pink-900/90">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
-                <EmojiEvents className="w-4 h-4 mr-2 text-yellow-400" />
-                <span className="text-sm font-medium">{transformedPackage.packageName} Package</span>
-              </div>
-              
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-                Master STEM Skills with 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400"> Interactive Learning</span>
-              </h1>
-              
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Unlock your potential with our comprehensive {transformedPackage.packageName} package featuring {transformedPackage.courses.length} expertly crafted courses designed for real-world application.
-              </p>
-              
-              <div className="flex flex-wrap gap-4 mb-8">
-                <div className="flex items-center text-gray-300">
-                  <AccessTime className="w-5 h-5 mr-2 text-blue-400" />
-                  <span>{transformedPackage.duration}</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <Group className="w-5 h-5 mr-2 text-green-400" />
-                  <span>Up to {transformedPackage.totalMaxUsers} users</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <Public className="w-5 h-5 mr-2 text-purple-400" />
-                  <span>English</span>
-                </div>
-              </div>
-              
-              <button className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                <PlayArrow className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                Preview Course Content
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-              </button>
-            </div>
-            
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-2xl p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Package Pricing</h3>
-                
-                <div className="space-y-4 mb-6">
-                  {transformedPackage.charges.map((charge) => (
-                    <div key={charge.id} className="flex justify-between items-center py-2 border-b border-white/10">
-                      <span className="text-gray-300">{charge.name}</span>
-                      <span className={`font-semibold ${charge.amount < 0 ? 'text-green-400' : 'text-white'}`}>
-                        {charge.amount < 0 ? '-' : ''}${Math.abs(charge.amount)}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="flex justify-between items-center text-2xl font-bold text-white pt-4 border-t border-white/20">
-                  <span>Total</span>
-                  <span className="text-cyan-400">${totalAmount}</span>
-                </div>
-                
-                <button className="w-full mt-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-4 rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-green-500/25">
-                  Subscribe Now
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <ThemeProvider theme={lightTheme}>
+      <Box sx={{ bgcolor: 'background.default' }}>
+        {/* Hero Section */}
+        <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid #e2e8f0' }}>
+          <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
+            <Grid container spacing={6} alignItems="center">
+              <Grid item xs={12} lg={6}>
+                <Chip
+                  icon={<EmojiEvents />}
+                  label={`${transformedPackage.packageName} Package`}
+                  sx={{ mb: 3, fontWeight: 600 }}
+                  color="primary"
+                  variant='outlined'
+                />
+                <Typography variant="h2" component="h1" gutterBottom sx={{ color: 'text.primary' }}>
+                  Master STEM Skills with{' '}
+                  <Box component="span" sx={{ color: 'primary.main' }}>
+                    Interactive Learning
+                  </Box>
+                </Typography>
+                <Typography variant="h6" component="p" sx={{ color: 'text.secondary', mb: 4, lineHeight: 1.6 }}>
+                  {transformedPackage.description}
+                </Typography>
+                <Stack direction="row" spacing={2} sx={{ mb: 4 }}>
+                  <Chip icon={<AccessTime />} label={transformedPackage.duration} />
+                  <Chip icon={<Group />} label={`Up to ${transformedPackage.totalMaxUsers} users`} />
+                  <Chip icon={<Public />} label="English" />
+                </Stack>
+                <Button variant="contained" size="large" startIcon={<PlayArrow />} sx={{ py: 1.5, px: 4 }}>
+                  Preview Course Content
+                </Button>
+              </Grid>
+              <Grid item xs={12} lg={6}>
+                <Card>
+                  <CardContent sx={{ p: {xs: 3, md: 4} }}>
+                    <Typography variant="h5" component="h3" sx={{ mb: 3 }}>Package Pricing</Typography>
+                    <List disablePadding>
+                      {transformedPackage.charges.map((charge) => (
+                        <ListItem key={charge.id} disablePadding sx={{ py: 1.5, borderBottom: '1px solid #f1f5f9' }}>
+                          <ListItemIcon sx={{ minWidth: 32 }}>
+                            {charge.amount < 0 ? <RemoveCircleOutline color="success"/> : <AddCircleOutline color="error"/>}
+                          </ListItemIcon>
+                          <ListItemText primary={charge.name} />
+                          <Typography fontWeight="bold" color={charge.amount < 0 ? 'success.main' : 'error.main'}>
+                            {charge.amount < 0 ? '-' : '+'}${Math.abs(charge.amount)}
+                          </Typography>
+                        </ListItem>
+                      ))}
+                    </List>
+                    <Box display="flex" justifyContent="space-between" alignItems="center" borderTop="1px solid #e2e8f0" mt={2} pt={3}>
+                      <Typography variant="h5">Total</Typography>
+                      <Typography variant="h5" color="primary.main">${totalAmount}</Typography>
+                    </Box>
+                    <Button fullWidth variant="contained" size="large" sx={{ mt: 3, py: 1.5 }}>
+                      Subscribe Now
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
 
-      {/* Course Selection */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-white mb-8 text-center">
-          Included Courses ({transformedPackage.courses.length})
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {transformedPackage.courses.map((course, index) => (
-            <div
-              key={course.id}
-              className={`relative p-6 rounded-2xl border-2 transition-all duration-300 cursor-pointer group ${
-                selectedCourse === index
-                  ? 'border-cyan-400 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 shadow-xl shadow-cyan-500/20'
-                  : 'border-gray-700 bg-gray-800/50 hover:border-gray-600 hover:bg-gray-800/70'
-              }`}
-              onClick={() => setSelectedCourse(index)}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                    {course.course_name}
-                  </h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
-                    <div className="flex items-center">
-                      <AccessTime className="w-4 h-4 mr-1" />
-                      {course.duration}
-                    </div>
-                    <div className="flex items-center">
-                      <TrackChanges className="w-4 h-4 mr-1" />
-                      {course.level}
-                    </div>
-                  </div>
-                </div>
-                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                  selectedCourse === index ? 'border-cyan-400 bg-cyan-400' : 'border-gray-600'
-                }`}>
-                  {selectedCourse === index && <CheckCircle className="w-4 h-4 text-white" />}
-                </div>
-              </div>
-              
-              <p className="text-gray-300 text-sm leading-relaxed">
-                {course.short_desc.substring(0, 150)}...
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Course Details */}
-        <div className="bg-gray-800/50 backdrop-blur-lg rounded-2xl border border-gray-700 overflow-hidden">
-          <div className="flex border-b border-gray-700">
-            {['overview', 'curriculum', 'features'].map((tab) => (
-              <button
-                key={tab}
-                className={`px-6 py-4 font-medium capitalize transition-colors ${
-                  expandedSection === tab
-                    ? 'text-cyan-400 border-b-2 border-cyan-400 bg-gray-800/50'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-                onClick={() => setExpandedSection(tab)}
-              >
-                {tab}
-              </button>
+        {/* Course Selection & Details */}
+        <Container maxWidth="lg" sx={{ py: 8 }}>
+          <Typography variant="h3" component="h2" textAlign="center" sx={{ mb: 6 }}>
+            Included Courses ({transformedPackage.courses.length})
+          </Typography>
+          <Grid container spacing={3} sx={{ mb: 6 }}>
+            {transformedPackage.courses.map((course, index) => (
+              <Grid item xs={12} md={6} key={course.id}>
+                <Card
+                  onClick={() => setSelectedCourse(index)}
+                  sx={{
+                    p: 2,
+                    cursor: 'pointer',
+                    borderColor: selectedCourse === index ? 'primary.main' : 'transparent',
+                    boxShadow: selectedCourse === index ? `0 0 0 2px ${lightTheme.palette.primary.main}` : '0 4px 12px rgba(0,0,0,0.05)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 8px 16px rgba(0,0,0,0.1)' },
+                  }}
+                >
+                  <CardContent>
+                    <Box display="flex" justifyContent="space-between" alignItems="start">
+                        <Typography variant="h5" component="h3" sx={{ mb: 2, pr: 2 }}>{course.course_name}</Typography>
+                        {selectedCourse === index && <CheckCircle color="primary" />}
+                    </Box>
+                    <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                        <Chip icon={<AccessTime />} label={course.duration} size="small" />
+                        <Chip icon={<TrackChanges />} label={course.level} size="small" />
+                    </Stack>
+                    <Typography variant="body2" color="text.secondary">
+                      {course.short_desc?.substring(0, 150)}{course.short_desc?.length > 150 ? '...' : ''}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
             ))}
-          </div>
+          </Grid>
 
-          <div className="p-8">
-            {expandedSection === 'overview' && (
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    {currentCourse.course_name}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed mb-6">
-                    {currentCourse.short_desc}
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-6 rounded-xl border border-blue-500/20">
-                    <CalendarToday className="w-8 h-8 text-blue-400 mb-3" />
-                    <h4 className="text-lg font-semibold text-white mb-2">Duration</h4>
-                    <p className="text-gray-300">{currentCourse.duration}</p>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-6 rounded-xl border border-purple-500/20">
-                    <TrackChanges className="w-8 h-8 text-purple-400 mb-3" />
-                    <h4 className="text-lg font-semibold text-white mb-2">Level</h4>
-                    <p className="text-gray-300">{currentCourse.level}</p>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-6 rounded-xl border border-green-500/20">
-                    <Public className="w-8 h-8 text-green-400 mb-3" />
-                    <h4 className="text-lg font-semibold text-white mb-2">Language</h4>
-                    <p className="text-gray-300">English</p>
-                  </div>
-                </div>
-              </div>
-            )}
+          {/* Course Details Tabs */}
+          <Paper>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={expandedSection} onChange={handleTabChange} centered>
+                <Tab label="Overview" value="overview" />
+                <Tab label="Curriculum" value="curriculum" />
+                <Tab label="Features" value="features" />
+              </Tabs>
+            </Box>
+            <Box p={{xs: 3, md: 5}}>
+              {expandedSection === 'overview' && (
+                 <Box>
+                 <Typography variant="h4" gutterBottom>{currentCourse.course_name}</Typography>
+                 <Typography color="text.secondary" sx={{ mb: 4, lineHeight: 1.7 }}>{currentCourse.short_desc}</Typography>
+                 <Grid container spacing={3}>
+                     {[
+                         {icon: <CalendarToday color="primary"/>, title: "Duration", value: currentCourse.duration},
+                         {icon: <TrackChanges color="secondary"/>, title: "Level", value: currentCourse.level},
+                         {icon: <Public sx={{color: '#10b981'}}/>, title: "Language", value: currentCourse.language || 'English'}
+                     ].map(item => (
+                       <Grid item xs={12} md={4} key={item.title}>
+                           <Paper variant="outlined" sx={{ p: 3, textAlign: 'center', bgcolor: 'background.default' }}>
+                               {item.icon}
+                               <Typography variant="h6" sx={{mt: 1}}>{item.title}</Typography>
+                               <Typography color="text.secondary">{item.value}</Typography>
+                           </Paper>
+                       </Grid>
+                     ))}
+                 </Grid>
+               </Box>
+              )}
+              {expandedSection === 'curriculum' && (
+                <Box>
+                  <Typography variant="h4" sx={{ mb: 3 }}>Course Curriculum</Typography>
+                  <Stack spacing={2}>
+                    {currentCourse.courses_weekly_curricula.length > 0 ? (
+                      currentCourse.courses_weekly_curricula.map((module) => (
+                        <Paper key={module.id} variant="outlined" sx={{ p: 2.5, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <Box>
+                            <Typography variant="h6">{module.attributes.curriculum_title}</Typography>
+                            <Stack direction="row" spacing={3} mt={1}>
+                              <Chip icon={<MenuBook fontSize="small" />} label={`${module.attributes.course_lessons.data.length} lessons`} size="small" variant="outlined" />
+                            </Stack>
+                          </Box>
+                        </Paper>
+                      ))
+                    ) : (
+                      <Alert severity="info">Curriculum details are not available for this course yet.</Alert>
+                    )}
+                  </Stack>
+                </Box>
+              )}
+              {expandedSection === 'features' && (
+                <Box>
+                  <Typography variant="h4" sx={{ mb: 3 }}>What You'll Get</Typography>
+                  <List>
+                    {currentCourse.courses_features.length > 0 ? (
+                      currentCourse.courses_features.map((feature) => (
+                        <ListItem key={feature.id} sx={{py: 1.5}}>
+                          <ListItemIcon sx={{minWidth: '40px'}}><CheckCircle color="success" /></ListItemIcon>
+                          <ListItemText primary={feature.attributes.course_features_name} />
+                        </ListItem>
+                      ))
+                    ) : (
+                      <Alert severity="info">No special features are listed for this course.</Alert>
+                    )}
+                  </List>
+                </Box>
+              )}
+            </Box>
+          </Paper>
 
-            {expandedSection === 'curriculum' && (
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-6">Course Curriculum</h3>
-                <div className="space-y-4">
-                  {mockModules.map((module, index) => (
-                    <div key={index} className="bg-gray-900/50 rounded-xl border border-gray-700 overflow-hidden">
-                      <div className="p-4 flex justify-between items-center">
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="text-lg font-semibold text-white">{module.title}</h4>
-                            {module.preview && (
-                              <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-xs font-medium rounded-full">
-                                Preview Available
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-4 text-sm text-gray-400">
-                            <span className="flex items-center">
-                              <MenuBook className="w-4 h-4 mr-1" />
-                              {module.lessons} lessons
-                            </span>
-                            <span className="flex items-center">
-                              <AccessTime className="w-4 h-4 mr-1" />
-                              {module.duration}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="ml-4">
-                          {module.preview ? (
-                            <button className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                              <PlayArrow className="w-5 h-5" />
-                            </button>
-                          ) : (
-                            <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center">
-                              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {expandedSection === 'features' && (
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-6">What You'll Get</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-300">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-lg rounded-2xl border border-cyan-500/20 p-8">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Ready to Start Your Learning Journey?
-            </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Join thousands of students who have transformed their STEM skills with our interactive courses. Get instant access to all content and start building your future today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-xl shadow-xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                Subscribe to {transformedPackage.packageName} Package
-              </button>
-              <button className="px-8 py-4 border border-gray-600 text-white font-semibold rounded-xl hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-300">
-                View All Packages
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          {/* CTA Section */}
+          <Box mt={8} textAlign="center">
+            <Paper sx={{ p: { xs: 4, md: 6 }, bgcolor: 'primary.main' }}>
+              <Typography variant="h4" gutterBottom sx={{ color: 'white' }}>
+                Ready to Start Your Learning Journey?
+              </Typography>
+              <Typography sx={{ maxWidth: '600px', mx: 'auto', mb: 4, color: 'rgba(255,255,255,0.9)' }}>
+                Join thousands of students who have transformed their skills with our interactive courses. Get instant access to all content and start building your future today.
+              </Typography>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
+                <Button variant="contained" size="large" sx={{ bgcolor: 'white', color: 'primary.main', '&:hover': { bgcolor: '#f1f5f9' } }}>
+                  Subscribe to {transformedPackage.packageName}
+                </Button>
+                <Button variant="outlined" size="large" sx={{ borderColor: 'white', color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+                  View All Packages
+                </Button>
+              </Stack>
+            </Paper>
+          </Box>
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 };
 
