@@ -12,22 +12,22 @@ import {
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../hooks/UserContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import {  server } from "../../UtilitiesFunctions/Function";
+import { server } from "../../UtilitiesFunctions/Function";
 import axios from "axios";
-import './MainMenu.scss'
+import "./MainMenu.scss";
 
 const rightLink = {
   fontSize: 16,
   color: "#BA68C8",
   fontWeight: "800",
-  textAlign:'center',
-paddingBottom:'0.5rem',
-paddingTop:'0.5rem',
-width:'100%',
-"&:hover": {
-  color: "white",
-  backgroundColor: "#040535"
-}
+  textAlign: "center",
+  paddingBottom: "0.5rem",
+  paddingTop: "0.5rem",
+  width: "100%",
+  "&:hover": {
+    color: "white",
+    backgroundColor: "#040535",
+  },
 };
 
 const MainMenu = ({ user }) => {
@@ -51,30 +51,31 @@ const MainMenu = ({ user }) => {
   };
 
   const postImageToStrapi = async (file) => {
-      try {
-       
+    try {
       const data = new FormData();
       data.append("ref", "plugin::users-permissions.user");
       data.append("refId", user.id);
       data.append("field", "profilePic");
-        data.append("files", file);
-        const response = await axios.post(`${server}/upload/`, data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        });
-        updateUser({ ...user,profileUrl:response.data[0].url, profilePic:response.data[0].id });
-        setProfilePic(response.data[0].url)
-        return response.data[0].id;
-      } catch (error) {
-        console.error("Error uploading image:", error);
-      }
-     };
+      data.append("files", file);
+      const response = await axios.post(`${server}/upload/`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user.jwt}`,
+        },
+      });
+      updateUser({
+        ...user,
+        profileUrl: response.data[0].url,
+        profilePic: response.data[0].id,
+      });
+      setProfilePic(response.data[0].url);
+      return response.data[0].id;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
 
-const deleteProfilePic = async (uploadId) =>{
-
-}
+  const deleteProfilePic = async (uploadId) => {};
 
   return (
     <Container
@@ -97,73 +98,73 @@ const deleteProfilePic = async (uploadId) =>{
             display: "flex",
           }}
         >
-{ 
-loading ? 
-(
-<LinearProgress color="secondary" />
-)
-:
-(   
-      <>
-        <Box
-        component="div"
-        sx={{
-          height: 200,
-          background: "none",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 200,
-          paddingTop: "6px",
-          borderRadius: "50%",
-          position: "absolute",
-          zIndex: "2",
-        }}
-      >
-        <p
-          className={user?.profileUrl ? 'content_paragraph':'content_paragraph-normal'}
-        >
-          <label>
-            <input
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-              name="profilePic"
-            />
+          {loading ? (
+            <LinearProgress color="secondary" />
+          ) : (
+            <>
+              <Box
+                component="div"
+                sx={{
+                  height: 200,
+                  background: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 200,
+                  paddingTop: "6px",
+                  borderRadius: "50%",
+                  position: "absolute",
+                  zIndex: "2",
+                }}
+              >
+                <p
+                  className={
+                    user?.profileUrl
+                      ? "content_paragraph"
+                      : "content_paragraph-normal"
+                  }
+                >
+                  <label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageChange}
+                      name="profilePic"
+                    />
 
-            <AddRoundedIcon
-              sx={{
-                fontSize: 60,
-                color: "white",
-                backgroundColor: "#0606066f",
-                borderRadius: "50%",
-                padding: 1,
-                cursor: "pointer",
-              }}
-            />
-          </label>
-        </p>
-      </Box>
+                    <AddRoundedIcon
+                      sx={{
+                        fontSize: 60,
+                        color: "white",
+                        backgroundColor: "#0606066f",
+                        borderRadius: "50%",
+                        padding: 1,
+                        cursor: "pointer",
+                      }}
+                    />
+                  </label>
+                </p>
+              </Box>
 
-      <Box
-        component="img"
-        src={user?.profileUrl || `https://source.unsplash.com/1000x1000/?admin?auto=format&fit=crop&w=200`}
-        alt="Ujuzi Logo"
-        sx={{
-          height: 200,
-          width: 200,
-          paddingTop: "6px",
-          borderRadius: "50%",
-          position: "absolute",
-          zIndex: "1",
-        }}
-      />
-      </>
-      )
-      
-}
-
+              <Box
+                component="img"
+                src={
+                  user?.profileUrl ||
+                  `https://source.unsplash.com/1000x1000/?admin?auto=format&fit=crop&w=200`
+                }
+                alt="Ujuzi Logo"
+                sx={{
+                  height: 200,
+                  width: 200,
+                  paddingTop: "6px",
+                  borderRadius: "50%",
+                  position: "absolute",
+                  zIndex: "1",
+                }}
+              />
+            </>
+          )}
         </Box>
         <Typography
           variant="h5"
@@ -172,7 +173,7 @@ loading ?
           {`Hello ${user?.firstname}`}
         </Typography>
         <Paper>
-          <MenuList  sx={{ width: 200, margin: "0 auto" }}>
+          <MenuList sx={{ width: 200, margin: "0 auto" }}>
             <MenuItem>
               <Link
                 variant="h6"
@@ -184,7 +185,7 @@ loading ?
                 {"Profile"}
               </Link>
             </MenuItem>
-                        <MenuItem>
+            <MenuItem>
               {" "}
               <Link
                 variant="h6"
@@ -236,7 +237,7 @@ loading ?
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/admin/soon"
+                href="/member/admin/my-subscriptions"
                 sx={{ ...rightLink }}
               >
                 {"Active subscriptions"}
@@ -255,15 +256,16 @@ loading ?
               </Link>
             </MenuItem>
             <MenuItem>
-            <Link
+              <Link
                 variant="h7"
                 underline="none"
                 color="inherit"
                 href="/sign=out"
-                style={{textAlign:"center",width:"100%"}}
+                style={{ textAlign: "center", width: "100%" }}
               >
                 {"Sign out"}
-              </Link></MenuItem>
+              </Link>
+            </MenuItem>
           </MenuList>
         </Paper>
       </Stack>
