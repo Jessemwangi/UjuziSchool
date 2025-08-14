@@ -50,6 +50,7 @@ import CoursesLessonsCategories from './Component/modules/views/CoursesLessonsCa
 import AgentDashboard from './Admin/pages/subscription/AgentDashboard ';
 import AgentRegistration from './Admin/AgentRegistration';
 import CoursePreview from './Admin/pages/pricing-table/singlePrice/CoursePreview';
+import AgentSubscriptions from './Admin/pages/subscription/AgentSubscriptions';
 
 const router = createBrowserRouter(
   [
@@ -238,6 +239,10 @@ const router = createBrowserRouter(
             {
               path: '/member/admin/soon',
               element: <ComingSoon />
+            },
+            {
+              path: '/member/admin/my-subscriptions',
+              element: <AgentSubscriptions />
             },
            
            

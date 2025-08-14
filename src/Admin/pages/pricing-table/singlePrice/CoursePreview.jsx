@@ -38,7 +38,7 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Updated light theme with the new primary color
-const lightTheme = createTheme({
+export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
