@@ -260,7 +260,7 @@ const MainMenu = ({ user }) => {
                 variant="h7"
                 underline="none"
                 color="inherit"
-                href="/sign=out"
+                href="/sign-out"
                 style={{ textAlign: "center", width: "100%" }}
               >
                 {"Sign out"}
