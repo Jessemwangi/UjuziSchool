@@ -51,6 +51,7 @@ import AgentDashboard from './Admin/pages/subscription/AgentDashboard ';
 import AgentRegistration from './Admin/AgentRegistration';
 import CoursePreview from './Admin/pages/pricing-table/singlePrice/CoursePreview';
 import AgentSubscriptions from './Admin/pages/subscription/AgentSubscriptions';
+import PackageSubscription from './Admin/pages/subscription/PackageSubscription';
 
 const router = createBrowserRouter(
   [
@@ -225,16 +226,20 @@ const router = createBrowserRouter(
               element: <Pricing />
             },
             {
+              path: '/member/admin/package/:id',
+              element: <CoursePreview />
+            },
+             {
+              path: '/member/admin/subscribe-to-package/:packageId',
+              element: <PackageSubscription />
+            },
+            {
               path: '/member/admin/student',
               element: <RegisterStudent />
             },
             {
               path: '/member/admin/student/details',
               element: <StudentDetails />
-            },
-            {
-              path: '/member/admin/package/:id',
-              element: <CoursePreview />
             },
             {
               path: '/member/admin/soon',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFetch } from '../../../../hooks/useFetch';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Box,
   Container,
@@ -99,20 +99,22 @@ export const lightTheme = createTheme({
     },
   },
 });
-
-const CoursePreview = () => {
-  const [selectedCourse, setSelectedCourse] = useState(0);
-  const [expandedSection, setExpandedSection] = useState('overview');
-  const { id } = useParams();
-
-  // Updated query to populate all necessary fields from the new data structure
-  const query = `?populate[courses][populate][courses_features]=*&populate[courses][populate]
-  [courses_weekly_curricula][populate][course_lessons]=*&populate[charges]=*`;
-  const query2 =`?populate[courses][populate][courses_subcategories]=*&populate[courses][populate][courses_instructors]=*&populate[courses][populate]
+  export const query2 =`?populate[courses][populate][courses_subcategories]=*&populate[courses][populate][courses_instructors]=*&populate[courses][populate]
   [course_intro_video]=*&populate[courses][populate][course_intro_img]=*&populate[courses][populate][course_target_groups]=*&populate[courses]
   [populate][course_learn_lists]=*&populate[courses][populate][course_qualification_equirements]=*&populate[courses][populate]
   [course_reviews]=*&populate[courses][populate]=courses_features&populate[courses][populate][courses_weekly_curricula][populate]=lesson_resources,
   lesson_quizzes&populate[courses][populate][course_ratings]=*&populate[courses][populate][questions]=*&populate[charges]=*`
+const CoursePreview = () => {
+  const [selectedCourse, setSelectedCourse] = useState(0);
+  const [expandedSection, setExpandedSection] = useState('overview');
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  // Updated query to populate all necessary fields from the new data structure
+  const query = `?populate[courses][populate][courses_features]=*&populate[courses][populate]
+  [courses_weekly_curricula][populate][course_lessons]=*&populate[charges]=*`;
+
+
   const url = `/subscription-packages/${id}${query}`;
   const { data, loading, error } = useFetch(url);
 
@@ -230,7 +232,8 @@ const CoursePreview = () => {
                       <Typography variant="h5">Total</Typography>
                       <Typography variant="h5" color="primary.main">${totalAmount}</Typography>
                     </Box>
-                    <Button fullWidth variant="contained" size="large" sx={{ mt: 3, py: 1.5 }}>
+                    <Button fullWidth variant="contained" size="large" sx={{ mt: 3, py: 1.5 }}
+                    onClick={() => navigate(`/member/admin/subscribe-to-package/${id}`)}>
                       Subscribe Now
                     </Button>
                   </CardContent>
@@ -359,10 +362,12 @@ const CoursePreview = () => {
                 Join thousands of students who have transformed their skills with our interactive courses. Get instant access to all content and start building your future today.
               </Typography>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-                <Button variant="contained" size="large" sx={{ bgcolor: 'white', color: 'primary.main', '&:hover': { bgcolor: '#f1f5f9' } }}>
+                <Button variant="contained" size="large" sx={{ bgcolor: 'white', color: 'primary.main', '&:hover': { bgcolor: '#f1f5f9' } }}
+                onClick={() => navigate(`/member/admin/subscribe-to-package/${id}`)}>
                   Subscribe to {transformedPackage.packageName}
                 </Button>
-                <Button variant="outlined" size="large" sx={{ borderColor: 'white', color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>
+                <Button variant="outlined" size="large" sx={{ borderColor: 'white', color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}
+                onClick={() => navigate('/member/admin/packages')}>
                   View All Packages
                 </Button>
               </Stack>
