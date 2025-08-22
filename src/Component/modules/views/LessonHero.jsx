@@ -131,7 +131,7 @@ export default function LessonHero() {
               className="edu-btn btn-medium"
               variant="contained"
               component="a"
-              href="https://https://www.afro-com.com/" target="_blank"
+              href="https://www.afro-com.com/" target="_blank"
               rel="noopener noreferrer"
               sx={{
                 minWidth: { xs: 240, sm: 260 },
