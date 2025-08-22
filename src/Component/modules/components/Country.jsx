@@ -14,13 +14,18 @@ const CountrySelect =(props) => {
     meta: { touched, error, submitError },
     ...other
   } = props;
-  
+
+    const selectedCountry = input.value && input.value.trim() !== ''
+    ? allCountries.find(country => country.name === input.value) 
+    : null;
+
   return (
     <Autocomplete
       id="country-select-demo"
       sx={{ width: '100%', height: '100%' }}
       options={allCountries}
       autoHighlight
+       value={selectedCountry} 
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>

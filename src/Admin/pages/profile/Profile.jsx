@@ -38,18 +38,7 @@ const Profile = () => {
 
   if (loading) return <p>Loading</p>;
 
-  const initialValues = {
-    country: data?.profile?.country || "",
-    city: data?.profile?.city || "",
-    address: data?.profile?.address || "",
-    postalCode: data?.profile?.postalCode || "",
-    occupation: data?.profile?.occupation || "",
-    pronoun: data?.profile?.pronoun || "",
-    otherName: data?.profile?.otherName || "",
-    phoneNumber: data?.profile?.phoneNumber || "",
-    title: data?.profile?.title || "",
-    imageUrl: data?.profile?.imageUrl || null,
-  };
+
 
   const handleSubmit = async (values) => {
     try {
@@ -99,6 +88,20 @@ const Profile = () => {
         errorMessage={`OOPPs! our bad, Landed into an error : ${err}`}
       />
     );
+
+      const initialValues = {
+    country: data?.profile?.country || "",
+    city: data?.profile?.city || "",
+    address: data?.profile?.address || "",
+    postalCode: data?.profile?.postalCode || "",
+    occupation: data?.profile?.occupation || "",
+    pronoun: data?.profile?.pronoun || "",
+    otherName: data?.profile?.otherName || "",
+    phoneNumber: data?.profile?.phoneNumber || "",
+    title: data?.profile?.title || "",
+    imageUrl: data?.profile?.imageUrl || null,
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h3" gutterBottom marked="center" align="center">
