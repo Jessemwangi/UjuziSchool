@@ -179,7 +179,7 @@ const MainMenu = ({ user }) => {
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/admin/profile"
+                href="/member/profile"
                 sx={{ ...rightLink }}
               >
                 {"Profile"}

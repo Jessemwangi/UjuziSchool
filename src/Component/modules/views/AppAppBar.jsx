@@ -125,7 +125,7 @@ const AppAppBar = () => {
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/agent-dashboard"
+                href="/member/admin/agent-dashboard"
                 sx={{ fontSize: 16 }}
               >
                 {"Dashboard"}

@@ -3,13 +3,14 @@ import { Typography, Grid, Pagination, CircularProgress, Alert, Button } from "@
 import Chart from "react-apexcharts";
 import '../../admin.scss';
 import { useFetch } from "../../../hooks/useFetch";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../hooks/UserContext";
 
 const AgentDashboard = () => {
   const [page, setPage] = useState(1);
   const [agentFetchUrl, setAgentFetchUrl] = useState(null);
   const [subscriptionFetchUrl, setSubscriptionFetchUrl] = useState(null);
-  const { user } = useOutletContext();
+  const { user } = useUser();
 const navigate = useNavigate();
 
   // First fetch: Get agent details using user ID
