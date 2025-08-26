@@ -1,19 +1,20 @@
-import {  Alert, CircularProgress, Container,  } from '@mui/material';
+import {  Alert, Box, Chip, CircularProgress, Container, Paper, Typography,  } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/UserContext';
 import { useEffect, useState } from 'react';
 import Button from '../Component/modules/components/Button';
 import { useFetch } from '../hooks/useFetch';
+import { CheckCircle, HourglassEmpty, Person } from '@mui/icons-material';
 ;
 
 const AdminMain = () => {
     const [agentFetchUrl, setAgentFetchUrl] = useState(null);
-     const { user, ctxLoading, updateUser } = useUser();
+     const { user, ctxLoading } = useUser();
       const navigate = useNavigate();
 
   useEffect(() => {
     if (ctxLoading === false) {
-      if (!user) {
+      if (!user || !user.id) {
         navigate('/sign-in');
       } else if (user && user.id) {       
         setAgentFetchUrl(`/agents-details?filters[users_permissions_user][id][$eq]=${user.id}`);
@@ -22,13 +23,6 @@ const AdminMain = () => {
   }, [ctxLoading, navigate, user]);
 
   const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
-
-  // Update user context with agent ID when agent data is loaded
-  useEffect(() => {
-    if (agentData?.data?.[0]?.id && user && !user.agentId) {
-      updateUser({ ...user, agentId: agentData.data[0].id });
-    }
-  }, [agentData, user, updateUser]);
 
   // Show loading while context is loading or while fetching agent data
   if (ctxLoading || agentLoading) {
@@ -81,9 +75,79 @@ const AdminMain = () => {
   }
 const agentDetails = agentData?.data?.[0];
   return (
-    <Container className="adminMain" sx={{ paddingTop: '3rem' }}>
-      <h4>Welcome Agent {user.username}!</h4>
-      {/* Pass only agent data - user is available globally */}
+<Container className="adminMain" sx={{ paddingTop: '2rem' }} maxWidth="xl">
+      {/* Agent Header Section */}
+      <Paper 
+        elevation={2} 
+        sx={{ 
+          p: 3, 
+          mb: 4, 
+          borderRadius: 2,
+          background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
+        }}
+      >
+        <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+          {/* Left side - Welcome message */}
+          <Box display="flex" alignItems="center" gap={2}>
+            <Person sx={{ fontSize: 40, color: '#1976d2' }} />
+            <Box>
+              <Typography 
+                variant="h4" 
+                sx={{ 
+                  fontWeight: 'bold', 
+                  color: '#1976d2',
+                  mb: 0.5
+                }}
+              >
+                Welcome, {user.username}!
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                Agent Dashboard
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Right side - Approval Status */}
+          <Box display="flex" flexDirection="column" alignItems="flex-end" gap={1}>
+            <Typography variant="body2" color="text.secondary">
+              Account Status
+            </Typography>
+            <Chip
+              icon={agentDetails.attributes?.isApproved ? <CheckCircle /> : <HourglassEmpty />}
+              label={agentDetails.attributes?.isApproved ? 'Approved' : 'Pending Approval'}
+              color={agentDetails.attributes?.isApproved ? 'success' : 'warning'}
+              variant={agentDetails.attributes?.isApproved ? 'filled' : 'outlined'}
+              sx={{ 
+                fontWeight: 'bold',
+                fontSize: '0.875rem',
+                px: 2,
+                py: 0.5
+              }}
+            />
+          </Box>
+        </Box>
+
+        {/* Conditional message for pending approval */}
+        {!agentDetails.attributes?.isApproved && (
+          <Alert 
+            severity="info" 
+            sx={{ 
+              mt: 3, 
+              borderRadius: 2,
+              '& .MuiAlert-message': {
+                fontSize: '0.875rem'
+              }
+            }}
+          >
+            <Typography variant="body2">
+              <strong>Your agent application is being reviewed.</strong> Some features may be limited until approval is complete. 
+              You'll receive an email notification once your account is approved.
+            </Typography>
+          </Alert>
+        )}
+      </Paper>
+
+      {/* Main Content Area */}
       <Outlet context={{ agentData: agentDetails }} />
     </Container>
   );
