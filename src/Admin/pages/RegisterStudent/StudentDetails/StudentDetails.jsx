@@ -20,16 +20,20 @@ const StudentDetails = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   const [url,setUrl] =useState(null);
+   const [refreshKey, setRefreshKey] = useState(0); 
 
 
    useEffect(
     () => {
       if (user || user.id) {
-        setUrl(`/student/agentstudentlist/${user.id}`)
+        setUrl(`/student/agentstudentlist/${user.id}?refresh=${refreshKey}`)
       }
-    }, [user]
+    }, [refreshKey, user]
    )
   const { data, error, loading } = useFetch(url);
+    const handleRefresh = () => {
+    setRefreshKey(prev => prev + 1);
+  };
 
   // Loading state
   if (loading) {
@@ -144,7 +148,9 @@ const convertedData = data?.filter(item => !item.isDeleted)
       {/* Content Section */}
       {convertedData && convertedData.length > 0 ? (
         <Paper elevation={1} sx={{ borderRadius: 2, overflow: 'hidden' }}>
-          <StudentDataTable data={convertedData} />
+          <StudentDataTable 
+          data={convertedData}
+           onRefresh={handleRefresh} />
         </Paper>
       ) : (
         <Paper sx={{ p: 6, textAlign: 'center', borderRadius: 2 }}>

@@ -36,7 +36,7 @@ const RegisterStudent = () => {
       setLoading(true);
       await postData(`/student/sign-up`, {  ...values,
         agents_detail:user.id }, user?.jwt);
-      // await axios.post(`${server}/student/sign-up`, data);
+    
       setName(values.studentName);
       setSent(true);
       onSubmitSuccess(values);
