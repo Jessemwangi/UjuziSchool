@@ -48,6 +48,7 @@ import AgentRegistration from "./Admin/AgentRegistration";
 import CoursePreview from "./Admin/pages/pricing-table/singlePrice/CoursePreview";
 import AgentSubscriptions from "./Admin/pages/subscription/AgentSubscriptions";
 import PackageSubscription from "./Admin/pages/subscription/PackageSubscription";
+import ContactAdmin from "./Admin/pages/profile/ContactAdmin";
 
 const router = createBrowserRouter(
   [
@@ -192,6 +193,10 @@ const router = createBrowserRouter(
             {
               path: "/member/profile",
               element: <Profile />,
+            },
+            {
+              path: "/member/contact-admin",
+              element: <ContactAdmin />,
             },
             {
               path: "/member/admin",
