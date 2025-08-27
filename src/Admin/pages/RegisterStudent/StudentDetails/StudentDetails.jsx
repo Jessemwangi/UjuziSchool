@@ -1,117 +1,183 @@
-import React from "react";
-import StudentDataTable from "../../../Componets/StudentDataTable ";
-import Typography from "../../../../Component/modules/components/Typography";
+import React, { useEffect, useState } from "react";
+import { 
+  Typography, 
+  Alert, 
+  CircularProgress, 
+  Box, 
+  Paper,
+  Chip,
+  Container
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { School, Person } from "@mui/icons-material";
 import { useFetch } from "../../../../hooks/useFetch";
 import { useUser } from "../../../../hooks/UserContext";
 import { timeformat } from "../../../../UtilitiesFunctions/formatTime";
-import { Alert, CircularProgress } from "@mui/material";
 import Button from "../../../../Component/modules/components/Button";
-import { useNavigate } from "react-router-dom";
+import StudentDataTable from "../../../Componets/StudentDataTable ";
 
 const StudentDetails = () => {
   const { user } = useUser();
   const navigate = useNavigate();
-  // Construct the URL if the user is available
-  const url = user?.id ? `/student/agentstudentlist/${user.id}` : null;
+  const [url,setUrl] =useState(null);
+
+
+   useEffect(
+    () => {
+      if (user || user.id) {
+        setUrl(`/student/agentstudentlist/${user.id}`)
+      }
+    }, [user]
+   )
   const { data, error, loading } = useFetch(url);
 
-  // Loading state for both user and data fetching
-  if (!user || !user.id || !user.jwt || loading) {
+  // Loading state
+  if (loading) {
     return (
-      <div className="adminMain">
-        <div className="main-content">
-          <CircularProgress />
-        </div>
-      </div>
+      <Box 
+        display="flex" 
+        justifyContent="center" 
+        alignItems="center" 
+        minHeight="200px"
+      >
+        <CircularProgress />
+        <Typography variant="body1" sx={{ ml: 2 }}>
+          Loading student data...
+        </Typography>
+      </Box>
     );
   }
+
+  // Error handling
   if (error) {
     const errorMessage =
       error?.response?.data?.error?.message ||
       error.message ||
       "Something went wrong";
-    if (errorMessage === "Forbidden") {
-      return (
-        <div className="adminMain">
-          <div className="main-content">
-            <Alert severity="info" sx={{ marginBottom: "1rem" }}>
-              You are not an agent
-            </Alert>
+
+    return (
+      <Container maxWidth="md">
+        <Paper sx={{ p: 3, textAlign: 'center' }}>
+          <Alert 
+            severity={errorMessage === "Forbidden" ? "info" : "error"} 
+            sx={{ mb: 3 }}
+          >
+            {errorMessage === "Forbidden" 
+              ? "You don't have permission to access student data."
+              : errorMessage
+            }
+          </Alert>
+          
+          <Box display="flex" gap={2} justifyContent="center" flexWrap="wrap">
             <Button
               variant="contained"
-              onClick={() => navigate("/member/agent-registration")}
-              sx={{ marginRight: "2rem" }}
-            >
-              Register as Agent
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() => navigate(`/member/admin`)}
-              sx={{
-                color: "primary.main",
-                borderColor: "primary.main",
-                "&:hover": {
-                  borderColor: "primary.dark",
-                  backgroundColor: "rgba(0, 0, 0, 0.04)",
-                },
-              }}
-            >
-              Go Home
-            </Button>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="adminMain">
-          <div className="main-content">
-            <Alert severity="error" sx={{ marginBottom: "1rem" }}>
-              {errorMessage}
-            </Alert>
-            <Button
-              variant="contained"
-              sx={{ marginRight: "2rem" }}
               onClick={() => window.location.reload()}
             >
               Retry
             </Button>
             <Button
               variant="outlined"
-              onClick={() => navigate(`/member/admin`)}
-              sx={{
-                color: "primary.main",
-                borderColor: "primary.main",
-                "&:hover": {
-                  borderColor: "primary.dark",
-                  backgroundColor: "rgba(0, 0, 0, 0.04)",
-                },
-              }}
+              onClick={() => navigate('/member/admin')}
             >
-              Go Home
+              Back to Dashboard
             </Button>
-          </div>
-        </div>
-      );
-    }
+          </Box>
+        </Paper>
+      </Container>
+    );
   }
 
-  const convertedData = data?.map((item) => ({
+  // Transform data
+const convertedData = data?.filter(item => !item.isDeleted)
+  .map(item => ({
     id: item.id,
     studentName: item.studentName,
-    dateRegistered: timeformat(item.createdAt), // Format date
+    dateRegistered: timeformat(item.createdAt),
     studyLevel: item.studyLevel,
+    isBlocked: item.isBlocked,
+    isDeleted: item.isDeleted,
   }));
 
+  const studentCount = convertedData?.length || 0;
+
   return (
-    <div>
-      <Typography variant="h1">Student details</Typography>
-      {/* Render the table only if convertedData exists */}
+    <Container maxWidth="lg">
+      {/* Header Section */}
+      <Paper elevation={1} sx={{ p: 3, mb: 3, borderRadius: 2 }}>
+        <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+          {/* Title and Icon */}
+          <Box display="flex" alignItems="center" gap={2}>
+            <School sx={{ fontSize: 32, color: 'primary.main' }} />
+            <Box>
+              <Typography 
+                variant="h4" 
+                sx={{ 
+                  fontWeight: 'bold', 
+                  color: 'primary.main',
+                  mb: 0.5
+                }}
+              >
+                Student Management
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                Manage and view your registered students
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Student Count */}
+          <Box display="flex" flexDirection="column" alignItems="flex-end">
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+              Total Students
+            </Typography>
+            <Chip
+              icon={<Person />}
+              label={`${studentCount} Student${studentCount !== 1 ? 's' : ''}`}
+              color="primary"
+              variant="outlined"
+              sx={{ fontWeight: 'bold' }}
+            />
+          </Box>
+        </Box>
+      </Paper>
+
+      {/* Content Section */}
       {convertedData && convertedData.length > 0 ? (
-        <StudentDataTable data={convertedData} />
+        <Paper elevation={1} sx={{ borderRadius: 2, overflow: 'hidden' }}>
+          <StudentDataTable data={convertedData} />
+        </Paper>
       ) : (
-        <p>No student data available</p> // Display a message when there's no data
+        <Paper sx={{ p: 6, textAlign: 'center', borderRadius: 2 }}>
+          <School sx={{ fontSize: 64, color: 'text.disabled', mb: 2 }} />
+          <Typography variant="h5" color="text.secondary" gutterBottom>
+            No Students Found
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 3, maxWidth: 400, mx: 'auto' }}>
+            You haven't registered any students yet. Start by adding your first student to begin managing their learning journey.
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={() => navigate('/member/admin/student')}
+            startIcon={<Person />}
+          >
+            Register New Student
+          </Button>
+        </Paper>
       )}
-    </div>
+
+      {/* Quick Actions */}
+      {studentCount > 0 && (
+        <Box mt={3} mb={5} border={"red"} display="flex" justifyContent="center">
+          <Button
+            variant="outlined"
+            onClick={() => navigate('/member/admin/student')}
+            startIcon={<Person />}
+          >
+            Add New Student
+          </Button>
+        </Box>
+      )}
+    </Container>
   );
 };
 

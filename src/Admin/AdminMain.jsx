@@ -102,7 +102,7 @@ const agentDetails = agentData?.data?.[0];
                 Welcome, {user.username}!
               </Typography>
               <Typography variant="subtitle1" color="text.secondary">
-                Agent Dashboard
+                Agent Dashboard: {' '}{agentDetails?.attributes?.agentNumber ? `- # ${agentDetails.attributes.agentNumber}` : ''}
               </Typography>
             </Box>
           </Box>

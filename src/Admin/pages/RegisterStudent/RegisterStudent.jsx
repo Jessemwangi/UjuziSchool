@@ -109,7 +109,7 @@ const RegisterStudent = () => {
             <Field
               fullWidth
               component={RFTextField}
-              disabled={submitting || sent}
+              disabled={submitting || sent || loading}
               required
               name="studentPassword"
               autoComplete="new-password"
@@ -122,7 +122,7 @@ const RegisterStudent = () => {
                 <Field
                   autoFocus
                   component={RFTextField}
-                  disabled={submitting || sent}
+                  disabled={submitting || sent || loading}
                   autoComplete="studyLevel"
                   fullWidth
                   label="study Level"
@@ -148,7 +148,7 @@ const RegisterStudent = () => {
                 padding: "10px 20px",
                 width: "max-content",
               }}
-              disabled={submitting || sent}
+              disabled={submitting || sent || loading}
               color="secondary"
               fullWidth
             >
