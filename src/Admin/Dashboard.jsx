@@ -2,33 +2,48 @@ import React, { useEffect } from "react";
 import { useUser } from "../hooks/UserContext";
 import { Outlet, useNavigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { Container, Grid } from "@mui/material";
+import {  CircularProgress, Container, Grid } from "@mui/material";
 import MainMenu from "./Menu/MainMenu";
 import './admin.scss'
 
 const Dashboard = () => {
-  const navigate = useNavigate()
-  const {user,ctxLoading} = useUser();
-  
+  const navigate = useNavigate();
+  const { user, ctxLoading } = useUser();
 
   useEffect(() => {
     if (ctxLoading === false) {
-      if(!user){
-        navigate('/sign-in')
+      if (!user) {
+        navigate('/sign-in');
       }
     }
   }, [ctxLoading, navigate, user]);
 
+  // Show loading while context is loading or while fetching agent data
+  if (ctxLoading ) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <CircularProgress />
+        </div>
+      </div>
+    );
+  }
 
+  // Main dashboard render
   return (
     <HelmetProvider>
-      <Container maxWidth={false} disableGutters sx={{marginTop:'2rem'}} className="dashboard">
+      <Container 
+        maxWidth={false} 
+        disableGutters 
+        sx={{ marginTop: '2rem' }} 
+        className="dashboard"
+      >
         <Grid container>
           <Grid item md={3} lg={2}>
             <MainMenu user={user} />
           </Grid>
           <Grid item md={9} lg={10}>
-          <Outlet context={{ user }}/>
+            <Outlet/>
           </Grid>
         </Grid>
       </Container>

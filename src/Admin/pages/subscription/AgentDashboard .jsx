@@ -4,27 +4,19 @@ import Chart from "react-apexcharts";
 import '../../admin.scss';
 import { useFetch } from "../../../hooks/useFetch";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useUser } from "../../../hooks/UserContext";
 
 const AgentDashboard = () => {
   const [page, setPage] = useState(1);
-  const [agentFetchUrl, setAgentFetchUrl] = useState(null);
   const [subscriptionFetchUrl, setSubscriptionFetchUrl] = useState(null);
-  const { user } = useOutletContext();
+  const { user } = useUser();
 const navigate = useNavigate();
-
-  // First fetch: Get agent details using user ID
-  useEffect(() => {
-    if (user?.id) {
-      setAgentFetchUrl(`/agents-details?filters[users_permissions_user][id][$eq]=${user.id}`);
-    }
-  }, [user]);
-
-  const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
-
+const {agentData} = useOutletContext();
+console.log("Agent Data from context:", agentData);
   // Second fetch: Get agent subscriptions using agent ID
   useEffect(() => {
-    if (agentData?.data?.[0]?.id) {
-      setSubscriptionFetchUrl(`/agents/subscriptions/${agentData.data[0].id}?page=${page}`);
+    if (agentData?.id) {
+      setSubscriptionFetchUrl(`/agents/subscriptions/${agentData.id}?page=${page}`);
     }
   }, [agentData, page]);
 
@@ -41,43 +33,9 @@ const navigate = useNavigate();
     );
   }
 
-  // Show loading while fetching agent data
-  if (agentLoading) {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <CircularProgress />
-        </div>
-      </div>
-    );
-  }
-
-  // Handle agent fetch error
-  if (agentError) {
-    const errorMessage = agentError?.response?.data?.error?.message || agentError.message || 'Something went wrong';
-    if (errorMessage === 'Forbidden') {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <Alert severity="info" sx={{ marginBottom: '1rem' }}>You are not an agent</Alert>
-          <Button variant="contained" onClick={() => navigate('/member/agent-registration')}>Register as Agent</Button>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <Alert severity="error" sx={{ marginBottom: '1rem' }}>{errorMessage}</Alert>
-          <Button variant="contained" onClick={() => window.location.reload()}>Retry</Button>
-        </div>
-      </div>
-    );
-  }
-}
 
   // Check if user is not an agent
-  if (!agentData?.data?.length) {
+  if (!agentData?.id) {
     return (
       <div className="adminMain">
         <div className="main-content">
@@ -199,10 +157,10 @@ if (subscriptionError) {
   return (
     <div className="adminMain">
       <div className="main-content">
-        <Typography variant="h4" gutterBottom sx={{ mb: 4, fontWeight: 'bold', color: '#1976d2' }}>
+        {/* <Typography variant="h4"  sx={{ mb: 4, fontWeight: 'bold', color: '#040535' }}>
           Agent Dashboard
-           {' ' } Approval Status : ({agentData.data[0].attributes?.isApproved})
-        </Typography>
+           {' ' } Approval Status : ({agentData.attributes?.isApproved ? 'Approved' : 'Pending'})
+        </Typography> */}
         
         {/* Agent Summary Cards */}
         <Grid container spacing={3} sx={{ mb: 4 }}>

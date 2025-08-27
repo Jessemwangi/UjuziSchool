@@ -27,20 +27,20 @@ import {
   CloudUpload as CloudUploadIcon,
   Delete as DeleteIcon,
   CheckCircle as CheckCircleIcon,
-  Error as ErrorIcon,
   Info as InfoIcon
 } from "@mui/icons-material";
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postData } from "../UtilitiesFunctions/Function";
 import Typography from "../Component/modules/components/Typography";
 import RFTextField from "../Component/modules/form/RFTextField";
 import FormFeedback from "../Component/modules/form/FormFeedback";
 import FormButton from "../Component/modules/form/FormButton";
 import { useFetch } from "../hooks/useFetch";
+import { useUser } from "../hooks/UserContext";
 
 
 const AgentRegistration = () => {
-  const { user } = useOutletContext();
+  const { user } = useUser();
   const navigate = useNavigate();
   const [sent, setSent] = useState(false);
   const [isAlreadyRegistered, setIsAlreadyRegistered] = useState(false);
@@ -318,7 +318,7 @@ const AgentRegistration = () => {
               mr: 2
             }}
             color="primary"
-            onClick={() => navigate('/member/agent-dashboard')}
+            onClick={() => navigate('/member/admin/agent-dashboard')}
           >
             Go to Dashboard
           </FormButton>
