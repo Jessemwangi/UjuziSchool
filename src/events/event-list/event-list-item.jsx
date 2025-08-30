@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const EventListItem = (item) => {
-    console.log(item);
+   
   const { img, date, time, title, sm_desc, event_meta , id } = item.item;
     return (
         <div className="inner">

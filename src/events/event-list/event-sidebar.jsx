@@ -91,7 +91,7 @@ const EventSidebar = ({events}) => {
                         {all_categories.map((c, i) => (
                             <div key={i} className="edu-form-check">
                                 <input 
-                                    onClick={() => handleCategory(c)} 
+                                    onChange={() => handleCategory(c)} 
                                     type="checkbox" 
                                     id={`cat-check${i + 1}`}
                                     checked={categories.includes(c)}
@@ -112,7 +112,7 @@ const EventSidebar = ({events}) => {
                             <input 
                                 type="checkbox" 
                                 id="date-check1"
-                                onClick={() => handleDateFilter('any_day')}
+                                onChange={() => handleDateFilter('any_day')}
                                 checked={dateFilters.includes('any_day')}
                             />
                             <label htmlFor="date-check1">Any Day</label>
@@ -121,7 +121,7 @@ const EventSidebar = ({events}) => {
                             <input 
                                 type="checkbox" 
                                 id="date-check2"
-                                onClick={() => handleDateFilter('today')}
+                                onChange={() => handleDateFilter('today')}
                                 checked={dateFilters.includes('today')}
                             />
                             <label htmlFor="date-check2">Today</label>
@@ -130,7 +130,7 @@ const EventSidebar = ({events}) => {
                             <input 
                                 type="checkbox" 
                                 id="date-check3"
-                                onClick={() => handleDateFilter('tomorrow')}
+                                onChange={() => handleDateFilter('tomorrow')}
                                 checked={dateFilters.includes('tomorrow')}
                             />
                             <label htmlFor="date-check3">Tomorrow</label>
@@ -139,7 +139,7 @@ const EventSidebar = ({events}) => {
                             <input 
                                 type="checkbox" 
                                 id="date-check4"
-                                onClick={() => handleDateFilter('this_week')}
+                                onChange={() => handleDateFilter('this_week')}
                                 checked={dateFilters.includes('this_week')}
                             />
                             <label htmlFor="date-check4">This Week</label>
@@ -148,7 +148,7 @@ const EventSidebar = ({events}) => {
                             <input 
                                 type="checkbox" 
                                 id="date-check5"
-                                onClick={() => handleDateFilter('this_month')}
+                                onChange={() => handleDateFilter('this_month')}
                                 checked={dateFilters.includes('this_month')}
                             />
                             <label htmlFor="date-check5">This Month</label>

@@ -48,7 +48,7 @@ const navigate = useNavigate()
       await new Promise((resolve) => setTimeout(resolve, 2000));
       navigate('/sign-in')
     } catch (error) {
-      console.error(error, 'error message is ', error.response?.data?.error?.message);
+     
       setResetStatus(error.response?.data?.error?.message + 'error');
       setErr(error.response?.data?.error?.message)
     }

@@ -49,11 +49,7 @@ const Profile = () => {
         await postData("/profiles", { data}, user?.jwt);
       }
     } catch (error) {
-      console.error(
-        "Error creating profile:",
-        error.response.data.error.message
-      );
-      setErr(error.response.data.error.message);
+      setErr(error.response.data.error.message || 'An unknown error occurred');
     }
   };
 

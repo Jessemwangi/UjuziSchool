@@ -146,24 +146,24 @@ const PricingArea = () => {
       </div>
       <div className="row g-5">
         {data?.data &&
-          data?.data?.map(({ attributes, id }) => (
+          data?.data?.map(({ packageName, id, charges,duration,descritpion,item_per_packages}) => (
             <PricingTable
               key={id}
               id={id}
               delay="500"
-              title={attributes?.packageName}
-              amount={attributes?.charges?.data?.reduce(
-                (acc, item) => acc + item.attributes.amount,
+              title={packageName}
+              amount={charges.reduce(
+                (acc, item) => acc + item.amount,
                 0
               )}
-              duration={attributes?.duration}
+              duration={duration}
               item_off_1={true}
-              sm_text={attributes?.descritpion}
+              sm_text={descritpion}
               item_off_2={true}
               list={
-                attributes?.item_per_packages?.data?.flatMap(
+                item_per_packages?.data?.flatMap(
                   (subItem) =>
-                    subItem.attributes?.subscription_package_items?.data || []
+                    subItem?.subscription_package_items || []
                 ) || []
               }
             />

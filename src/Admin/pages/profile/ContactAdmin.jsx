@@ -190,7 +190,7 @@ const ContactAdmin = () => {
         urgency: "medium",
       });
     } catch (error) {
-      console.error("Error sending message:", error);
+    
       setSnackbar({
         open: true,
         message: error.message || "Failed to send message. Please try again.",

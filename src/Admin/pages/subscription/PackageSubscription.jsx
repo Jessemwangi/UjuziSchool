@@ -127,7 +127,6 @@ const PackageSubscription = () => {
       await postData("/subscriptions", { data }, user?.jwt);
       setSent(true);
     } catch (error) {
-      console.error("Error creating package subscription:", error);
       setErr(error?.response?.data?.error?.message || "Failed to create subscription");
     }
   };

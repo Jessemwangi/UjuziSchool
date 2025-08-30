@@ -88,8 +88,8 @@ const AdminMain = () => {
   }
 
   const agentDetails = agentData?.data?.[0];
-  const isActive = agentDetails?.attributes?.isActive;
-  const isApproved = agentDetails?.attributes?.isApproved;
+  const isActive = agentDetails?.isActive;
+  const isApproved = agentDetails?.isApproved;
   
   // Determine overall status
   const getAccountStatus = () => {
@@ -162,7 +162,7 @@ const AdminMain = () => {
               </Typography>
               <Typography variant="subtitle1" color="text.secondary">
                 Agent Dashboard
-                {agentDetails?.attributes?.agentNumber && ` - #${agentDetails.attributes.agentNumber}`}
+                {agentDetails?.agentNumber && ` - #${agentDetails.agentNumber}`}
               </Typography>
             </Box>
           </Box>

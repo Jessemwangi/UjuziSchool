@@ -12,7 +12,7 @@ const AgentDashboard = () => {
   const { user } = useUser();
 const navigate = useNavigate();
 const {agentData} = useOutletContext();
-console.log("Agent Data from context:", agentData);
+
   // Second fetch: Get agent subscriptions using agent ID
   useEffect(() => {
     if (agentData?.id) {
