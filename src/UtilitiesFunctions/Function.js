@@ -57,7 +57,15 @@ export const get_Data = async (url, apitoken) => {
   }
 
 }
+export const getData_NoToken = async (url) => {
+  try {
+    const response = await axios.get(`${server}${url}`)
+    return response.data
+  } catch (error) {
+    throw error
+  }
 
+}
 export const postData = async (url, data, apitoken = token) => {
   try {
     const config = {

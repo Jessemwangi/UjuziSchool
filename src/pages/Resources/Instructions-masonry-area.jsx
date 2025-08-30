@@ -2,48 +2,61 @@ import React, { useEffect, useState } from 'react';
  import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Link, useSearchParams } from 'react-router-dom';
 import PaginationTwo from '../../Component/paginatio-2';
-import getdata from '../../UtilitiesFunctions/getData'
 import { timeformat } from '../../UtilitiesFunctions/formatTime';
+import { Alert, CircularProgress } from '@mui/material';
+import Button from '../../Component/modules/components/Button';
+import { useFetch_NoToken } from '../../hooks/useFetch';
 
 const InstructionsMasonryArea = () => {
-        const [resources, setResources] = useState(null);
-        const [metaInfo, setMetaInfo] = useState(null)
-        const [err,setErr] = useState('')
-        const [searchParams] = useSearchParams();
+          const [searchParams] = useSearchParams();
+  const [url, setUrl] = useState("");
 
   // Get the 'age' parameter from the query string
-  const pageNo = searchParams.get('page') || 1;
+  const pageNo = searchParams.get("page") || 1;
+  useEffect(() => {
+    setUrl(
+      `/study-resources?populate=image&populate=file&filters[isDeleted]=false&pagination[pageSize]=6&pagination[page]=${pageNo}&sort=id:desc`
+    );
+  }, [pageNo]);
+  const { data: resources, loading, error } = useFetch_NoToken(url);
+  if (loading) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <CircularProgress />
+        </div>
+      </div>
+    );
+  }
 
-      const url =`/study-resources?populate=image&populate=file&filters[isDeleted]=false&pagination[pageSize]=6&pagination[page]=${pageNo}&sort=id:desc`
-        useEffect(() => {
-          const fetchData = async () => {
-            try {
-              const data = await getdata.getAll(`${process.env.REACT_APP_SERVER_URL}${url}`);
-              setResources(data.data);
-              setMetaInfo(data?.meta)
-            } catch (error) {
-              console.error('Error fetching data:', error);
-              setErr(error.message)
-            }
-          };
-      
-          fetchData();
-        }, [url]);
+  if (error) {
+    const errorMessage =
+      error?.response?.data?.error?.message ||
+      error.message ||
+      "Something went wrong";
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <Alert severity="error" sx={{ marginBottom: "1rem" }}>
+            {errorMessage}
+          </Alert>
+          <Button variant="contained" onClick={() => window.location.reload()}>
+            Retry
+          </Button>
+        </div>
+      </div>
+    );
+  }
   return (
         <section className="section-gap-equal">
             <div className="container">
-                <div className="g-5" id="masonry-gallery" data-sal-delay="10" data-sal="slide-up" data-sal-duration="900">
+                <div className="g-5" id="masonry-gallery" >
                     <ResponsiveMasonry columnsCountBreakPoints={{ 0: 1, 750: 2, 992: 3 }}>
                         <>
-                      {err && <>
-                      <p>There was an error</p>
-                      {err}
-                      </>
-                      }
-                        {!err && resources &&
+                        {!error && resources &&
                         <Masonry gutter="30px">
-                            {resources?.map(({attributes,id}) => {
-                               const {  name, description, createdAt, category, comment, image, file ,meta } = attributes;
+                            {resources?.data.map(({name, description, createdAt, category, comment, image, file ,id}) => {
+                              
                                 return (
                                     <div key={id}>
                                         <div className="edu-blog blog-style-5">
@@ -51,14 +64,14 @@ const InstructionsMasonryArea = () => {
                                                 <div className="thumbnail">
                                                     {/* <Link to={downloadUrl} target='_blank'> */}
                                                       
-                                                            <img src={image?.data?.attributes?.url} alt={category} />
+                                                            <img src={image?.url} alt={category} />
                                                            
                                                     {/* </Link> */}
                                                 </div>
 
                                                 <div className="content position-top">
                                                     <div className="read-more-btn">
-                                                        <Link className="btn-icon-round" to={file?.data?.attributes?.url} target='_blank'>
+                                                        <Link className="btn-icon-round" to={file?.url} target='_blank'>
                                                             <i className="icon-4"></i>
                                                         </Link>
                                                     </div>
@@ -66,7 +79,7 @@ const InstructionsMasonryArea = () => {
                                                         <Link to="#" className="blog-category">{category}</Link>
                                                     </div>
                                                     <h5 className="title">
-                                                        <Link to={file?.data?.attributes?.url} target='_blank'>
+                                                        <Link to={file?.url} target='_blank'>
                                                        
                                                         {name?.split(' ').slice(0, 60).join(' ')}{name?.split(' ').length > 3 ? ' ...' : ''}...
                                                         </Link>
@@ -76,7 +89,7 @@ const InstructionsMasonryArea = () => {
                                                         <li><i className="icon-28"></i>Com {comment}</li>
                                                     </ul>
                                                     <p>{description?.split(' ').slice(0, 20).join(' ')}{description?.split(' ').length > 20 ? ' ...' : ''}</p>
-                                                    <Link className="edu-btn" to={file?.data?.attributes?.url} target='_blank'>
+                                                    <Link className="edu-btn" to={file?.url} target='_blank'>
                                     Download doc<i className="icon-4"></i> 🗎
                                      
                                 </Link>
@@ -92,7 +105,7 @@ const InstructionsMasonryArea = () => {
                 </div>
                 <ul className="edu-pagination top-space-30">
                     {/* pagination start */}
-                  {  metaInfo && <PaginationTwo meta={metaInfo}/> }
+                  {  resources && <PaginationTwo meta={resources?.meta}/> }
                     {/* pagination end */}
                 </ul>
             </div>

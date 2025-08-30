@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useState } from "react"
-import { get_Data } from "../UtilitiesFunctions/Function"
+import { get_Data, getData_NoToken } from "../UtilitiesFunctions/Function"
 import { getJWTAndID, getSecureUserUid } from "../UtilitiesFunctions/secureUserData"
 
 const useFetch = (url) => {
@@ -23,6 +23,45 @@ const useFetch = (url) => {
         const token = userInfo.JWT;
 
         const result = await get_Data(url, token);
+        if (isMounted) {
+          setData(result);
+          setError(null);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err); // store error object
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    if (url) {
+      fetchData();
+    }
+
+    return () => {
+      isMounted = false; 
+    };
+  }, [url]);
+
+  return { data, loading, error };
+};
+
+const useFetch_NoToken = (url) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true); // start as true
+  const [error, setError] = useState(null);     // store actual error
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+
+        const result = await getData_NoToken(url);
         if (isMounted) {
           setData(result);
           setError(null);
@@ -85,4 +124,4 @@ useEffect(() => {
   return {data,loading, error}
       }
 
- export  {useFetch, useGetUserInfo}
+ export  {useFetch, useGetUserInfo,useFetch_NoToken}
