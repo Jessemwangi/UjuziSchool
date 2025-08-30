@@ -2,14 +2,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const EventListItem = ({ item, id }) => {
-    const { img, date, time, title, sm_desc, event_meta } = item || {};
+const EventListItem = (item) => {
+    console.log(item);
+  const { img, date, time, title, sm_desc, event_meta , id } = item.item;
     return (
         <div className="inner">
             <div className="thumbnail">
                 <Link to={`/event-details/${id}`}>
                  
-                        <img src={img.data[0].attributes.formats.thumbnail.url} alt="Event Images" />
+                        <img src={img[0].formats.thumbnail.url} alt="Event Images" />
                         
                 </Link>
             </div>
