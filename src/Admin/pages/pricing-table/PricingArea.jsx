@@ -13,6 +13,8 @@ function PricingTable({
   item_off_2,
   list,
 }) {
+
+  console.log('list', list);
   return (
     <div
       className="col-lg-4"
@@ -32,15 +34,12 @@ function PricingTable({
 
         <div className="pricing-body">
           <ul className="list-item">
-            <li>
-              <i className="icon-20"></i>Courses included: 1
-            </li>
-            <li>
-              <i className="icon-20"></i>Individual Course
-            </li>
-            <li>
-              <i className="icon-20"></i>Course learning checks
-            </li>
+            {list && list.map(({description, id}) => (
+              <li key={id}>
+                <i className="icon-20"></i>{description|| 'Feature'}
+              </li>
+            ))}
+
             <li className={`${item_off_1 ? "item-off" : ""}`}>
               <i className="icon-20"></i>Course discussions
             </li>
@@ -65,7 +64,7 @@ function PricingTable({
 
 const PricingArea = () => {
   const url =
-    "/subscription-packages?populate[0]=item_per_packages.subscription_package_items&populate[]=charges";
+    "/subscription-packages?populate[item_per_packages][populate][subscription_package_items]=true&populate[charges]=true";
   const { data, loading, error } = useFetch(url);
   const navigate = useNavigate();
 
@@ -131,6 +130,10 @@ const PricingArea = () => {
     );
   }
  
+  console.log(data.data[0].item_per_packages?.flatMap(
+                  (subItem) =>
+                    subItem?.subscription_package_items
+                ));
   return (
     <div className="container">
       <div
@@ -161,7 +164,7 @@ const PricingArea = () => {
               sm_text={descritpion}
               item_off_2={true}
               list={
-                item_per_packages?.data?.flatMap(
+                item_per_packages?.flatMap(
                   (subItem) =>
                     subItem?.subscription_package_items || []
                 ) || []
