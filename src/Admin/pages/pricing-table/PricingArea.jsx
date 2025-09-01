@@ -14,7 +14,7 @@ function PricingTable({
   list,
 }) {
 
-  console.log('list', list);
+ 
   return (
     <div
       className="col-lg-4"
@@ -130,10 +130,7 @@ const PricingArea = () => {
     );
   }
  
-  console.log(data.data[0].item_per_packages?.flatMap(
-                  (subItem) =>
-                    subItem?.subscription_package_items
-                ));
+
   return (
     <div className="container">
       <div

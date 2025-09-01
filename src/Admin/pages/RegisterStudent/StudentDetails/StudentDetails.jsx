@@ -101,7 +101,7 @@ const convertedData = data?.filter(item => !item.student_user.isDeleted)
   }));
 
   const studentCount = convertedData?.length || 0;
-console.log(convertedData)
+
   return (
     <Container maxWidth="lg">
       {/* Header Section */}
