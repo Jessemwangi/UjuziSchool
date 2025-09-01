@@ -8,7 +8,7 @@ import {
   Chip,
   Container
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { School, Person } from "@mui/icons-material";
 import { useFetch } from "../../../../hooks/useFetch";
 import { useUser } from "../../../../hooks/UserContext";
@@ -21,14 +21,14 @@ const StudentDetails = () => {
   const navigate = useNavigate();
   const [url,setUrl] =useState(null);
    const [refreshKey, setRefreshKey] = useState(0); 
-
+const {agentData} = useOutletContext();
 
    useEffect(
     () => {
-      if (user || user.id) {
-        setUrl(`/student/agentstudentlist/${user.id}?refresh=${refreshKey}`)
+      if (agentData || agentData.id) {
+        setUrl(`/student/agentstudentlist/${agentData.id}?refresh=${refreshKey}`)
       }
-    }, [refreshKey, user]
+    }, [refreshKey, agentData]
    )
   const { data, error, loading } = useFetch(url);
     const handleRefresh = () => {
@@ -92,18 +92,18 @@ const StudentDetails = () => {
   }
 
   // Transform data
-const convertedData = data?.filter(item => !item.isDeleted)
+const convertedData = data?.filter(item => !item.student_user.isDeleted)
   .map(item => ({
-    id: item.id,
-    studentName: item.studentName,
-    dateRegistered: timeformat(item.createdAt),
-    studyLevel: item.studyLevel,
-    isBlocked: item.isBlocked,
-    isDeleted: item.isDeleted,
+    id: item.student_user.id,
+    studentName: item.student_user.studentName,
+    dateRegistered: timeformat(item.student_user.createdAt),
+    studyLevel: item.student_user.studyLevel,
+    isBlocked: item.student_user.isBlocked,
+    isDeleted: item.student_user.isDeleted,
   }));
 
   const studentCount = convertedData?.length || 0;
-
+console.log(convertedData)
   return (
     <Container maxWidth="lg">
       {/* Header Section */}
