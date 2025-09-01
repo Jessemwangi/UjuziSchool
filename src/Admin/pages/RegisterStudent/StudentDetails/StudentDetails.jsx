@@ -11,13 +11,11 @@ import {
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { School, Person } from "@mui/icons-material";
 import { useFetch } from "../../../../hooks/useFetch";
-import { useUser } from "../../../../hooks/UserContext";
 import { timeformat } from "../../../../UtilitiesFunctions/formatTime";
 import Button from "../../../../Component/modules/components/Button";
 import StudentDataTable from "../../../Componets/StudentDataTable ";
 
 const StudentDetails = () => {
-  const { user } = useUser();
   const navigate = useNavigate();
   const [url,setUrl] =useState(null);
    const [refreshKey, setRefreshKey] = useState(0); 

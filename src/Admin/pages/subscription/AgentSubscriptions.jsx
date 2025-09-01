@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate, useOutletContext } from 'react-router-dom'; 
 import {
   Box,
   Container,
@@ -27,7 +27,6 @@ import {
 import {  ThemeProvider } from '@mui/material/styles';
 import { useFetch } from '../../../hooks/useFetch';
 import { lightTheme } from '../pricing-table/singlePrice/CoursePreview';
-import { useUser } from '../../../hooks/UserContext';
 
 // A small component for the dashboard summary cards
 const DashboardStatCard = ({ title, value, icon, color }) => (
@@ -43,38 +42,19 @@ const DashboardStatCard = ({ title, value, icon, color }) => (
 
 const AgentSubscriptions = () => {
     const [page] = useState(1); // For pagination if needed in the future
-    const [agentFetchUrl, setAgentFetchUrl] = useState(null);
     const [subscriptionFetchUrl, setSubscriptionFetchUrl] = useState(null);
-     const { user } = useUser();
+     const {agentData} = useOutletContext();
 const navigate = useNavigate();
   // --- Data Fetching Logic ---
 
-  useEffect(() => {
-    if (user?.id) {
-      setAgentFetchUrl(`/agents-details?filters[users_permissions_user][id][$eq]=${user.id}`);
-    }
-  }, [user]);
-
-  const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
-
   // Second fetch: Get agent subscriptions using the fetched agent ID
   useEffect(() => {
-    if (agentData?.data?.[0]?.id) {
-      setSubscriptionFetchUrl(`/agents/subscriptions/${agentData.data[0].id}?page=${page}`);
+    if (agentData.id) {
+      setSubscriptionFetchUrl(`/agents/subscriptions/${agentData.id}?page=${page}`);
     }
   }, [agentData, page]);
 
   const { data: subscriptionData, loading: subscriptionLoading, error: subscriptionError } = useFetch(subscriptionFetchUrl);
-  
-  if (!user) {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <CircularProgress />
-        </div>
-      </div>
-    );
-  }
 
   // --- UI Rendering Logic ---
   const renderState = (title, message, icon) => (
@@ -89,7 +69,7 @@ const navigate = useNavigate();
     </Box>
   );
 
-  const isLoading = agentLoading || subscriptionLoading;
+  const isLoading = subscriptionLoading;
 
   if (isLoading && !subscriptionData) {
     return renderState('Loading Subscriptions...', 'Please wait while we fetch your data.', 
@@ -99,29 +79,6 @@ const navigate = useNavigate();
         </div>
       </div>);
   }
-
-  if (agentError) {
-    const errorMessage = agentError?.response?.data?.error?.message || agentError.message || 'Something went wrong';
-    if (errorMessage === 'Forbidden') {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <Alert severity="info" sx={{ marginBottom: '1rem' }}>You are not an agent</Alert>
-          <Button variant="contained" onClick={() => navigate('/member/agent-registration')}>Register as Agent</Button>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <Alert severity="error" sx={{ marginBottom: '1rem' }}>{errorMessage}</Alert>
-          <Button variant="contained" onClick={() => window.location.reload()}>Retry</Button>
-        </div>
-      </div>
-    );
-  }
-}
   
 if (subscriptionError) {
   const errorMessage = subscriptionError?.response?.data?.error?.message || subscriptionError.message || 'Failed to load subscription data';
@@ -129,7 +86,7 @@ if (subscriptionError) {
     return (
       <div className="adminMain">
         <div className="main-content">
-          <Alert severity="info" sx={{ marginBottom: '1rem' }}>You are not an agent</Alert>
+          <Alert severity="info" sx={{ marginBottom: '1rem' }}>You are not an agent or you don't have permission to access this page.</Alert>
           <Button variant="contained" onClick={() => navigate('/member/agent-registration')}>Register as Agent</Button>
         </div>
       </div>
@@ -147,16 +104,6 @@ if (subscriptionError) {
   }
 }
 
-  if (!agentData?.data?.length) {
-    return (
-      <div className="adminMain">
-        <div className="main-content">
-          <Alert severity="info" sx={{ marginBottom: '1rem' }}>You are not an agent</Alert>
-          <Button variant="contained" onClick={() => navigate('/member/agent-registration')}>Register as Agent</Button>
-        </div>
-      </div>
-    );
-  }
 
   if (!subscriptionData || !subscriptionData.subscriptions || subscriptionData.subscriptions.length === 0) {
     return renderState('No Subscriptions Found', 'It looks like you don’t have any active subscriptions yet.', 
