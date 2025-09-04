@@ -21,7 +21,7 @@ import {
   Radio,
   Paper,
   CircularProgress,
-  
+  Snackbar
 } from "@mui/material";
 import { 
   CloudUpload as CloudUploadIcon,
@@ -38,7 +38,6 @@ import FormButton from "../Component/modules/form/FormButton";
 import { useFetch } from "../hooks/useFetch";
 import { useUser } from "../hooks/UserContext";
 
-
 const AgentRegistration = () => {
   const { user } = useUser();
   const navigate = useNavigate();
@@ -46,16 +45,22 @@ const AgentRegistration = () => {
   const [isAlreadyRegistered, setIsAlreadyRegistered] = useState(false);
   const [isCheckingRegistration, setIsCheckingRegistration] = useState(true);
   const [contractDoc, setContractDoc] = useState(null);
-   const [agentFetchUrl, setAgentFetchUrl] = useState(null);
+  const [agentFetchUrl, setAgentFetchUrl] = useState(null);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
+  const showSnackbar = (message, severity = 'success') => {
+    setSnackbar({ open: true, message, severity });
+  };
 
   // Check if user is already registered when component mounts
   useEffect(() => {
- if (user?.id) {
+    if (user?.id) {
       setAgentFetchUrl(`/agents-details?filters[users_permissions_user][id][$eq]=${user.id}`);
     }
   }, [user]);
 
-   const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
+  const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
+  
   useEffect(() => {
     if (agentData) {
       if (agentData?.data?.length > 0) {
@@ -65,7 +70,8 @@ const AgentRegistration = () => {
         setIsCheckingRegistration(false);
       }
     } else if (agentError) {
-      console.error("Error fetching agent data:", agentError);
+      // console.error("Error fetching agent data:", agentError);
+      showSnackbar('Error checking registration status', 'error');
       setIsCheckingRegistration(false);
     }
   }, [agentData, agentError]);
@@ -115,22 +121,22 @@ const AgentRegistration = () => {
         }));
       }, 200);
 
-      // For file uploads, pass FormData directly, not wrapped in data object
       const response = await postData('/upload', formData);
 
       clearInterval(progressInterval);
       setUploadProgress(prev => ({ ...prev, [file.name]: 100 }));
 
-      // Strapi returns array of uploaded files
       return response[0];
     } catch (error) {
       if (progressInterval) clearInterval(progressInterval);
-      setUploadErrors(prev => ({ ...prev, [file.name]: error.response?.data?.error?.message || error.message || 'Upload failed' }));
+      const errorMsg = error.response?.data?.error?.message || error.message || 'Upload failed';
+      setUploadErrors(prev => ({ ...prev, [file.name]: errorMsg }));
       setUploadProgress(prev => {
         const newProgress = { ...prev };
         delete newProgress[file.name];
         return newProgress;
       });
+      showSnackbar(`Upload failed: ${errorMsg}`, 'error');
       throw error;
     }
   };
@@ -142,13 +148,17 @@ const AgentRegistration = () => {
     // Validate file type
     const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     if (!allowedTypes.includes(file.type)) {
-      setUploadErrors(prev => ({ ...prev, [file.name]: 'Only PDF, DOC, DOCX, JPG, PNG files are allowed' }));
+      const errorMsg = 'Only PDF, DOC, DOCX, JPG, PNG files are allowed';
+      setUploadErrors(prev => ({ ...prev, [file.name]: errorMsg }));
+      showSnackbar(errorMsg, 'error');
       return;
     }
 
     // Validate file size (5MB limit)
     if (file.size > 5 * 1024 * 1024) {
-      setUploadErrors(prev => ({ ...prev, [file.name]: 'File size must be less than 5MB' }));
+      const errorMsg = 'File size must be less than 5MB';
+      setUploadErrors(prev => ({ ...prev, [file.name]: errorMsg }));
+      showSnackbar(errorMsg, 'error');
       return;
     }
 
@@ -165,8 +175,10 @@ const AgentRegistration = () => {
         delete newErrors[file.name];
         return newErrors;
       });
+      showSnackbar('Contract document uploaded successfully!', 'success');
     } catch (error) {
-      console.error('Contract upload error:', error);
+      // console.error('Contract upload error:', error);
+       showSnackbar('Contract upload error:', 'error');
     }
   };
 
@@ -177,12 +189,16 @@ const AgentRegistration = () => {
       // Validate file
       const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (!allowedTypes.includes(file.type)) {
-        setUploadErrors(prev => ({ ...prev, [file.name]: 'Only PDF, DOC, DOCX, JPG, PNG files are allowed' }));
+        const errorMsg = 'Only PDF, DOC, DOCX, JPG, PNG files are allowed';
+        setUploadErrors(prev => ({ ...prev, [file.name]: errorMsg }));
+        showSnackbar(errorMsg, 'error');
         continue;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        setUploadErrors(prev => ({ ...prev, [file.name]: 'File size must be less than 5MB' }));
+        const errorMsg = 'File size must be less than 5MB';
+        setUploadErrors(prev => ({ ...prev, [file.name]: errorMsg }));
+        showSnackbar(errorMsg, 'error');
         continue;
       }
 
@@ -199,18 +215,23 @@ const AgentRegistration = () => {
           delete newErrors[file.name];
           return newErrors;
         });
+        showSnackbar(`${file.name} uploaded successfully!`, 'success');
       } catch (error) {
-        console.error('Other document upload error:', error);
+     const err_message = error.response?.data?.error?.message || error.message || 'Upload failed';
+         showSnackbar(`Upload failed: ${err_message}`, 'error');
       }
     }
   };
 
   const removeContractDoc = () => {
     setContractDoc(null);
+    showSnackbar('Contract document removed', 'info');
   };
 
   const removeOtherDocument = (index) => {
+    const docName = otherDocuments[index].name;
     setOtherDocuments(prev => prev.filter((_, i) => i !== index));
+    showSnackbar(`${docName} removed`, 'info');
   };
 
   const formatFileSize = (bytes) => {
@@ -242,6 +263,7 @@ const AgentRegistration = () => {
       const response = await postData('/agents-details', payload);
       
       if (response) {
+        showSnackbar('Registration submitted successfully! Awaiting approval.', 'success');
         setSent(true);
         setTimeout(() => {
           navigate('/agent/dashboard');
@@ -251,11 +273,16 @@ const AgentRegistration = () => {
       // Handle specific error for already registered user
       if (error.response?.data?.error?.message === "Agent user already exists") {
         setIsAlreadyRegistered(true);
-        throw new Error('You are already registered as an agent. Redirecting to dashboard...');
+        showSnackbar('You are already registered as an agent. Redirecting to dashboard...', 'info');
+        setTimeout(() => {
+          navigate('/member/admin/agent-dashboard');
+        }, 2000);
+        return;
       }
       
       // Handle other errors
       const errorMessage = error.response?.data?.error?.message || error.message || 'Registration failed. Please try again.';
+      showSnackbar(errorMessage, 'error');
       throw new Error(errorMessage);
     }
   };
@@ -655,6 +682,22 @@ const AgentRegistration = () => {
           </form>
         )}
       </Form>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={() => setSnackbar({ ...snackbar, open: false })} 
+          severity={snackbar.severity}
+          sx={{ width: '100%', borderRadius: 2 }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
    }
    </> 

@@ -90,7 +90,6 @@ const AdminMain = () => {
   const agentDetails = agentData?.data?.[0];
   const isActive = agentDetails?.isActive;
   const isApproved = agentDetails?.isApproved;
-  console.log('Agent Details:', agentDetails);
   // Determine overall status
   const getAccountStatus = () => {
     if (isActive && isApproved) {
