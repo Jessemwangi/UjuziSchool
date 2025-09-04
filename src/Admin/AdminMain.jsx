@@ -49,10 +49,9 @@ const AdminMain = () => {
   }
 
   // Handle agent fetch errors
-  console.log(agentError);
  if (agentError || (agentData?.data?.length === 0)) {
-  const statusCode = agentError?.response?.status;
-    const errorMessage = agentError?.response?.data?.error?.message || agentError.message || 'Something went wrong';
+    const errorMessage = agentError?.response?.data?.error?.message || agentError?.response?.data?.error?.name  || agentError.message || 'Something went wrong';
+    const statusCode = agentError?.response?.status || agentError?.status || 500;
     if (errorMessage === 'Forbidden' || statusCode === 403 || (agentData?.data?.length === 0)) {
       return (
         <div className="adminMain">
