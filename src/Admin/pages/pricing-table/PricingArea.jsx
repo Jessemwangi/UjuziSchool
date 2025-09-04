@@ -70,11 +70,9 @@ const PricingArea = () => {
   const navigate = useNavigate();
 
   if (error) {
-    const errorMessage =
-      error?.response?.data?.error?.message ||
-      error.message ||
-      "Something went wrong";
-    if (errorMessage === "Forbidden") {
+const errorMessage = error?.response?.data?.error?.message || error?.response?.data?.error?.name  || error.message || 'Something went wrong';
+    const statusCode = error?.response?.status || error?.status || 500;
+    if (errorMessage === "ForbiddenError" || statusCode === 403 || errorMessage === 'Forbidden access') {
       return (
         <div className="adminMain">
           <div className="main-content">

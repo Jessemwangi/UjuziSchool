@@ -145,9 +145,10 @@ const CoursePreview = () => {
   }
 
   if (error) {
-    const errorMessage = error?.response?.data?.error?.message || error.message || 'Failed to load subscription data';
-    if (errorMessage === 'Forbidden') {
-      return (
+const errorMessage = error?.response?.data?.error?.message || error?.response?.data?.error?.name  || error.message || 'Something went wrong';
+    const statusCode = error?.response?.status || error?.status || 500;
+    if (errorMessage === "ForbiddenError" || statusCode === 403 || errorMessage === 'Forbidden access') {
+       return (
         <div className="adminMain">
           <div className="main-content">
             <Alert severity="info" sx={{ marginBottom: '1rem' }}>You Dont Have Permission To Access This Content </Alert>

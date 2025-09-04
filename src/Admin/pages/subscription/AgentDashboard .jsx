@@ -60,8 +60,9 @@ const {agentData} = useOutletContext();
 
   // Handle subscription fetch error
 if (subscriptionError) {
-  const errorMessage = subscriptionError?.response?.data?.error?.message || subscriptionError.message || 'Failed to load subscription data';
-  if (errorMessage === 'Forbidden') {
+  const errorMessage = subscriptionError?.response?.data?.error?.message || subscriptionError?.response?.data?.error?.name  || subscriptionError.message || 'Something went wrong';
+    const statusCode = subscriptionError?.response?.status || subscriptionError?.status || 500;
+  if (errorMessage === 'Forbidden' || statusCode === 403 || errorMessage === 'Forbidden access') {
     return (
       <div className="adminMain">
         <div className="main-content">

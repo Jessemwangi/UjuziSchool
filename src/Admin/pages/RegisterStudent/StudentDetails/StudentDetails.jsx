@@ -52,19 +52,17 @@ const {agentData} = useOutletContext();
 
   // Error handling
   if (error) {
-    const errorMessage =
-      error?.response?.data?.error?.message ||
-      error.message ||
-      "Something went wrong";
+const errorMessage = error?.response?.data?.error?.message || error?.response?.data?.error?.name  || error.message || 'Something went wrong';
+    const statusCode = error?.response?.status || error?.status || 500;
 
     return (
       <Container maxWidth="md">
         <Paper sx={{ p: 3, textAlign: 'center' }}>
           <Alert 
-            severity={errorMessage === "Forbidden" ? "info" : "error"} 
+            severity={errorMessage === "ForbiddenError" || statusCode === 403 || errorMessage === 'Forbidden access' ? "info" : "error"} 
             sx={{ mb: 3 }}
           >
-            {errorMessage === "Forbidden" 
+            {errorMessage === "ForbiddenError" || statusCode === 403 || errorMessage === 'Forbidden access'
               ? "You don't have permission to access student data."
               : errorMessage
             }

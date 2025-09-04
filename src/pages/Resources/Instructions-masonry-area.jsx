@@ -30,15 +30,16 @@ const InstructionsMasonryArea = () => {
   }
 
   if (error) {
-    const errorMessage =
-      error?.response?.data?.error?.message ||
-      error.message ||
-      "Something went wrong";
+const errorMessage = error?.response?.data?.error?.message || error?.response?.data?.error?.name  || error.message || 'Something went wrong';
+    const statusCode = error?.response?.status || error?.status || 500;
     return (
       <div className="adminMain">
         <div className="main-content">
-          <Alert severity="error" sx={{ marginBottom: "1rem" }}>
-            {errorMessage}
+          <Alert severity={errorMessage === "ForbiddenError" || statusCode === 403 || errorMessage === 'Forbidden access' ? "info" : "error"} sx={{ marginBottom: "1rem" }}>
+                      {errorMessage === "ForbiddenError" || statusCode === 403 || errorMessage === 'Forbidden access'
+              ? "You don't have permission to access student data."
+              : errorMessage
+            }
           </Alert>
           <Button variant="contained" onClick={() => window.location.reload()}>
             Retry

@@ -58,8 +58,9 @@ const PackageSubscription = () => {
   }
 
    if (agentError) {
-    const errorMessage = agentError?.response?.data?.error?.message || agentError.message || 'Something went wrong';
-    if (errorMessage === 'Forbidden') {
+const errorMessage = agentError?.response?.data?.error?.message || agentError?.response?.data?.error?.name  || agentError.message || 'Something went wrong';
+    const statusCode = agentError?.response?.status || agentError?.status || 500;
+    if (errorMessage === 'Forbidden' || statusCode === 403 || errorMessage === 'Forbidden access') {
     return (
       <div className="adminMain">
         <div className="main-content">
