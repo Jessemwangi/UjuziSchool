@@ -5,6 +5,7 @@ import { Alert, Button, CircularProgress } from "@mui/material";
 function PricingTable({
   title,
   id,
+  documentId,
   delay,
   amount,
   duration,
@@ -52,7 +53,7 @@ function PricingTable({
         <div className="pricing-btn">
           <Link
             className="edu-btn btn-border btn-medium"
-            to={`/member/admin/package/${id}`}
+            to={`/member/admin/package/${documentId}`}
           >
             Select plan<i className="icon-east"></i>
           </Link>
@@ -146,10 +147,11 @@ const PricingArea = () => {
       </div>
       <div className="row g-5">
         {data?.data &&
-          data?.data?.map(({ packageName, id, charges,duration,descritpion,item_per_packages}) => (
+          data?.data?.map(({ packageName, id,documentId, charges,duration,descritpion,item_per_packages}) => (
             <PricingTable
               key={id}
               id={id}
+              documentId={documentId}
               delay="500"
               title={packageName}
               amount={charges.reduce(

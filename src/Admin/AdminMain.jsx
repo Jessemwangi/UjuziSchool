@@ -49,10 +49,11 @@ const AdminMain = () => {
   }
 
   // Handle agent fetch errors
-  if (agentError) {
+  console.log(agentError);
+ if (agentError || (agentData?.data?.length === 0)) {
+  const statusCode = agentError?.response?.status;
     const errorMessage = agentError?.response?.data?.error?.message || agentError.message || 'Something went wrong';
-    
-    if (errorMessage === 'Forbidden') {
+    if (errorMessage === 'Forbidden' || statusCode === 403 || (agentData?.data?.length === 0)) {
       return (
         <div className="adminMain">
           <div className="main-content">
@@ -90,7 +91,7 @@ const AdminMain = () => {
   const agentDetails = agentData?.data?.[0];
   const isActive = agentDetails?.isActive;
   const isApproved = agentDetails?.isApproved;
-  
+  console.log('Agent Details:', agentDetails);
   // Determine overall status
   const getAccountStatus = () => {
     if (isActive && isApproved) {

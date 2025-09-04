@@ -99,11 +99,7 @@ export const lightTheme = createTheme({
     },
   },
 });
-  export const query2 =`?populate[courses][populate][courses_subcategories]=*&populate[courses][populate][courses_instructors]=*&populate[courses][populate]
-  [course_intro_video]=*&populate[courses][populate][course_intro_img]=*&populate[courses][populate][course_target_groups]=*&populate[courses]
-  [populate][course_learn_lists]=*&populate[courses][populate][course_qualification_equirements]=*&populate[courses][populate]
-  [course_reviews]=*&populate[courses][populate]=courses_features&populate[courses][populate][courses_weekly_curricula][populate]=lesson_resources,
-  lesson_quizzes&populate[courses][populate][course_ratings]=*&populate[courses][populate][questions]=*&populate[charges]=*`
+  export const query2 =`?populate[charges][fields][0]=*&populate[courses][populate][0]=courses_subcategories&populate[courses][populate][1]=courses_weekly_curricula.course_lessons.curriculum_lesson_headers&populate[courses][populate][2]=courses_categories&populate[courses][populate][3]=courses_instructors.instructor_img&populate[courses][populate][4]=course_intro_video&populate[courses][populate][5]=course_intro_img&populate[courses][populate][6]=course_target_groups&populate[courses][populate][7]=course_learn_lists&populate[courses][populate][8]=course_qualification_equirements&populate[courses][populate][9]=course_reviews&populate[courses][populate][10]=courses_features&populate[courses][populate][11]=localizations&populate[courses][populate][12]=course_ratings`
 const CoursePreview = () => {
   const [selectedCourse, setSelectedCourse] = useState(0);
   const [expandedSection, setExpandedSection] = useState('overview');
@@ -115,7 +111,7 @@ const CoursePreview = () => {
   [courses_weekly_curricula][populate][course_lessons]=*&populate[charges]=*`;
 
 
-  const url = `/subscription-packages/${id}${query}`;
+  const url = `/subscription-packages/${id}${query2}`;
   const { data, loading, error } = useFetch(url);
 
   const handleTabChange = (event, newValue) => {
@@ -140,17 +136,42 @@ const CoursePreview = () => {
   );
 
   if (loading) {
-    return renderState('Loading...', 'Please wait while we fetch the course details.', <CircularProgress size={48} />);
+    return ( <div className="adminMain">
+          <div className="main-content">
+            <Typography variant="h4" gutterBottom>Loading Subscription Details</Typography>
+            <CircularProgress />
+          </div>
+        </div>);
   }
 
-  if (error || !data?.data) {
-    return renderState('Oops! Something went wrong', "We couldn't load the course details.", <ReportProblem color="error" sx={{ fontSize: 48 }} />);
+  if (error) {
+    const errorMessage = error?.response?.data?.error?.message || error.message || 'Failed to load subscription data';
+    if (errorMessage === 'Forbidden') {
+      return (
+        <div className="adminMain">
+          <div className="main-content">
+            <Alert severity="info" sx={{ marginBottom: '1rem' }}>You Dont Have Permission To Access This Content </Alert>
+            <Button variant="contained" onClick={() => navigate('/member/contact-admin')}>Report to admin</Button>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="adminMain">
+          <div className="main-content">
+            <Typography variant="h4" gutterBottom>Package Preview failed</Typography>
+            <Alert severity="error" sx={{ marginBottom: '1rem' }}>{errorMessage}</Alert>
+            <Button variant="contained" onClick={() => window.location.reload()}>Retry</Button>
+          </div>
+        </div>
+      );
+    }
   }
   
   // Updated data transformation logic based on the provided sample
-  const packageData = data.data.attributes;
-  const courses = packageData.courses?.data || [];
-  const charges = packageData.charges?.data || [];
+  const packageData = data.data;
+  const courses = packageData.courses|| [];
+  const charges = packageData.charges|| [];
 
   const transformedPackage = {
     id: data.data.id,
@@ -158,22 +179,20 @@ const CoursePreview = () => {
     duration: packageData.duration || "N/A",
     description: packageData.descritpion || "No description available",
     totalMaxUsers: packageData.totalMaxUsers || 0,
-    charges: charges.map(charge => ({
+    charges: charges.filter(
+      charge=>charge.approved === true && charge.isActive === true
+    ).map(charge => ({
       id: charge.id,
-      name: charge.attributes.name,
-      amount: charge.attributes.amount,
+      documentId: charge.documentId,
+      name: charge.name,
+      amount: charge.amount,
     })),
-    courses: courses.map(course => ({
-      id: course.id,
-      ...course.attributes,
-      // Map nested data arrays correctly
-      courses_features: course.attributes.courses_features?.data || [],
-      courses_weekly_curricula: course.attributes.courses_weekly_curricula?.data || [],
-    })),
+    courses: courses.filter(course => course.isActive === true && course.isDeleted === false),
   };
 
   if (!transformedPackage.courses.length) {
-    return renderState('No Courses Available', "This package doesn't have any courses yet.", <MenuBook color="primary" sx={{ fontSize: 48 }} />);
+    return renderState('No Courses Available', "This package doesn't have any courses yet.", 
+    <MenuBook color="primary" sx={{ fontSize: 48 }} />);
   }
   const totalAmount = transformedPackage.charges.reduce((sum, charge) => sum + charge.amount, 0);
   const currentCourse = transformedPackage.courses[selectedCourse];
@@ -287,6 +306,9 @@ const CoursePreview = () => {
                 <Tab label="Overview" value="overview" />
                 <Tab label="Curriculum" value="curriculum" />
                 <Tab label="Features" value="features" />
+                <Tab label="Learn List" value="learns" />
+                <Tab label="Target Group" value="targets" />
+                <Tab label="courses_instructors" value="instructors" />
               </Tabs>
             </Box>
             <Box p={{xs: 3, md: 5}}>
@@ -319,9 +341,9 @@ const CoursePreview = () => {
                       currentCourse.courses_weekly_curricula.map((module) => (
                         <Paper key={module.id} variant="outlined" sx={{ p: 2.5, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                           <Box>
-                            <Typography variant="h6">{module.attributes.curriculum_title}</Typography>
+                            <Typography variant="h6">{module.curriculum_title}</Typography>
                             <Stack direction="row" spacing={3} mt={1}>
-                              <Chip icon={<MenuBook fontSize="small" />} label={`${module.attributes.course_lessons.data.length} lessons`} size="small" variant="outlined" />
+                              <Chip icon={<MenuBook fontSize="small" />} label={`${module.course_lessons.data.length} lessons`} size="small" variant="outlined" />
                             </Stack>
                           </Box>
                         </Paper>
@@ -340,13 +362,73 @@ const CoursePreview = () => {
                       currentCourse.courses_features.map((feature) => (
                         <ListItem key={feature.id} sx={{py: 1.5}}>
                           <ListItemIcon sx={{minWidth: '40px'}}><CheckCircle color="success" /></ListItemIcon>
-                          <ListItemText primary={feature.attributes.course_features_name} />
+                          <ListItemText primary={feature.course_features_name} />
                         </ListItem>
                       ))
                     ) : (
                       <Alert severity="info">No special features are listed for this course.</Alert>
                     )}
                   </List>
+                </Box>
+              )}
+              {expandedSection === 'learns' && (
+                <Box>
+                  <Typography variant="h4" sx={{ mb: 3 }}>What You'll Learn</Typography>
+                  <List>
+                    {currentCourse.course_learn_lists.length > 0 ? (
+                      currentCourse.course_learn_lists.map((learn) => (
+                        <ListItem key={learn.id} sx={{py: 1.5}}>
+                          <ListItemIcon sx={{minWidth: '40px'}}><CheckCircle color="primary" /></ListItemIcon>
+                          <ListItemText primary={learn.learn_list} />
+                        </ListItem>
+                      ))
+                    ) : (
+                      <Alert severity="info">Learning outcomes are not specified for this course.</Alert>
+                    )}
+                  </List>
+                </Box>
+              )}
+              {expandedSection === 'targets' && (
+                <Box>
+                  <Typography variant="h4" sx={{ mb: 3 }}>Target Audience</Typography>
+                  <List>
+                    {currentCourse.course_target_groups.length > 0 ? (
+                      currentCourse.course_target_groups.map((target) => (
+                        <ListItem key={target.id} sx={{py: 1.5}}>
+                          <ListItemIcon sx={{minWidth: '40px'}}><CheckCircle color="secondary" /></ListItemIcon>
+                          <ListItemText primary={target.target_group} />
+                        </ListItem>
+                      ))
+                    ) : (
+                      <Alert severity="info">Target audience details are not provided for this course.</Alert>
+                    )}
+                  </List>
+                </Box>
+              )}
+              {expandedSection === 'instructors' && (
+                <Box>
+                  <Typography variant="h4" sx={{ mb: 3 }}>Meet the Instructors</Typography>
+                  <Grid container spacing={3}>
+                    {currentCourse.courses_instructors.length > 0 ? (
+                      currentCourse.courses_instructors.map((instructor) => (
+                        <Grid item xs={12} md={6} key={instructor.id}>
+                          <Paper variant="outlined" sx={{ p: 3, textAlign: 'center', bgcolor: 'background.default' }}>
+                            <Box
+                              component="img"
+                              src={instructor.instructor_img?.data?.attributes?.url || '/default-instructor.png'}
+                              alt={instructor.instructor_name}
+                              sx={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', mb: 2 }}
+                            />
+                            <Typography variant="h6">{instructor.instructor_name}</Typography>
+                            <Typography color="text.secondary" sx={{ mb: 1 }}>{instructor.instructor_title}</Typography>
+                            <Typography variant="body2" color="text.secondary">{instructor.instructor_bio}</Typography>
+                          </Paper>
+                        </Grid>
+                      ))
+                    ) : (
+                      <Alert severity="info">Instructor information is not available for this course.</Alert>
+                    )}
+                  </Grid>
                 </Box>
               )}
             </Box>
