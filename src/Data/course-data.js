@@ -1128,7 +1128,6 @@ const course_data = [
     img: 'course-17.jpg',
     hours: 40,
     level: 'Cooking',
-    level: 'Drawing',
     title: 'Vegan Thai Cooking Classes Popular Vegan Recipes',
     rating: '5',
     rating_count: 35,

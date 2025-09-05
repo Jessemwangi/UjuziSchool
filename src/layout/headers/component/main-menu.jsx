@@ -6,7 +6,7 @@ const MainMenu = () => {
     return (
         <ul className="mainmenu">
             {menu_data.map((menu, i) => (
-                <li key={i} className="has-droupdown"><a href="#">{menu.title}</a>
+                <li key={i} className="has-droupdown"><a href="/#">{menu.title}</a>
                     {!menu.mega_menu && 
                         <ul className="submenu">
                             {menu.submenus.map((nav, i) => (

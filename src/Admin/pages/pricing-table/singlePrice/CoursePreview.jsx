@@ -31,7 +31,6 @@ import {
   EmojiEvents,
   TrackChanges,
   CalendarToday,
-  ReportProblem,
   AddCircleOutline,
   RemoveCircleOutline,
 } from '@mui/icons-material';
@@ -105,11 +104,6 @@ const CoursePreview = () => {
   const [expandedSection, setExpandedSection] = useState('overview');
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // Updated query to populate all necessary fields from the new data structure
-  const query = `?populate[courses][populate][courses_features]=*&populate[courses][populate]
-  [courses_weekly_curricula][populate][course_lessons]=*&populate[charges]=*`;
-
 
   const url = `/subscription-packages/${id}${query2}`;
   const { data, loading, error } = useFetch(url);

@@ -18,7 +18,7 @@ const EventListArea = () => {
     const { categories, dateFilters, cities } = useSelector((state) => state.event) || {};
     const eventsData = useSelector((state) => state.setEvents.eventsData);
     const event_lists = eventsData?.data;
-    const { mouseDirection, mouseReverse } = useMouseMoveUI();
+    const {  mouseReverse } = useMouseMoveUI();
 
     // Helper function to check if date matches filter
     const isDateInRange = (createdAt, filterType) => {
@@ -161,27 +161,27 @@ const EventListArea = () => {
                                 
                                 <ul className="edu-pagination top-space-30 justify-content-start">
                                     <li>
-                                        <a href="#" aria-label="Previous">
+                                        <a href="//#" aria-label="Previous">
                                             <i className="icon-west"></i>
                                         </a>
                                     </li>
                                     <li className="active">
-                                        <a href="#">1</a>
+                                        <a href="/#">1</a>
                                     </li>
                                     <li>
-                                        <a href="#">2</a>
+                                        <a href="/#">2</a>
                                     </li>
                                     <li>
-                                        <a href="#">3</a>
+                                        <a href="/#">3</a>
                                     </li>
                                     <li className="more-next">
-                                        <a href="#"></a>
+                                        <a href="/#">6</a>
                                     </li>
                                     <li>
-                                        <a href="#">8</a>
+                                        <a href="/#">8</a>
                                     </li>
                                     <li>
-                                        <a href="#" aria-label="Next">
+                                        <a href="/#" aria-label="Next">
                                             <i className="icon-east"></i>
                                         </a>
                                     </li>

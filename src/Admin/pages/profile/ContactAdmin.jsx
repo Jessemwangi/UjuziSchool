@@ -19,7 +19,6 @@ import {
   Chip,
 } from "@mui/material";
 import {
-  Support,
   Send,
   CheckCircle,
   Error as ErrorIcon,
@@ -170,7 +169,7 @@ const ContactAdmin = () => {
         throw new Error(errorData.message || "Failed to send message");
       }
 
-      const result = await response.json();
+      // const result = await response.json();
 
       // Success
       setSnackbar({

@@ -20,7 +20,7 @@ const CourseTypeOne = ({ data, classes, image_location_path='01' }) => {
                 <div className="content">
                     <span className="course-level">{data.level}</span>
                     <h6 className="title">
-                        <a href="#">{data.title}</a>
+                        <a href="/#">{data.title}</a>
                     </h6>
                     <div className="course-rating">
                         <div className="rating">

@@ -62,16 +62,16 @@ const CourseDetailsSidebar = ({ course,details_2=false }) => {
                             </ul>
 
                             <div className="read-more-btn">
-                                <a href="#" className="edu-btn">Start Now <i className="icon-4"></i></a>
+                                <a href="/#" className="edu-btn">Start Now <i className="icon-4"></i></a>
                             </div>
 
                             <div className="share-area">
                                 <h4 className="title">Share On:</h4>
                                 <ul className="social-share">
-                                    <li><a href="#"><i className="icon-facebook"></i></a></li>
-                                    <li><a href="#"><i className="icon-twitter"></i></a></li>
-                                    <li><a href="#"><i className="icon-linkedin2"></i></a></li>
-                                    <li><a href="#"><i className="icon-youtube"></i></a></li>
+                                    <li><a href="/#"><i className="icon-facebook"></i></a></li>
+                                    <li><a href="/#"><i className="icon-twitter"></i></a></li>
+                                    <li><a href="/#"><i className="icon-linkedin2"></i></a></li>
+                                    <li><a href="/#"><i className="icon-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>

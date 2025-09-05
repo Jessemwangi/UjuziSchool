@@ -14,7 +14,7 @@ const TeamOne = ({ instructor, image_location_path='01' }) => {
                         </Link>
                     </div>
                     <ul className="team-share-info">
-                        <li><a href="#"><i className="icon-share-alt"></i></a></li>
+                        <li><a href="/#"><i className="icon-share-alt"></i></a></li>
                         {instructor.social_links.map((social, i) => (
                             <li key={i}>
                                 <a href={social.link} target={social.target ? social.target : ''}>

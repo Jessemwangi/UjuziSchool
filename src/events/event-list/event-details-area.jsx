@@ -62,7 +62,7 @@ const EventDetailsArea = () => {
                                                 </li>
                                             </ul>
                                             <div className="read-more-btn">
-                                                <a href="#" className="edu-btn">Book Now <i className="icon-4"></i></a>
+                                                <a href="/#" className="edu-btn">Book Now <i className="icon-4"></i></a>
                                             </div>
                                             <div className="countdown">
                                                 <div className="countdown-section">

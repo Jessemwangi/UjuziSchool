@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const PaginationTwo = ({ meta }) => {
   const { pagination } = meta;
-  const { page, pageSize, pageCount, total } = pagination;
+  const { page,  pageCount } = pagination;
 
   const [currentPage, setCurrentPage] = useState(page);
 

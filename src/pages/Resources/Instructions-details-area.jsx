@@ -72,9 +72,9 @@ const InstructionsDetailsArea = ({blog}) => {
                                         <div className="blog-tags">
                                             <h6 className="title">Tags:</h6>
                                             <div className="tag-list">
-                                                <a href="#">Language</a>
-                                                <a href="#">eLearn</a>
-                                                <a href="#">Tips</a>
+                                                <a href="/#">Language</a>
+                                                <a href="/#">eLearn</a>
+                                                <a href="/#">Tips</a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,13 +84,13 @@ const InstructionsDetailsArea = ({blog}) => {
                                             <h6 className="title">Share on:</h6>
                                             <ul className="social-share icon-transparent">
                                                 <li>
-                                                    <a href="#"><i className="icon-facebook"></i></a>
+                                                    <a href="/#"><i className="icon-facebook"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i className="icon-twitter"></i></a>
+                                                    <a href="/#"><i className="icon-twitter"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i className="icon-instagram"></i></a>
+                                                    <a href="/#"><i className="icon-instagram"></i></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -108,13 +108,13 @@ const InstructionsDetailsArea = ({blog}) => {
                                 <p>Enim ad minim veniam quis nostrud exercitation lamco laboris nisi ex commodo consequat aute irure.</p>
                                 <ul className="social-share icon-transparent">
                                     <li>
-                                        <a href="#"><i className="icon-facebook"></i></a>
+                                        <a href="/#"><i className="icon-facebook"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i className="icon-twitter"></i></a>
+                                        <a href="/#"><i className="icon-twitter"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i className="icon-instagram"></i></a>
+                                        <a href="/#"><i className="icon-instagram"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -124,7 +124,7 @@ const InstructionsDetailsArea = ({blog}) => {
                             <div className="row g-5">
                                 <div className="col-lg-6">
                                     <div className="blog-pagination-list prev-post">
-                                        <a href="#">
+                                        <a href="/#">
                                             <i className="icon-west"></i>
                                             <span>Instructional Design and Adult Learners</span>
                                         </a>
@@ -133,7 +133,7 @@ const InstructionsDetailsArea = ({blog}) => {
 
                                 <div className="col-lg-6">
                                     <div className="blog-pagination-list next-post">
-                                        <a href="#">
+                                        <a href="/#">
                                             <span>Qualification for Students Satisfaction Rate</span>
                                             <i className="icon-east"></i>
                                         </a>

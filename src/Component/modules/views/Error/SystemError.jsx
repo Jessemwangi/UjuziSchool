@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import'./SystemError.scss'
-import { purple } from '@mui/material/colors';
 
 // const primary = purple[500]; 
 

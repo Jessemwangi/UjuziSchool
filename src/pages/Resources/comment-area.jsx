@@ -14,7 +14,7 @@ const CommentArea = () => {
                         <span className="date">Oct 10, 2021</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <div className="reply-btn-wrapper">
-                            <a className="reply-btn" href="#">Reply</a>
+                            <a className="reply-btn" href="/#">Reply</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ const CommentArea = () => {
                         <span className="date">Oct 10, 2021</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <div className="reply-btn-wrapper">
-                            <a className="reply-btn" href="#">Reply</a>
+                            <a className="reply-btn" href="/#">Reply</a>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@ const CommentArea = () => {
                         <span className="date">Oct 10, 2021</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <div className="reply-btn-wrapper">
-                            <a className="reply-btn" href="#">Reply</a>
+                            <a className="reply-btn" href="/#">Reply</a>
                         </div>
                     </div>
                 </div>

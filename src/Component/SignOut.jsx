@@ -1,4 +1,4 @@
-import { Box,  Container, Typography } from "@mui/material";
+import { Box,  Container} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bg2 from '../static/assets/bg2.png'

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
-import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import { useNavigate } from 'react-router-dom';
 

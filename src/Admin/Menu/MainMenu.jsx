@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Container,
   LinearProgress,
@@ -6,6 +7,7 @@ import {
   MenuItem,
   MenuList,
   Paper,
+  Snackbar,
   Stack,
   Typography,
 } from "@mui/material";
@@ -15,6 +17,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { server } from "../../UtilitiesFunctions/Function";
 import axios from "axios";
 import "./MainMenu.scss";
+import Button from "../../Component/modules/components/Button";
 
 const rightLink = {
   fontSize: 16,
@@ -31,9 +34,13 @@ const rightLink = {
 };
 
 const MainMenu = ({ user }) => {
-  const [profilePic, setProfilePic] = useState(null);
   const [loading, setLoading] = useState(false);
   const { updateUser } = useUser();
+    const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+  
+    const showSnackbar = (message, severity = 'success') => {
+      setSnackbar({ open: true, message, severity });
+    };
 
   useEffect(() => {}, []);
 
@@ -55,7 +62,7 @@ const MainMenu = ({ user }) => {
       const data = new FormData();
       data.append("ref", "plugin::users-permissions.user");
       data.append("refId", user.id);
-      data.append("field", "profilePic");
+      data.append("field", "picId");
       data.append("files", file);
       const response = await axios.post(`${server}/upload/`, data, {
         headers: {
@@ -66,16 +73,32 @@ const MainMenu = ({ user }) => {
       updateUser({
         ...user,
         profileUrl: response.data[0].url,
-        profilePic: response.data[0].id,
+        picId: response.data[0].id,
       });
-      setProfilePic(response.data[0].url);
       return response.data[0].id;
     } catch (error) {
       console.error("Error uploading image:", error);
+      const errMs = `Error uploading image: ${error.message}`;
+      showSnackbar(errMs, 'error');
     }
   };
 
-  const deleteProfilePic = async (uploadId) => {};
+  const deleteProfilePic = async (uploadId) => {
+    try {
+      await axios.delete(`${server}/upload/${uploadId}`, {
+        headers: {
+          Authorization: `Bearer ${user.jwt}`,
+        },
+      });
+      updateUser({ ...user, profileUrl: null, picId: null });
+      showSnackbar('Image deleted successfully', 'success');
+    } catch (error) {
+      const errMs = `Error deleting image: ${error.message}`;
+      showSnackbar(errMs, 'error');
+     
+    } 
+
+  };
 
   return (
     <Container
@@ -130,7 +153,7 @@ const MainMenu = ({ user }) => {
                       accept="image/*"
                       style={{ display: "none" }}
                       onChange={handleImageChange}
-                      name="profilePic"
+                      name="picId"
                     />
 
                     <AddRoundedIcon
@@ -166,6 +189,13 @@ const MainMenu = ({ user }) => {
             </>
           )}
         </Box>
+        <Button
+          variant="contained"
+          onClick={() => deleteProfilePic(user?.picId)}
+
+          >
+            delete Image
+          </Button>
         <Typography
           variant="h5"
           sx={{ paddingBottom: "1rem", paddingTop: "3px" }}
@@ -269,6 +299,20 @@ const MainMenu = ({ user }) => {
           </MenuList>
         </Paper>
       </Stack>
+            <Snackbar
+              open={snackbar.open}
+              autoHideDuration={6000}
+              onClose={() => setSnackbar({ ...snackbar, open: false })}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+              <Alert 
+                onClose={() => setSnackbar({ ...snackbar, open: false })} 
+                severity={snackbar.severity}
+                sx={{ width: '100%', borderRadius: 2 }}
+              >
+                {snackbar.message}
+              </Alert>
+            </Snackbar>
     </Container>
   );
 };
