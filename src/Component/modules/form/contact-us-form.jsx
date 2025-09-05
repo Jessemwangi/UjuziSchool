@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import { emailJs_service, emailJs_template, emailJs_user } from '../../../UtilitiesFunctions/Function';
 
 const Result = () => {
