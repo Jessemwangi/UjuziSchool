@@ -88,15 +88,9 @@ const ManageSubscription = () => {
   // Fetch available students with debounce
   useEffect(() => {
     if (agentData?.id && subscriptionNumericId && openAddStudentDialog) {
-      console.log('Fetching available students:', {
-        agentId: agentData.id,
-        subscriptionId: subscriptionNumericId,
-        search: studentSearchQuery
-      });
       const delayDebounce = setTimeout(() => {
         const searchParam = studentSearchQuery ? `?search=${encodeURIComponent(studentSearchQuery)}` : '';
         const url = `/agent/${agentData.id}/subscription/${subscriptionNumericId}/available-students${searchParam}`;
-        console.log('Setting availableStudentsFetchUrl:', url);
         setAvailableStudentsFetchUrl(url);
       }, 300);
 
@@ -108,14 +102,6 @@ const ManageSubscription = () => {
   }, [agentData?.id, subscriptionNumericId, studentSearchQuery, openAddStudentDialog]);
 
   const { data: availableStudentsData, loading: studentsLoading } = useFetch(availableStudentsFetchUrl);
-
-  // Debug: Log available students data
-  useEffect(() => {
-    if (availableStudentsData) {
-      console.log('Available students data:', availableStudentsData);
-      console.log('Students loading:', studentsLoading);
-    }
-  }, [availableStudentsData, studentsLoading]);
 
   const handleWithdrawSubscription = async () => {
     if (!withdrawReason.trim()) {

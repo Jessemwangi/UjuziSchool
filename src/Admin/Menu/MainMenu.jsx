@@ -77,7 +77,6 @@ const MainMenu = ({ user }) => {
       });
       return response.data[0].id;
     } catch (error) {
-      console.error("Error uploading image:", error);
       const errMs = `Error uploading image: ${error.message}`;
       showSnackbar(errMs, 'error');
     }

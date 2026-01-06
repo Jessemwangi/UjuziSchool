@@ -59,7 +59,7 @@ const PackageSubscription = () => {
             setPendingSubscription(response.data[0]);
           }
         } catch (error) {
-          console.error('Error checking pending subscriptions:', error);
+          // Error already handled
         } finally {
           setCheckingPending(false);
         }
