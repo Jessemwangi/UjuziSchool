@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // import { instructors_data } from '../../data';
 import Time from '../../UtilitiesFunctions/time';
 import { useParams } from 'react-router-dom';

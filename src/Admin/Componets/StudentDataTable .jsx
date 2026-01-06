@@ -45,6 +45,7 @@ const StudentDataTable = ({ data, onRefresh }) => {
   const [blockDialogOpen, setBlockDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [newPassword, setNewPassword] = useState('');
+  const [blockReason, setBlockReason] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -249,6 +250,7 @@ const StudentDataTable = ({ data, onRefresh }) => {
 
   const handleBlockClick = (student) => {
     setSelectedStudent(student);
+    setBlockReason('');
     setBlockDialogOpen(true);
   };
 
@@ -257,7 +259,7 @@ const StudentDataTable = ({ data, onRefresh }) => {
     
     setIsUpdating(true);
     try {
-      await putData(`/student/update/${selectedStudent.id}`, {
+      await putData(`/agent/update_student/${selectedStudent.id}`, {
         studentName: selectedStudent.studentName,
         studyLevel: selectedStudent.studyLevel
       });
@@ -277,7 +279,7 @@ const StudentDataTable = ({ data, onRefresh }) => {
     
     setIsDeleting(true);
     try {
-      await putData(`/student/delete/${selectedStudent.id}`, {
+      await putData(`/agent/delete_student/${selectedStudent.id}`, {
         isDeleted: true
       });
       
@@ -296,7 +298,7 @@ const StudentDataTable = ({ data, onRefresh }) => {
     
     setIsResetting(true);
     try {
-      await postData('/student/resetPassword', {
+      await postData('/agent/reset_student_password', {
         studentName: selectedStudent.studentName,
         newPassword: newPassword
       });
@@ -313,19 +315,28 @@ const StudentDataTable = ({ data, onRefresh }) => {
 
 const handleBlockStudent = async () => {
   if (!selectedStudent) return;
+  // If blocking (not unblocking), require a reason
+  if (!selectedStudent.isBlocked && !blockReason.trim()) {
+    showSnackbar('Please provide a reason for blocking', 'error');
+    return;
+  }
   
   setIsBlocking(true);
   try {
     // Use different URLs based on current block status
     const url = selectedStudent.isBlocked 
-      ? `/student/unblock/${selectedStudent.id}`
-      : `/student/block/${selectedStudent.id}`;
+      ? `/agent/unblock_student/${selectedStudent.id}`
+      : `/agent/block_student/${selectedStudent.id}`;
     
-    await putData(url, {});
+    // Send reason when blocking
+    const payload = selectedStudent.isBlocked ? {} : { reason: blockReason };
+    
+    await putData(url, payload);
     
     const action = selectedStudent.isBlocked ? 'unblocked' : 'blocked';
     showSnackbar(`Student ${action} successfully!`);
     setBlockDialogOpen(false);
+    setBlockReason('');
     if (onRefresh) onRefresh();
   } catch (error) {
     showSnackbar('Failed to update student status', 'error');
@@ -554,6 +565,39 @@ const handleBlockStudent = async () => {
         </DialogTitle>
         <Divider />
         <DialogContent sx={{ pt: 2 }}>
+          {/* Show current block status if student is blocked */}
+          {selectedStudent?.isBlocked && selectedStudent?.blockedReason && (
+            <Alert severity="info" sx={{ mb: 2, borderRadius: 2 }}>
+              <Typography variant="body2" fontWeight="medium">
+                Currently Blocked
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                <strong>Reason:</strong> {selectedStudent.blockedReason}
+              </Typography>
+              {selectedStudent?.blockedAt && (
+                <Typography variant="body2">
+                  <strong>Blocked on:</strong> {new Date(selectedStudent.blockedAt).toLocaleString()}
+                </Typography>
+              )}
+            </Alert>
+          )}
+          
+          {/* Block reason input for new blocks */}
+          {!selectedStudent?.isBlocked && (
+            <TextField
+              fullWidth
+              multiline
+              rows={3}
+              label="Reason for Blocking"
+              value={blockReason}
+              onChange={(e) => setBlockReason(e.target.value)}
+              placeholder="Enter the reason why this student is being blocked..."
+              required
+              sx={{ mb: 2 }}
+              helperText="This reason will be recorded and visible to admins"
+            />
+          )}
+          
           <Alert 
             severity={selectedStudent?.isBlocked ? "info" : "warning"} 
             sx={{ borderRadius: 2 }}

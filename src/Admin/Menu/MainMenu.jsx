@@ -232,10 +232,10 @@ const MainMenu = ({ user }) => {
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/admin/student?reg=Create Account"
+                href="/member/admin/students"
                 sx={{ ...rightLink }}
               >
-                {"Register Student"}
+                {"Manage Students"}
               </Link>
             </MenuItem>
             <MenuItem>
@@ -243,10 +243,10 @@ const MainMenu = ({ user }) => {
                 variant="h6"
                 underline="none"
                 color="inherit"
-                href="/member/admin/student/details"
+                href="/member/admin/student?reg=Create Account"
                 sx={{ ...rightLink }}
               >
-                {"Students List"}
+                {"Register Student"}
               </Link>
             </MenuItem>
             <MenuItem>

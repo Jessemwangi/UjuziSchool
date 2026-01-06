@@ -32,10 +32,10 @@ import ComingSoon from "./pages/coming-soon";
 import Pricing from "./Admin/pages/pricing-table/Pricing";
 // import SinglePrice from './Admin/pages/pricing-table/singlePrice/SinglePrice';
 import RegisterStudent from "./Admin/pages/RegisterStudent/RegisterStudent";
-import StudentDetails from "./Admin/pages/RegisterStudent/StudentDetails/StudentDetails";
-import EventListArea from "./events/event-list/event-list-area";
+import StudentList from "./Admin/pages/RegisterStudent/StudentList";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
+import EventListArea from "./events/event-list/event-list-area";
 import EventDetailsArea from "./events/event-list/event-details-area";
 import Instructions from "./pages/Resources/Instructions";
 import InstructionsDetails from "./pages/Resources/InstructionsDetails";
@@ -48,6 +48,7 @@ import AgentRegistration from "./Admin/AgentRegistration";
 import CoursePreview from "./Admin/pages/pricing-table/singlePrice/CoursePreview";
 import AgentSubscriptions from "./Admin/pages/subscription/AgentSubscriptions";
 import PackageSubscription from "./Admin/pages/subscription/PackageSubscription";
+import ManageSubscription from "./Admin/pages/subscription/ManageSubscription";
 import ContactAdmin from "./Admin/pages/profile/ContactAdmin";
 
 const router = createBrowserRouter(
@@ -220,12 +221,12 @@ const router = createBrowserRouter(
                   element: <PackageSubscription />,
                 },
                 {
-                  path: "/member/admin/student",
-                  element: <RegisterStudent />,
+                  path: "/member/admin/students",
+                  element: <StudentList />,
                 },
                 {
-                  path: "/member/admin/student/details",
-                  element: <StudentDetails />,
+                  path: "/member/admin/student",
+                  element: <RegisterStudent />,
                 },
                 {
                   path: "/member/admin/soon",
@@ -234,6 +235,10 @@ const router = createBrowserRouter(
                 {
                   path: "/member/admin/my-subscriptions",
                   element: <AgentSubscriptions />,
+                },
+                {
+                  path: "/member/admin/manage-subscription/:subscriptionId",
+                  element: <ManageSubscription />,
                 },
               ],
             },

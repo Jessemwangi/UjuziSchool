@@ -118,4 +118,22 @@ export const putData = async (url, data,  apitoken = token) => {
 
 }
 
+export const deleteData = async (url, apitoken = token) => {
+
+  try {
+    const response = await axios.delete(`${server}${url}`,
+      {
+        headers: {
+
+          Authorization: `Bearer ${apitoken}`
+        }
+      })
+    return response.data
+  } catch (error) {
+  
+    throw error
+  }
+
+}
+
   //

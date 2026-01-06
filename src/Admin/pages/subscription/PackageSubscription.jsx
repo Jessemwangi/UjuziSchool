@@ -17,9 +17,17 @@ const PackageSubscription = () => {
   const [sent, setSent] = useState(false);
   const [err, setErr] = useState("");
   const [agentFetchUrl, setAgentFetchUrl] = useState(null);
+  const [packageFetchUrl, setPackageFetchUrl] = useState(null);
   const { packageId } = useParams();
   const { user } = useUser();
   const navigate = useNavigate();
+
+  // Fetch subscription package to get numeric ID
+  useEffect(() => {
+    if (packageId) {
+      setPackageFetchUrl(`/subscription-packages/${packageId}`);
+    }
+  }, [packageId]);
 
   // Fetch agent details
   useEffect(() => {
@@ -28,20 +36,29 @@ const PackageSubscription = () => {
     }
   }, [user]);
 
+  const { loading: packageLoading, data: packageData, error: packageError } = useFetch(packageFetchUrl);
   const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
 
-
-
-   if (!user) {
-      return (
-        <div className="adminMain">
-          <div className="main-content">
-            <CircularProgress />
-          </div>
+  if (!user) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <CircularProgress />
         </div>
-      );
-    }
-  if (agentLoading) return <p>Loading agent details...</p>;
+      </div>
+    );
+  }
+  
+  if (packageLoading || agentLoading) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <CircularProgress />
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (err) {
     return (
@@ -81,6 +98,21 @@ const errorMessage = agentError?.response?.data?.error?.message || agentError?.r
   }
 }
 
+  // Get the numeric ID from package data
+  const packageNumericId = packageData?.data?.id;
+  
+  if (!packageNumericId) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <Alert severity="error" sx={{ marginBottom: '1rem' }}>Package not found</Alert>
+          <Button variant="contained" onClick={() => navigate(-1)}>Go Back</Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Get the 
   // Get the first agent detail ID
   const agentDetailId = agentData?.data?.[0]?.id;
 
@@ -121,7 +153,7 @@ const errorMessage = agentError?.response?.data?.error?.message || agentError?.r
         ...values,
         isActive: true,
         isApproved: false,
-        subscription_package: parseInt(packageId),
+        subscription_package: packageNumericId,
         agents_detail: agentDetailId
       };
       
@@ -184,8 +216,11 @@ const errorMessage = agentError?.response?.data?.error?.message || agentError?.r
       <Typography variant="h3" gutterBottom marked="center" align="center">
         Create Package Subscription
       </Typography>
-      <Typography variant="body2" align="center" sx={{ mb: 3 }}>
-        Package ID: {packageId}
+      <Typography variant="body2" align="center" sx={{ mb: 1 }}>
+        Package: {packageData?.data?.packageName || packageId}
+      </Typography>
+      <Typography variant="body2" align="center" color="text.secondary" sx={{ mb: 3 }}>
+        Package ID: {packageNumericId}
       </Typography>
       
       <Form
