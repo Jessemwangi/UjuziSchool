@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useOutletContext } from 'react-router-dom';
 import { useFetch } from '../../../../hooks/useFetch';
 import SystemError from '../../../../Component/modules/views/Error/SystemError';
 import SingleProgressbar from '../../../../Component/single-progressbar';
@@ -25,7 +25,53 @@ const SinglePrice = () => {
     const url =`/subscription-packages/${id}?populate=*`
     const [isLoading,setIsLoading] =useState(false)
     const [err, setErr] =useState()
+    const outletContext = useOutletContext();
+    const agentData = outletContext?.agentData;
+    const [agentSubscriptions, setAgentSubscriptions] = useState([]);
+    const [isAlreadySubscribed, setIsAlreadySubscribed] = useState(false);
+    const [subscriptionFetchUrl, setSubscriptionFetchUrl] = useState(null);
   const { data, loading, error }  =useFetch(url)
+  const { data: subscriptionsData } = useFetch(subscriptionFetchUrl);
+
+  // Fetch agent's subscriptions
+  useEffect(() => {
+    if (agentData?.id) {
+      console.log('Fetching subscriptions for agent:', agentData.id);
+      setSubscriptionFetchUrl(`/subscriptions?filters[agents_detail][id][$eq]=${agentData.id}&populate[subscription_package][fields][0]=packageName&populate[subscription_package][fields][1]=documentId&populate[subscription_package][fields][2]=id`);
+    }
+  }, [agentData]);
+
+  // Check if already subscribed to this package
+  useEffect(() => {
+    if (subscriptionsData?.data && data?.data) {
+      const packageDocId = data.data.documentId;
+      console.log('Package documentId:', packageDocId);
+      console.log('Agent subscriptions:', subscriptionsData.data.map(sub => ({
+        packageDocId: sub.subscription_package?.documentId,
+        packageId: sub.subscription_package?.id,
+        isActive: sub.isActive,
+        isApproved: sub.isApproved
+      })));
+      
+      const hasSubscription = subscriptionsData.data.some(
+        sub => {
+          const matches = sub.subscription_package?.documentId === packageDocId || 
+                         sub.subscription_package?.id === parseInt(id);
+          console.log('Checking subscription:', {
+            subPackageDocId: sub.subscription_package?.documentId,
+            subPackageId: sub.subscription_package?.id,
+            packageDocId,
+            packageId: id,
+            matches
+          });
+          return matches;
+        }
+      );
+      console.log('Has subscription?', hasSubscription);
+      setIsAlreadySubscribed(hasSubscription);
+    }
+  }, [subscriptionsData, data, id]);
+
   useEffect(() => {
 
     if (error) {
@@ -199,7 +245,7 @@ const SinglePrice = () => {
                   </div>
               </div>
               <div className="col-lg-4">
-                  <CourseDetailsSidebar  details_2={true} />
+                  <CourseDetailsSidebar  details_2={true} isAlreadySubscribed={isAlreadySubscribed} packageId={id} />
               </div>
           </div>
       </div>

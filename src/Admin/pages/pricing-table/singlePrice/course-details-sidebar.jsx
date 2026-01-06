@@ -6,7 +6,7 @@ import Books from '../../../../Component/modules/books';
 // import { Books } from '../../../svg';
 // import VideoModal from '../popup-modal/video-modal';
 
-const CourseDetailsSidebar = ({ course,details_2=false }) => {
+const CourseDetailsSidebar = ({ course, details_2=false, isAlreadySubscribed=false, packageId }) => {
     const { img, certificate, videoId, course_price, instructor, duration, student, language } = course || {};
     const { isVideoOpen, setIsVideoOpen } = useModal();
     return (
@@ -61,9 +61,16 @@ const CourseDetailsSidebar = ({ course,details_2=false }) => {
                                 </li>
                             </ul>
 
-                            <div className="read-more-btn">
-                                <a href="/#" className="edu-btn">Start Now <i className="icon-4"></i></a>
-                            </div>
+                            {isAlreadySubscribed ? (
+                                <div className="alert alert-info" style={{ marginTop: '20px', padding: '15px', borderRadius: '5px', backgroundColor: '#e3f2fd', border: '1px solid #90caf9' }}>
+                                    <i className="icon-20" style={{ marginRight: '8px' }}></i>
+                                    You are already subscribed to this package
+                                </div>
+                            ) : (
+                                <div className="read-more-btn">
+                                    <a href="/#" className="edu-btn">Subscribe Now <i className="icon-4"></i></a>
+                                </div>
+                            )}
 
                             <div className="share-area">
                                 <h4 className="title">Share On:</h4>

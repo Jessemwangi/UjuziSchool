@@ -86,6 +86,10 @@ const AgentRegistration = () => {
   const initialValues = {
     agentNumber: agentNumber,
     engagementType: "Independent Contractor",
+    companyName: "",
+    phoneNumber: "",
+    address: "",
+    notes: "",
     isActive: true,
     isApproved: false,
   };
@@ -97,6 +101,9 @@ const AgentRegistration = () => {
     }
     if (!values.engagementType) {
       errors.engagementType = "Engagement type is required";
+    }
+    if (!values.phoneNumber) {
+      errors.phoneNumber = "Phone number is required";
     }
     if (!contractDoc) {
       errors.contractDoc = "Contract document is required";
@@ -250,9 +257,15 @@ const AgentRegistration = () => {
 
       const payload = {
         data: {
-          users_permissions_user: user.id,
+          users_permissions_user: {
+            connect: [user.id]
+          },
           agentNumber: values.agentNumber,
           engagementType: values.engagementType,
+          companyName: values.companyName || null,
+          phoneNumber: values.phoneNumber,
+          address: values.address || null,
+          notes: values.notes || null,
           contractDoc: contractDoc.id,
           OtherDocument: otherDocuments.map(doc => doc.id),
           isActive: values.isActive || true,
@@ -266,7 +279,7 @@ const AgentRegistration = () => {
         showSnackbar('Registration submitted successfully! Awaiting approval.', 'success');
         setSent(true);
         setTimeout(() => {
-          navigate('/agent/dashboard');
+          navigate('/member/admin/agent-dashboard');
         }, 2000);
       }
     } catch (error) {
@@ -439,6 +452,63 @@ const AgentRegistration = () => {
                             )}
                           </Field>
                         </FormControl>
+                      </Grid>
+
+                      {/* Company Name */}
+                      <Grid item xs={12} sm={6}>
+                        <Field
+                          fullWidth
+                          component={RFTextField}
+                          disabled={submitting}
+                          name="companyName"
+                          label="Company Name"
+                          margin="normal"
+                          helperText="Optional: Your company or organization name"
+                        />
+                      </Grid>
+
+                      {/* Phone Number */}
+                      <Grid item xs={12} sm={6}>
+                        <Field
+                          fullWidth
+                          component={RFTextField}
+                          disabled={submitting}
+                          required
+                          name="phoneNumber"
+                          label="Phone Number"
+                          margin="normal"
+                          helperText="Your contact phone number"
+                        />
+                      </Grid>
+
+                      {/* Address */}
+                      <Grid item xs={12}>
+                        <Field
+                          fullWidth
+                          component={RFTextField}
+                          disabled={submitting}
+                          name="address"
+                          label="Address"
+                          margin="normal"
+                          multiline
+                          rows={2}
+                          helperText="Your physical or mailing address"
+                        />
+                      </Grid>
+
+                      {/* Notes */}
+                      <Grid item xs={12}>
+                        <Field
+                          fullWidth
+                          component={RFTextField}
+                          disabled={submitting}
+                          name="notes"
+                          label="Additional Notes"
+                          margin="normal"
+                          multiline
+                          rows={3}
+                          helperText="Any additional information you'd like to share"
+                        />
                       </Grid>
                     </Grid>
                   </CardContent>

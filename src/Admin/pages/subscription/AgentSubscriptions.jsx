@@ -71,7 +71,8 @@ const navigate = useNavigate();
 
   const isLoading = subscriptionLoading;
 
-  if (isLoading && !subscriptionData) {
+  // Show loading state if still fetching OR if we have no data yet
+  if (isLoading || !subscriptionData) {
     return renderState('Loading Subscriptions...', 'Please wait while we fetch your data.', 
       <CircularProgress size={48} />
     );
