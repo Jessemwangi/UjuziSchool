@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, Field, FormSpy } from "react-final-form";
-import { Alert, CircularProgress, Grid } from "@mui/material";
+import { Alert, CircularProgress, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import RFTextField from "../../../Component/modules/form/RFTextField";
 import FormFeedback from "../../../Component/modules/form/FormFeedback";
@@ -9,7 +9,7 @@ import { email, required } from "../../../Component/modules/form/validation";
 import { useUser } from "../../../hooks/UserContext";
 import CountrySelect from "../../../Component/modules/components/Country";
 import Typography from "../../../Component/modules/components/Typography";
-import { postData } from "../../../UtilitiesFunctions/Function";
+import { postData, get_Data, putData } from "../../../UtilitiesFunctions/Function";
 import { useFetch } from "../../../hooks/useFetch";
 import Button from "../../../Component/modules/components/Button";
 
@@ -18,6 +18,8 @@ const PackageSubscription = () => {
   const [err, setErr] = useState("");
   const [agentFetchUrl, setAgentFetchUrl] = useState(null);
   const [packageFetchUrl, setPackageFetchUrl] = useState(null);
+  const [pendingSubscription, setPendingSubscription] = useState(null);
+  const [checkingPending, setCheckingPending] = useState(false);
   const { packageId } = useParams();
   const { user } = useUser();
   const navigate = useNavigate();
@@ -39,6 +41,50 @@ const PackageSubscription = () => {
   const { loading: packageLoading, data: packageData, error: packageError } = useFetch(packageFetchUrl);
   const { loading: agentLoading, data: agentData, error: agentError } = useFetch(agentFetchUrl);
 
+  // Get the numeric IDs
+  const packageNumericId = packageData?.data?.id;
+  const agentDetailId = agentData?.data?.[0]?.id;
+
+  // Check for pending subscriptions when agent and package data are loaded
+  useEffect(() => {
+    const checkPendingSubscriptions = async () => {
+      if (agentDetailId && packageNumericId && user?.jwt) {
+        setCheckingPending(true);
+        try {
+          const response = await get_Data(
+            `/subscriptions/check-pending?agentId=${agentDetailId}&packageId=${packageNumericId}`,
+            user.jwt
+          );
+          if (response?.data && response.data.length > 0) {
+            setPendingSubscription(response.data[0]);
+          }
+        } catch (error) {
+          console.error('Error checking pending subscriptions:', error);
+        } finally {
+          setCheckingPending(false);
+        }
+      }
+    };
+
+    checkPendingSubscriptions();
+  }, [agentDetailId, packageNumericId, user?.jwt]);
+
+  const handleCancelPending = async () => {
+    if (!pendingSubscription || !user?.jwt) return;
+    
+    try {
+      await putData(
+        `/subscriptions/${pendingSubscription.id}/cancel-pending`,
+        {},
+        user.jwt
+      );
+      setPendingSubscription(null);
+      alert('Pending subscription cancelled successfully. You can now create a new one.');
+    } catch (error) {
+      alert(error?.response?.data?.error?.message || 'Failed to cancel subscription');
+    }
+  };
+
   if (!user) {
     return (
       <div className="adminMain">
@@ -49,7 +95,7 @@ const PackageSubscription = () => {
     );
   }
   
-  if (packageLoading || agentLoading) {
+  if (packageLoading || agentLoading || checkingPending) {
     return (
       <div className="adminMain">
         <div className="main-content">
@@ -98,9 +144,6 @@ const errorMessage = agentError?.response?.data?.error?.message || agentError?.r
   }
 }
 
-  // Get the numeric ID from package data
-  const packageNumericId = packageData?.data?.id;
-  
   if (!packageNumericId) {
     return (
       <div className="adminMain">
@@ -112,16 +155,69 @@ const errorMessage = agentError?.response?.data?.error?.message || agentError?.r
     );
   }
 
-  // Get the 
-  // Get the first agent detail ID
-  const agentDetailId = agentData?.data?.[0]?.id;
-
   if (!agentDetailId) {
     return (
               <div className="adminMain">
         <div className="main-content">
           <Alert severity="error" sx={{ marginBottom: '1rem' }}>{'No agent details found. Please create an agent profile first.'}</Alert>
           <Button variant="contained" onClick={() => window.location.reload()}>Retry</Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show pending subscription warning
+  if (pendingSubscription) {
+    return (
+      <div className="adminMain">
+        <div className="main-content">
+          <Alert severity="warning" sx={{ marginBottom: '2rem' }}>
+            <Typography variant="h6" gutterBottom>
+              Pending Subscription Found
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              You already have a pending subscription request for this package that is awaiting approval.
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              <strong>Institution:</strong> {pendingSubscription.institution}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              <strong>Package:</strong> {pendingSubscription.subscription_package?.packageName || 'N/A'}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              <strong>Submitted:</strong> {new Date(pendingSubscription.createdAt).toLocaleDateString()}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              If you want to create a new subscription for this package, you must first cancel the pending one.
+            </Typography>
+          </Alert>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Button 
+                variant="contained" 
+                color="error"
+                onClick={handleCancelPending}
+              >
+                Cancel Pending Subscription
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button 
+                variant="outlined"
+                onClick={() => navigate('/member/admin/subscriptions')}
+              >
+                View All Subscriptions
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button 
+                variant="outlined"
+                onClick={() => navigate(-1)}
+              >
+                Go Back
+              </Button>
+            </Grid>
+          </Grid>
         </div>
       </div>
     );
@@ -160,7 +256,15 @@ const errorMessage = agentError?.response?.data?.error?.message || agentError?.r
       await postData("/subscriptions", { data }, user?.jwt);
       setSent(true);
     } catch (error) {
-      setErr(error?.response?.data?.error?.message || "Failed to create subscription");
+      const errorMessage = error?.response?.data?.error?.message || "Failed to create subscription";
+      const errorDetails = error?.response?.data?.error?.details;
+      
+      // If it's a conflict error about pending subscription, show more details
+      if (error?.response?.status === 409 && errorDetails?.existingSubscriptionId) {
+        setErr(`${errorMessage} (Subscription ID: ${errorDetails.existingSubscriptionId})`);
+      } else {
+        setErr(errorMessage);
+      }
     }
   };
 
